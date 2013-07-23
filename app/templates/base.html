@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  {% if title %}
+  <title>{{title}} - ExerciX.db</title>
+  {% else %}
+  <title>ExerciX.db</title>
+  {% endif %}
+
+  <link href="/static/css/bootstrap.css" rel="stylesheet" media="all">
+  <link href="/static/css/tablesorter.css" rel="stylesheet" media="all">
+  <link href="/static/css/dashboard.css" rel="stylesheet" media="all">
+  <link href="/static/css/math.css" rel="stylesheet" media="all">
+  <script src="http://code.jquery.com/jquery-latest.js"></script>
+  <script src="/static/js/bootstrap.js"></script>
+  <script src="/static/js/jquery.tablesorter.js"></script> 
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+
+    <div class="navbar navbar-inverse navbar-static-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">Exercix-DB</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="/index">Dashboard</a>
+                        <li><a href="/exercices">Exercices</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <br>
+
+    <div class="container">
+
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-info">
+                  <button type="button" class="close" data-dismiss="alert">×</button>
+                  <strong>Succes !</strong> L'exercice a bien été ajouté à la base !
+              </div>
+              <br>
+            {% endfor %}
+        {% endif %}
+      {% endwith %}
+
+      {% block content %}{% endblock %}
+      <hr>
+    </div>
+</body>
+
+<footer>
+    <div class="container">
+        <p>Copiright edelans 2013</p>
+    </div>
+</footer>
+
+</html>

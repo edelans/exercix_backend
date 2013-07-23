@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Administration des exercices</h1>
+
+<ul class="breadcrumb">
+  <li class="active">Home</li>
+</ul>
+
+<ul class="nav nav-tabs nav-stacked">
+    {% for S_part in structure["parts"] %}
+    	<li><a href={{ url_for('exercices_l1', part=S_part["part"])}}>{{S_part["part"].decode('utf8')}}</a></li>
+    {% endfor %}
+</ul>
+
+
+<a class="btn btn-large btn-block btn-primary" href={{url_for('new_exo', exo_id=new_id)}}>Saisir un nouvel exercice</a>
+
+{% endblock %}
+

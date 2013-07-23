@@ -1,0 +1,26 @@
+@font-face {
+  font-family: 'LM';
+  src: url('fonts/lmroman10-regular-webfont.eot');
+  src: url('fonts/lmroman10-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/lmroman10-regular-webfont.woff') format('woff'), url('fonts/lmroman10-regular-webfont.ttf') format('truetype'), url('fonts/lmroman10-regular-webfont.svg#lm_roman_10regular') format('svg');
+  font-weight: normal;
+  font-style: normal;/* LaTeX font : Latin Modern*/
+}
+@font-face {
+  font-family: 'LMC';
+  src: url('fonts/lmromancaps10-regular-webfont.eot');
+  src: url('fonts/lmromancaps10-regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/lmromancaps10-regular-webfont.woff') format('woff'), url('fonts/lmromancaps10-regular-webfont.ttf') format('truetype'), url('fonts/lmromancaps10-regular-webfont.svg#lm_roman_caps_10regular') format('svg');
+  font-weight: normal;
+  font-style: normal;/* LaTeX font with CAPS*/
+}
+@font-face {
+  font-family: 'LMI';
+  src: url('fonts/lmroman10-italic-webfont.eot');
+  src: url('fonts/lmroman10-italic-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/lmroman10-italic-webfont.woff') format('woff'), url('fonts/lmroman10-italic-webfont.ttf') format('truetype'), url('fonts/lmroman10-italic-webfont.svg#lm_roman_10italic') format('svg');
+  font-weight: normal;
+  font-style: normal;/* LaTeX font italic*/
+}
+
+.math {
+  font-family: 'LM';
+  font-weight: normal
+}

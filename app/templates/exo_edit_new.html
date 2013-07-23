@@ -1,0 +1,91 @@
+{% macro form_field(field) -%}
+    {% set with_label = kwargs.pop('with_label', True) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="control-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="control-label">
+                {{ field.label.text }}:
+            </label>
+        {% endif %}
+        <div class="controls">
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_, **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+                {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                    {% set class_ = class_ + ' input-xlarge' %}
+                {% elif field.type == 'FileField' %}
+                    {% set class_ = class_ + ' input-file' %}
+                {% endif %}
+                {{ field(class_=class_, placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+
+{% extends "base.html" %}
+{% block content %}
+
+
+<h1>Enregistrement d'un nouvel exercice</h1>
+<form class="form-horizontal" action="" method="post" name="edit">
+  <h2>Admin</h2>
+    {{form.hidden_tag()}}
+
+    <div class="control-group ">
+      <label class="control-label">Id:</label>
+      <div class="controls">
+        <input class="input-xlarge" id="disabledInput" type="text" placeholder={{new_id}} disabled>
+      </div>
+    </div>
+    
+    {{form_field(form.source )}}
+    {{form_field(form.author, value="edelans@gmail.com")}}
+    {{form_field(form.school)}}
+
+
+<h2>Thème</h2>
+    {{form_field(form.track)}}
+    {{form_field(form.category)}}
+    {{form_field(form.chapter)}}
+    <div class="control-group ">
+      <label class="control-label">Numéro:</label>
+      <div class="controls">
+        <input class="input-xlarge" id="disabledInput" type="text" placeholder="Le numero sera donné automatiquement" disabled>
+      </div>
+    </div>
+
+    {{form_field(form.difficulty)}}
+    {{form_field(form.taglist)}}
+
+<h2>Contenu</h2>
+    {{form_field(form.question, class="input-block-level", rows="10")}}
+    {{form_field(form.hint, class="input-block-level", rows="5")}}
+    {{form_field(form.solution, class="input-block-level", rows="20")}}  
+
+    <div class="row">
+      <div class="span12" style="text-align:center">
+        <button class="btn btn-large btn-primary" type="submit" style="text-align:center">Enregistrer</button> 
+      </div>
+    </div>
+
+
+</form>
+
+{% endblock %}

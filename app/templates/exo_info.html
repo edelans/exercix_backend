@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="row">
+  <div class="span12"><br><br><br></div>
+</div>
+
+<div class="row">
+  <div class="span2"></div>
+  <div id="chart1" class="span8"></div>
+  <div class="span2"></div>
+</div>
+
+
+<div class="row">
+  <div class="span12"><br><br><br></div>
+</div>
+
+
+<div class="row">
+  <div class="span6">
+  	<h2>Thème </h2>
+  	<dl class="dl-horizontal">
+      <dt>Filière</dt>
+      <dd>
+        {% for tag in exo_data.track %}
+          <span class="label">{{tag.decode('utf8')}}</span>
+        {% endfor %}
+      </dd>
+
+      <dt>Categorie</dt>
+      <dd>{{exo_data.category.decode('utf8')}}</dd>
+
+      <dt>Chapitre</dt>
+      <dd>{{exo_data.chapter.decode('utf8')}}</dd>
+
+      <dt>Numéro</dt>
+      <dd>{{exo_data.number}}</dd>
+
+      <dt>Difficulté</dt>
+      <dd>{{exo_data.difficulty}}</dd>
+
+      <dt>Tags</dt>
+      <dd>
+          {% for tag in exo_data.taglist %}
+            <span class="label label-info">{{tag.decode('utf8')}}</span>
+          {% endfor %}
+      </dd>
+    </dl>
+  </div>
+
+
+  <div class="span6">
+  <h2>Identification </h2>
+    <dl class="dl-horizontal">
+      <dt>Id</dt>
+      <dd>{{exo_data.id}}</dd>
+
+      <dt>Source</dt>
+      <dd>{{exo_data.source}}</dd>
+
+      <dt>Auteur</dt>
+      <dd>{{exo_data.author}}</dd>
+
+      <dt>Concours</dt>
+      <dd>{{exo_data.school.decode('utf8')}}</dd>
+
+    </dl>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12"><br><br><br></div>
+</div>
+
+
+
+<div class="row">
+  <div class="span12">
+  	<h2>Contenu </h2>
+  	<div class="hero-unit">
+      <h2>Enoncé</h2>
+  		<div class="math">
+        {{exo_data.question_html.decode('utf8')|safe}}
+      </div>
+  	</div>
+  	<div class="hero-unit">
+      <h2>Indice</h2>
+  		<div class="math">
+        {{exo_data.hint.decode('utf8')|safe}}
+      </div>
+  	</div>
+  	<div class="hero-unit">
+      <h2>Correction</h2>
+      <div class='math'>
+        {{exo_data.solution_html.decode('utf8')|safe}}
+      </div>
+  	</div>
+  	
+	
+  </div>
+</div>
+
+
+<a class="btn btn-large btn-block btn-danger" href={{ url_for('exo_edit_content', exo_id=exo_id)}}><i class="icon-pencil"></i></a>
+
+
+
+
+<script>
+$(function () {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'datetime',
+            },
+            yAxis: {
+                title: {
+                    text: 'Count'
+                },
+                min: -1
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y;
+                }
+            },            
+            series: [{
+                name: 'Viewcount',
+                data: {{chart_data.viewcount}},
+                color: 'green'
+            },{
+                name: 'Flagcount',
+                data: {{chart_data.flagcount}},
+                color: 'red'
+            },{
+                name: 'Requestcount',
+                data: {{chart_data.requestcount}}
+            }]
+        });
+    });
+
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+{% endblock %}
+

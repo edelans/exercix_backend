@@ -1,0 +1,136 @@
+.smallstat{
+  background:#fff;
+  padding:10px;
+  position:relative}
+
+.smallstat .boxchart-overlay{
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  border-radius:2px;
+  width:64px;
+  padding:10px;
+  text-align:center;
+  margin-right:10px;
+  float:left;
+  overflow:hidden}
+
+.smallstat .boxchart-overlay.blue{
+  background:#36a9e1}
+
+.smallstat i{
+  text-align:center;
+  display:block;
+  color:#fff;
+  width:50px;
+  font-size:22px;
+  padding:14px 0;
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  border-radius:2px;
+  float:left;
+  margin-right:10px}
+
+.smallstat i.blue{
+  background:#36a9e1}
+
+.smallstat i.lightBlue{
+  background:#67c2ef}
+
+.smallstat i.green{
+  background:#bdea74}
+
+.smallstat i.darkGreen{
+  background:#78cd51}
+
+.smallstat i.pink{
+  background:#e84c8a}
+
+.smallstat i.orange{
+  background:#fa603d}
+
+.smallstat i.lightOrange{
+  background:#fabb3d}
+
+.smallstat i.red{
+  background:#ff5454}
+
+.smallstat i.yellow{
+  background:#eae874}
+
+.smallstat i.white{
+  background:#fff}
+
+.smallstat i.grey{
+  background:#c7cbd5}
+
+.smallstat .title{
+  top:12px;
+  color:#c7cbd5;
+  display:block;
+  font-size:14px;
+  margin-top:4px}
+
+.smallstat .value{
+  font-size:20px;
+  font-weight:700}
+
+
+.box{
+  -webkit-border-radius:2px;
+  -moz-border-radius:2px;
+  border-radius:2px;
+  -webkit-box-shadow:0 1px 0 1px #e4e6eb;
+  -moz-box-shadow:0 1px 0 1px #e4e6eb;
+  box-shadow:0 1px 0 1px #e4e6eb;
+  overflow:hidden;
+  margin:0 0 28px 0}
+
+.box .box-header{
+  background:#36a9e1;
+  color:#fff;
+  font-size:16px;
+  overflow:hidden}
+
+.box .box-header h2{
+  float:left;
+  padding:10px 0;
+  margin:0 0 0 20px}
+
+.box .box-header h2 i{
+  background:#1e8fc6;
+  color:#fff;
+  padding:10px 0;
+  width:36px;
+  display:inline-block;
+  text-align:center;
+  margin:-10px 20px -10px -20px}
+
+.box .box-header .box-icon{
+  background:#1e8fc6;
+  float:right}
+
+.box .box-header .box-icon i{
+  display:inline-block;
+  color:#fff;
+  text-align:center;
+  width:36px;
+  padding:10px 0;
+  -webkit-transition:all .1s ease-in-out;
+  -moz-transition:all .1s ease-in-out;
+  -ms-transition:all .1s ease-in-out;
+  -o-transition:all .1s ease-in-out;
+  transition:all .1s ease-in-out;
+  opacity:.8;
+  filter:alpha(opacity=80);
+  -ms-filter:"alpha(Opacity=80)";
+  border-left:1px solid #36a9e1;
+  text-decoration:none}
+
+.box .box-header .box-icon i:hover{
+  opacity:1;
+  filter:alpha(opacity=100);
+  -ms-filter:"alpha(Opacity=100)"}
+
+.box .box-content{
+  padding:10px;
+  background:#fff}

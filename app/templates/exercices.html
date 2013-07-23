@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+	<h1>Administration des exercices</h1>
+
+	    {% for h1 in structure["parts"] %}
+	    <h2>{{h1["part"].decode('utf8')}}</p>
+	    	{% for h2 in h1["chapters"] %}
+	    	<h3>{{h2["chapter"].decode('utf8')}}</h3>
+
+			<table class="table table-condensed table-hover">
+				<tr>
+					<th>Exo id</th>
+					<th>Exo number</th>
+					<th>viewcount</th>
+					<th>flagcount</th>
+					<th>requestcount</th>
+				</tr>
+
+				{% for exo in h2["exos"] %}
+				<tr>
+					<td>{{exo.exo_id}}</td>
+					<td>{{exo.exo_nb}}</td>
+					<td>{{exo.viewcount}}</td>
+					<td>{{exo.flagcount}}</td>
+					<td>{{exo.requestcount}}</td>
+				</tr>
+				{% endfor %}
+			</table>
+	    	{% endfor %}
+	    {% endfor %}
+{% endblock %}

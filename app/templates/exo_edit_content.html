@@ -1,0 +1,279 @@
+{% macro form_field(field) -%}
+    {% set with_label = kwargs.pop('with_label', False) %}
+    <div class="control-group {% if field.errors %}error{% endif %}">
+        <div class="controls">
+            {% set class_ = kwargs.pop('class_', '') %}
+  
+            {{ field(class_=class_, default = '', **kwargs) }}
+
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+
+
+{% extends "base.html" %}
+{% block content %}
+
+
+<div class="row">
+  <div class="span12"><br><br><br></div>
+</div>
+
+<div class="row">
+  <div class="span2"></div>
+  <div id="chart1" class="span8"></div>
+  <div class="span2"></div>
+</div>
+
+
+<div class="row">
+  <div class="span12"><br><br><br></div>
+</div>
+
+
+<div class="row">
+  <div class="span6">
+  	<h2>Thème <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_theme"><i class="icon-pencil"></i></a></h2>
+  	<dl class="dl-horizontal">
+      <dt>Filière</dt>
+      <dd>
+        {% for tag in exo_data.track %}
+          <span class="label">{{tag.decode('utf8')}}</span>
+        {% endfor %}
+      </dd>
+
+      <dt>Categorie</dt>
+      <dd>{{exo_data.category.decode('utf8')}}</dd>
+
+      <dt>Chapitre</dt>
+      <dd>{{exo_data.chapter.decode('utf8')}}</dd>
+
+      <dt>Numéro</dt>
+      <dd>{{exo_data.number}}</dd>
+
+      <dt>Difficulté</dt>
+      <dd>{{exo_data.difficulty}}</dd>
+
+      <dt>Tags</dt>
+      <dd>
+          {% for tag in exo_data.taglist %}
+            <span class="label label-info">{{tag.decode('utf8')}}</span>
+          {% endfor %}
+      </dd>
+    </dl>
+
+    <div id="edit_theme" class="collapse"> 
+      <hr>
+      <form action="" method="post" name="edit">
+          <div style="display:none;">
+            {{formTheme.track.process_data(exo_data.track)}}
+            {{formTheme.category.process_data(exo_data.category.decode('utf8'))}}
+            {{formTheme.chapter.process_data(exo_data.chapter.decode('utf8'))}}
+            {{formTheme.difficulty.process_data(exo_data.difficulty)}}
+            {{formTheme.taglist.process_data(exo_data.taglist)}}
+          </div>
+          {{formTheme.hidden_tag()}}
+
+          {{form_field(formTheme.track)}}
+          {{form_field(formTheme.category)}}
+          {{form_field(formTheme.chapter)}}
+          <div class="control-group ">
+            <div class="controls">
+              <input  id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
+            </div>
+          </div>
+          {{form_field(formTheme.difficulty)}}
+          {{form_field(formTheme.taglist)}}
+          <p><button class="btn" type="button">Enregistrer</button></p>
+      </form>
+    </div>
+
+  </div>
+
+
+  <div class="span6">
+  <h2>Identification <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_id"><i class="icon-pencil"></i></a></h2>
+    <dl class="dl-horizontal">
+      <dt>Id</dt>
+      <dd>{{exo_data.id}}</dd>
+
+      <dt>Source</dt>
+      <dd>{{exo_data.source}}</dd>
+
+      <dt>Auteur</dt>
+      <dd>{{exo_data.author}}</dd>
+
+      <dt>Concours</dt>
+      <dd>{{exo_data.school.decode('utf8')}}</dd>
+    </dl>
+
+    <div id="edit_id" class="collapse"> 
+      <hr>
+      <form action="" method="post" name="edit">
+          
+          <div style="display:none;">
+            {{formId.source.process_data(exo_data.source.decode('utf8'))}}
+            {{formId.author.process_data(exo_data.author.decode('utf8'))}}
+            {{formId.school.process_data(exo_data.school.decode('utf8'))}}
+          </div>
+          {{formId.hidden_tag()}}
+          <div class="control-group ">
+            <div class="controls">
+              <input id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
+            </div>
+          </div>
+          {{form_field(formId.source)}}
+          {{form_field(formId.author)}}
+          {{form_field(formId.school)}}
+          <p><button class="btn" type="button">Enregistrer</button></p>
+    	</form>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="span12"><br><br><br></div>
+</div>
+
+<script>
+function cleanLatex(strOutput)
+{
+    strOutput = strOutput.replace(/\\begin\{enumerate\}/g, '<ol>');
+    strOutput = strOutput.replace(/\\end\{enumerate\}/g, '<\/ol>');
+    strOutput = strOutput.replace(/\\begin\{itemize\}/g, '<ul>');
+    strOutput = strOutput.replace(/\\end\{itemize\}/g, '<\/ul>');
+    strOutput = strOutput.replace(/\\item\s*\[([^\]]*)\]/g, '<br>$1&nbsp;');
+    strOutput = strOutput.replace(/\\item/g, '\r\n<li>');
+    strOutput = strOutput.replace(/(\\begin{array}(?:[^\\]+|\\(?!end{array}))*\\end{array})|(\\begin{cases}(?:[^\\]+|\\(?!end{cases}))*\\end{cases})|\\\\/g, function(match) {
+       if (match.length < 3)
+            return "<br>" // Le regex cherche les \begin{array} \end{array}, et les \\. Il suffit alors de filter les array.
+       else
+            return match; // return the argument, that is, don't replace
+  }); 
+      return strOutput
+}
+</script>
+
+
+<div class="row">
+  <div class="span12">
+  	<h2>Contenu </h2>
+
+  	<div class="hero-unit" id="question">
+      <h2>Enoncé <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_enonce"><i class="icon-pencil"></i></a></h2>
+  		<p class="math">{{exo_data.question.decode('utf8')}}</p>
+      <div id="edit_enonce" class="collapse"> 
+        <hr>
+        <form action="" method="post" name="edit">
+	        {{formQuestion.hidden_tag()}}
+	        <div style="display:none;">{{formQuestion.question.process_data(exo_data.question.decode('utf8'))}}</div>
+	        
+	        {{form_field(formQuestion.question, class="input-block-level", rows="10")}}
+	        <p><button class="btn" type="button">Enregistrer</button></p>
+      	</form>
+      </div>
+  	</div>
+
+  	<div class="hero-unit" id="hint">
+      <h2>Indice <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_hint"><i class="icon-pencil"></i></a></h2>
+      <p class="math">{{exo_data.hint.decode('utf8')}}</p>
+      <div id="edit_hint" class="collapse"> 
+        <hr>
+        <form action="" method="post" name="edit">
+	        {{formHint.hidden_tag()}}
+	        <!-- prefill textarea: -->
+	        <div style="display:none;">{{formHint.hint.process_data(exo_data.hint.decode('utf8'))}}</div>
+	        {{form_field(formHint.hint, class="input-block-level", rows="3")}}
+	        <p><button class="btn" type="button">Enregistrer</button></p>
+	   	</form>
+      </div>
+  	</div>
+
+  	<div class="hero-unit" id="solution">
+      <h2>Correction  <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_solution"><i class="icon-pencil"></i></a></h2>
+      <p class="math">{{exo_data.solution.decode('utf8')}}</p>
+      <div id="edit_solution" class="collapse"> 
+        <hr>
+        <form action="" method="post" name="edit">
+	        {{formSolution.hidden_tag()}}
+
+	        <!-- prefill textarea: -->
+	        <div style="display:none;">{{formSolution.solution.process_data(exo_data.solution.decode('utf8')) }}</div>
+
+	        {{form_field(formSolution.solution, class="input-block-level", rows="20")}}
+	      
+	        <p><button class="btn" type="button">Enregistrer</button></p>
+          </form>
+        </div>
+  	</div>
+	
+
+
+
+
+  </div>
+</div>
+<!-- http://stackoverflow.com/questions/5117479/wtforms-how-to-prepopulate-a-textarea-field -->
+
+
+
+
+
+
+
+<script>
+$(function () {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'datetime',
+            },
+            yAxis: {
+                title: {
+                    text: 'Count'
+                },
+                min: -1
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y;
+                }
+            },            
+            series: [{
+                name: 'Viewcount',
+                data: {{chart_data.viewcount}},
+                color: 'green'
+            },{
+                name: 'Flagcount',
+                data: {{chart_data.flagcount}},
+                color: 'red'
+            },{
+                name: 'Requestcount',
+                data: {{chart_data.requestcount}}
+            }]
+        });
+    });
+
+</script>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+{% endblock %}
+
