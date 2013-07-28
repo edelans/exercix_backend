@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, url_for, flash, redirect
+from flask import render_template, url_for, flash, redirect, send_from_directory
 from app import app
 from forms import *
 from utility import *
 import json
+import os
 
 
-
-@app.route('/login', methods = ['GET', 'POST'])
+@app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
@@ -18,13 +18,20 @@ def login():
         form = form)
 
 
+#@app.route('/favicon.ico')
+#def favicon():
+#    return send_from_directory(os.path.join(app.root_path, 'static'), 'ico/favicon.ico')
+
+#@app.errorhandler(404)
+#def page_not_found(e):
+#    return render_template('404.html'), 404
 
 @app.route('/')
 @app.route('/index')
 def index():
     user = { 'nickname': 'edelans' } # placeholder fake user
     
-    stat_exo_viewcount = [ #placeholder top 5 vues des exos
+    stat_exo_viewcount=[ #placeholder top 5 vues des exos
     {
     'exo_id': 4654,
     'viewcount': 45
