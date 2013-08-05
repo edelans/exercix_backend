@@ -1,8 +1,27 @@
-from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+# -*- coding: utf-8 -*-
+from flask import Flask, g
+import flaskext.couchdb
+
+
 
 app = Flask(__name__)
 app.config.from_object('config')
-db = SQLAlchemy(app)
 
+
+"""
+CouchDB permanent view
+
+docs_by_author = ViewDefinition('docs', 'byauthor',
+                                'function(doc) { emit(doc.author, doc); }')
+"""
+
+#flask-couchdb :
+manager = flaskext.couchdb.CouchDBManager()
+manager.setup(app)
+#manager.add_viewdef(docs_by_author)  # Install the view
+manager.sync(app)
+
+
+# attention: important de laisser a la fin :
 from app import views, models
+

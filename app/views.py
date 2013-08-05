@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
-from flask import render_template, url_for, flash, redirect, send_from_directory
-from app import app, db
+from flask import g, render_template, url_for, flash, redirect, send_from_directory
+from app import app
 from forms import *
 from models import *
 from utility import *
 import json
 import os
-
+from uuid import uuid4
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -106,51 +106,123 @@ def exercices_l2(part, chapter):
         )
 
 
-
-@app.route('/exercices/<int:exo_id>')
+@app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 def exo_edit_content(exo_id):
-    formId = ExoEditId()
+    document = g.couch[exo_id] #http://pythonhosted.org/Flask-CouchDB/#flaskext.couchdb.Document
+
+    # en cas de mise a jour de l'exo:
     formTheme = ExoEditTheme()
-    formQuestion = ExoEditQuestion()
-    formHint = ExoEditHint()
-    formSolution = ExoEditSolution()
-    if formQuestion.validate_on_submit() or formHint.validate_on_submit() or formSolution.validate_on_submit() or formId.validate_on_submit() or formTheme.validate_on_submit():
-        flash('L\'exercice a été mis à jour'.decode('utf8'))
+    if formTheme.validate_on_submit():
+        document['tracks'] = formTheme.tracks.data
+        document['part'] = formTheme.part.data
+        document['chapter'] = formTheme.chapter.data
+        document['difficulty'] = formTheme.difficulty.data
+        document['tags'] = formTheme.tags.data
+        g.couch.save(document)
+        flash('le paragraphe thème de l\'exercice a été mis à jour'.decode('utf8'))
         return redirect(url_for('exo_edit_content', exo_id=exo_id))
-    return render_template("exo_edit_content.html",
-        title = 'Informations sur l\'exercice',
-        exo_id = exo_id,
-        exo_data = exo_data, #placeholder
-        chart_data = chart_data, #placeholder
-        formQuestion =formQuestion,
-        formHint = formHint,
-        formSolution = formSolution,
-        formId = formId,
-        formTheme = formTheme
-        )
+    
+    formId = ExoEditId()
+    if formId.validate_on_submit():
+        document['source'] = formId.source.data
+        document['author'] = formId.author.data
+        document['school'] = formId.school.data
+        g.couch.save(document)
+        flash('le paragraphe identification de l\'exercice a été mis à jour'.decode('utf8'))
+        return redirect(url_for('exo_edit_content', exo_id=exo_id))
+
+    formQuestion = ExoEditQuestion()
+    if formQuestion.validate_on_submit():
+        document['question'] = formQuestion.question.data
+        document['question_html'] = latex_to_html(formQuestion.question.data)
+        g.couch.save(document)
+        flash('La question de l\'exercice a été mise à jour'.decode('utf8'))
+        return redirect(url_for('exo_edit_content', exo_id=exo_id))
+
+    formHint = ExoEditHint()
+    if formHint.validate_on_submit():
+        document['hint'] = formHint.hint.data
+        g.couch.save(document)
+        flash('L\'indice de l\'exercice a été mise à jour'.decode('utf8'))
+        return redirect(url_for('exo_edit_content', exo_id=exo_id))
+    
+    formSolution = ExoEditSolution()
+    if formSolution.validate_on_submit():
+        document['solution'] = formSolution.solution.data
+        document['solution_html'] = latex_to_html(document['solution'])
+        g.couch.save(document)
+        flash('La solution de l\'exercice a été mise à jour'.decode('utf8'))
+        return redirect(url_for('exo_edit_content', exo_id=exo_id))
+    
+
+    
+
+
+    # try retrieving the exo in the couchdb
+    
+    if document:
+        return render_template("exo_edit_content.html",
+            title = 'Informations sur l\'exercice',
+            exo_id = exo_id,
+            exo_data = document, #placeholder
+            chart_data = chart_data, #placeholder
+            formQuestion =formQuestion,
+            formHint = formHint,
+            formSolution = formSolution,
+            formId = formId,
+            formTheme = formTheme
+            )
+
+    else: # on renvoit tous les placeholder 
+        return render_template("exo_edit_content.html",
+            title = 'Informations sur l\'exercice',
+            exo_id = exo_id,
+            exo_data = exo_data, #placeholder
+            chart_data = chart_data, #placeholder
+            formQuestion =formQuestion,
+            formHint = formHint,
+            formSolution = formSolution,
+            formId = formId,
+            formTheme = formTheme
+            )
 
 
 @app.route('/new_exo', methods = ['GET', 'POST'])
 def new_exo():
     form = ExoEditForm()
-    new_id= 56 #placeholder
     if form.validate_on_submit():
         new_number = 10 #placeholder: new_number a calculer en fonction du number du dernier exo du chapitre !
+        
+        #build object with posted values
         exo = Exo(source = form.source.data, 
             author = form.author.data,
+            school = form.school.data,
+            # theme
+            chapter= form.chapter.data,
+            part= form.part.data,
             number = new_number,
             difficulty = form.difficulty.data,
+            tags = form.tags.data,
+            tracks = form.tracks.data,
+            # content
+            question = form.question.data,
             question_html= latex_to_html(form.question.data),
             hint= form.hint.data,
+            solution= form.solution.data,
             solution_html= latex_to_html(form.question.data) )
-        db.session.add(exo)
-        db.session.commit()
-        flash('Le nouvel exercice a été entré dans la base'.decode('utf8'))
-        return redirect(url_for('exo_edit_content', exo_id=new_id))
+        new_id = uuid4().hex
+        exo.id = new_id
+        
+        # Insert into database
+        try:
+            exo.store()
+            flash('Le nouvel exercice a été entré dans la base'.decode('utf8'))
+            return redirect(url_for('exo_edit_content', exo_id=new_id))
+        except Exception as e:
+            flash('ERREUR: Le nouvel exercice n\'a PAS été entré dans la base'.decode('utf8'))
     return render_template('exo_edit_new.html', 
         title = 'Nouvel exo',
-        form = form,
-        new_id= new_id)
+        form = form)
 
 
 
@@ -414,8 +486,8 @@ exo_data ={ #placeholder
     "author": "edelans@gmail.com",
     "school": "Centrale",
     
-    "track":["PC","MP","PSI"],
-    "category": "Algebre",
+    "tracks":["PC","MP","PSI"],
+    "part": "Algebre",
     "chapter": "Polynômes",
     "number": 2,
     "difficulty": 1,

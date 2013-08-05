@@ -41,13 +41,13 @@
   	<dl class="dl-horizontal">
       <dt>Filière</dt>
       <dd>
-        {% for tag in exo_data.track %}
+        {% for tag in exo_data.tracks %}
           <span class="label">{{tag.decode('utf8')}}</span>
         {% endfor %}
       </dd>
 
       <dt>Categorie</dt>
-      <dd>{{exo_data.category.decode('utf8')}}</dd>
+      <dd>{{exo_data.part.decode('utf8')}}</dd>
 
       <dt>Chapitre</dt>
       <dd>{{exo_data.chapter.decode('utf8')}}</dd>
@@ -60,7 +60,7 @@
 
       <dt>Tags</dt>
       <dd>
-          {% for tag in exo_data.taglist %}
+          {% for tag in exo_data.tags %}
             <span class="label label-info">{{tag.decode('utf8')}}</span>
           {% endfor %}
       </dd>
@@ -68,18 +68,18 @@
 
     <div id="edit_theme" class="collapse"> 
       <hr>
-      <form action="" method="post" name="edit">
+      <form action="" method="post" name="formTheme">
           <div style="display:none;">
-            {{formTheme.track.process_data(exo_data.track)}}
-            {{formTheme.category.process_data(exo_data.category.decode('utf8'))}}
+            {{formTheme.tracks.process_data(exo_data.tracks)}}
+            {{formTheme.part.process_data(exo_data.part.decode('utf8'))}}
             {{formTheme.chapter.process_data(exo_data.chapter.decode('utf8'))}}
             {{formTheme.difficulty.process_data(exo_data.difficulty)}}
-            {{formTheme.taglist.process_data(exo_data.taglist)}}
+            {{formTheme.tags.process_data(exo_data.tags)}}
           </div>
           {{formTheme.hidden_tag()}}
 
-          {{form_field(formTheme.track)}}
-          {{form_field(formTheme.category)}}
+          {{form_field(formTheme.tracks)}}
+          {{form_field(formTheme.part)}}
           {{form_field(formTheme.chapter)}}
           <div class="control-group ">
             <div class="controls">
@@ -87,8 +87,8 @@
             </div>
           </div>
           {{form_field(formTheme.difficulty)}}
-          {{form_field(formTheme.taglist)}}
-          <p><button class="btn" type="button">Enregistrer</button></p>
+          {{form_field(formTheme.tags)}}
+          <input class="btn" type="submit" value="Enregistrer">
       </form>
     </div>
 
@@ -113,7 +113,7 @@
 
     <div id="edit_id" class="collapse"> 
       <hr>
-      <form action="" method="post" name="edit">
+      <form action="" method="post" name="formId">
           
           <div style="display:none;">
             {{formId.source.process_data(exo_data.source.decode('utf8'))}}
@@ -129,7 +129,7 @@
           {{form_field(formId.source)}}
           {{form_field(formId.author)}}
           {{form_field(formId.school)}}
-          <p><button class="btn" type="button">Enregistrer</button></p>
+          <input class="btn" type="submit" value="Enregistrer">
     	</form>
     </div>
   </div>
@@ -150,12 +150,12 @@
   		<div class="math">{{exo_data.question_html.decode('utf8') |safe}}</div> 
       <div id="edit_enonce" class="collapse"> 
         <hr>
-        <form action="" method="post" name="edit">
+        <form action="" method="post" name="formQuestion">
 	        {{formQuestion.hidden_tag()}}
 	        <div style="display:none;">{{formQuestion.question.process_data(exo_data.question.decode('utf8'))}}</div>
 	        
 	        {{form_field(formQuestion.question, class="input-block-level", rows="10")}}
-	        <p><button class="btn" type="button">Enregistrer</button></p>
+	        <input class="btn" type="submit" value="Enregistrer">
       	</form>
       </div>
   	</div>
@@ -165,12 +165,12 @@
       <div class="math">{{exo_data.hint.decode('utf8') |safe}}</div> 
       <div id="edit_hint" class="collapse"> 
         <hr>
-        <form action="" method="post" name="edit">
+        <form action="" method="post" name="formHint">
 	        {{formHint.hidden_tag()}}
 	        <!-- prefill textarea: -->
 	        <div style="display:none;">{{formHint.hint.process_data(exo_data.hint.decode('utf8'))}}</div>
 	        {{form_field(formHint.hint, class="input-block-level", rows="3")}}
-	        <p><button class="btn" type="button">Enregistrer</button></p>
+	        <input class="btn" type="submit" value="Enregistrer">
 	   	</form>
       </div>
   	</div>
@@ -180,7 +180,7 @@
       <div class="math">{{exo_data.solution_html.decode('utf8') |safe}}</div>
       <div id="edit_solution" class="collapse"> 
         <hr>
-        <form action="" method="post" name="edit">
+        <form action="" method="post" name="formSolution">
 	        {{formSolution.hidden_tag()}}
 
 	        <!-- prefill textarea: -->
@@ -188,7 +188,7 @@
 
 	        {{form_field(formSolution.solution, class="input-block-level", rows="20")}}
 	      
-	        <p><button class="btn" type="button">Enregistrer</button></p>
+	        <input class="btn" type="submit" value="Enregistrer">
           </form>
         </div>
   	</div>
