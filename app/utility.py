@@ -79,6 +79,7 @@ cleaning2 = [
     (r'\\item\s*\[([^\]]*)\]'   , r'<br>$1&nbsp;'),
     (r'\\item'                  , r'\r\n<li>'),
     (r'(\\begin{array}(?:[^\\]+|\\(?!end{array}))*\\end{array})|(\\begin{cases}(?:[^\\]+|\\(?!end{cases}))*\\end{cases})|\\\\', replfunc1),]  
+
 cleaning = [
     (r'\\begin\{enumerate\}((.|\n|\r)*?)\\end\{enumerate\}'     , r'<ol>\1</ol>'),
     (r'\\begin\{itemize\}((.|\n|\r)*?)\\end\{itemize\}'         , r'<ul>\1</ul>'),
