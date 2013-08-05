@@ -33,7 +33,7 @@
 				{% for exo in fchap["exos"] %}
 
 	<tr>
-		<td><a href={{ url_for('exo_info', exo_id=exo.exo_id)}}><i class="icon-search"></i></a></td>
+		<td><a href={{ url_for('exo_edit_content', exo_id=exo.exo_id)}}><i class="icon-search"></i></a></td>
 		<td>{{exo.exo_nb}}</td>
 		<td>{{exo.viewcount}}</td>
 		<td>{{exo.flagcount}}</td>

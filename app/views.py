@@ -104,17 +104,9 @@ def exercices_l2(part, chapter):
         chapter = chapter
         )
 
+
+
 @app.route('/exercices/<int:exo_id>')
-def exo_info(exo_id):
-    return render_template("exo_info.html",
-        title = 'Informations sur l\'exercice',
-        exo_id = exo_id,
-        exo_data = exo_data, #placeholder
-        chart_data = chart_data
-        )
-
-
-@app.route('/exercices/<int:exo_id>/edit_content')
 def exo_edit_content(exo_id):
     formId = ExoEditId()
     formTheme = ExoEditTheme()

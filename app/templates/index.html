@@ -60,7 +60,7 @@
 
 {% for stat in stat_exo_viewcount %}
 <tr>
-	<td><a href={{ url_for('exo_info', exo_id=stat.exo_id)}}><i class="icon-search"></i></a></td>
+	<td><a href={{ url_for('exo_edit_content', exo_id=stat.exo_id)}}><i class="icon-search"></i></a></td>
 	<td>{{stat.viewcount}}</td>
 </tr>
 {% endfor %}
@@ -79,7 +79,7 @@
 
 		{% for stat in stat_exo_flagcount %}
 		<tr>
-			<td><a href={{ url_for('exo_info', exo_id=stat.exo_id)}}><i class="icon-search"></i></a></td>
+			<td><a href={{ url_for('exo_edit_content', exo_id=stat.exo_id)}}><i class="icon-search"></i></a></td>
 			<td>{{stat.flagcount}}</td>
 		</tr>
 		{% endfor %}
