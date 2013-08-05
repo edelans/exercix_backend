@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from flask import render_template, url_for, flash, redirect, send_from_directory
-from app import app
+from app import app, db
 from forms import *
+from models import *
 from utility import *
 import json
 import os
@@ -115,7 +116,7 @@ def exo_edit_content(exo_id):
     formSolution = ExoEditSolution()
     if formQuestion.validate_on_submit() or formHint.validate_on_submit() or formSolution.validate_on_submit() or formId.validate_on_submit() or formTheme.validate_on_submit():
         flash('L\'exercice a été mis à jour'.decode('utf8'))
-        return redirect(url_for('exo_info', exo_id=exo_id))
+        return redirect(url_for('exo_edit_content', exo_id=exo_id))
     return render_template("exo_edit_content.html",
         title = 'Informations sur l\'exercice',
         exo_id = exo_id,
@@ -132,10 +133,20 @@ def exo_edit_content(exo_id):
 @app.route('/new_exo', methods = ['GET', 'POST'])
 def new_exo():
     form = ExoEditForm()
-    new_id= 55 #placeholder
+    new_id= 56 #placeholder
     if form.validate_on_submit():
+        new_number = 10 #placeholder: new_number a calculer en fonction du number du dernier exo du chapitre !
+        exo = Exo(source = form.source.data, 
+            author = form.author.data,
+            number = new_number,
+            difficulty = form.difficulty.data,
+            question_html= latex_to_html(form.question.data),
+            hint= form.hint.data,
+            solution_html= latex_to_html(form.question.data) )
+        db.session.add(exo)
+        db.session.commit()
         flash('Le nouvel exercice a été entré dans la base'.decode('utf8'))
-        return redirect(url_for('exo_info', exo_id=new_id))
+        return redirect(url_for('exo_edit_content', exo_id=new_id))
     return render_template('exo_edit_new.html', 
         title = 'Nouvel exo',
         form = form,

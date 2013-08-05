@@ -18,7 +18,7 @@ class ExoEditForm(Form):
     category = TextField(id='category', label='Catégorie'.decode('utf8'), validators = [Required()])
     chapter = TextField(id='chapter', label='Chapitre', validators = [Required()])
     # number -> attribué par le serveur
-    difficulty = SelectField(id='difficulty', label='Difficulté'.decode('utf8'), choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3')], validators = [Required()])
+    difficulty = SelectField(id='difficulty', label='Difficulté'.decode('utf8'), choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3')], coerce=int)
     taglist = TextField(id='taglist', label='Tags', validators = [Required()])
 
 
