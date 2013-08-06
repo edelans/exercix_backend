@@ -1,13 +1,38 @@
 {% macro form_field(field) -%}
     {% set with_label = kwargs.pop('with_label', False) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
     <div class="control-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="control-label">
+                {{ field.label.text }}:
+            </label>
+        {% endif %}
         <div class="controls">
             {% set class_ = kwargs.pop('class_', '') %}
-  
-            {{ field(class_=class_, default = '', **kwargs) }}
-
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_, **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+                {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                    {% set class_ = class_ + ' input-xlarge' %}
+                {% elif field.type == 'FileField' %}
+                    {% set class_ = class_ + ' input-file' %}
+                {% endif %}
+                {{ field(class_=class_, placeholder=placeholder, **kwargs) }}
+            {% endif %}
             {% if field.errors %}
                 <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
             {% endif %}
         </div>
     </div>
@@ -36,6 +61,7 @@
 
 
 <div class="row">
+<form action="" method="post" name="form">
   <div class="span6">
   	<h2>Thème <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_theme"><i class="icon-pencil"></i></a></h2>
   	<dl class="dl-horizontal">
@@ -68,28 +94,27 @@
 
     <div id="edit_theme" class="collapse"> 
       <hr>
-      <form action="" method="post" name="formTheme">
-          <div style="display:none;">
-            {{formTheme.tracks.process_data(exo_data.tracks)}}
-            {{formTheme.part.process_data(exo_data.part.decode('utf8'))}}
-            {{formTheme.chapter.process_data(exo_data.chapter.decode('utf8'))}}
-            {{formTheme.difficulty.process_data(exo_data.difficulty)}}
-            {{formTheme.tags.process_data(exo_data.tags)}}
-          </div>
-          {{formTheme.hidden_tag()}}
+      
+        <div style="display:none;">
+          {{form.tracks.process_data(exo_data.tracks)}}
+          {{form.part.process_data(exo_data.part.decode('utf8'))}}
+          {{form.chapter.process_data(exo_data.chapter.decode('utf8'))}}
+          {{form.difficulty.process_data(exo_data.difficulty)}}
+          {{form.tags.process_data(exo_data.tags)}}
+        </div>
+        {{form.hidden_tag()}}
 
-          {{form_field(formTheme.tracks)}}
-          {{form_field(formTheme.part)}}
-          {{form_field(formTheme.chapter)}}
-          <div class="control-group ">
-            <div class="controls">
-              <input  id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
-            </div>
+        {{form_field(form.tracks)}}
+        {{form_field(form.part)}}
+        {{form_field(form.chapter)}}
+        <div class="control-group ">
+          <div class="controls">
+            <input  id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
           </div>
-          {{form_field(formTheme.difficulty)}}
-          {{form_field(formTheme.tags)}}
-          <input class="btn" type="submit" value="Enregistrer">
-      </form>
+        </div>
+        {{form_field(form.difficulty)}}
+        {{form_field(form.tags)}}
+        <input class="btn btn-danger" type="submit" value="Enregistrer">
     </div>
 
   </div>
@@ -113,24 +138,23 @@
 
     <div id="edit_id" class="collapse"> 
       <hr>
-      <form action="" method="post" name="formId">
+      
           
           <div style="display:none;">
-            {{formId.source.process_data(exo_data.source.decode('utf8'))}}
-            {{formId.author.process_data(exo_data.author.decode('utf8'))}}
-            {{formId.school.process_data(exo_data.school.decode('utf8'))}}
+            {{form.source.process_data(exo_data.source.decode('utf8'))}}
+            {{form.author.process_data(exo_data.author.decode('utf8'))}}
+            {{form.school.process_data(exo_data.school.decode('utf8'))}}
           </div>
-          {{formId.hidden_tag()}}
+          {{form.hidden_tag()}}
           <div class="control-group ">
             <div class="controls">
               <input id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
             </div>
           </div>
-          {{form_field(formId.source)}}
-          {{form_field(formId.author)}}
-          {{form_field(formId.school)}}
-          <input class="btn" type="submit" value="Enregistrer">
-    	</form>
+          {{form_field(form.source)}}
+          {{form_field(form.author)}}
+          {{form_field(form.school)}}
+          <input class="btn btn-danger" type="submit" value="Enregistrer">
     </div>
   </div>
 </div>
@@ -150,13 +174,12 @@
   		<div class="math">{{exo_data.question_html.decode('utf8') |safe}}</div> 
       <div id="edit_enonce" class="collapse"> 
         <hr>
-        <form action="" method="post" name="formQuestion">
-	        {{formQuestion.hidden_tag()}}
-	        <div style="display:none;">{{formQuestion.question.process_data(exo_data.question.decode('utf8'))}}</div>
+        
+	        {{form.hidden_tag()}}
+	        <div style="display:none;">{{form.question.process_data(exo_data.question.decode('utf8'))}}</div>
 	        
-	        {{form_field(formQuestion.question, class="input-block-level", rows="10")}}
-	        <input class="btn" type="submit" value="Enregistrer">
-      	</form>
+	        {{form_field(form.question, class="input-block-level", rows="10")}}
+          <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
   	</div>
 
@@ -165,13 +188,12 @@
       <div class="math">{{exo_data.hint.decode('utf8') |safe}}</div> 
       <div id="edit_hint" class="collapse"> 
         <hr>
-        <form action="" method="post" name="formHint">
-	        {{formHint.hidden_tag()}}
+
+	        {{form.hidden_tag()}}
 	        <!-- prefill textarea: -->
-	        <div style="display:none;">{{formHint.hint.process_data(exo_data.hint.decode('utf8'))}}</div>
-	        {{form_field(formHint.hint, class="input-block-level", rows="3")}}
-	        <input class="btn" type="submit" value="Enregistrer">
-	   	</form>
+	        <div style="display:none;">{{form.hint.process_data(exo_data.hint.decode('utf8'))}}</div>
+	        {{form_field(form.hint, class="input-block-level", rows="3")}}
+          <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
   	</div>
 
@@ -180,24 +202,19 @@
       <div class="math">{{exo_data.solution_html.decode('utf8') |safe}}</div>
       <div id="edit_solution" class="collapse"> 
         <hr>
-        <form action="" method="post" name="formSolution">
-	        {{formSolution.hidden_tag()}}
+
+	        {{form.hidden_tag()}}
 
 	        <!-- prefill textarea: -->
-	        <div style="display:none;">{{formSolution.solution.process_data(exo_data.solution.decode('utf8')) }}</div>
+	        <div style="display:none;">{{form.solution.process_data(exo_data.solution.decode('utf8')) }}</div>
 
-	        {{form_field(formSolution.solution, class="input-block-level", rows="20")}}
-	      
-	        <input class="btn" type="submit" value="Enregistrer">
-          </form>
+	        {{form_field(form.solution, class="input-block-level", rows="20")}}
+	         <input class="btn btn-danger" type="submit" value="Enregistrer">
+
         </div>
   	</div>
-	
-
-
-
-
   </div>
+</form>
 </div>
 <!-- http://stackoverflow.com/questions/5117479/wtforms-how-to-prepopulate-a-textarea-field -->
 

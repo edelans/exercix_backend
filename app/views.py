@@ -12,7 +12,7 @@ from uuid import uuid4
 def login():
     form = LoginForm()
     if form.validate_on_submit():
-        flash('Login requested for OpenID="' + form.openid.data + '", remember_me=' + str(form.remember_me.data))
+        flash('Login requested for OpenID="' + form.openid.data + '", remember_me=' + str(form.remember_me.data),'info')
         return redirect('/index')
     return render_template('login.html', 
         title = 'Sign In',
@@ -112,66 +112,37 @@ def exo_edit_content(exo_id):
     document = g.couch.get(exo_id) # returns None if it doesn't exist
 
     # en cas de mise a jour de l'exo:
-    formTheme = ExoEditTheme()
-    if formTheme.validate_on_submit():
-        document['tracks'] = formTheme.tracks.data
-        document['part'] = formTheme.part.data
-        document['chapter'] = formTheme.chapter.data
-        document['difficulty'] = formTheme.difficulty.data
-        document['tags'] = formTheme.tags.data
-        g.couch.save(document)
-        flash('le paragraphe thème de l\'exercice a été mis à jour'.decode('utf8'))
-        return redirect(url_for('exo_edit_content', exo_id=exo_id))
-    
-    formId = ExoEditId()
-    if formId.validate_on_submit():
-        document['source'] = formId.source.data
-        document['author'] = formId.author.data
-        document['school'] = formId.school.data
-        g.couch.save(document)
-        flash('le paragraphe identification de l\'exercice a été mis à jour'.decode('utf8'))
-        return redirect(url_for('exo_edit_content', exo_id=exo_id))
-
-    formQuestion = ExoEditQuestion()
-    if formQuestion.validate_on_submit():
-        document['question'] = formQuestion.question.data
-        document['question_html'] = latex_to_html(formQuestion.question.data)
-        g.couch.save(document)
-        flash('La question de l\'exercice a été mise à jour'.decode('utf8'))
-        return redirect(url_for('exo_edit_content', exo_id=exo_id))
-
-    formHint = ExoEditHint()
-    if formHint.validate_on_submit():
-        document['hint'] = formHint.hint.data
-        g.couch.save(document)
-        flash('L\'indice de l\'exercice a été mise à jour'.decode('utf8'))
-        return redirect(url_for('exo_edit_content', exo_id=exo_id))
-    
-    formSolution = ExoEditSolution()
-    if formSolution.validate_on_submit():
-        document['solution'] = formSolution.solution.data
-        document['solution_html'] = latex_to_html(document['solution'])
-        g.couch.save(document)
-        flash('La solution de l\'exercice a été mise à jour'.decode('utf8'))
-        return redirect(url_for('exo_edit_content', exo_id=exo_id))
-    
-
-    
+    form = ExoEditForm()
+    if form.is_submitted():
+        if form.validate():
+            document['tracks'] = form.tracks.data
+            document['part'] = form.part.data
+            document['chapter'] = form.chapter.data
+            document['difficulty'] = form.difficulty.data
+            document['tags'] = form.tags.data
+            document['source'] = form.source.data
+            document['author'] = form.author.data
+            document['school'] = form.school.data
+            document['question'] = form.question.data
+            document['question_html'] = latex_to_html(form.question.data)
+            document['hint'] = form.hint.data
+            document['solution'] = form.solution.data
+            document['solution_html'] = latex_to_html(form.solution.data)
+            g.couch.save(document)
+            flash('Succes! L\'exercice a été mis à jour'.decode('utf8'),'success')
+            return redirect(url_for('exo_edit_content', exo_id=exo_id))
+        else:
+            flash('ATTENTION! La mise à jour ne peut être effectuée car des données fournies sont invalides'.decode('utf8'),'error')
 
 
     # try retrieving the exo in the couchdb
-    
     if document:
         return render_template("exo_edit_content.html",
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
             exo_data = document, #placeholder
             chart_data = chart_data, #placeholder
-            formQuestion =formQuestion,
-            formHint = formHint,
-            formSolution = formSolution,
-            formId = formId,
-            formTheme = formTheme
+            form =form
             )
 
     else: # on renvoit tous les placeholder 
@@ -180,11 +151,7 @@ def exo_edit_content(exo_id):
             exo_id = exo_id,
             exo_data = exo_data, #placeholder
             chart_data = chart_data, #placeholder
-            formQuestion =formQuestion,
-            formHint = formHint,
-            formSolution = formSolution,
-            formId = formId,
-            formTheme = formTheme
+            form =form
             )
 
 
@@ -217,10 +184,10 @@ def new_exo():
         # Insert into database
         try:
             exo.store()
-            flash('Le nouvel exercice a été entré dans la base'.decode('utf8'))
+            flash('Succes ! Le nouvel exercice a été entré dans la base'.decode('utf8'),'success')
             return redirect(url_for('exo_edit_content', exo_id=new_id))
         except Exception as e:
-            flash('ERREUR: Le nouvel exercice n\'a PAS été entré dans la base'.decode('utf8'))
+            flash('ATTENTION! Le nouvel exercice n\'a PAS été entré dans la base'.decode('utf8'),'error')
     return render_template('exo_edit_new.html', 
         title = 'Nouvel exo',
         form = form)

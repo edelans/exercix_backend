@@ -40,31 +40,3 @@ class ExoEditForm(Form):
     question = TextAreaField(id='question', label='Enoncé'.decode('utf8'), validators = [Length(min = 0, max = 700)])
     hint = TextAreaField(id='hint', label='Indice', validators = [Length(min = 0, max = 280)])
     solution = TextAreaField(id='solution', label='Correction', validators = [Length(min = 0, max = 2800)])
-
-
-class ExoEditQuestion(Form):
-	question = TextAreaField(id='question', label='Enoncé'.decode('utf8'), default='', validators = [Length(min = 0, max = 700)])
-
-
-class ExoEditHint(Form):
-	hint = TextAreaField(id='hint', label='Indice', validators = [Length(min = 0, max = 280)])
-
-
-class ExoEditSolution(Form):
-	solution = TextAreaField(id='solution', label='Correction', validators = [Length(min = 0, max = 2800)])
-
-
-class ExoEditTheme(Form):
-    tracks = TagListField(id='tracks', label='Filière'.decode('utf8'), validators = [Required()])
-    part = TextField(id='part', label='Catégorie'.decode('utf8'), validators = [Required()])
-    chapter = TextField(id='chapter', label='Chapitre', validators = [Required()])
-    # number -> attribué par le serveur
-    difficulty = SelectField(id='difficulty', label='Difficulté'.decode('utf8'), choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3')], coerce=int)
-    tags = TagListField(id='tags', label='Tags', validators = [Required()])
-
-    
-class ExoEditId(Form):
-    source = TextField(id='source', label='Source', validators = [Required()])
-    author = TextField(id='author', label='Auteur', validators = [Email(), Required()])
-    school = TextField(id='school', label='Concours', validators = [Required()])
-   
