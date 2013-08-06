@@ -19,9 +19,9 @@ def login():
         form = form)
 
 
-#@app.route('/favicon.ico')
-#def favicon():
-#    return send_from_directory(os.path.join(app.root_path, 'static'), 'ico/favicon.ico')
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'img/favicon.ico')
 
 #@app.errorhandler(404)
 #def page_not_found(e):
@@ -108,7 +108,8 @@ def exercices_l2(part, chapter):
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 def exo_edit_content(exo_id):
-    document = g.couch[exo_id] #http://pythonhosted.org/Flask-CouchDB/#flaskext.couchdb.Document
+    
+    document = g.couch.get(exo_id) # returns None if it doesn't exist
 
     # en cas de mise a jour de l'exo:
     formTheme = ExoEditTheme()

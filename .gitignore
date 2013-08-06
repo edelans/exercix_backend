@@ -1,5 +1,8 @@
 *.pyc
 *.pyo
+*.ico
+*.sublime-project
+*.sublime-workspace
 app.db
 search.db
 flask
