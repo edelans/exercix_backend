@@ -1,0 +1,748 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"solu",
+				"solution_html"
+			],
+			[
+				"question",
+				"question_html"
+			],
+			[
+				"paddi",
+				"padding-bottom"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"font",
+				"font-weight"
+			],
+			[
+				"center",
+				"center_dic"
+			],
+			[
+				"tags",
+				"tags_list"
+			],
+			[
+				"error",
+				"error_count"
+			],
+			[
+				"film",
+				"filmList"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "app/forms.py",
+			"settings":
+			{
+				"buffer_size": 1952,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models.py",
+			"settings":
+			{
+				"buffer_size": 1031,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/exo_edit_content.html",
+			"settings":
+			{
+				"buffer_size": 8651,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/exo_edit_new.html",
+			"settings":
+			{
+				"buffer_size": 3081,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views.py",
+			"settings":
+			{
+				"buffer_size": 16321,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": ".gitignore",
+			"settings":
+			{
+				"buffer_size": 17,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/base.html",
+			"settings":
+			{
+				"buffer_size": 2188,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 285.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: inst",
+				"Package Control: Install Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"packa",
+				"Package Control: Install Package"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			],
+			[
+				"git ",
+				"Git: Graph All"
+			],
+			[
+				"git",
+				"Git: Status"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control",
+				"Package Control: Upgrade Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: Lorem ipsum"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 350.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/edelans/.config/garminplugin/garminplugin.xml",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/forms.py",
+		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_backend/app/templates/exo_edit_new.html",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/templates/base.html",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/run.py",
+		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend/app/static/css/math.css",
+		"/home/edelans/github/exercix_backend/app/templates/exercices_level2.html",
+		"/home/edelans/github/exercix_backend/.gitignore",
+		"/home/edelans/github/exercix_backend/app/templates/index.html",
+		"/home/edelans/github/exercix_backend/.gitconfig",
+		"/home/edelans/github/exercix_backend/app/modelisation_db.xml",
+		"/home/edelans/github/exercix_backend/exercix_backend.sublime-project",
+		"/home/edelans/github/exercix_backend/db_migrate.py",
+		"/home/edelans/github/exercix_backend/app/config.py",
+		"/home/edelans/github/exercix_backend/tmp/db_create.py",
+		"/home/edelans/github/exercix_backend/db_downgrade.py",
+		"/home/edelans/github/exercix_backend/db_upgrade.py",
+		"/home/edelans/github/exercix_backend/app/structure.json",
+		"/home/edelans/github/exercix_backend/untitled.sublime-project",
+		"/home/edelans/github/exercix_backend/exercix_backend.sublime-workspace",
+		"/home/edelans/exercix/app/templates/base.html",
+		"/home/edelans/exercix/app/static/css/bootstrap.css",
+		"/home/edelans/exercix/run.py",
+		"/home/edelans/exercix/app/__init__.py",
+		"/home/edelans/exercix/app/templates/exercices.html",
+		"/home/edelans/exercix/app/templates/index.html",
+		"/home/edelans/exercix/app/static/js/bootstrap.js",
+		"/home/edelans/exercix/app/static/css/bootstrap.min.css",
+		"/home/edelans/exercix/app/templates/auteurs.html",
+		"/home/edelans/exercix/test.py",
+		"/home/edelans/exercix/app/views.py",
+		"/home/edelans/github/exercix_vitrine/index.css",
+		"/home/edelans/github/exercix_vitrine/index.html",
+		"/home/edelans/github/exercix_vitrine/index.less",
+		"/media/Media/Dropbox/Exercix/exercix.yaml",
+		"/media/Media/Dropbox/Exercix/exercix2.json",
+		"/media/Media/Dropbox/Exercix/exercix3.json",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Twitter bootstrap/bootstrap/css/bootstrap-responsive.css",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Twitter bootstrap/bootstrap/js/bootstrap.js",
+		"/home/edelans/flaskapp/app/static/css/main.css",
+		"/home/edelans/flaskapp/app/templates/layout.html",
+		"/media/MYLINUXLIVE/README.diskdefines",
+		"/media/edelans/Elements/20121027 Bureau et divers/Nouveau document texte.txt",
+		"/media/Media/Ebooks/metadata_db_prefs_backup.json",
+		"/media/Freebox/Vidéos/Sherlock Holmes A Game of Shadows (2011) DVDRip XviD-MAXSPEED/Sherlock Holmes A Game of Shadows (2011) DVDRip XviD-MAXSPEED.nfo",
+		"/home/edelans/Downloads/Sherlock Holmes A Game of Shadows (2011) DVDRip XviD-MAXSPEED/Torrent downloaded from Extratorrent.com.txt",
+		"/run/user/edelans/gvfs/ftp:host=ftp.exercix.net,user=exercix/www/index.html",
+		"/run/user/edelans/gvfs/ftp:host=ftp.exercix.net,user=exercix/www/entreprises.html",
+		"/run/user/edelans/gvfs/ftp:host=ftp.exercix.net,user=exercix/www/particuliers.html",
+		"/run/user/edelans/gvfs/ftp:host=ftp.exercix.net,user=exercix/www/contact.html",
+		"/home/edelans/Desktop/particuliers.html",
+		"/home/edelans/Desktop/produit.html",
+		"/home/edelans/Desktop/entreprises.html",
+		"/home/edelans/Desktop/layout.html",
+		"/home/edelans/Desktop/contact.html",
+		"/home/edelans/Desktop/post.html",
+		"/home/edelans/Desktop/display.html",
+		"/home/edelans/Desktop/index.html",
+		"/home/edelans/.cache/.fr-aEoTJR/LaTeX_aliases.js",
+		"/home/edelans/Desktop/test.js",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/20130611exercix.json",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix.json",
+		"/home/edelans/.cache/.fr-ZMyr5M/LaTeX_functions.js",
+		"/home/edelans/.cache/.fr-A439Rp/LaTeX_dfa_comp.js",
+		"/home/edelans/.cache/.fr-NfpKe6/LaTeX_asc.js",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix3.json",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix2.json",
+		"/home/edelans/Desktop/commande bdd",
+		"/home/edelans/.cache/.fr-W58VAx/LaTeX_functions.js",
+		"/home/edelans/.cache/.fr-GsCFhZ/LaTeX_tok.js",
+		"/home/edelans/.cache/.fr-mgWOK6/LaTeX_symbols.js",
+		"/home/edelans/.cache/.fr-zjy7ek/LaTeX_dfa_comp.js",
+		"/home/edelans/.cache/.fr-7OzUfo/LaTeX_asc.js",
+		"/home/edelans/.cache/.fr-Z9xnXx/LaTeX_aliases.js",
+		"/home/edelans/.cache/.fr-Z7vYdl/LaTeX_acc.js",
+		"/home/edelans/.cache/.fr-qNHrsE/9805203b.txt",
+		"/home/edelans/.cache/.fr-V8lV2I/0001125b.txt",
+		"/home/edelans/Downloads/fonts pour carte de visite/fonts101.txt",
+		"/home/edelans/.cache/.fr-jejmOA/jre1.7.0_21/plugin/desktop/sun_java.desktop",
+		"/home/edelans/exercix/app/db_create.py",
+		"/home/edelans/exercix/app/templates/edit.html",
+		"/home/edelans/exercix/app/forms.py",
+		"/home/edelans/exercix/app/templates/500.html",
+		"/home/edelans/exercix/config.py",
+		"/home/edelans/exercix/app/templates/user (another copy).html",
+		"/home/edelans/exercix/db_migrate.py",
+		"/home/edelans/exercix/db_upgrade.py",
+		"/home/edelans/exercix/app/templates/post.html",
+		"/home/edelans/exercix/app/templates/user.html",
+		"/home/edelans/exercix/app/models.py",
+		"/home/edelans/.cache/.fr-Oj1u15/microblog-0.5/app/__init__.py",
+		"/home/edelans/flaskapp/app/templates/display.html",
+		"/home/edelans/flaskapp/app/routes2.py",
+		"/home/edelans/flaskapp/app/templates/post.html",
+		"/home/edelans/flaskapp/app/routes.py",
+		"/home/edelans/exercix/config.pyc",
+		"/home/edelans/exercix/app/templates/login.html",
+		"/home/edelans/flaskapp/app/README.md",
+		"/home/edelans/flaskapp/app/templates/home.html",
+		"/home/edelans/flaskapp/app/templates/about.html",
+		"/home/edelans/exercix/app/_init_.py",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix2.yaml",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/dic_to_json.py",
+		"/home/edelans/Desktop/testexo",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix.yaml",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/test.json",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exo.py",
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/couchdb_command_test.py",
+		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/Pro/ESR/2013.03.28] Premier ESR, CIOR/GNP_R020_DU_270313.txt",
+		"/home/edelans/Downloads/Titanium_Studio/TitaniumStudio.ini",
+		"/home/edelans/Downloads/Titanium_Studio/TitaniumStudio.sh",
+		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/BanqR/info.txt",
+		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/Militaires/Médailles/ref TRN.txt",
+		"/home/edelans/Downloads/Titanium_Studio/version.txt",
+		"/home/edelans/Downloads/Titanium_Studio/full_uninstall.txt",
+		"/home/edelans/.cache/.fr-8fCd4R/bitcoin-0.8.1-linux/README",
+		"/home/edelans/.cache/.fr-4Ue5HZ/fantasy-island-0.9.0-beta3/INSTALL",
+		"/home/edelans/.cache/.fr-tHjjwe/fantasy-island-0.9.0-beta3/settings.py",
+		"/home/edelans/.cache/.fr-WunHnj/fantasy-island-0.9.0-beta3/cron/send_email_alerts_virtualenv",
+		"/home/edelans/.cache/.fr-JZCZvJ/fantasy-island-0.9.0-beta3/forum_modules/facebookauth/authentication.py",
+		"/home/edelans/.cache/.fr-YG4M4p/fantasy-island-0.9.0-beta3/forum_modules/facebookauth/views.py",
+		"/home/edelans/Documents/Answers/Answers/ask_question_frm.php"
+	],
+	"find":
+	{
+		"height": 44.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"flash",
+			"submit",
+			"formSolution",
+			"formHint",
+			"formQuestion",
+			"formId",
+			"formTheme",
+			"document",
+			"formQuestion",
+			"name",
+			"question",
+			"type=\"button\"",
+			"track",
+			"taglist",
+			"category",
+			"part",
+			"taglist",
+			"new_id",
+			"base",
+			"Succes",
+			"succes",
+			"flash",
+			"chapter",
+			"track",
+			"question",
+			"chapter",
+			"school",
+			"unfollow",
+			"exo_info",
+			"question_html",
+			"db.model",
+			"+ =",
+			"+=",
+			" + =",
+			"=",
+			" =",
+			"= ",
+			" = ",
+			"Count",
+			" = ",
+			"is_following",
+			"followed",
+			"stars",
+			"user",
+			"pages",
+			"h2",
+			"footer",
+			"'",
+			"poly",
+			"navbar",
+			"quantité",
+			"pricing",
+			"video",
+			"#ffe0b5",
+			"#f89306",
+			"invit",
+			"font",
+			"(?:",
+			"arra",
+			"<br>",
+			"array",
+			"fonction de plu",
+			"fonctions de plu",
+			"c|c",
+			"variable reelle",
+			"variable réelle",
+			"Fonctions d'une variable réelle",
+			"\"Polynomes\"",
+			"complexes",
+			"\"complexes",
+			"\"structures",
+			"\"solution\": ,",
+			"\"solution\":,",
+			"\"solution\":\"\"",
+			"\"solution\":",
+			"\"source\"",
+			"\\\\",
+			"\\\\\\\\",
+			"jquery-1.6.3",
+			"\\\\\\\\",
+			" ",
+			"\\t",
+			"\\t19653\\t",
+			"19653\\t",
+			"43,",
+			"get_tag_distribution_per_artist",
+			"getSongListLinux",
+			"chiffre",
+			"str",
+			"milliards",
+			"cryptographie",
+			"open",
+			"gedit.desktop"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"form",
+			"type=\"submit\"",
+			"tags",
+			"part",
+			"category",
+			"tags",
+			"exo_edit_content",
+			"db.Model",
+			"+=",
+			" +=",
+			"+=",
+			" = ",
+			"=",
+			"Counts",
+			"=",
+			"h3",
+			"\"",
+			"lighten(@orange, 58%)",
+			"@orange",
+			"\"Polynômes\"",
+			"\"solution\":\"\",",
+			"\"solution\":\"\",\\n         \"number\":",
+			"\"solution\": \\n\\\\fi",
+			"\\\\iffalse \\n\"source\"",
+			"\\\\iffalse \\n \"source\"",
+			"\\iffalse \"source\"",
+			"\\\\\\\\",
+			"\\",
+			"'+slash_character+'",
+			"",
+			", ",
+			"sublime.desktop"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 5,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "app/forms.py",
+					"settings":
+					{
+						"buffer_size": 1952,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								785,
+								785
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/models.py",
+					"settings":
+					{
+						"buffer_size": 1031,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/templates/exo_edit_content.html",
+					"settings":
+					{
+						"buffer_size": 8651,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8141,
+								8141
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 110.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/templates/exo_edit_new.html",
+					"settings":
+					{
+						"buffer_size": 3081,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/views.py",
+					"settings":
+					{
+						"buffer_size": 16321,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1965.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": ".gitignore",
+					"settings":
+					{
+						"buffer_size": 17,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11,
+								11
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/templates/base.html",
+					"settings":
+					{
+						"buffer_size": 2188,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1905,
+								1905
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 598.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 34.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 347.0
+	},
+	"output.git":
+	{
+		"height": 49.0
+	},
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"confi",
+				"config.py"
+			],
+			[
+				"conf",
+				"app/config.py"
+			],
+			[
+				"run",
+				"run.py"
+			],
+			[
+				"git",
+				"/home/edelans/.config/sublime-text-2/Packages/SideBarGit/SideBarGit.sublime-settings"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 159.0,
+	"status_bar_visible": true
+}
