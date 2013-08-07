@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory
-from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts
+from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist
 from forms import *
 from models import *
 from utility import *
@@ -31,47 +31,40 @@ def favicon():
 #def page_not_found(e):
 #    return render_template('404.html'), 404
 
+
+def view_stats(n):
+    stats=[]
+    for row in list_of_viewcounts(g.couch).rows:
+        stats.append({'exo_id':row.key, 'viewcount':row.value})
+    return sorted(stats, key= lambda stat: stat['viewcount'], reverse=True)[0:n]
+
+def flag_stats(n):
+    stats=[]
+    for row in list_of_flagcounts(g.couch).rows:
+        stats.append({'exo_id':row.key, 'flagcount':row.value})
+    return sorted(stats, key= lambda stat: stat['flagcount'], reverse=True)[0:n]
+
+def request_stats(n):
+    stats=[]
+    for row in list_of_requestcounts(g.couch).rows:
+        stats.append({'exo_id':row.key, 'requestcount':row.value})
+    return sorted(stats, key= lambda stat: stat['requestcount'], reverse=True)[0:n]
+
+
+
 @app.route('/')
 @app.route('/index')
 def index():
     user = { 'nickname': 'edelans' } # placeholder fake user
-    
-    stat_exo_viewcount=[ #placeholder top 5 vues des exos
-    {
-    'exo_id': 4654,
-    'viewcount': 45
-    },
-    {
-    'exo_id': 78942,
-    'viewcount': 32
-    },
-    {
-    'exo_id': 721,
-    'viewcount': 21
-    }
-    ]
-
-    stat_exo_flagcount= [ #placeholder top 5 flag des exos
-    {
-    'exo_id': 1111,
-    'flagcount': 45
-    },
-    {
-    'exo_id': 22,
-    'flagcount': 32
-    },
-    {
-    'exo_id': 333333,
-    'flagcount': 21
-    }
-    ]
+    stat_exo_viewcount=view_stats(5)
+    stat_exo_flagcount=flag_stats(5)
 
     sales_data = { #placeholder for sales figures
     'sales':5000,
     'subscription_count':1000
     }
 
-    operations_data ={ #placeholder for sales figures
+    operations_data ={ #placeholder for operations figures
     'viewcount_peruser_perweek':5
     }
 
@@ -139,7 +132,7 @@ def exo_stats(part, chapter):
 
 @app.route('/test')
 def test():
-    docs = view_count("0933cf617dca479b816dc2ce906a8577")
+    docs = view_stats()
     return simplejson.dumps(docs)
 
 
@@ -168,6 +161,17 @@ def exercices_l2(part, chapter):
         chapter = chapter,
         exos = exo_stats(part, chapter)
         )
+
+
+def chart_view(exo_id):
+    data=[]
+    for row in view_hist(g.couch)[[timestamp1,exo_id]:[timestamp2,exo_id]]:
+        data.append({
+            'x':row.key[0],
+            'y':row.value #occurences !
+            }) 
+    return data
+
 
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
@@ -555,11 +559,12 @@ exo_data ={ #placeholder
     "solution_html": latex_to_html(solution)
 }
 
+
+
+
+
 chart_data = { #placeholder
     "viewcount": hc_readify(exo_data["viewcount"],15),
     "flagcount": hc_readify(exo_data["flagcount"],15),
     "requestcount": hc_readify(exo_data["requestcount"],15)
 }
-
-
-

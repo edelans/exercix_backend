@@ -67,6 +67,13 @@ list_of_viewcounts = ViewDefinition('test', 'list_of_viewcounts', '''\
 	}
 	''', group=True)
 
+view_hist = ViewDefinition('test', 'list_of_viewcounts', '''\
+	function(doc) {
+	  if(doc.doc_type == 'view') {
+	    emit([doc.timestamp, doc.exo_id], 1);
+	  }
+	}''')
+
 list_of_flagcounts = ViewDefinition('test', 'list_of_flagcounts', '''\
 	function(doc) {
 	  if(doc.doc_type == 'flag') {
@@ -91,7 +98,7 @@ list_of_requestcounts = ViewDefinition('test', 'list_of_requestcounts', '''\
 
 #flask-couchdb :
 manager = flaskext.couchdb.CouchDBManager() #ajouter l'option auto_sync=False ?
-manager.add_viewdef((number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts))  # Install the views
+manager.add_viewdef((number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist))  # Install the views
 manager.setup(app)
 manager.sync(app)
 

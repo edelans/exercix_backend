@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"new",
+				"new_number"
+			],
+			[
 				"solu",
 				"solution_html"
 			],
@@ -44,10 +48,61 @@
 	"buffers":
 	[
 		{
+			"contents": "couchDB:\n\nguide officiel: http://guide.couchdb.org/draft/views.html\nwiki officiel: http://wiki.apache.org/couchdb/Introduction_to_CouchDB_views\ntuto interactif: http://blog.mudynamics.com/wp-content/uploads/2009/04/icouch.html\n\nhttp://geekiriki.blogspot.fr/2010/08/couchdb-using-list-functions-to-sort.html\n\nhttp://stackoverflow.com/questions/2817703/sorting-couchdb-views-by-value\nhttp://tobyho.com/2009/10/07/retrieve-the-top-n-tags-in/\nhttp://geekiriki.blogspot.fr/2010/08/couchdb-using-list-functions-to-sort.html\nhttp://stackoverflow.com/questions/3653280/map-reduce-in-couchdb-with-multiple-parameters\n\n\nsecurité: http://guide.couchdb.org/draft/security.html",
 			"file": "todo",
+			"file_size": 574,
+			"file_write_time": 1375808707000000,
 			"settings":
 			{
-				"buffer_size": 573,
+				"buffer_size": 664,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/__init__.py",
+			"settings":
+			{
+				"buffer_size": 2412,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views.py",
+			"settings":
+			{
+				"buffer_size": 18567,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/exercices_level0.html",
+			"settings":
+			{
+				"buffer_size": 474,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/exercices_level1.html",
+			"settings":
+			{
+				"buffer_size": 465,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/exercices_level2.html",
+			"settings":
+			{
+				"buffer_size": 955,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{% for fpart in structure[\"parts\"] %}\n	{% if fpart[\"part\"].decode('utf8') == part %}\n		{% for fchap in fpart[\"chapters\"] %}\n			<li><a href={{ url_for('exercices_l2', part=part, chapter=fchap[\"chapter\"])}}>{{fchap[\"chapter\"].decode('utf8')}}</a></li>\n		{% endfor %}\n	{% endif %}\n{% endfor %}",
+			"settings":
+			{
+				"buffer_size": 290,
 				"line_ending": "Unix"
 			}
 		}
@@ -130,13 +185,18 @@
 	[
 		"/home/edelans/github/exercix_backend/app/forms.py",
 		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/app/ToDo.md",
+		"/home/edelans/github/exercix_backend/app/db/ViewDef.py",
+		"/home/edelans/github/exercix_backend/app/ViewDef.py",
+		"/home/edelans/github/exercix_backend/ViewDef.py",
+		"/home/edelans/github/exercix_backend/app/db/viewdefinition.py",
+		"/home/edelans/github/exercix_backend/config.py",
 		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/exo_edit_new.html",
 		"/home/edelans/github/exercix_backend/app/views.py",
 		"/home/edelans/github/exercix_backend/todo",
 		"/home/edelans/github/exercix_backend/app/templates/base.html",
-		"/home/edelans/github/exercix_backend/config.py",
-		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/github/exercix_backend/.gitignore",
 		"/home/edelans/.config/garminplugin/garminplugin.xml",
 		"/home/edelans/github/exercix_backend/app/__init__.py",
@@ -250,12 +310,7 @@
 		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/Militaires/Médailles/ref TRN.txt",
 		"/home/edelans/Downloads/Titanium_Studio/version.txt",
 		"/home/edelans/Downloads/Titanium_Studio/full_uninstall.txt",
-		"/home/edelans/.cache/.fr-8fCd4R/bitcoin-0.8.1-linux/README",
-		"/home/edelans/.cache/.fr-4Ue5HZ/fantasy-island-0.9.0-beta3/INSTALL",
-		"/home/edelans/.cache/.fr-tHjjwe/fantasy-island-0.9.0-beta3/settings.py",
-		"/home/edelans/.cache/.fr-WunHnj/fantasy-island-0.9.0-beta3/cron/send_email_alerts_virtualenv",
-		"/home/edelans/.cache/.fr-JZCZvJ/fantasy-island-0.9.0-beta3/forum_modules/facebookauth/authentication.py",
-		"/home/edelans/.cache/.fr-YG4M4p/fantasy-island-0.9.0-beta3/forum_modules/facebookauth/views.py"
+		"/home/edelans/.cache/.fr-8fCd4R/bitcoin-0.8.1-linux/README"
 	],
 	"find":
 	{
@@ -273,6 +328,14 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"views",
+			"part",
+			"parts",
+			"list_of_parts",
+			"parts",
+			"S_part",
+			"docs",
+			"structure",
 			"placeholder",
 			"flash",
 			"submit",
@@ -416,7 +479,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -424,20 +487,178 @@
 					"file": "todo",
 					"settings":
 					{
-						"buffer_size": 573,
+						"buffer_size": 664,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								260,
-								260
+								607,
+								607
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/__init__.py",
+					"settings":
+					{
+						"buffer_size": 2412,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1226,
+								1226
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 625.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/views.py",
+					"settings":
+					{
+						"buffer_size": 18567,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1320,
+								1320
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1683.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/templates/exercices_level0.html",
+					"settings":
+					{
+						"buffer_size": 474,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								188,
+								188
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/templates/exercices_level1.html",
+					"settings":
+					{
+						"buffer_size": 465,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								399,
+								399
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/templates/exercices_level2.html",
+					"settings":
+					{
+						"buffer_size": 955,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								666,
+								666
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"settings":
+					{
+						"buffer_size": 290,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								290,
+								290
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -454,7 +675,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 33.0
 	},
 	"layout":
 	{
