@@ -1,4 +1,5 @@
-from flaskext.couchdb import Document, TextField, ListField, IntegerField, BooleanField
+from flaskext.couchdb import Document, DateTimeField, TextField, ListField, IntegerField, BooleanField
+import datetime
 
 ROLE_USER=0
 ROLE_ADMIN=1
@@ -33,12 +34,21 @@ class Exo(Document):
     solution        = TextField()
     solution_html   = TextField()
 
-
-"""
-class Count(Document):
-    doc_type = 'count'
-    id_exo      =
-    id_user     =
+class Flag(Document):
+    doc_type    = 'flag'
+    exo_id      = TextField()
+    user_id     = TextField()
     timestamp   = DateTimeField(default=datetime.datetime.now)
-    action_type = #view / request / flag 
-"""
+
+class Request(Document):
+    doc_type    = 'request'
+    exo_id      = TextField()
+    user_id     = TextField()
+    timestamp   = DateTimeField(default=datetime.datetime.now)
+
+
+class View(Document):
+    doc_type    = 'view'
+    exo_id      = TextField()
+    user_id     = TextField()
+    timestamp   = DateTimeField(default=datetime.datetime.now)

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 from time import mktime
+from models import *
 import re
 
 
@@ -131,6 +132,14 @@ solution = """
     Ce résultat n'est plus valable. Voici un contre exemple:
     $P(X) = (X-1)^{3} + 1$ est scindé dans $\\mathbb{C}$ mais n'admet pas comme racine $1$ qui est pourtant racine multiple de $P' = 3(X-1)^{2}$.
     """
+
+
+
+def view(exo_id, user_id):
+    view = View(exo_id = exo_id,
+        user_id = user_id)
+    view.store()
+
 
 
 if __name__ == "__main__":

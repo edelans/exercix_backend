@@ -44,58 +44,10 @@
 	"buffers":
 	[
 		{
-			"file": "app/forms.py",
+			"file": "todo",
 			"settings":
 			{
-				"buffer_size": 1952,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models.py",
-			"settings":
-			{
-				"buffer_size": 1031,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/exo_edit_content.html",
-			"settings":
-			{
-				"buffer_size": 8651,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/exo_edit_new.html",
-			"settings":
-			{
-				"buffer_size": 3081,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views.py",
-			"settings":
-			{
-				"buffer_size": 16321,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 12,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/base.html",
-			"settings":
-			{
-				"buffer_size": 2188,
+				"buffer_size": 573,
 				"line_ending": "Unix"
 			}
 		}
@@ -176,20 +128,21 @@
 	},
 	"file_history":
 	[
-		"/home/edelans/.config/garminplugin/garminplugin.xml",
-		"/home/edelans/github/exercix_backend/app/views.py",
-		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/forms.py",
 		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/exo_edit_new.html",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/todo",
 		"/home/edelans/github/exercix_backend/app/templates/base.html",
-		"/home/edelans/github/exercix_backend/app/utility.py",
-		"/home/edelans/github/exercix_backend/run.py",
 		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/.gitignore",
+		"/home/edelans/.config/garminplugin/garminplugin.xml",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/run.py",
 		"/home/edelans/github/exercix_backend/app/static/css/math.css",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level2.html",
-		"/home/edelans/github/exercix_backend/.gitignore",
 		"/home/edelans/github/exercix_backend/app/templates/index.html",
 		"/home/edelans/github/exercix_backend/.gitconfig",
 		"/home/edelans/github/exercix_backend/app/modelisation_db.xml",
@@ -302,8 +255,7 @@
 		"/home/edelans/.cache/.fr-tHjjwe/fantasy-island-0.9.0-beta3/settings.py",
 		"/home/edelans/.cache/.fr-WunHnj/fantasy-island-0.9.0-beta3/cron/send_email_alerts_virtualenv",
 		"/home/edelans/.cache/.fr-JZCZvJ/fantasy-island-0.9.0-beta3/forum_modules/facebookauth/authentication.py",
-		"/home/edelans/.cache/.fr-YG4M4p/fantasy-island-0.9.0-beta3/forum_modules/facebookauth/views.py",
-		"/home/edelans/Documents/Answers/Answers/ask_question_frm.php"
+		"/home/edelans/.cache/.fr-YG4M4p/fantasy-island-0.9.0-beta3/forum_modules/facebookauth/views.py"
 	],
 	"find":
 	{
@@ -321,6 +273,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"placeholder",
 			"flash",
 			"submit",
 			"formSolution",
@@ -463,163 +416,23 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "app/forms.py",
+					"file": "todo",
 					"settings":
 					{
-						"buffer_size": 1952,
+						"buffer_size": 573,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								785,
-								785
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/models.py",
-					"settings":
-					{
-						"buffer_size": 1031,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/templates/exo_edit_content.html",
-					"settings":
-					{
-						"buffer_size": 8651,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								8141,
-								8141
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 110.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/templates/exo_edit_new.html",
-					"settings":
-					{
-						"buffer_size": 3081,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/views.py",
-					"settings":
-					{
-						"buffer_size": 16321,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1965.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": ".gitignore",
-					"settings":
-					{
-						"buffer_size": 12,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								12,
-								12
+								260,
+								260
 							]
 						],
 						"settings":
@@ -628,34 +441,6 @@
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/templates/base.html",
-					"settings":
-					{
-						"buffer_size": 2188,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1905,
-								1905
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 598.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

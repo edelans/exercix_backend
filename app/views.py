@@ -1,12 +1,16 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory
-from app import app
+from app import app, number_by_chapter, list_of_parts 
 from forms import *
 from models import *
 from utility import *
 import json
 import os
 from uuid import uuid4
+import simplejson
+
+
+user_id = 'edelans'
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -80,6 +84,20 @@ def index():
         operations_data=operations_data)
 
 
+def give_list_of_parts():
+    parts = []
+    for row in list_of_parts(g.couch)['a':'z']:
+        parts.append((row.key, row.value))
+    return parts
+
+
+@app.route('/test')
+def test():
+    docs = give_list_of_parts()
+    return simplejson.dumps(docs)
+
+
+
 
 @app.route('/exercices')
 def exercices_l0():
@@ -108,7 +126,9 @@ def exercices_l2(part, chapter):
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 def exo_edit_content(exo_id):
-    
+    #log stats:
+    view(exo_id, user_id)
+    #try to log the document:
     document = g.couch.get(exo_id) # returns None if it doesn't exist
 
     # en cas de mise a jour de l'exo:
@@ -116,8 +136,8 @@ def exo_edit_content(exo_id):
     if form.is_submitted():
         if form.validate():
             document['tracks'] = form.tracks.data
-            document['part'] = form.part.data
-            document['chapter'] = form.chapter.data
+            document['part'] = form.part.data.capitalize()
+            document['chapter'] = form.chapter.data.capitalize()
             document['difficulty'] = form.difficulty.data
             document['tags'] = form.tags.data
             document['source'] = form.source.data
@@ -140,7 +160,7 @@ def exo_edit_content(exo_id):
         return render_template("exo_edit_content.html",
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
-            exo_data = document, #placeholder
+            exo_data = document,
             chart_data = chart_data, #placeholder
             form =form
             )
@@ -155,19 +175,32 @@ def exo_edit_content(exo_id):
             )
 
 
+def give_new_number(chapter):
+    """
+    todo:   - rendre plus robuste aux typos de chapitres
+            - rendre plus robuste aux "trous" dans les noms: ici on ne fait qu'incrémenter
+                la valeur la plus elevée, mais on ne remplira pas les trous !
+    """
+    numbers = [0]
+    for row in number_by_chapter(g.couch)[chapter]:
+        numbers.append(row.value)
+    return sorted(numbers)[-1]+1
+
+
 @app.route('/new_exo', methods = ['GET', 'POST'])
 def new_exo():
     form = ExoEditForm()
     if form.validate_on_submit():
-        new_number = 10 #placeholder: new_number a calculer en fonction du number du dernier exo du chapitre !
+        new_number = give_new_number(form.chapter.data)
+        #placeholder: new_number a calculer en fonction du number du dernier exo du chapitre !
         
         #build object with posted values
         exo = Exo(source = form.source.data, 
             author = form.author.data,
             school = form.school.data,
             # theme
-            chapter= form.chapter.data,
-            part= form.part.data,
+            chapter= form.chapter.data.capitalize(),
+            part= form.part.data.capitalize(),
             number = new_number,
             difficulty = form.difficulty.data,
             tags = form.tags.data,
@@ -177,7 +210,7 @@ def new_exo():
             question_html= latex_to_html(form.question.data),
             hint= form.hint.data,
             solution= form.solution.data,
-            solution_html= latex_to_html(form.question.data) )
+            solution_html= latex_to_html(form.solution.data) )
         new_id = uuid4().hex
         exo.id = new_id
         
@@ -481,3 +514,6 @@ chart_data = { #placeholder
     "flagcount": hc_readify(exo_data["flagcount"],15),
     "requestcount": hc_readify(exo_data["requestcount"],15)
 }
+
+
+
