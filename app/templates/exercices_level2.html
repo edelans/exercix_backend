@@ -26,11 +26,8 @@
 	</tr>
 </thead>
 <tbody> 
-{% for fpart in structure["parts"] %}
-	{% if fpart["part"].decode('utf8') == part %}
-		{% for fchap in fpart["chapters"] %}
-			{% if fchap["chapter"].decode('utf8') == chapter %}
-				{% for exo in fchap["exos"] %}
+
+{% for exo in exos %}
 
 	<tr>
 		<td><a href={{ url_for('exo_edit_content', exo_id=exo.exo_id)}}><i class="icon-search"></i></a></td>
@@ -40,11 +37,8 @@
 		<td>{{exo.requestcount}}</td>
 	</tr>
 
-				{% endfor %}
-			{% endif %}
-		{% endfor %}
-	{% endif %}
 {% endfor %}
+
 </tbody> 
 </table>
 

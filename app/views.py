@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory
-from app import app, number_by_chapter, list_of_parts 
+from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts
 from forms import *
 from models import *
 from utility import *
@@ -83,6 +83,24 @@ def index():
         sales_data= sales_data,
         operations_data=operations_data)
 
+def view_count(exo_id):
+    views=0
+    for row in list_of_viewcounts(g.couch)[exo_id]:
+        views = row.value
+    return views
+
+def flag_count(exo_id):
+    flags=0
+    for row in list_of_flagcounts(g.couch)[exo_id]:
+        flags = row.value
+    return flags
+
+def request_count(exo_id):
+    requests=0
+    for row in list_of_requestcounts(g.couch)[exo_id]:
+        requests = row.value
+    return requests
+
 
 def give_list_of_parts():
     parts = []
@@ -90,10 +108,38 @@ def give_list_of_parts():
         parts.append((row.key, row.value))
     return parts
 
+def give_list_of_chapters(part):
+    chapters = []
+    for row in list_of_chapters(g.couch):
+        if row.key[0]==part:
+            chapters.append(row.key)
+    return chapters
+
+def give_list_of_exos(part, chapter):
+    exos = []
+    for row in list_of_exos(g.couch):
+        if row.key[0]==part and row.key[1]==chapter:
+            exos.append(row.key)
+    return exos # de la forme [[pars, chapter, exo_id, exo_nb],...]
+
+def exo_stats(part, chapter):
+    res = []
+    exos = give_list_of_exos(part, chapter)
+    for exo in exos:
+        dic={
+            "exo_id":exo[2],
+            "exo_nb": exo[3],
+            "viewcount":view_count(exo[2]),
+            "flagcount":flag_count(exo[2]),
+            "requestcount":request_count(exo[2])
+        }
+        res.append(dic)
+    return res
+
 
 @app.route('/test')
 def test():
-    docs = give_list_of_parts()
+    docs = view_count("0933cf617dca479b816dc2ce906a8577")
     return simplejson.dumps(docs)
 
 
@@ -103,24 +149,24 @@ def test():
 def exercices_l0():
     return render_template("exercices_level0.html",
         title = 'Exercices',
-        structure = structure
+        parts = give_list_of_parts()
         )
 
 @app.route('/exercices/<part>')
 def exercices_l1(part):
     return render_template("exercices_level1.html",
         title = 'Exercices',
-        structure = structure,
-        part = part 
+        part = part,
+        chapters = give_list_of_chapters(part),
         )
 
 @app.route('/exercices/<part>/<chapter>')
 def exercices_l2(part, chapter):
     return render_template("exercices_level2.html",
         title = 'Exercices',
-        structure = structure,
         part = part,  
-        chapter = chapter
+        chapter = chapter,
+        exos = exo_stats(part, chapter)
         )
 
 

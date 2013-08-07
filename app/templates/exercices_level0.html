@@ -9,8 +9,8 @@
 
 
 <ul class="nav nav-tabs nav-stacked">
-    {% for S_part in structure["parts"] %}
-    	<li><a href={{ url_for('exercices_l1', part=S_part["part"])}}>{{S_part["part"].decode('utf8')}}</a></li>
+    {% for part in parts %}
+    	<li><a href={{ url_for('exercices_l1', part=part[0])}}>{{part[0].decode('utf8')}}</a></li>
     {% endfor %}
 </ul>
 

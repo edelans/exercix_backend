@@ -8,12 +8,8 @@
 </ul>
 
 <ul class="nav nav-tabs nav-stacked">
-{% for fpart in structure["parts"] %}
-	{% if fpart["part"].decode('utf8') == part %}
-		{% for fchap in fpart["chapters"] %}
-			<li><a href={{ url_for('exercices_l2', part=part, chapter=fchap["chapter"])}}>{{fchap["chapter"].decode('utf8')}}</a></li>
-		{% endfor %}
-	{% endif %}
-{% endfor %}
+    {% for chapter in chapters %}
+    	<li><a href={{ url_for('exercices_l2', part=part, chapter=chapter[1])}}>{{chapter[1].decode('utf8')}}</a></li>
+    {% endfor %}
 </ul>
 {% endblock %}
