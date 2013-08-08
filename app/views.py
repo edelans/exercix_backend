@@ -170,12 +170,36 @@ def fetch_view_timestamps(exo_id, for_n_days=7, until_timestamp=datetime.datetim
         data.append(row.key[1])
     return data
 
-def chart_view(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):        
+def chart_view2(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):        
     data = [] #recoit la liste des timestamps tronqués (des str du type "2013-08-07") des visites de exo_id sur les for_n_days derniers jours
     data_input = fetch_view_timestamps(exo_id, for_n_days, until_timestamp)
     for elem in data_input:
         data.append(elem[:10])
     return [[1000.0*int(parser.parse(c).strftime('%s')),len(list(cs))] for c,cs in groupby(data)]
+
+
+def chart_view(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):        
+    #recoit la liste des timestamps tronqués (des str du type "2013-08-07") des visites de exo_id sur les for_n_days derniers jours
+    datadic = {}
+    data_input = fetch_view_timestamps(exo_id, for_n_days, until_timestamp)
+
+    # on construit un dictionnaire du type {"2013-08-07":compteur} avec tous les timestamps de la periode qu'on va tracer sur le graph, compteurs initialisés à 0
+    for k in range(for_n_days):
+        timestamp = str(until_timestamp-datetime.timedelta(days=k))[:10]
+        datadic[timestamp]=0
+
+    # on parcourt tous les timestamps sortis de la view et on incrémente les compteurs
+    for elem in data_input:
+        if elem[:10] in datadic:
+            datadic[elem[:10]]+=1
+
+    # on transforme le dico en liste, et on transforme les timestamps "2013-08-07" en millisec pour le javascript de highcharts
+    output = [[1000.0*int(parser.parse(key).strftime('%s')) ,value] for key, value in datadic.iteritems()]
+
+    # on trie par timestamp car le dico n'est pas ordonné 
+    return sorted(output, key=lambda couple: couple[0])
+
+
 
 @app.route('/test')
 def test():
