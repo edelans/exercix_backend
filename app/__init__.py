@@ -67,13 +67,6 @@ list_of_viewcounts = ViewDefinition('test', 'list_of_viewcounts', '''\
 	}
 	''', group=True)
 
-view_hist = ViewDefinition('test', 'view_hist', '''\
-	function(doc) {
-	  if(doc.doc_type == 'view') {
-	    emit([doc.exo_id, doc.timestamp], 1);
-	  }
-	}''')
-
 list_of_flagcounts = ViewDefinition('test', 'list_of_flagcounts', '''\
 	function(doc) {
 	  if(doc.doc_type == 'flag') {
@@ -96,9 +89,30 @@ list_of_requestcounts = ViewDefinition('test', 'list_of_requestcounts', '''\
 	}
 	''', group=True)
 
+view_hist = ViewDefinition('test', 'view_hist', '''\
+	function(doc) {
+	  if(doc.doc_type == 'view') {
+	    emit([doc.exo_id, doc.timestamp], 1);
+	  }
+	}''')
+
+flag_hist = ViewDefinition('test', 'flag_hist', '''\
+	function(doc) {
+	  if(doc.doc_type == 'flag') {
+	    emit([doc.exo_id, doc.timestamp], 1);
+	  }
+	}''')
+
+request_hist = ViewDefinition('test', 'request_hist', '''\
+	function(doc) {
+	  if(doc.doc_type == 'request') {
+	    emit([doc.exo_id, doc.timestamp], 1);
+	  }
+	}''')
+
 #flask-couchdb :
 manager = flaskext.couchdb.CouchDBManager() #ajouter l'option auto_sync=False ?
-manager.add_viewdef((number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist))  # Install the views
+manager.add_viewdef((number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist))  # Install the views
 manager.setup(app)
 manager.sync(app)
 

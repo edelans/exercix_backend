@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory
-from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist
+from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist
 from forms import *
 from models import *
 from utility import *
@@ -162,7 +162,7 @@ def exercices_l2(part, chapter):
         )
 
 
-def fetch_view_timestamps(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):
+def fetch_view_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
     data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
@@ -170,15 +170,23 @@ def fetch_view_timestamps(exo_id, for_n_days=7, until_timestamp=datetime.datetim
         data.append(row.key[1])
     return data
 
-def chart_view2(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):        
-    data = [] #recoit la liste des timestamps tronqués (des str du type "2013-08-07") des visites de exo_id sur les for_n_days derniers jours
-    data_input = fetch_view_timestamps(exo_id, for_n_days, until_timestamp)
-    for elem in data_input:
-        data.append(elem[:10])
-    return [[1000.0*int(parser.parse(c).strftime('%s')),len(list(cs))] for c,cs in groupby(data)]
+def fetch_flag_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
+    data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
+    from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
+    until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
+    for row in flag_hist(g.couch)[[exo_id, from_timestamp]:[exo_id, until_timestamp[:10]]]:
+        data.append(row.key[1])
+    return data
 
+def fetch_request_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
+    data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
+    from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
+    until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
+    for row in request_hist(g.couch)[[exo_id, from_timestamp]:[exo_id, until_timestamp[:10]]]:
+        data.append(row.key[1])
+    return data
 
-def chart_view(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):        
+def chart_view(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):        
     #recoit la liste des timestamps tronqués (des str du type "2013-08-07") des visites de exo_id sur les for_n_days derniers jours
     datadic = {}
     data_input = fetch_view_timestamps(exo_id, for_n_days, until_timestamp)
@@ -199,6 +207,27 @@ def chart_view(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):
     # on trie par timestamp car le dico n'est pas ordonné 
     return sorted(output, key=lambda couple: couple[0])
 
+
+def chart_data(fetch_timestamps_func, exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):        
+    #recoit la liste des timestamps tronqués (des str du type "2013-08-07") des visites de exo_id sur les for_n_days derniers jours
+    datadic = {}
+    data_input = fetch_timestamps_func(exo_id, for_n_days, until_timestamp)
+
+    # on construit un dictionnaire du type {"2013-08-07":compteur} avec tous les timestamps de la periode qu'on va tracer sur le graph, compteurs initialisés à 0
+    for k in range(for_n_days):
+        timestamp = str(until_timestamp-datetime.timedelta(days=k))[:10]
+        datadic[timestamp]=0
+
+    # on parcourt tous les timestamps sortis de la view et on incrémente les compteurs
+    for elem in data_input:
+        if elem[:10] in datadic:
+            datadic[elem[:10]]+=1
+
+    # on transforme le dico en liste, et on transforme les timestamps "2013-08-07" en millisec pour le javascript de highcharts
+    output = [[1000.0*int(parser.parse(key).strftime('%s')) ,value] for key, value in datadic.iteritems()]
+
+    # on trie par timestamp car le dico n'est pas ordonné 
+    return sorted(output, key=lambda couple: couple[0])
 
 
 @app.route('/test')
@@ -244,7 +273,7 @@ def exo_edit_content(exo_id):
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
             exo_data = document,
-            chart_data = chart_data(exo_id), #placeholder
+            chart_data = chart(exo_id), #placeholder
             form =form
             )
 
@@ -253,7 +282,7 @@ def exo_edit_content(exo_id):
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
             exo_data = exo_data, #placeholder
-            chart_data = chart_data(exo_id), #placeholder
+            chart_data = chart(exo_id), #placeholder
             form =form
             )
 
@@ -595,10 +624,10 @@ exo_data ={ #placeholder
 
 
 
-def chart_data(exo_id):
+def chart(exo_id):
     data = { #placeholder
-        "viewcount": chart_view(exo_id),
-        "flagcount": hc_readify(exo_data["flagcount"],15),
-        "requestcount": hc_readify(exo_data["requestcount"],15)
+        "viewcount": chart_data(fetch_view_timestamps, exo_id),
+        "flagcount": chart_data(fetch_flag_timestamps, exo_id),
+        "requestcount": chart_data(fetch_request_timestamps, exo_id)
     }
     return data
