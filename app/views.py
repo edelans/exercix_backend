@@ -8,7 +8,7 @@ import json
 import os
 from uuid import uuid4
 import simplejson
-
+import datetime
 
 user_id = 'edelans'
 
@@ -130,10 +130,7 @@ def exo_stats(part, chapter):
     return res
 
 
-@app.route('/test')
-def test():
-    docs = view_stats()
-    return simplejson.dumps(docs)
+
 
 
 
@@ -163,16 +160,20 @@ def exercices_l2(part, chapter):
         )
 
 
-def chart_view(exo_id):
+def chart_view(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now):
     data=[]
-    for row in view_hist(g.couch)[[timestamp1,exo_id]:[timestamp2,exo_id]]:
-        data.append({
-            'x':row.key[0],
-            'y':row.value #occurences !
-            }) 
-    return data
+    d = timedelta(days=for_n_days)
+    from_timestamp = datetime.datetime.now - d
+    for row in view_hist(g.couch)[[exo_id, from_timestamp]:[exo_id, until_timestamp]]:
+        data.append(row.key[1])
+    return hc_readify_py(data,for_n_days)
 
-
+@app.route('/test')
+def test():
+    #docs = chart_view()
+    docs = view_count("0933cf617dca479b816dc2ce906a8577")
+    return simplejson.dumps(docs)
+    
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 def exo_edit_content(exo_id):
@@ -185,18 +186,18 @@ def exo_edit_content(exo_id):
     form = ExoEditForm()
     if form.is_submitted():
         if form.validate():
-            document['tracks'] = form.tracks.data
-            document['part'] = form.part.data.capitalize()
-            document['chapter'] = form.chapter.data.capitalize()
-            document['difficulty'] = form.difficulty.data
-            document['tags'] = form.tags.data
-            document['source'] = form.source.data
-            document['author'] = form.author.data
-            document['school'] = form.school.data
-            document['question'] = form.question.data
+            document['tracks']        = form.tracks.data
+            document['part']          = form.part.data.capitalize()
+            document['chapter']       = form.chapter.data.capitalize()
+            document['difficulty']    = form.difficulty.data
+            document['tags']          = form.tags.data
+            document['source']        = form.source.data
+            document['author']        = form.author.data
+            document['school']        = form.school.data
+            document['question']      = form.question.data
             document['question_html'] = latex_to_html(form.question.data)
-            document['hint'] = form.hint.data
-            document['solution'] = form.solution.data
+            document['hint']          = form.hint.data
+            document['solution']      = form.solution.data
             document['solution_html'] = latex_to_html(form.solution.data)
             g.couch.save(document)
             flash('Succes! L\'exercice a été mis à jour'.decode('utf8'),'success')

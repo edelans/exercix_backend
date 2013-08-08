@@ -24,8 +24,8 @@ def aggregate_by_date(list_of_timestamps):
 
 def count_views_LnD(list_of_timestamps, n):
     ################################################################
-    # takes a list_of_timestamps of timestamps and a number of days (n)
-    # returns a list_of_timestamps of number of occurences over the last n days
+    # takes a list of timestamps and a number of days (n)
+    # returns a list of number of occurences over the last n days
     # [occurences today, occurences yesterday, ...]
     ################################################################
     output = [0]*n
@@ -65,7 +65,19 @@ def hc_readify(list_of_timestamps, n):
         output.append([js_timestamp_from_datetime(LnD[-i]), occurences[-i]])
     return output
 
+def hc_readify_py(list_of_timestamps, n):
+    occurences = count_views_LnD(list_of_timestamps, n)
+    LnD = list_days_LnD(n)
+    output = []
+    for i in range(1, n+1):
+        output.append([LnD[-i], occurences[-i]])
+    return output
 
+"""
+-----------------------------------------------------------------------
+Latex to HTML
+-----------------------------------------------------------------------
+"""
 def replfunc1(matchobj):
     if len(matchobj.group(0)) < 3 :
         return "<br>"
@@ -133,8 +145,14 @@ solution = """
     $P(X) = (X-1)^{3} + 1$ est scindé dans $\\mathbb{C}$ mais n'admet pas comme racine $1$ qui est pourtant racine multiple de $P' = 3(X-1)^{2}$.
     """
 
+"""
+------------------------------------------------------------------------
+"""
 
 
+"""
+Log stats :
+"""
 def view(exo_id, user_id):
     view = View(exo_id = exo_id,
         user_id = user_id)
