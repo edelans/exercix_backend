@@ -4,8 +4,11 @@ import datetime
 from time import mktime
 from models import *
 import re
+from dateutil import parser
 
-
+"""
+chart data formatting js
+"""
 def aggregate_by_date(list_of_timestamps):
     ################################################################
     # takes a list_of_timestamps of timestamps
@@ -49,7 +52,7 @@ def list_days_LnD(n):
     output = [None]*n
     now = datetime.datetime.now()
     for k in range(n):
-        output[k] = now - datetime.timedelta(days = k)
+        output[k] = (now - datetime.timedelta(days = k))
     return output
 
 
@@ -65,13 +68,34 @@ def hc_readify(list_of_timestamps, n):
         output.append([js_timestamp_from_datetime(LnD[-i]), occurences[-i]])
     return output
 
+
+
+
+"""
+chart data formatting python timestamps
+"""
+def count_views_LnD_py(list_of_timestamps, n):
+    ################################################################
+    # takes a list of timestamps and a number of days (n)
+    # returns a list of number of occurences over the last n days
+    # [occurences today, occurences yesterday, ...]
+    ################################################################
+    output = [0]*n
+    for timestamp in list_of_timestamps:
+        delta = (datetime.datetime.now() - parser.parse(timestamp).replace(tzinfo=None))
+        if delta.days > 0 and delta.days < n:
+            output[delta.days] += 1
+    return output
+
 def hc_readify_py(list_of_timestamps, n):
-    occurences = count_views_LnD(list_of_timestamps, n)
+    occurences = count_views_LnD_py(list_of_timestamps, n)
     LnD = list_days_LnD(n)
     output = []
     for i in range(1, n+1):
-        output.append([LnD[-i], occurences[-i]])
+        output.append([LnD[-i].strftime("%Y-%m-%d"), occurences[-i]])
     return output
+
+
 
 """
 -----------------------------------------------------------------------

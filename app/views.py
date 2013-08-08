@@ -7,8 +7,10 @@ from utility import *
 import json
 import os
 from uuid import uuid4
-import simplejson
 import datetime
+from itertools import groupby
+from dateutil import parser
+from time import mktime
 
 user_id = 'edelans'
 
@@ -160,19 +162,25 @@ def exercices_l2(part, chapter):
         )
 
 
-def chart_view(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now):
-    data=[]
-    d = timedelta(days=for_n_days)
-    from_timestamp = datetime.datetime.now - d
-    for row in view_hist(g.couch)[[exo_id, from_timestamp]:[exo_id, until_timestamp]]:
+def fetch_view_timestamps(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):
+    data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
+    from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
+    until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
+    for row in view_hist(g.couch)[[exo_id, from_timestamp]:[exo_id, until_timestamp[:10]]]:
         data.append(row.key[1])
-    return hc_readify_py(data,for_n_days)
+    return data
+
+def chart_view(exo_id, for_n_days=7, until_timestamp=datetime.datetime.now()):        
+    data = [] #recoit la liste des timestamps tronqués (des str du type "2013-08-07") des visites de exo_id sur les for_n_days derniers jours
+    data_input = fetch_view_timestamps(exo_id, for_n_days, until_timestamp)
+    for elem in data_input:
+        data.append(elem[:10])
+    return [[1000.0*int(parser.parse(c).strftime('%s')),len(list(cs))] for c,cs in groupby(data)]
 
 @app.route('/test')
 def test():
-    #docs = chart_view()
-    docs = view_count("0933cf617dca479b816dc2ce906a8577")
-    return simplejson.dumps(docs)
+    docs = chart_view("0933cf617dca479b816dc2ce906a8577")
+    return json.dumps(docs)
     
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
@@ -212,7 +220,7 @@ def exo_edit_content(exo_id):
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
             exo_data = document,
-            chart_data = chart_data, #placeholder
+            chart_data = chart_data(exo_id), #placeholder
             form =form
             )
 
@@ -221,7 +229,7 @@ def exo_edit_content(exo_id):
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
             exo_data = exo_data, #placeholder
-            chart_data = chart_data, #placeholder
+            chart_data = chart_data(exo_id), #placeholder
             form =form
             )
 
@@ -563,9 +571,10 @@ exo_data ={ #placeholder
 
 
 
-
-chart_data = { #placeholder
-    "viewcount": hc_readify(exo_data["viewcount"],15),
-    "flagcount": hc_readify(exo_data["flagcount"],15),
-    "requestcount": hc_readify(exo_data["requestcount"],15)
-}
+def chart_data(exo_id):
+    data = { #placeholder
+        "viewcount": chart_view(exo_id),
+        "flagcount": hc_readify(exo_data["flagcount"],15),
+        "requestcount": hc_readify(exo_data["requestcount"],15)
+    }
+    return data

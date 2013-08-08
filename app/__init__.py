@@ -67,7 +67,7 @@ list_of_viewcounts = ViewDefinition('test', 'list_of_viewcounts', '''\
 	}
 	''', group=True)
 
-view_hist = ViewDefinition('test', 'list_of_viewcounts', '''\
+view_hist = ViewDefinition('test', 'view_hist', '''\
 	function(doc) {
 	  if(doc.doc_type == 'view') {
 	    emit([doc.exo_id, doc.timestamp], 1);
