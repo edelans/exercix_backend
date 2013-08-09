@@ -51,7 +51,7 @@
 			"file": "app/__init__.py",
 			"settings":
 			{
-				"buffer_size": 2593,
+				"buffer_size": 2931,
 				"line_ending": "Unix"
 			}
 		},
@@ -59,39 +59,7 @@
 			"file": "app/views.py",
 			"settings":
 			{
-				"buffer_size": 19297,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/utility.py",
-			"settings":
-			{
-				"buffer_size": 5936,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "todo",
-			"settings":
-			{
-				"buffer_size": 586,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models.py",
-			"settings":
-			{
-				"buffer_size": 1386,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "run.py",
-			"settings":
-			{
-				"buffer_size": 59,
+				"buffer_size": 13489,
 				"line_ending": "Unix"
 			}
 		}
@@ -176,30 +144,31 @@
 	},
 	"file_history":
 	[
+		"/home/edelans/github/exercix_backend/todo",
+		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_backend/run.py",
+		"/home/edelans/github/exercix_backend/app/templates/index.html",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/templates/exercices_level1.html",
+		"/home/edelans/github/exercix_backend/app/templates/404.html",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/edelans/github/exercix_backend/app/__init__.py",
 		"/home/edelans/github/exercix_backend/app/views.py",
-		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level2.html",
-		"/home/edelans/github/exercix_backend/app/templates/exercices_level1.html",
-		"/home/edelans/github/exercix_backend/todo",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level0.html",
 		"/home/edelans/github/exercix_backend/app/forms.py",
-		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/github/exercix_backend/app/ToDo.md",
 		"/home/edelans/github/exercix_backend/app/db/ViewDef.py",
 		"/home/edelans/github/exercix_backend/app/ViewDef.py",
 		"/home/edelans/github/exercix_backend/ViewDef.py",
 		"/home/edelans/github/exercix_backend/app/db/viewdefinition.py",
 		"/home/edelans/github/exercix_backend/config.py",
-		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/exo_edit_new.html",
 		"/home/edelans/github/exercix_backend/app/templates/base.html",
 		"/home/edelans/github/exercix_backend/.gitignore",
 		"/home/edelans/.config/garminplugin/garminplugin.xml",
-		"/home/edelans/github/exercix_backend/run.py",
 		"/home/edelans/github/exercix_backend/app/static/css/math.css",
-		"/home/edelans/github/exercix_backend/app/templates/index.html",
 		"/home/edelans/github/exercix_backend/.gitconfig",
 		"/home/edelans/github/exercix_backend/app/modelisation_db.xml",
 		"/home/edelans/github/exercix_backend/exercix_backend.sublime-project",
@@ -302,8 +271,7 @@
 		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/Pro/ESR/2013.03.28] Premier ESR, CIOR/GNP_R020_DU_270313.txt",
 		"/home/edelans/Downloads/Titanium_Studio/TitaniumStudio.ini",
 		"/home/edelans/Downloads/Titanium_Studio/TitaniumStudio.sh",
-		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/BanqR/info.txt",
-		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/Militaires/Médailles/ref TRN.txt"
+		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/BanqR/info.txt"
 	],
 	"find":
 	{
@@ -321,6 +289,15 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"placeholder",
+			"for_n_days=7",
+			"chart_data",
+			"chartdata",
+			"view_hist",
+			"view",
+			"parser",
+			"chart_data",
+			"str(",
 			"h",
 			"():\n",
 			"A",
@@ -436,6 +413,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"for_n_days=15",
 			"form",
 			"type=\"submit\"",
 			"tags",
@@ -478,7 +456,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -486,15 +464,15 @@
 					"file": "app/__init__.py",
 					"settings":
 					{
-						"buffer_size": 2593,
+						"buffer_size": 2931,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1295,
-								1295
+								2794,
+								2794
 							]
 						],
 						"settings":
@@ -503,7 +481,7 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1311.0,
+						"translation.y": 1056.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -513,15 +491,15 @@
 					"file": "app/views.py",
 					"settings":
 					{
-						"buffer_size": 19297,
+						"buffer_size": 13489,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								836,
-								876
+								1583,
+								1561
 							]
 						],
 						"settings":
@@ -531,115 +509,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 306.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/utility.py",
-					"settings":
-					{
-						"buffer_size": 5936,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2217,
-								2217
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 620.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "todo",
-					"settings":
-					{
-						"buffer_size": 586,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								440,
-								440
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/models.py",
-					"settings":
-					{
-						"buffer_size": 1386,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								103,
-								103
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 51.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "run.py",
-					"settings":
-					{
-						"buffer_size": 59,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								59,
-								59
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 694.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -680,7 +550,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 347.0
+		"height": 204.0
 	},
 	"output.git":
 	{
@@ -696,6 +566,10 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"uti",
+				"app/utility.py"
+			],
 			[
 				"confi",
 				"config.py"
@@ -727,6 +601,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 159.0,
+	"side_bar_width": 177.0,
 	"status_bar_visible": true
 }

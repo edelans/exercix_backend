@@ -12,6 +12,7 @@ class User(Document):
     email       = TextField()
     admin       = BooleanField(default=False)
     prepa       = TextField()
+    signin_at   = DateTimeField(default=datetime.datetime.now)
 
 
 class Exo(Document):
@@ -20,6 +21,7 @@ class Exo(Document):
     source      = TextField()
     author      = TextField()
     school      = TextField()
+    created_at  = DateTimeField(default=datetime.datetime.now)
 #theme
     chapter     = TextField()
     part        = TextField()

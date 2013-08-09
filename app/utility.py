@@ -7,7 +7,9 @@ import re
 from dateutil import parser
 
 """
+-----------------------------------------------------------------------
 chart data formatting js
+-----------------------------------------------------------------------
 """
 def aggregate_by_date(list_of_timestamps):
     ################################################################
@@ -72,7 +74,9 @@ def hc_readify(list_of_timestamps, n):
 
 
 """
+-----------------------------------------------------------------------
 chart data formatting python timestamps
+-----------------------------------------------------------------------
 """
 def count_views_LnD_py(list_of_timestamps, n):
     ################################################################
@@ -88,6 +92,11 @@ def count_views_LnD_py(list_of_timestamps, n):
     return output
 
 def hc_readify_py(list_of_timestamps, n):
+    ################################################################
+    # takes a list of timestamps and a number of days (n)
+    # returns a list of tuples ("%Y-%m-%d", number of occurences) over the last n days
+    # ordered from n days ago to today
+    ################################################################
     occurences = count_views_LnD_py(list_of_timestamps, n)
     LnD = list_days_LnD(n)
     output = []

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory
-from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist
+from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist, list_of_viewcounts_per_user, list_of_users
 from forms import *
 from models import *
 from utility import *
@@ -29,9 +29,9 @@ def login():
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'img/favicon.ico')
 
-#@app.errorhandler(404)
-#def page_not_found(e):
-#    return render_template('404.html'), 404
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404
 
 
 def view_stats(n):
@@ -52,12 +52,53 @@ def request_stats(n):
         stats.append({'exo_id':row.key, 'requestcount':row.value})
     return sorted(stats, key= lambda stat: stat['requestcount'], reverse=True)[0:n]
 
+def how_many_exos():
+    return len(list_of_exos(g.couch))
+
+
+def how_many_views(for_n_days=7, until_timestamp=datetime.datetime.now()):
+    from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
+    until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
+    return len(view_hist(g.couch)[[" ", from_timestamp[:10]]:["ZZZZZZZZ", until_timestamp[:10]]])
+
+def how_many_viewing_users(for_n_days=7, until_timestamp=datetime.datetime.now()):
+    from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
+    until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
+    return len(list_of_viewcounts_per_user(g.couch)[[" ", from_timestamp[:10]]:["ZZZZZZZZ", until_timestamp[:10]]])
+
+
+def how_many_views_per_user(for_n_days=7, until_timestamp=datetime.datetime.now()):
+    from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
+    until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
+    output=0
+    nb_users= len(list_of_viewcounts_per_user(g.couch)[[" ", from_timestamp[:10]]:["ZZZZZZZZ", until_timestamp[:10]]])
+    if nb_users==0:
+        return output
+    else: 
+        for row in list_of_viewcounts_per_user(g.couch)[[" ", from_timestamp[:10]]:["ZZZZZZZZ", until_timestamp[:10]]]:
+            output+= row.value
+        return output/nb_users
+
+
+def how_many_new_users(for_n_days=7, until_timestamp=datetime.datetime.now()):
+    from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
+    until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
+    return len(list_of_users(g.couch)[from_timestamp[:10]:until_timestamp[:10]])
+
+def how_many_users():
+    return len(list_of_users(g.couch))
+
+
+
+@app.route('/test')
+def test():
+    docs = how_many_users()
+    return json.dumps(docs)
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    user = { 'nickname': 'edelans' } # placeholder fake user
     stat_exo_viewcount=view_stats(5)
     stat_exo_flagcount=flag_stats(5)
 
@@ -65,14 +106,29 @@ def index():
     'sales':5000,
     'subscription_count':1000
     }
-
-    operations_data ={ #placeholder for operations figures
-    'viewcount_peruser_perweek':5
-    }
+                                                   
+    operations_data =[{
+            "content":"Nombre total d'exercices dans la base".decode('utf8'),
+            "number": how_many_exos()
+        },{
+            "content":"Nombre d'utilisateurs enregistrés cette année".decode('utf8'),
+            "number": how_many_users()
+        },{
+            "content":"Nombre d'utilisateurs actifs sur les 7 derniers jours".decode('utf8'),
+            "number": how_many_viewing_users()
+        },{ 
+            "content":"Nombre d'exercices vus / utilisateur / semaine".decode('utf8'),   
+            "number": how_many_views_per_user()
+        },{
+            "content":"Nombre de nouveaux utilisateurs sur la dernière semaine".decode('utf8'),
+            "number": how_many_new_users()
+        },{
+            "content":"Nombre de vues sur la dernière semaine".decode('utf8'),
+            "number": how_many_views()
+        }]
 
     return render_template("index.html",
         title = 'Dashboard',
-        user = user,
         stat_exo_viewcount= stat_exo_viewcount,
         stat_exo_flagcount = stat_exo_flagcount,
         sales_data= sales_data,
@@ -116,6 +172,8 @@ def give_list_of_exos(part, chapter):
         if row.key[0]==part and row.key[1]==chapter:
             exos.append(row.key)
     return exos # de la forme [[pars, chapter, exo_id, exo_nb],...]
+
+
 
 def exo_stats(part, chapter):
     res = []
@@ -163,18 +221,18 @@ def exercices_l2(part, chapter):
 
 
 def fetch_view_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
-    data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
+    data=[] 
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    for row in view_hist(g.couch)[[exo_id, from_timestamp]:[exo_id, until_timestamp[:10]]]:
+    for row in view_hist(g.couch)[[exo_id, from_timestamp[:10]]:[exo_id, until_timestamp[:10]]]:
         data.append(row.key[1])
-    return data
+    return data  #liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
 
 def fetch_flag_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
     data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    for row in flag_hist(g.couch)[[exo_id, from_timestamp]:[exo_id, until_timestamp[:10]]]:
+    for row in flag_hist(g.couch)[[exo_id, from_timestamp[:10]]:[exo_id, until_timestamp[:10]]]:
         data.append(row.key[1])
     return data
 
@@ -182,7 +240,7 @@ def fetch_request_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.dat
     data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    for row in request_hist(g.couch)[[exo_id, from_timestamp]:[exo_id, until_timestamp[:10]]]:
+    for row in request_hist(g.couch)[[exo_id, from_timestamp[:10]]:[exo_id, until_timestamp[:10]]]:
         data.append(row.key[1])
     return data
 
@@ -230,16 +288,12 @@ def chart_data(fetch_timestamps_func, exo_id, for_n_days=15, until_timestamp=dat
     return sorted(output, key=lambda couple: couple[0])
 
 
-@app.route('/test')
-def test():
-    docs = chart_view("0933cf617dca479b816dc2ce906a8577")
-    return json.dumps(docs)
+
     
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 def exo_edit_content(exo_id):
-    #log stats:
-    view(exo_id, user_id)
+
     #try to log the document:
     document = g.couch.get(exo_id) # returns None if it doesn't exist
 
@@ -269,22 +323,18 @@ def exo_edit_content(exo_id):
 
     # try retrieving the exo in the couchdb
     if document:
+        #log stats:
+        view(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
         return render_template("exo_edit_content.html",
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
             exo_data = document,
-            chart_data = chart(exo_id), #placeholder
+            chart_data = chart(exo_id),
             form =form
             )
 
-    else: # on renvoit tous les placeholder 
-        return render_template("exo_edit_content.html",
-            title = 'Informations sur l\'exercice',
-            exo_id = exo_id,
-            exo_data = exo_data, #placeholder
-            chart_data = chart(exo_id), #placeholder
-            form =form
-            )
+    else: # en cas de presence vestiges de la phase d'initialisation de la bdd 
+        redirect(url_for('page_not_found', e="cet exercice n'existe plus"))
 
 
 def give_new_number(chapter):
@@ -304,8 +354,7 @@ def new_exo():
     form = ExoEditForm()
     if form.validate_on_submit():
         new_number = give_new_number(form.chapter.data)
-        #placeholder: new_number a calculer en fonction du number du dernier exo du chapitre !
-        
+         
         #build object with posted values
         exo = Exo(source = form.source.data, 
             author = form.author.data,
@@ -339,293 +388,8 @@ def new_exo():
 
 
 
-
-structure = {  #placeholder
-    "parts":[
-        {
-            "part": "Algèbre",
-            "chapters": 
-            [
-                {
-                    "chapter":"Polynomes",
-                    "exos":[
-                        {
-                            "exo_id":54,
-                            "exo_nb": 74,
-                            "viewcount":52,
-                            "flagcount":63,
-                            "requestcount":25
-                        },
-                        {
-                            "exo_id":55,
-                            "exo_nb": 1,
-                            "viewcount":54,
-                            "flagcount":2,
-                            "requestcount":10
-                        },
-                        {
-                            "exo_id":56,
-                            "exo_nb": 25,
-                            "viewcount":57,
-                            "flagcount":47,
-                            "requestcount":69
-                        },
-                        {
-                            "exo_id":58,
-                            "exo_nb": 12,
-                            "viewcount":23,
-                            "flagcount":45,
-                            "requestcount":78
-                        }
-                    ]
-                },
-                {
-                    "chapter":"Réduction",
-                    "exos":[
-                        {
-                            "exo_id":54,
-                            "exo_nb": 74,
-                            "viewcount":52,
-                            "flagcount":63,
-                            "requestcount":25
-                        },
-                        {
-                            "exo_id":55,
-                            "exo_nb": 1,
-                            "viewcount":54,
-                            "flagcount":2,
-                            "requestcount":10
-                        },
-                        {
-                            "exo_id":56,
-                            "exo_nb": 25,
-                            "viewcount":57,
-                            "flagcount":47,
-                            "requestcount":69
-                        },
-                        {
-                            "exo_id":58,
-                            "exo_nb": 12,
-                            "viewcount":23,
-                            "flagcount":45,
-                            "requestcount":78
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "part": "Analyse",
-            "chapters": 
-            [
-                {
-                    "chapter":"Topologie",
-                    "exos":[
-                        {
-                            "exo_id":54,
-                            "exo_nb": 74,
-                            "viewcount":52,
-                            "flagcount":63,
-                            "requestcount":25
-                        },
-                        {
-                            "exo_id":55,
-                            "exo_nb": 1,
-                            "viewcount":54,
-                            "flagcount":2,
-                            "requestcount":10
-                        },
-                        {
-                            "exo_id":56,
-                            "exo_nb": 25,
-                            "viewcount":57,
-                            "flagcount":47,
-                            "requestcount":69
-                        },
-                        {
-                            "exo_id":58,
-                            "exo_nb": 12,
-                            "viewcount":23,
-                            "flagcount":45,
-                            "requestcount":78
-                        }
-                    ]
-                },
-                {
-                    "chapter":"Séries numériques",
-                    "exos":[
-                        {
-                            "exo_id":54,
-                            "exo_nb": 74,
-                            "viewcount":52,
-                            "flagcount":63,
-                            "requestcount":25
-                        },
-                        {
-                            "exo_id":55,
-                            "exo_nb": 1,
-                            "viewcount":54,
-                            "flagcount":2,
-                            "requestcount":10
-                        },
-                        {
-                            "exo_id":56,
-                            "exo_nb": 25,
-                            "viewcount":57,
-                            "flagcount":47,
-                            "requestcount":69
-                        },
-                        {
-                            "exo_id":58,
-                            "exo_nb": 12,
-                            "viewcount":23,
-                            "flagcount":45,
-                            "requestcount":78
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "part": "Géométrie",
-            "chapters": 
-            [
-                {
-                    "chapter":"Géométrie affine et métrique",
-                    "exos":[
-                        {
-                            "exo_id":54,
-                            "exo_nb": 74,
-                            "viewcount":52,
-                            "flagcount":63,
-                            "requestcount":25
-                        },
-                        {
-                            "exo_id":55,
-                            "exo_nb": 1,
-                            "viewcount":54,
-                            "flagcount":2,
-                            "requestcount":10
-                        },
-                        {
-                            "exo_id":56,
-                            "exo_nb": 25,
-                            "viewcount":57,
-                            "flagcount":47,
-                            "requestcount":69
-                        },
-                        {
-                            "exo_id":58,
-                            "exo_nb": 12,
-                            "viewcount":23,
-                            "flagcount":45,
-                            "requestcount":78
-                        }
-                    ]
-                },
-                {
-                    "chapter":"Courbes paramétrées et coniques",
-                    "exos":[
-                        {
-                            "exo_id":54,
-                            "exo_nb": 74,
-                            "viewcount":52,
-                            "flagcount":63,
-                            "requestcount":25
-                        },
-                        {
-                            "exo_id":55,
-                            "exo_nb": 1,
-                            "viewcount":54,
-                            "flagcount":2,
-                            "requestcount":10
-                        },
-                        {
-                            "exo_id":56,
-                            "exo_nb": 25,
-                            "viewcount":57,
-                            "flagcount":47,
-                            "requestcount":69
-                        },
-                        {
-                            "exo_id":58,
-                            "exo_nb": 12,
-                            "viewcount":23,
-                            "flagcount":45,
-                            "requestcount":78
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-}
-
-question = """
-    Soit $P \\in \\mathbb{R}[X]$ scindé sur $\\mathbb{R}$.
-    \\begin{enumerate} 
-    \\item Montrer que les racines multiples de $P'$ sont aussi racines de $P$. 
-    \\item Montrer que $P'$ est aussi scindé sur $\\mathbb{R}$. 
-    \\item Ce resultat reste-t-il valable dans $\\mathbb{C}[X]$ ? 
-    \\end{enumerate}
-    """
-solution = """ 
-    \\paragraph{1}
-    $P \\in \\mathbb{R}[X]$ scindé sur $\\mathbb{R}$ $\\Rightarrow$ $\\exists \\gamma \\in \\mathbb{R}, q \\in \\mathbb{N}^{*}, \\alpha_{i \\in [1..q]} \\in (\\mathbb{N}^{*})^{q}$ \\ : \\\\ 
-    \\[ P= \\gamma \\prod_{i=1}^{q} (X - X_{i})^{\\alpha_{i}}\\]
-    avec $deg(P) = n \\ge 1$ et $deg(P') = n-1$.
-
-    $X_{i}$ est racine de $P'$ d'ordre $(\\alpha_{i} - 1)$ (cours). Donc les racines multiples de $P'$ sont aussi racines de $P$. 
-
-    \\paragraph{2}
-    On procède en deux étapes:
-    \\begin{itemize}
-    \\item  Les $X_{i}$ sont racines de $P'$ avec une somme des ordres égale à : $\\sum_{i=1}^{q}(\\alpha_{i} - 1)=n-q$
-
-    \\item On applique le théorème de Rolle à $P$ sur chaque $]X_{i},X_{i}+1[$ pour obtenir $q-1$ racines supplémentaires de $P'$.
-    \\end{itemize}
-    On a donc trouvé au total : $(n-q) + (q-1) = n-1 $ racines réelles de $P'$. Or $P'$ est de degré $n-1$. Donc $P'$ est scindé.\\\\
-
-    \\paragraph{3}
-    Si $P \\in \\mathbb{C}[X]$:
-    Ce résultat n'est plus valable. Voici un contre exemple:
-    $P(X) = (X-1)^{3} + 1$ est scindé dans $\\mathbb{C}$ mais n'admet pas comme racine $1$ qui est pourtant racine multiple de $P'=3(X-1)^{2}$.
-    """
-
-
-exo_data ={ #placeholder
-    "id":465467,
-    "source": "2006p3n7",
-    "author": "edelans@gmail.com",
-    "school": "Centrale",
-    
-    "tracks":["PC","MP","PSI"],
-    "part": "Algebre",
-    "chapter": "Polynômes",
-    "number": 2,
-    "difficulty": 1,
-    "taglist": ["polynomes", "Théorême de Rolle", "Scindé à racines simples"],
-    
-    
-    "viewcount": [1372250977555,1372269755320,1372269820641,1372695296476,1372695511747,1372790237555,1372837810944,1372841896217,1372841917849,1372842034236,1372842108128,1373437770238,1373445259453,1373445489926,1373445994814,1373445998759,1373450076093],
-    "flagcount": [1372250977555, 1372250977555, 1372837810944,13728378109445,1373450076093,1373450076093],
-    "paycount": "",
-    "requestcount": [1372250977555, 1372250977555,1373450076093],
-    
-    
-    "question": question,
-    "hint": "Utiliser le théorème de Rolle",
-    "solution": solution,
-
-    "question_html": latex_to_html(question),
-    "solution_html": latex_to_html(solution)
-}
-
-
-
-
 def chart(exo_id):
-    data = { #placeholder
+    data = {
         "viewcount": chart_data(fetch_view_timestamps, exo_id),
         "flagcount": chart_data(fetch_flag_timestamps, exo_id),
         "requestcount": chart_data(fetch_request_timestamps, exo_id)
