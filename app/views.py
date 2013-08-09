@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from flask import g, render_template, url_for, flash, redirect, send_from_directory
-from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist, list_of_viewcounts_per_user, list_of_users
+from flask import g, render_template, url_for, flash, redirect, send_from_directory, jsonify
+from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist, list_of_viewcounts_per_user, list_of_users, list_of_exos_extended
 from forms import *
 from models import *
 from utility import *
@@ -87,6 +87,7 @@ def how_many_new_users(for_n_days=7, until_timestamp=datetime.datetime.now()):
 
 def how_many_users():
     return len(list_of_users(g.couch))
+
 
 
 
@@ -294,7 +295,7 @@ def chart_data(fetch_timestamps_func, exo_id, for_n_days=15, until_timestamp=dat
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 def exo_edit_content(exo_id):
 
-    #try to log the document:
+    #try to load the document:
     document = g.couch.get(exo_id) # returns None if it doesn't exist
 
     # en cas de mise a jour de l'exo:
@@ -395,3 +396,102 @@ def chart(exo_id):
         "requestcount": chart_data(fetch_request_timestamps, exo_id)
     }
     return data
+
+
+@app.route('/logstats')
+def logstats():
+    stats = Stat(exos               = how_many_exos(), 
+            users                   = how_many_users(),
+            active_users_L7D        = how_many_viewing_users(),
+            views_per_user_per_week = how_many_views_per_user(),
+            view_L7D                = how_many_views())
+    new_id = uuid4().hex
+    stats.id = new_id
+        
+    # Insert into database
+    try:
+        stats.store()
+        state = True
+    except Exception, e:
+        state = False
+    
+    return json.dumps({'ok': state})
+
+"""
+----------------------------------------------------------
+Configuration de l'API
+----------------------------------------------------------
+"""
+
+@app.route('/api/v1.0/view/<exo_id>', methods = ['GET'])
+def API_get_exo(exo_id):
+    document = g.couch.get(exo_id) # returns None if it doesn't exist
+    output = {'error':'Not found'}
+    if document is not None:          
+        #log stats:
+        view(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
+        output = {"tracks"  : document['tracks'],
+            "part"          : document['part'],
+            "chapter"       : document['chapter'],
+            "number"        : document['number'],
+            "difficulty"    : document['difficulty'],
+            "tags"          : document['tags'],
+            "school"        : document['school'], 
+            "question_html" : document['question_html'],
+            "hint"          : document['hint'],
+            "solution_html" : document['solution_html']}
+    return jsonify(output)
+
+
+@app.route('/api/v1.0/flag/<exo_id>', methods = ['GET'])
+def API_flag_exo(exo_id):
+    document = g.couch.get(exo_id) # returns None if it doesn't exist
+    output = {'error':'Not found'}
+    if document is not None:          
+        #log stats:
+        flag(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
+        output = {"state"  : "flaged"}
+    return jsonify(output)
+
+@app.route('/api/v1.0/request/<exo_id>', methods = ['GET'])
+def API_request_exo(exo_id):
+    document = g.couch.get(exo_id) # returns None if it doesn't exist
+    output = {'error':'Not found'}
+    if document is not None:          
+        #log stats:
+        request(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
+        output = {"state"  : "requested"}
+    return jsonify(output)
+
+
+@app.route('/api/v1.0/partslist', methods = ['GET'])
+def API_list_of_parts():
+    parts = give_list_of_parts() #list
+    return jsonify({"parts":parts})
+
+
+@app.route('/api/v1.0/chapterslist/<part>', methods = ['GET'])
+def API_list_of_chapters(part):
+    chapters = give_list_of_chapters(part) #list
+    return jsonify({"chapters":chapters})
+
+
+@app.route('/api/v1.0/exoslist/<part>/<chapter>/', methods = ['GET'])
+def API_list_of_exos(part,chapter):
+    exos = []
+    for row in list_of_exos_extended(g.couch):
+        if row.key[0]==part and row.key[1]==chapter:
+            exos.append({
+                "part":row.value[0],
+                "chapter":row.value[1],
+                "number":row.value[2],
+                "difficulty":row.value[3],
+                "tags":row.value[4],
+                "tracks":row.value[5],
+                "school":row.value[6],
+                "question_html":row.value[7],
+                "hint":row.value[8],
+                "solution_html":row.value[9]
+                })
+    return jsonify({"exos":exos})
+

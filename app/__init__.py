@@ -133,9 +133,16 @@ request_hist = ViewDefinition('test', 'request_hist', '''\
 	  }
 	}''')
 
+list_of_exos_extended = ViewDefinition('test', 'list_of_exos_extended', '''\
+	function(doc) {
+	  if(doc.doc_type == 'exo') {
+	    emit([doc.part, doc.chapter, doc._id, doc.number], [doc.part, doc.chapter, doc.number, doc.difficulty, doc.tags, doc.tracks, doc.school, doc.question_html, doc.hint, doc.solution_html]); 
+	  }
+	}''') #attention a ne pas changer l'ordre des values sans changer la fonction de l'API !
+
 #flask-couchdb :
 manager = flaskext.couchdb.CouchDBManager() #ajouter l'option auto_sync=False ?
-manager.add_viewdef((number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist, list_of_viewcounts_per_user, list_of_users))  # Install the views 
+manager.add_viewdef((number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist, list_of_viewcounts_per_user, list_of_users, list_of_exos_extended))  # Install the views 
 manager.setup(app)
 manager.sync(app)
 

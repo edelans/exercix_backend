@@ -54,3 +54,13 @@ class View(Document):
     exo_id      = TextField()
     user_id     = TextField()
     timestamp   = DateTimeField(default=datetime.datetime.now)
+
+
+class Stat(Document):
+    doc_type                = 'stat'
+    timestamp               = DateTimeField(default=datetime.datetime.now)
+    exos                    = IntegerField()
+    users                   = IntegerField()
+    active_users_L7D        = IntegerField()
+    views_per_user_per_week = IntegerField()
+    view_L7D                = IntegerField()

@@ -187,10 +187,16 @@ solution = """
 Log stats :
 """
 def view(exo_id, user_id):
-    view = View(exo_id = exo_id,
-        user_id = user_id)
+    view = View(exo_id = exo_id, user_id = user_id)
     view.store()
 
+def flag(exo_id, user_id):
+    flag = Flag(exo_id = exo_id, user_id = user_id)
+    flag.store()
+
+def request(exo_id, user_id):
+    request = Request(exo_id = exo_id, user_id = user_id)
+    request.store()
 
 
 if __name__ == "__main__":

@@ -5,3 +5,5 @@
 - coonecter API google analytics
 
 - installer un outil pour monitorer le fonctionnement du site: https://www.pingdom.com/
+
+- setup cronjob pour pinger /logstats !
