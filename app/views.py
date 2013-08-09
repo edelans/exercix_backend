@@ -92,14 +92,14 @@ def how_many_users():
 
 @app.route('/test')
 def test():
-    docs = how_many_users()
+    docs = view_stats(5)
     return json.dumps(docs)
 
 
 @app.route('/')
 @app.route('/index')
 def index():
-    stat_exo_viewcount=view_stats(5)
+    stat_exo_viewcount=view_stats(10)
     stat_exo_flagcount=flag_stats(5)
 
     sales_data = { #placeholder for sales figures

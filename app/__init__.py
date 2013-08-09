@@ -56,7 +56,7 @@ list_of_exos = ViewDefinition('test', 'list_of_exos', '''\
 	''', group=True)
 
 
-list_of_viewcounts_per_user = ViewDefinition('test', 'list_of_viewcounts', '''\
+list_of_viewcounts_per_user = ViewDefinition('test', 'list_of_viewcounts_per_user', '''\
 	function(doc) {
 	  if(doc.doc_type == 'view') {
 	    emit([doc.user_id, doc.exo_id, doc.timestamp], 1);
