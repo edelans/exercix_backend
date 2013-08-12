@@ -51,15 +51,58 @@
 			"file": "app/__init__.py",
 			"settings":
 			{
-				"buffer_size": 2931,
+				"buffer_size": 3950,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/views.py",
+			"contents": "- login: https://github.com/mitsuhiko/flask/wiki/Large-app-how-to\n\n-[ ] ajouter editeur LateX wisiwig like: http://jhollingworth.github.io/bootstrap-wysihtml5/\n\n- coonecter API google analytics\n\n- installer un outil pour monitorer le fonctionnement du site: https://www.pingdom.com/\n\n- setup cronjob pour pinger /logstats !\n\n- tracker les update de correction...\n\n\nAPI:\n- login\n- http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask\nhttp://flask.pocoo.org/snippets/54/\nhttp://stackoverflow.com/questions/1923352/how-to-secure-couchdb\nhttp://guide.couchdb.org/draft/security.html\nhttp://pythonhosted.org/Flask-Security/index.html\nhttp://flask.pocoo.org/mailinglist/archive/2011/2/5/user-authentication-registration/#1d33165fc46b95e998719961396f37d7\nhttp://flask-login.readthedocs.org/en/latest/\nhttp://flask-login.readthedocs.org/en/latest/\n",
+			"file": "app/ToDo.md",
+			"file_size": 323,
+			"file_write_time": 1376059065000000,
 			"settings":
 			{
-				"buffer_size": 13489,
+				"buffer_size": 869,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/edelans/.config/garminplugin/garminplugin.xml",
+			"settings":
+			{
+				"buffer_size": 603,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/tmp/garminplugin.log",
+			"settings":
+			{
+				"buffer_size": 2428,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/media/edelans/GARMIN/GarminDevice.xml",
+			"settings":
+			{
+				"buffer_size": 3534,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/index.html",
+			"settings":
+			{
+				"buffer_size": 2167,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/utility.py",
+			"settings":
+			{
+				"buffer_size": 7493,
 				"line_ending": "Unix"
 			}
 		}
@@ -67,9 +110,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 348.0,
+		"height": 138.0,
 		"selected_items":
 		[
+			[
+				"align",
+				"Preferences: Alignment Key Bindings – Default"
+			],
 			[
 				"snipp",
 				"Snippet: Try/Except/Finally"
@@ -127,7 +174,7 @@
 				"Snippet: Lorem ipsum"
 			]
 		],
-		"width": 593.0
+		"width": 592.0
 	},
 	"console":
 	{
@@ -144,6 +191,12 @@
 	},
 	"file_history":
 	[
+		"/media/edelans/GARMIN/FIT/ERR_RPT_Log.txt",
+		"/media/edelans/GARMIN/testdisk.log",
+		"/tmp/garminplugin.log",
+		"/home/edelans/Desktop/garminplugin.log",
+		"/home/edelans/.config/sublime-text-2/Packages/Alignment/Default (Linux).sublime-keymap",
+		"/home/edelans/.config/sublime-text-2/Packages/User/Base File.sublime-settings",
 		"/home/edelans/github/exercix_backend/todo",
 		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/github/exercix_backend/run.py",
@@ -265,17 +318,11 @@
 		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/dic_to_json.py",
 		"/home/edelans/Desktop/testexo",
 		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix.yaml",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/test.json",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exo.py",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/couchdb_command_test.py",
-		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/Pro/ESR/2013.03.28] Premier ESR, CIOR/GNP_R020_DU_270313.txt",
-		"/home/edelans/Downloads/Titanium_Studio/TitaniumStudio.ini",
-		"/home/edelans/Downloads/Titanium_Studio/TitaniumStudio.sh",
-		"/media/Media/Dropbox/Edouard/Papiers administratifs Edouard/BanqR/info.txt"
+		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/test.json"
 	],
 	"find":
 	{
-		"height": 44.0
+		"height": 35.0
 	},
 	"find_in_files":
 	{
@@ -289,6 +336,27 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"list_of_exos",
+			"give_list_of_chapters",
+			"flag",
+			"view",
+			"if do",
+			".store()",
+			"view_stats",
+			"placeholder",
+			"user ",
+			"user",
+			"list_of_viewcounts_per_user",
+			"doc.signin_at",
+			"doc._id, doc.signin_at",
+			"list_of_viewcounts",
+			"from_timestamp",
+			"for row in",
+			"until_timestamp",
+			"viewcounts",
+			"view",
+			"view_stats",
+			"list_of_viewcounts",
 			"placeholder",
 			"for_n_days=7",
 			"chart_data",
@@ -395,17 +463,7 @@
 			"\\\\\\\\",
 			" ",
 			"\\t",
-			"\\t19653\\t",
-			"19653\\t",
-			"43,",
-			"get_tag_distribution_per_artist",
-			"getSongListLinux",
-			"chiffre",
-			"str",
-			"milliards",
-			"cryptographie",
-			"open",
-			"gedit.desktop"
+			"\\t19653\\t"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -413,6 +471,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"from_timestamp[:10]",
 			"for_n_days=15",
 			"form",
 			"type=\"submit\"",
@@ -456,7 +515,7 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -464,15 +523,15 @@
 					"file": "app/__init__.py",
 					"settings":
 					{
-						"buffer_size": 2931,
+						"buffer_size": 3950,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2794,
-								2794
+								3950,
+								3950
 							]
 						],
 						"settings":
@@ -481,25 +540,159 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1056.0,
+						"translation.y": 1917.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "app/views.py",
+					"file": "app/ToDo.md",
 					"settings":
 					{
-						"buffer_size": 13489,
+						"buffer_size": 869,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1583,
-								1561
+								869,
+								869
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/edelans/.config/garminplugin/garminplugin.xml",
+					"settings":
+					{
+						"buffer_size": 603,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								161,
+								161
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/tmp/garminplugin.log",
+					"settings":
+					{
+						"buffer_size": 2428,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/media/edelans/GARMIN/GarminDevice.xml",
+					"settings":
+					{
+						"buffer_size": 3534,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3534,
+								3534
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/templates/index.html",
+					"settings":
+					{
+						"buffer_size": 2167,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/utility.py",
+					"settings":
+					{
+						"buffer_size": 7493,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								7113,
+								7113
 							]
 						],
 						"settings":
@@ -509,7 +702,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 694.0,
+						"translation.y": 2674.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -567,6 +760,10 @@
 		"selected_items":
 		[
 			[
+				"todo",
+				"app/ToDo.md"
+			],
+			[
 				"uti",
 				"app/utility.py"
 			],
@@ -601,6 +798,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 177.0,
+	"side_bar_width": 59.0,
 	"status_bar_visible": true
 }
