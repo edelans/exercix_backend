@@ -188,15 +188,15 @@ Log stats :
 """
 def view(exo_id, user_id):
     view = View(exo_id = exo_id, user_id = user_id)
-    view.store()
+    view.save()
 
 def flag(exo_id, user_id):
     flag = Flag(exo_id = exo_id, user_id = user_id)
-    flag.store()
+    flag.save()
 
 def request(exo_id, user_id):
     request = Request(exo_id = exo_id, user_id = user_id)
-    request.store()
+    request.save()
 
 
 if __name__ == "__main__":

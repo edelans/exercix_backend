@@ -1,66 +1,61 @@
-from flaskext.couchdb import Document, DateTimeField, TextField, ListField, IntegerField, BooleanField
+from app import db 
 import datetime
 
-ROLE_USER=0
-ROLE_ADMIN=1
+
+class User(db.Document):
+    doc_type    = 'user'
+    nickname    = db.StringField()
+    email       = db.StringField(primary_key=True)
+    prepa       = db.StringField()
+    signin_at   = db.DateTimeField(default=datetime.datetime.now)
 
 
-
-class User(Document):
-    doc_type = 'user'
-    nickname    = TextField()
-    email       = TextField()
-    admin       = BooleanField(default=False)
-    prepa       = TextField()
-    signin_at   = DateTimeField(default=datetime.datetime.now)
-
-
-class Exo(Document):
+class Exo(db.Document):
     doc_type = 'exo'
 # id
-    source      = TextField()
-    author      = TextField()
-    school      = TextField()
-    created_at  = DateTimeField(default=datetime.datetime.now)
+    source      = db.StringField()
+    author      = db.StringField()
+    school      = db.StringField()
+    created_at  = db.DateTimeField(default=datetime.datetime.now)
 #theme
-    chapter     = TextField()
-    part        = TextField()
-    number      = IntegerField()
-    difficulty  = IntegerField()
-    tags        = ListField(TextField())
-    tracks      = ListField(TextField())
+    chapter     = db.StringField()
+    part        = db.StringField()
+    number      = db.IntField()
+    difficulty  = db.IntField()
+    tags        = db.ListField(db.StringField(max_length=50))
+    tracks      = db.ListField(db.StringField(max_length=50))
 # content    
-    question        = TextField()
-    question_html   = TextField()
-    hint            = TextField()
-    solution        = TextField()
-    solution_html   = TextField()
+    question        = db.StringField()
+    question_html   = db.StringField()
+    hint            = db.StringField()
+    solution        = db.StringField()
+    solution_html   = db.StringField()
 
-class Flag(Document):
+class Flag(db.Document):
     doc_type    = 'flag'
-    exo_id      = TextField()
-    user_id     = TextField()
-    timestamp   = DateTimeField(default=datetime.datetime.now)
+    exo_id      = db.StringField()
+    user_id     = db.StringField()
+    timestamp   = db.DateTimeField(default=datetime.datetime.now)
 
-class Request(Document):
+class Request(db.Document):
     doc_type    = 'request'
-    exo_id      = TextField()
-    user_id     = TextField()
-    timestamp   = DateTimeField(default=datetime.datetime.now)
+    exo_id      = db.StringField()
+    user_id     = db.StringField()
+    timestamp   = db.DateTimeField(default=datetime.datetime.now)
 
 
-class View(Document):
+class View(db.Document):
     doc_type    = 'view'
-    exo_id      = TextField()
-    user_id     = TextField()
-    timestamp   = DateTimeField(default=datetime.datetime.now)
+    exo_id      = db.StringField()
+    user_id     = db.StringField()
+    timestamp   = db.DateTimeField(default=datetime.datetime.now)
 
 
-class Stat(Document):
+class Stat(db.Document):
     doc_type                = 'stat'
-    timestamp               = DateTimeField(default=datetime.datetime.now)
-    exos                    = IntegerField()
-    users                   = IntegerField()
-    active_users_L7D        = IntegerField()
-    views_per_user_per_week = IntegerField()
-    view_L7D                = IntegerField()
+    timestamp               = db.DateTimeField(default=datetime.datetime.now)
+    exos                    = db.IntField()
+    users                   = db.IntField()
+    active_users_L7D        = db.IntField()
+    views_per_user_per_week = db.IntField()
+    view_L7D                = db.IntField()

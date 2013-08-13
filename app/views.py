@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory, jsonify
-from app import app, number_by_chapter, list_of_parts, list_of_chapters, list_of_exos, list_of_viewcounts, list_of_flagcounts, list_of_requestcounts, view_hist, flag_hist, request_hist, list_of_viewcounts_per_user, list_of_users, list_of_exos_extended
+from app import app
 from forms import *
 from models import *
 from utility import *
@@ -8,11 +8,12 @@ import json
 import os
 from uuid import uuid4
 import datetime
-from itertools import groupby
 from dateutil import parser
-from time import mktime
+from operator import itemgetter
+from mongoengine.queryset import Q
 
-user_id = 'edelans'
+
+user_id = 'edelansgmail.com' #attention, present ds multiples endroits du fichier, placeholder à traiter... g.user ?
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -35,66 +36,91 @@ def page_not_found(e):
 
 
 def view_stats(n):
-    stats=[]
-    for row in list_of_viewcounts(g.couch).rows:
-        stats.append({'exo_id':row.key, 'viewcount':row.value})
-    return sorted(stats, key= lambda stat: stat['viewcount'], reverse=True)[0:n]
+    # get a dictionary of the frequencies of items {"exo_id":frequence}
+    stats = []
+    if len(View.objects)>0:
+        view_freqs = View.objects.item_frequencies('exo_id') 
+        top_viewed = sorted(view_freqs.items(), key=itemgetter(1), reverse=True)[:n]
+        for pair in top_viewed:
+            stats.append({'exo_id':pair[0], 'viewcount':pair[1]})
+    return stats
+
 
 def flag_stats(n):
-    stats=[]
-    for row in list_of_flagcounts(g.couch).rows:
-        stats.append({'exo_id':row.key, 'flagcount':row.value})
-    return sorted(stats, key= lambda stat: stat['flagcount'], reverse=True)[0:n]
+    stats = []
+    if len(Flag.objects)>0:
+        # get a dictionary of the frequencies of items {"exo_id":frequence}
+        flag_freqs = Flag.objects.item_frequencies('exo_id') 
+        top_viewed = sorted(flag_freqs.items(), key=itemgetter(1), reverse=True)[:n]
+        for pair in top_viewed:
+            stats.append({'exo_id':pair[0], 'viewcount':pair[1]})
+    return stats
+
 
 def request_stats(n):
-    stats=[]
-    for row in list_of_requestcounts(g.couch).rows:
-        stats.append({'exo_id':row.key, 'requestcount':row.value})
-    return sorted(stats, key= lambda stat: stat['requestcount'], reverse=True)[0:n]
+    stats = []
+    if len(Request.objects)>0:
+        # get a dictionary of the frequencies of items {"exo_id":frequence}
+        request_freqs = Request.objects.item_frequencies('exo_id') 
+        top_viewed = sorted(request_freqs.items(), key=itemgetter(1), reverse=True)[:n]
+        for pair in top_viewed:
+            stats.append({'exo_id':pair[0], 'viewcount':pair[1]})
+    return stats
+
 
 def how_many_exos():
-    return len(list_of_exos(g.couch))
+    return len(Exo.objects)
 
 
 def how_many_views(for_n_days=7, until_timestamp=datetime.datetime.now()):
-    from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
+    from_timestamp = str(datetime.datetime.now() - datetime.timedelta(days=for_n_days))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    return len(view_hist(g.couch)[[" ", from_timestamp[:10]]:["ZZZZZZZZ", until_timestamp[:10]]])
+    return len(View.objects(Q(timestamp__gte=from_timestamp) & Q(timestamp__lte=until_timestamp)))
+
 
 def how_many_viewing_users(for_n_days=7, until_timestamp=datetime.datetime.now()):
+    #define timeframe
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    return len(list_of_viewcounts_per_user(g.couch)[[" ", from_timestamp[:10]]:["ZZZZZZZZ", until_timestamp[:10]]])
+    # filter View to fit timeframe, and then build a dictionary of the frequencies of items {"user_id":frequence}
+    if len(View.objects)>0:
+        view_freqs = View.objects(Q(timestamp__gte=from_timestamp ) & Q(timestamp__lte=until_timestamp)).item_frequencies('user_id')
+    # return length of the dico
+    return len(view_freqs)
 
 
 def how_many_views_per_user(for_n_days=7, until_timestamp=datetime.datetime.now()):
+    #define timeframe
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
+    # filter View to fit timeframe, and then build a dictionary of the frequencies of items {"user_id":frequence}
+    view_freqs = View.objects(Q(timestamp__gte=from_timestamp ) & Q(timestamp__lte=until_timestamp)).item_frequencies('user_id')
+    
+    # compute average of frequencies
     output=0
-    nb_users= len(list_of_viewcounts_per_user(g.couch)[[" ", from_timestamp[:10]]:["ZZZZZZZZ", until_timestamp[:10]]])
-    if nb_users==0:
-        return output
-    else: 
-        for row in list_of_viewcounts_per_user(g.couch)[[" ", from_timestamp[:10]]:["ZZZZZZZZ", until_timestamp[:10]]]:
-            output+= row.value
-        return output/nb_users
+    if len(view_freqs)>0:
+        output = float(sum(view_freqs.values()))/len(view_freqs)
+
+    return output
 
 
 def how_many_new_users(for_n_days=7, until_timestamp=datetime.datetime.now()):
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    return len(list_of_users(g.couch)[from_timestamp[:10]:until_timestamp[:10]])
+    if len(User.objects)>0:
+        return len(User.objects(Q(signin_at__gte=from_timestamp ) & Q(signin_at__lte=until_timestamp)))
+    else:
+        return 0
 
 def how_many_users():
-    return len(list_of_users(g.couch))
+    if len(User.objects)>0:
+        return len(Users.objects)
+    else:
+        return 0
 
 
 
 
-@app.route('/test')
-def test():
-    docs = view_stats(5)
-    return json.dumps(docs)
 
 
 @app.route('/')
@@ -136,56 +162,44 @@ def index():
         operations_data=operations_data)
 
 def view_count(exo_id):
-    views=0
-    for row in list_of_viewcounts(g.couch)[exo_id]:
-        views = row.value
-    return views
+    return len(View.objects(exo_id=str(exo_id)))
+
+@app.route('/test')
+def test():
+    docs = exo_stats("Algebre", "Polynomes")
+    return json.dumps(docs)
+
 
 def flag_count(exo_id):
-    flags=0
-    for row in list_of_flagcounts(g.couch)[exo_id]:
-        flags = row.value
-    return flags
+    return len(Flag.objects(exo_id=str(exo_id)))
 
 def request_count(exo_id):
-    requests=0
-    for row in list_of_requestcounts(g.couch)[exo_id]:
-        requests = row.value
-    return requests
+    return len(Request.objects(exo_id=str(exo_id)))
 
 
 def give_list_of_parts():
-    parts = []
-    for row in list_of_parts(g.couch)['a':'z']:
-        parts.append((row.key, row.value))
-    return parts
+    partdic = Exo.objects.only('part').item_frequencies('part')
+    return partdic.items()
 
 def give_list_of_chapters(part):
-    chapters = []
-    for row in list_of_chapters(g.couch):
-        if row.key[0]==part:
-            chapters.append(row.key)
-    return chapters
+    chapdic = Exo.objects(part=part).only('chapter').item_frequencies('chapter')
+    return chapdic.items()
 
-def give_list_of_exos(part, chapter):
-    exos = []
-    for row in list_of_exos(g.couch):
-        if row.key[0]==part and row.key[1]==chapter:
-            exos.append(row.key)
-    return exos # de la forme [[pars, chapter, exo_id, exo_nb],...]
 
 
 
 def exo_stats(part, chapter):
     res = []
-    exos = give_list_of_exos(part, chapter)
+    exos = Exo.objects(Q(part=part) & Q(chapter=chapter)).only('id', 'part', 'chapter', 'number')
     for exo in exos:
+        print exo.id
+        exo_id=str(exo.id)
         dic={
-            "exo_id":exo[2],
-            "exo_nb": exo[3],
-            "viewcount":view_count(exo[2]),
-            "flagcount":flag_count(exo[2]),
-            "requestcount":request_count(exo[2])
+            "exo_id":exo_id,
+            "exo_nb": exo.number,
+            "viewcount":view_count(exo_id),
+            "flagcount":flag_count(exo_id),
+            "requestcount":request_count(exo_id)
         }
         res.append(dic)
     return res
@@ -221,28 +235,32 @@ def exercices_l2(part, chapter):
         )
 
 
+
 def fetch_view_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
     data=[] 
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    for row in view_hist(g.couch)[[exo_id, from_timestamp[:10]]:[exo_id, until_timestamp[:10]]]:
-        data.append(row.key[1])
+    views = View.objects(Q(exo_id = exo_id) & Q(timestamp__gte=from_timestamp ) & Q(timestamp__lte=until_timestamp))
+    for view in views:
+        data.append(view.timestamp)
     return data  #liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
 
 def fetch_flag_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
     data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    for row in flag_hist(g.couch)[[exo_id, from_timestamp[:10]]:[exo_id, until_timestamp[:10]]]:
-        data.append(row.key[1])
+    flags = Flag.objects(Q(exo_id = exo_id) & Q(timestamp__gte=from_timestamp ) & Q(timestamp__lte=until_timestamp))
+    for flag in flags:
+        data.append(flag.timestamp)
     return data
 
 def fetch_request_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
     data=[] #recoit la liste des timestamps (str) des visites de exo_id sur les for_n_days derniers jours
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
-    for row in request_hist(g.couch)[[exo_id, from_timestamp[:10]]:[exo_id, until_timestamp[:10]]]:
-        data.append(row.key[1])
+    requests = Request.objects(Q(exo_id = exo_id) & Q(timestamp__gte=from_timestamp ) & Q(timestamp__lte=until_timestamp))
+    for request in requests:
+        data.append(request.timestamp)
     return data
 
 def chart_view(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):        
@@ -279,6 +297,7 @@ def chart_data(fetch_timestamps_func, exo_id, for_n_days=15, until_timestamp=dat
 
     # on parcourt tous les timestamps sortis de la view et on incrémente les compteurs
     for elem in data_input:
+        elem = str(elem)
         if elem[:10] in datadic:
             datadic[elem[:10]]+=1
 
@@ -294,9 +313,7 @@ def chart_data(fetch_timestamps_func, exo_id, for_n_days=15, until_timestamp=dat
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 def exo_edit_content(exo_id):
-
-    #try to load the document:
-    document = g.couch.get(exo_id) # returns None if it doesn't exist
+    document = Exo.objects(id=exo_id).first() #returns None if no result  
 
     # en cas de mise a jour de l'exo:
     form = ExoEditForm()
@@ -315,7 +332,7 @@ def exo_edit_content(exo_id):
             document['hint']          = form.hint.data
             document['solution']      = form.solution.data
             document['solution_html'] = latex_to_html(form.solution.data)
-            g.couch.save(document)
+            document.save()
             flash('Succes! L\'exercice a été mis à jour'.decode('utf8'),'success')
             return redirect(url_for('exo_edit_content', exo_id=exo_id))
         else:
@@ -323,7 +340,7 @@ def exo_edit_content(exo_id):
 
 
     # try retrieving the exo in the couchdb
-    if document:
+    if document is not None:
         #log stats:
         view(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
         return render_template("exo_edit_content.html",
@@ -340,13 +357,14 @@ def exo_edit_content(exo_id):
 
 def give_new_number(chapter):
     """
-    todo:   - rendre plus robuste aux typos de chapitres
+    todo:   - rendre plus robuste aux typos de chapitres -> doit etre fait en amont (le form ne doit accepter que les "bons" chapters)
             - rendre plus robuste aux "trous" dans les noms: ici on ne fait qu'incrémenter
                 la valeur la plus elevée, mais on ne remplira pas les trous !
     """
     numbers = [0]
-    for row in number_by_chapter(g.couch)[chapter]:
-        numbers.append(row.value)
+    exos = Exo.objects(chapter=chapter).only('number')
+    for exo in exos:
+        numbers.append(exo.number)
     return sorted(numbers)[-1]+1
 
 
@@ -355,9 +373,9 @@ def new_exo():
     form = ExoEditForm()
     if form.validate_on_submit():
         new_number = give_new_number(form.chapter.data)
-         
         #build object with posted values
-        exo = Exo(source = form.source.data, 
+        exo = Exo(
+            source = form.source.data, 
             author = form.author.data,
             school = form.school.data,
             # theme
@@ -372,15 +390,19 @@ def new_exo():
             question_html= latex_to_html(form.question.data),
             hint= form.hint.data,
             solution= form.solution.data,
-            solution_html= latex_to_html(form.solution.data) )
-        new_id = uuid4().hex
-        exo.id = new_id
+            solution_html= latex_to_html(form.solution.data))
         
         # Insert into database
         try:
-            exo.store()
+            exo.save()
             flash('Succes ! Le nouvel exercice a été entré dans la base'.decode('utf8'),'success')
-            return redirect(url_for('exo_edit_content', exo_id=new_id))
+            try:
+                return redirect(url_for('exo_edit_content', exo_id=exo.id))
+            except:
+                flash("ATTENTION! Le nouvel exercice a bien été entré dans la base mais il n'a pas été possible d'y acceder".decode('utf8'),'error')
+                return render_template('exo_edit_new.html', 
+                    title = 'Nouvel exo',
+                    form = form)
         except Exception as e:
             flash('ATTENTION! Le nouvel exercice n\'a PAS été entré dans la base'.decode('utf8'),'error')
     return render_template('exo_edit_new.html', 
@@ -405,12 +427,10 @@ def logstats():
             active_users_L7D        = how_many_viewing_users(),
             views_per_user_per_week = how_many_views_per_user(),
             view_L7D                = how_many_views())
-    new_id = uuid4().hex
-    stats.id = new_id
-        
+
     # Insert into database
     try:
-        stats.store()
+        stats.save()
         state = True
     except Exception, e:
         state = False
@@ -425,27 +445,27 @@ Configuration de l'API
 
 @app.route('/api/v1.0/view/<exo_id>', methods = ['GET'])
 def API_get_exo(exo_id):
-    document = g.couch.get(exo_id) # returns None if it doesn't exist
+    document = Exo.objects(id=exo_id).first() # returns None if it doesn't exist
     output = {'error':'Not found'}
     if document is not None:          
         #log stats:
         view(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
-        output = {"tracks"  : document['tracks'],
-            "part"          : document['part'],
-            "chapter"       : document['chapter'],
-            "number"        : document['number'],
-            "difficulty"    : document['difficulty'],
-            "tags"          : document['tags'],
-            "school"        : document['school'], 
-            "question_html" : document['question_html'],
-            "hint"          : document['hint'],
-            "solution_html" : document['solution_html']}
+        output = {"tracks"  : document.tracks,
+            "part"          : document.part,
+            "chapter"       : document.chapter,
+            "number"        : document.number,
+            "difficulty"    : document.difficulty,
+            "tags"          : document.tags,
+            "school"        : document.school, 
+            "question_html" : document.question_html,
+            "hint"          : document.hint,
+            "solution_html" : document.solution_html}
     return jsonify(output)
 
 
 @app.route('/api/v1.0/flag/<exo_id>', methods = ['GET'])
 def API_flag_exo(exo_id):
-    document = g.couch.get(exo_id) # returns None if it doesn't exist
+    document = Exo.objects(id=exo_id).first()# returns None if it doesn't exist
     output = {'error':'Not found'}
     if document is not None:          
         #log stats:
@@ -455,7 +475,7 @@ def API_flag_exo(exo_id):
 
 @app.route('/api/v1.0/request/<exo_id>', methods = ['GET'])
 def API_request_exo(exo_id):
-    document = g.couch.get(exo_id) # returns None if it doesn't exist
+    document = Exo.objects(id=exo_id).first()# returns None if it doesn't exist
     output = {'error':'Not found'}
     if document is not None:          
         #log stats:
@@ -478,20 +498,20 @@ def API_list_of_chapters(part):
 
 @app.route('/api/v1.0/exoslist/<part>/<chapter>/', methods = ['GET'])
 def API_list_of_exos(part,chapter):
-    exos = []
-    for row in list_of_exos_extended(g.couch):
-        if row.key[0]==part and row.key[1]==chapter:
-            exos.append({
-                "part":row.value[0],
-                "chapter":row.value[1],
-                "number":row.value[2],
-                "difficulty":row.value[3],
-                "tags":row.value[4],
-                "tracks":row.value[5],
-                "school":row.value[6],
-                "question_html":row.value[7],
-                "hint":row.value[8],
-                "solution_html":row.value[9]
-                })
-    return jsonify({"exos":exos})
+    output = []
+    exos = Exo.objects(Q(part=part) & Q(chapter=chapter)).only('id', 'part', 'chapter', 'number', 'difficulty', 'tags', 'tracks', 'school', 'question_html', 'hint', 'solution_html')
+    for exo in exos:
+        output.append({
+            "part":exo.part,
+            "chapter":exo.chapter,
+            "number":exo.number,
+            "difficulty":exo.difficulty,
+            "tags":exo.tags,
+            "tracks":exo.tracks,
+            "school":exo.school,
+            "question_html":exo.question_html,
+            "hint":exo.hint,
+            "solution_html":exo.solution_html
+            })
+    return jsonify({"exos":output})
 

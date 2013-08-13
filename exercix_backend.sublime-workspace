@@ -47,72 +47,17 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/__init__.py",
-			"settings":
-			{
-				"buffer_size": 3950,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "- login: https://github.com/mitsuhiko/flask/wiki/Large-app-how-to\n\n-[ ] ajouter editeur LateX wisiwig like: http://jhollingworth.github.io/bootstrap-wysihtml5/\n\n- coonecter API google analytics\n\n- installer un outil pour monitorer le fonctionnement du site: https://www.pingdom.com/\n\n- setup cronjob pour pinger /logstats !\n\n- tracker les update de correction...\n\n\nAPI:\n- login\n- http://blog.miguelgrinberg.com/post/designing-a-restful-api-with-python-and-flask\nhttp://flask.pocoo.org/snippets/54/\nhttp://stackoverflow.com/questions/1923352/how-to-secure-couchdb\nhttp://guide.couchdb.org/draft/security.html\nhttp://pythonhosted.org/Flask-Security/index.html\nhttp://flask.pocoo.org/mailinglist/archive/2011/2/5/user-authentication-registration/#1d33165fc46b95e998719961396f37d7\nhttp://flask-login.readthedocs.org/en/latest/\nhttp://flask-login.readthedocs.org/en/latest/\n",
-			"file": "app/ToDo.md",
-			"file_size": 323,
-			"file_write_time": 1376059065000000,
-			"settings":
-			{
-				"buffer_size": 869,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/edelans/.config/garminplugin/garminplugin.xml",
-			"settings":
-			{
-				"buffer_size": 603,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/tmp/garminplugin.log",
-			"settings":
-			{
-				"buffer_size": 2428,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/media/edelans/GARMIN/GarminDevice.xml",
-			"settings":
-			{
-				"buffer_size": 3534,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/index.html",
-			"settings":
-			{
-				"buffer_size": 2167,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/utility.py",
-			"settings":
-			{
-				"buffer_size": 7493,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 138.0,
+		"height": 159.0,
 		"selected_items":
 		[
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
 			[
 				"align",
 				"Preferences: Alignment Key Bindings – Default"
@@ -120,10 +65,6 @@
 			[
 				"snipp",
 				"Snippet: Try/Except/Finally"
-			],
-			[
-				"insta",
-				"Package Control: Install Package"
 			],
 			[
 				"Package Control: ",
@@ -174,7 +115,7 @@
 				"Snippet: Lorem ipsum"
 			]
 		],
-		"width": 592.0
+		"width": 593.0
 	},
 	"console":
 	{
@@ -191,36 +132,42 @@
 	},
 	"file_history":
 	[
+		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/app/forms.py",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/etc/init.d/mongodb",
+		"/home/edelans/github/exercix_backend/app/ToDo.md",
+		"/home/edelans/github/exercix_backend/run.py",
+		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/mahout/README.txt",
+		"/home/edelans/mahout/NOTICE.txt",
+		"/home/edelans/mahout/LICENSE.txt",
+		"/var/log/mongodb/mongodb.log",
+		"/home/edelans/github/exercix_backend/app/templates/index.html",
+		"/media/edelans/GARMIN/GarminDevice.xml",
+		"/tmp/garminplugin.log",
+		"/home/edelans/.config/garminplugin/garminplugin.xml",
 		"/media/edelans/GARMIN/FIT/ERR_RPT_Log.txt",
 		"/media/edelans/GARMIN/testdisk.log",
-		"/tmp/garminplugin.log",
 		"/home/edelans/Desktop/garminplugin.log",
 		"/home/edelans/.config/sublime-text-2/Packages/Alignment/Default (Linux).sublime-keymap",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Base File.sublime-settings",
 		"/home/edelans/github/exercix_backend/todo",
-		"/home/edelans/github/exercix_backend/app/models.py",
-		"/home/edelans/github/exercix_backend/run.py",
-		"/home/edelans/github/exercix_backend/app/templates/index.html",
-		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level1.html",
 		"/home/edelans/github/exercix_backend/app/templates/404.html",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
-		"/home/edelans/github/exercix_backend/app/views.py",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level2.html",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level0.html",
-		"/home/edelans/github/exercix_backend/app/forms.py",
-		"/home/edelans/github/exercix_backend/app/ToDo.md",
 		"/home/edelans/github/exercix_backend/app/db/ViewDef.py",
 		"/home/edelans/github/exercix_backend/app/ViewDef.py",
 		"/home/edelans/github/exercix_backend/ViewDef.py",
 		"/home/edelans/github/exercix_backend/app/db/viewdefinition.py",
-		"/home/edelans/github/exercix_backend/config.py",
 		"/home/edelans/github/exercix_backend/app/templates/exo_edit_new.html",
 		"/home/edelans/github/exercix_backend/app/templates/base.html",
 		"/home/edelans/github/exercix_backend/.gitignore",
-		"/home/edelans/.config/garminplugin/garminplugin.xml",
 		"/home/edelans/github/exercix_backend/app/static/css/math.css",
 		"/home/edelans/github/exercix_backend/.gitconfig",
 		"/home/edelans/github/exercix_backend/app/modelisation_db.xml",
@@ -312,13 +259,7 @@
 		"/home/edelans/exercix/app/templates/login.html",
 		"/home/edelans/flaskapp/app/README.md",
 		"/home/edelans/flaskapp/app/templates/home.html",
-		"/home/edelans/flaskapp/app/templates/about.html",
-		"/home/edelans/exercix/app/_init_.py",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix2.yaml",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/dic_to_json.py",
-		"/home/edelans/Desktop/testexo",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix.yaml",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/test.json"
+		"/home/edelans/flaskapp/app/templates/about.html"
 	],
 	"find":
 	{
@@ -336,6 +277,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"flag",
+			"Flag",
+			"flag",
+			"parser",
+			"mktime",
+			"store",
+			"IntegerField",
+			"TextField",
+			"store",
+			"save",
+			"store",
+			"mktime",
+			"parser",
+			"groupby",
+			"= ",
 			"list_of_exos",
 			"give_list_of_chapters",
 			"flag",
@@ -448,22 +404,7 @@
 			"variable reelle",
 			"variable réelle",
 			"Fonctions d'une variable réelle",
-			"\"Polynomes\"",
-			"complexes",
-			"\"complexes",
-			"\"structures",
-			"\"solution\": ,",
-			"\"solution\":,",
-			"\"solution\":\"\"",
-			"\"solution\":",
-			"\"source\"",
-			"\\\\",
-			"\\\\\\\\",
-			"jquery-1.6.3",
-			"\\\\\\\\",
-			" ",
-			"\\t",
-			"\\t19653\\t"
+			"\"Polynomes\""
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -471,6 +412,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"IntField",
+			"StringField",
+			"save",
+			"= db.",
 			"from_timestamp[:10]",
 			"for_n_days=15",
 			"form",
@@ -515,198 +460,8 @@
 	"groups":
 	[
 		{
-			"selected": 2,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/__init__.py",
-					"settings":
-					{
-						"buffer_size": 3950,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3950,
-								3950
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1917.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/ToDo.md",
-					"settings":
-					{
-						"buffer_size": 869,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								869,
-								869
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/edelans/.config/garminplugin/garminplugin.xml",
-					"settings":
-					{
-						"buffer_size": 603,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								161,
-								161
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/XML/XML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "/tmp/garminplugin.log",
-					"settings":
-					{
-						"buffer_size": 2428,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "/media/edelans/GARMIN/GarminDevice.xml",
-					"settings":
-					{
-						"buffer_size": 3534,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3534,
-								3534
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/XML/XML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/templates/index.html",
-					"settings":
-					{
-						"buffer_size": 2167,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "app/utility.py",
-					"settings":
-					{
-						"buffer_size": 7493,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7113,
-								7113
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2674.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -798,6 +553,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 59.0,
+	"side_bar_width": 94.0,
 	"status_bar_visible": true
 }

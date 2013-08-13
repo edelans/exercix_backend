@@ -9,7 +9,7 @@
 
 <ul class="nav nav-tabs nav-stacked">
     {% for chapter in chapters %}
-    	<li><a href={{ url_for('exercices_l2', part=part, chapter=chapter[1])}}>{{chapter[1].decode('utf8')}}</a></li>
+    	<li><a href={{ url_for('exercices_l2', part=part, chapter=chapter[0])}}>{{chapter[0].decode('utf8')}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
