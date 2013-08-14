@@ -34,3 +34,39 @@ MONGODB_SETTINGS = {
 	"password":"N0m0reb00ks",	# if auth needed by db
 
 """
+
+
+# flask-mail settings
+MAIL_SERVER     = 'smtp.exercix.net'
+MAIL_PORT       = 587
+MAIL_USE_SSL    = True
+MAIL_USERNAME   = 'postmaster@exercix.net'
+MAIL_PASSWORD   = 'N0morebooks'
+
+
+###############################################################################
+#
+# flask-security settings 
+#
+# see http://pythonhosted.org/Flask-Security/configuration.html
+#
+###############################################################################
+
+# Core
+#SECURITY_PASSWORD_HASH = sha512_crypt # a activer une fois que la page de login sera ok
+#SECURITY_PASSWORD_SALT = ???? needed with SECURITY_PASSWORD_HASH other than plaintext
+SECURITY_EMAIL_SENDER = postmaster@exercix.net
+
+#Feature Flags
+SECURITY_CONFIRMABLE  = True 
+SECURITY_REGISTERABLE = True 
+SECURITY_RECOVERABLE  = True 
+SECURITY_TRACKABLE    = True
+SECURITY_CHANGEABLE   = True 
+
+# Email 
+SECURITY_EMAIL_SUBJECT_REGISTER               = 'Bienvenue sur ExerciX !'
+SECURITY_EMAIL_SUBJECT_PASSWORD_NOTICE        = 'Votre mot de passe a été modifié'
+SECURITY_EMAIL_SUBJECT_PASSWORD_RESET         = 'Demande de changement de mot de passe'
+SECURITY_EMAIL_SUBJECT_PASSWORD_CHANGE_NOTICE = 'Votre mot de passe a été modifié'
+SECURITY_EMAIL_SUBJECT_CONFIRM                = 'Merci de confirmer votre adresse mail'

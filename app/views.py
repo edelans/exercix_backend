@@ -11,9 +11,14 @@ import datetime
 from dateutil import parser
 from operator import itemgetter
 from mongoengine.queryset import Q
+from flask.ext.security import Security, login_required
 
 
 user_id = 'edelansgmail.com' #attention, present ds multiples endroits du fichier, placeholder à traiter... g.user ?
+
+
+
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -32,7 +37,7 @@ def favicon():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('404.html'), 404
+    return render_template('errors/404.html'), 404
 
 
 def view_stats(n):
@@ -114,7 +119,7 @@ def how_many_new_users(for_n_days=7, until_timestamp=datetime.datetime.now()):
 
 def how_many_users():
     if len(User.objects)>0:
-        return len(Users.objects)
+        return len(User.objects)
     else:
         return 0
 
@@ -125,6 +130,7 @@ def how_many_users():
 
 @app.route('/')
 @app.route('/index')
+@login_required
 def index():
     stat_exo_viewcount=view_stats(10)
     stat_exo_flagcount=flag_stats(5)
@@ -212,14 +218,14 @@ def exo_stats(part, chapter):
 
 @app.route('/exercices')
 def exercices_l0():
-    return render_template("exercices_level0.html",
+    return render_template("navigation/exercices_level0.html",
         title = 'Exercices',
         parts = give_list_of_parts()
         )
 
 @app.route('/exercices/<part>')
 def exercices_l1(part):
-    return render_template("exercices_level1.html",
+    return render_template("navigation/exercices_level1.html",
         title = 'Exercices',
         part = part,
         chapters = give_list_of_chapters(part),
@@ -227,7 +233,7 @@ def exercices_l1(part):
 
 @app.route('/exercices/<part>/<chapter>')
 def exercices_l2(part, chapter):
-    return render_template("exercices_level2.html",
+    return render_template("navigation/exercices_level2.html",
         title = 'Exercices',
         part = part,  
         chapter = chapter,
@@ -343,7 +349,7 @@ def exo_edit_content(exo_id):
     if document is not None:
         #log stats:
         view(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
-        return render_template("exo_edit_content.html",
+        return render_template("edition/exo_edit_content.html",
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
             exo_data = document,
@@ -352,7 +358,7 @@ def exo_edit_content(exo_id):
             )
 
     else: # en cas de presence vestiges de la phase d'initialisation de la bdd 
-        redirect(url_for('page_not_found', e="cet exercice n'existe plus"))
+        abort(404)
 
 
 def give_new_number(chapter):
@@ -400,12 +406,12 @@ def new_exo():
                 return redirect(url_for('exo_edit_content', exo_id=exo.id))
             except:
                 flash("ATTENTION! Le nouvel exercice a bien été entré dans la base mais il n'a pas été possible d'y acceder".decode('utf8'),'error')
-                return render_template('exo_edit_new.html', 
+                return render_template('edition/exo_edit_new.html', 
                     title = 'Nouvel exo',
                     form = form)
         except Exception as e:
             flash('ATTENTION! Le nouvel exercice n\'a PAS été entré dans la base'.decode('utf8'),'error')
-    return render_template('exo_edit_new.html', 
+    return render_template('edition/exo_edit_new.html', 
         title = 'Nouvel exo',
         form = form)
 

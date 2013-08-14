@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"obje",
+				"objects"
+			],
+			[
+				"id",
+				"_id"
+			],
+			[
 				"new",
 				"new_number"
 			],
@@ -47,6 +55,57 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/views.py",
+			"settings":
+			{
+				"buffer_size": 19902,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "run.py",
+			"settings":
+			{
+				"buffer_size": 177,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/utility.py",
+			"settings":
+			{
+				"buffer_size": 7614,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "from app import db \nimport datetime\nfrom flask.ext.security import UserMixin, RoleMixin\n\n\n\n\n\nclass Exo(db.Document):\n    doc_type = 'exo'\n# id\n    source      = db.StringField()\n    author      = db.StringField()\n    school      = db.StringField()\n    created_at  = db.DateTimeField(default=datetime.datetime.now)\n#theme\n    chapter     = db.StringField()\n    part        = db.StringField()\n    number      = db.IntField()\n    difficulty  = db.IntField()\n    tags        = db.ListField(db.StringField(max_length=50))\n    tracks      = db.ListField(db.StringField(max_length=50))\n# content    \n    question        = db.StringField()\n    question_html   = db.StringField()\n    hint            = db.StringField()\n    solution        = db.StringField()\n    solution_html   = db.StringField()\n\nclass Flag(db.Document):\n    doc_type    = 'flag'\n    exo_id      = db.StringField()\n    user_id     = db.StringField()\n    timestamp   = db.DateTimeField(default=datetime.datetime.now)\n\nclass Request(db.Document):\n    doc_type    = 'request'\n    exo_id      = db.StringField()\n    user_id     = db.StringField()\n    timestamp   = db.DateTimeField(default=datetime.datetime.now)\n\n\nclass View(db.Document):\n    doc_type    = 'view'\n    exo_id      = db.StringField()\n    user_id     = db.StringField()\n    timestamp   = db.DateTimeField(default=datetime.datetime.now)\n\n\nclass Stat(db.Document):\n    doc_type                = 'stat'\n    timestamp               = db.DateTimeField(default=datetime.datetime.now)\n    exos                    = db.IntField()\n    users                   = db.IntField()\n    active_users_L7D        = db.IntField()\n    views_per_user_per_week = db.IntField()\n    view_L7D                = db.IntField()\n",
+			"file": "app/models.py",
+			"file_size": 2358,
+			"file_write_time": 1376475431000000,
+			"settings":
+			{
+				"buffer_size": 1718,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/__init__.py",
+			"settings":
+			{
+				"buffer_size": 1683,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config.py",
+			"settings":
+			{
+				"buffer_size": 2318,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -119,7 +178,7 @@
 	},
 	"console":
 	{
-		"height": 350.0
+		"height": 150.0
 	},
 	"distraction_free":
 	{
@@ -132,19 +191,38 @@
 	},
 	"file_history":
 	[
-		"/home/edelans/github/exercix_backend/config.py",
-		"/home/edelans/github/exercix_backend/app/utility.py",
-		"/home/edelans/github/exercix_backend/app/forms.py",
+		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
+		"/media/Media/Linux/Mongodb/mongodb.log",
+		"/var/log/mongodb/mongodb.log",
+		"/home/edelans/flaskapp/app/routes.py",
+		"/etc/mongodb.conf",
+		"/etc/logrotate.d/mongod",
 		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/templates/exercices_level2.html",
+		"/home/edelans/github/exercix_backend/app/templates/exercices_level0.html",
+		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_backend/app/templates/exercices_level1.html",
+		"/home/edelans/github/exercix_backend/test.py",
+		"/home/edelans/github/exercix_backend/tmp/test.py",
+		"/home/edelans/.cache/.fr-JnmpNv/rockmongo/INSTALL.txt",
+		"/home/edelans/github/flask-security/flask_security/datastore.py",
+		"/home/edelans/github/flask-security/setup.py",
+		"/home/edelans/github/flask-security/requirements.txt",
+		"/home/edelans/github/flask-security/flask_security/utils.py",
+		"/home/edelans/github/flask-security/flask_security/core.py",
+		"/home/edelans/github/flask-security/flask_security/decorators.py",
+		"/home/edelans/github/flask-security/flask_security/forms.py",
+		"/home/edelans/github/exercix_backend/app/forms.py",
 		"/etc/init.d/mongodb",
 		"/home/edelans/github/exercix_backend/app/ToDo.md",
 		"/home/edelans/github/exercix_backend/run.py",
-		"/home/edelans/github/exercix_backend/app/models.py",
-		"/home/edelans/github/exercix_backend/app/views.py",
 		"/home/edelans/mahout/README.txt",
 		"/home/edelans/mahout/NOTICE.txt",
 		"/home/edelans/mahout/LICENSE.txt",
-		"/var/log/mongodb/mongodb.log",
 		"/home/edelans/github/exercix_backend/app/templates/index.html",
 		"/media/edelans/GARMIN/GarminDevice.xml",
 		"/tmp/garminplugin.log",
@@ -155,12 +233,7 @@
 		"/home/edelans/.config/sublime-text-2/Packages/Alignment/Default (Linux).sublime-keymap",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Base File.sublime-settings",
 		"/home/edelans/github/exercix_backend/todo",
-		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
-		"/home/edelans/github/exercix_backend/app/templates/exercices_level1.html",
 		"/home/edelans/github/exercix_backend/app/templates/404.html",
-		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
-		"/home/edelans/github/exercix_backend/app/templates/exercices_level2.html",
-		"/home/edelans/github/exercix_backend/app/templates/exercices_level0.html",
 		"/home/edelans/github/exercix_backend/app/db/ViewDef.py",
 		"/home/edelans/github/exercix_backend/app/ViewDef.py",
 		"/home/edelans/github/exercix_backend/ViewDef.py",
@@ -245,21 +318,7 @@
 		"/home/edelans/exercix/app/templates/500.html",
 		"/home/edelans/exercix/config.py",
 		"/home/edelans/exercix/app/templates/user (another copy).html",
-		"/home/edelans/exercix/db_migrate.py",
-		"/home/edelans/exercix/db_upgrade.py",
-		"/home/edelans/exercix/app/templates/post.html",
-		"/home/edelans/exercix/app/templates/user.html",
-		"/home/edelans/exercix/app/models.py",
-		"/home/edelans/.cache/.fr-Oj1u15/microblog-0.5/app/__init__.py",
-		"/home/edelans/flaskapp/app/templates/display.html",
-		"/home/edelans/flaskapp/app/routes2.py",
-		"/home/edelans/flaskapp/app/templates/post.html",
-		"/home/edelans/flaskapp/app/routes.py",
-		"/home/edelans/exercix/config.pyc",
-		"/home/edelans/exercix/app/templates/login.html",
-		"/home/edelans/flaskapp/app/README.md",
-		"/home/edelans/flaskapp/app/templates/home.html",
-		"/home/edelans/flaskapp/app/templates/about.html"
+		"/home/edelans/exercix/db_migrate.py"
 	],
 	"find":
 	{
@@ -267,16 +326,52 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"Users",
+			"Users.objects",
+			"logn.html",
+			"404.html",
+			"template('exo_edit_new",
+			"exo_edit_content",
+			"exercices.html",
+			"view_count",
+			"exo_stats",
+			"give_list_of_parts",
+			"give_list_of_exos",
+			"view_count",
+			"exo_stats",
+			"view_count",
+			"view_stats",
+			"stat_exo_viewcount",
+			"len(View.objects(",
+			"view_count",
+			"exo_stats",
+			"give_list_of_chapters",
+			"give_list_of_parts",
+			"give_list_of_chapters",
+			"new_id",
+			"fetch_",
+			"fetch_timestamps_func",
+			"db.",
+			"'_id",
+			" _id",
+			",_id",
+			"_id",
+			"Exo.objects(Q",
+			"exos",
+			".objects(",
+			"Q('p",
+			"flags",
+			"find_user",
 			"flag",
 			"Flag",
 			"flag",
@@ -368,43 +463,7 @@
 			"exo_info",
 			"question_html",
 			"db.model",
-			"+ =",
-			"+=",
-			" + =",
-			"=",
-			" =",
-			"= ",
-			" = ",
-			"Count",
-			" = ",
-			"is_following",
-			"followed",
-			"stars",
-			"user",
-			"pages",
-			"h2",
-			"footer",
-			"'",
-			"poly",
-			"navbar",
-			"quantité",
-			"pricing",
-			"video",
-			"#ffe0b5",
-			"#f89306",
-			"invit",
-			"font",
-			"(?:",
-			"arra",
-			"<br>",
-			"array",
-			"fonction de plu",
-			"fonctions de plu",
-			"c|c",
-			"variable reelle",
-			"variable réelle",
-			"Fonctions d'une variable réelle",
-			"\"Polynomes\""
+			"+ ="
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -412,6 +471,8 @@
 		"regex": false,
 		"replace_history":
 		[
+			"",
+			"get_user",
 			"IntField",
 			"StringField",
 			"save",
@@ -460,8 +521,173 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/views.py",
+					"settings":
+					{
+						"buffer_size": 19902,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1929,
+								1929
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1007.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "run.py",
+					"settings":
+					{
+						"buffer_size": 177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								102,
+								102
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/utility.py",
+					"settings":
+					{
+						"buffer_size": 7614,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3829,
+								3829
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1887.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/models.py",
+					"settings":
+					{
+						"buffer_size": 1718,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								20,
+								20
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/__init__.py",
+					"settings":
+					{
+						"buffer_size": 1683,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1294,
+								1294
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "config.py",
+					"settings":
+					{
+						"buffer_size": 2318,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1728,
+								1728
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 8,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 826.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -506,7 +732,7 @@
 	},
 	"replace":
 	{
-		"height": 64.0
+		"height": 65.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -553,6 +779,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 94.0,
+	"side_bar_width": 227.0,
 	"status_bar_visible": true
 }
