@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory, jsonify
-from app import app
+from app import app, User, Role
 from forms import *
 from models import *
 from utility import *
@@ -20,15 +20,6 @@ user_id = 'edelansgmail.com' #attention, present ds multiples endroits du fichie
 
 
 
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        flash('Login requested for OpenID="' + form.openid.data + '", remember_me=' + str(form.remember_me.data),'info')
-        return redirect('/index')
-    return render_template('login.html', 
-        title = 'Sign In',
-        form = form)
 
 
 @app.route('/favicon.ico')
@@ -58,7 +49,7 @@ def flag_stats(n):
         flag_freqs = Flag.objects.item_frequencies('exo_id') 
         top_viewed = sorted(flag_freqs.items(), key=itemgetter(1), reverse=True)[:n]
         for pair in top_viewed:
-            stats.append({'exo_id':pair[0], 'viewcount':pair[1]})
+            stats.append({'exo_id':pair[0], 'flagcount':pair[1]})
     return stats
 
 
@@ -69,7 +60,7 @@ def request_stats(n):
         request_freqs = Request.objects.item_frequencies('exo_id') 
         top_viewed = sorted(request_freqs.items(), key=itemgetter(1), reverse=True)[:n]
         for pair in top_viewed:
-            stats.append({'exo_id':pair[0], 'viewcount':pair[1]})
+            stats.append({'exo_id':pair[0], 'requestcount':pair[1]})
     return stats
 
 
@@ -124,9 +115,17 @@ def how_many_users():
         return 0
 
 
+@app.route('/post_register')
+def post_register():
+    return render_template('security/post_register.html')
 
+@app.route('/profile_confirmed')
+def profile_confirmed():
+    return render_template('security/profile_confirmed.html')
 
-
+@app.route('/CGU')
+def CGU():
+    return render_template('legal/CGU.html')
 
 @app.route('/')
 @app.route('/index')
@@ -503,6 +502,7 @@ def API_list_of_chapters(part):
 
 
 @app.route('/api/v1.0/exoslist/<part>/<chapter>/', methods = ['GET'])
+@login_required
 def API_list_of_exos(part,chapter):
     output = []
     exos = Exo.objects(Q(part=part) & Q(chapter=chapter)).only('id', 'part', 'chapter', 'number', 'difficulty', 'tags', 'tracks', 'school', 'question_html', 'hint', 'solution_html')

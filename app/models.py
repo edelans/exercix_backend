@@ -4,22 +4,6 @@ from flask.ext.security import UserMixin, RoleMixin
 
 
 
-class Role(db.Document, RoleMixin):
-    name        = db.StringField(max_length=80, unique=True)
-    description = db.StringField(max_length=255)
-
-
-class User(db.Document, UserMixin):
-    doc_type     = 'user'
-    nickname     = db.StringField()
-    prepa        = db.StringField()
-    signin_at    = db.DateTimeField(default=datetime.datetime.now)
-#flask-security:
-    email        = db.StringField(max_length=255, primary_key=True)
-    password     = db.StringField(max_length=255)
-    active       = db.BooleanField(default=True)
-    confirmed_at = db.DateTimeField()
-    roles        = db.ListField(db.ReferenceField(Role), default=[])
 
 
 class Exo(db.Document):

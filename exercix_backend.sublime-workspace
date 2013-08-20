@@ -55,62 +55,11 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/views.py",
-			"settings":
-			{
-				"buffer_size": 19902,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "run.py",
-			"settings":
-			{
-				"buffer_size": 177,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/utility.py",
-			"settings":
-			{
-				"buffer_size": 7614,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "from app import db \nimport datetime\nfrom flask.ext.security import UserMixin, RoleMixin\n\n\n\n\n\nclass Exo(db.Document):\n    doc_type = 'exo'\n# id\n    source      = db.StringField()\n    author      = db.StringField()\n    school      = db.StringField()\n    created_at  = db.DateTimeField(default=datetime.datetime.now)\n#theme\n    chapter     = db.StringField()\n    part        = db.StringField()\n    number      = db.IntField()\n    difficulty  = db.IntField()\n    tags        = db.ListField(db.StringField(max_length=50))\n    tracks      = db.ListField(db.StringField(max_length=50))\n# content    \n    question        = db.StringField()\n    question_html   = db.StringField()\n    hint            = db.StringField()\n    solution        = db.StringField()\n    solution_html   = db.StringField()\n\nclass Flag(db.Document):\n    doc_type    = 'flag'\n    exo_id      = db.StringField()\n    user_id     = db.StringField()\n    timestamp   = db.DateTimeField(default=datetime.datetime.now)\n\nclass Request(db.Document):\n    doc_type    = 'request'\n    exo_id      = db.StringField()\n    user_id     = db.StringField()\n    timestamp   = db.DateTimeField(default=datetime.datetime.now)\n\n\nclass View(db.Document):\n    doc_type    = 'view'\n    exo_id      = db.StringField()\n    user_id     = db.StringField()\n    timestamp   = db.DateTimeField(default=datetime.datetime.now)\n\n\nclass Stat(db.Document):\n    doc_type                = 'stat'\n    timestamp               = db.DateTimeField(default=datetime.datetime.now)\n    exos                    = db.IntField()\n    users                   = db.IntField()\n    active_users_L7D        = db.IntField()\n    views_per_user_per_week = db.IntField()\n    view_L7D                = db.IntField()\n",
-			"file": "app/models.py",
-			"file_size": 2358,
-			"file_write_time": 1376475431000000,
-			"settings":
-			{
-				"buffer_size": 1718,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/__init__.py",
-			"settings":
-			{
-				"buffer_size": 1683,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config.py",
-			"settings":
-			{
-				"buffer_size": 2318,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 159.0,
+		"height": 180.0,
 		"selected_items":
 		[
 			[
@@ -191,20 +140,64 @@
 	},
 	"file_history":
 	[
+		"/home/edelans/.bashrc",
+		"/usr/lib/jvm/file.",
+		"/etc/bash.bashrc",
+		"/home/edelans/github/exercix_backend/app/templates/security/base_security.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/login_user.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/register_user.html",
+		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/templates/legal/CGU.html",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/src/tables/README.txt",
+		"/home/edelans/src/pip-delete-this-directory.txt",
+		"/home/edelans/libpeerconnection.log",
+		"/home/edelans/github/exercix_backend/app/templates/security/change_password.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/forgot_password.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/post_register.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/profile_confirmed.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/reset_password.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/send_confirmation.html",
+		"/home/edelans/github/products-WB0D8SH9P/index.php",
+		"/home/edelans/github/exercix_backend/app/templates/macros.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/login_instructions.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/login_instructions.txt",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/welcome.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/welcome.txt",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/reset_notice.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/reset_notice.txt",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/reset_instructions.txt",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/reset_instructions.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/change_notice.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/change_notice.txt",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/confirmation_instructions.html",
+		"/home/edelans/github/exercix_backend/app/templates/security/email/confirmation_instructions.txt",
+		"/home/edelans/github/futon4mongo/README.rdoc",
+		"/home/edelans/github/exercix_backend/app/templates/base.html",
+		"/home/edelans/github/exercix_backend/app/templates/macro.html",
+		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
+		"/home/edelans/github/exercix_backend/app/static/js/apollo.js",
+		"/home/edelans/.cache/.fr-Efho7a/index.php",
+		"/home/edelans/github/exercix_backend/app/static/css/apollo.css",
+		"/home/edelans/github/products-WB0D8SH9P/js/main.js",
+		"/home/edelans/github/products-WB0D8SH9P/sass/main.scss",
+		"/home/edelans/applications/plugins/org.jruby_1.6.4.1331328108/lib/ruby/1.8/wsdl/xmlSchema/pattern.rb",
+		"/home/edelans/github/products-WB0D8SH9P/config.rb",
+		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/.cache/.fr-ZLJqDs/config.rb",
+		"/home/edelans/github/exercix_backend/app/templates/security/send_login.html",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/run.py",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/media/Media/Linux/Mongodb/mongodb.log",
 		"/var/log/mongodb/mongodb.log",
 		"/home/edelans/flaskapp/app/routes.py",
 		"/etc/mongodb.conf",
 		"/etc/logrotate.d/mongod",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
-		"/home/edelans/github/exercix_backend/app/utility.py",
-		"/home/edelans/github/exercix_backend/config.py",
-		"/home/edelans/github/exercix_backend/app/views.py",
 		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level2.html",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level0.html",
-		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/github/exercix_backend/app/templates/exercices_level1.html",
 		"/home/edelans/github/exercix_backend/test.py",
 		"/home/edelans/github/exercix_backend/tmp/test.py",
@@ -219,7 +212,6 @@
 		"/home/edelans/github/exercix_backend/app/forms.py",
 		"/etc/init.d/mongodb",
 		"/home/edelans/github/exercix_backend/app/ToDo.md",
-		"/home/edelans/github/exercix_backend/run.py",
 		"/home/edelans/mahout/README.txt",
 		"/home/edelans/mahout/NOTICE.txt",
 		"/home/edelans/mahout/LICENSE.txt",
@@ -239,7 +231,6 @@
 		"/home/edelans/github/exercix_backend/ViewDef.py",
 		"/home/edelans/github/exercix_backend/app/db/viewdefinition.py",
 		"/home/edelans/github/exercix_backend/app/templates/exo_edit_new.html",
-		"/home/edelans/github/exercix_backend/app/templates/base.html",
 		"/home/edelans/github/exercix_backend/.gitignore",
 		"/home/edelans/github/exercix_backend/app/static/css/math.css",
 		"/home/edelans/github/exercix_backend/.gitconfig",
@@ -276,49 +267,7 @@
 		"/home/edelans/flaskapp/app/templates/layout.html",
 		"/media/MYLINUXLIVE/README.diskdefines",
 		"/media/edelans/Elements/20121027 Bureau et divers/Nouveau document texte.txt",
-		"/media/Media/Ebooks/metadata_db_prefs_backup.json",
-		"/media/Freebox/Vidéos/Sherlock Holmes A Game of Shadows (2011) DVDRip XviD-MAXSPEED/Sherlock Holmes A Game of Shadows (2011) DVDRip XviD-MAXSPEED.nfo",
-		"/home/edelans/Downloads/Sherlock Holmes A Game of Shadows (2011) DVDRip XviD-MAXSPEED/Torrent downloaded from Extratorrent.com.txt",
-		"/run/user/edelans/gvfs/ftp:host=ftp.exercix.net,user=exercix/www/index.html",
-		"/run/user/edelans/gvfs/ftp:host=ftp.exercix.net,user=exercix/www/entreprises.html",
-		"/run/user/edelans/gvfs/ftp:host=ftp.exercix.net,user=exercix/www/particuliers.html",
-		"/run/user/edelans/gvfs/ftp:host=ftp.exercix.net,user=exercix/www/contact.html",
-		"/home/edelans/Desktop/particuliers.html",
-		"/home/edelans/Desktop/produit.html",
-		"/home/edelans/Desktop/entreprises.html",
-		"/home/edelans/Desktop/layout.html",
-		"/home/edelans/Desktop/contact.html",
-		"/home/edelans/Desktop/post.html",
-		"/home/edelans/Desktop/display.html",
-		"/home/edelans/Desktop/index.html",
-		"/home/edelans/.cache/.fr-aEoTJR/LaTeX_aliases.js",
-		"/home/edelans/Desktop/test.js",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/20130611exercix.json",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix.json",
-		"/home/edelans/.cache/.fr-ZMyr5M/LaTeX_functions.js",
-		"/home/edelans/.cache/.fr-A439Rp/LaTeX_dfa_comp.js",
-		"/home/edelans/.cache/.fr-NfpKe6/LaTeX_asc.js",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix3.json",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Exercix/exercix2.json",
-		"/home/edelans/Desktop/commande bdd",
-		"/home/edelans/.cache/.fr-W58VAx/LaTeX_functions.js",
-		"/home/edelans/.cache/.fr-GsCFhZ/LaTeX_tok.js",
-		"/home/edelans/.cache/.fr-mgWOK6/LaTeX_symbols.js",
-		"/home/edelans/.cache/.fr-zjy7ek/LaTeX_dfa_comp.js",
-		"/home/edelans/.cache/.fr-7OzUfo/LaTeX_asc.js",
-		"/home/edelans/.cache/.fr-Z9xnXx/LaTeX_aliases.js",
-		"/home/edelans/.cache/.fr-Z7vYdl/LaTeX_acc.js",
-		"/home/edelans/.cache/.fr-qNHrsE/9805203b.txt",
-		"/home/edelans/.cache/.fr-V8lV2I/0001125b.txt",
-		"/home/edelans/Downloads/fonts pour carte de visite/fonts101.txt",
-		"/home/edelans/.cache/.fr-jejmOA/jre1.7.0_21/plugin/desktop/sun_java.desktop",
-		"/home/edelans/exercix/app/db_create.py",
-		"/home/edelans/exercix/app/templates/edit.html",
-		"/home/edelans/exercix/app/forms.py",
-		"/home/edelans/exercix/app/templates/500.html",
-		"/home/edelans/exercix/config.py",
-		"/home/edelans/exercix/app/templates/user (another copy).html",
-		"/home/edelans/exercix/db_migrate.py"
+		"/media/Media/Ebooks/metadata_db_prefs_backup.json"
 	],
 	"find":
 	{
@@ -326,7 +275,7 @@
 	},
 	"find_in_files":
 	{
-		"height": 93.0,
+		"height": 0.0,
 		"where_history":
 		[
 		]
@@ -336,6 +285,19 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"StringField",
+			"integer",
+			"DEBUG_TB_INTERCEPT_REDIRECTS",
+			"tidy",
+			"url",
+			"display: none",
+			"apollo-register",
+			"hidden",
+			"login_user",
+			"img",
+			"pattern",
+			"pattern.png",
+			"optionsRadios",
 			"Users",
 			"Users.objects",
 			"logn.html",
@@ -450,20 +412,7 @@
 			"part",
 			"taglist",
 			"new_id",
-			"base",
-			"Succes",
-			"succes",
-			"flash",
-			"chapter",
-			"track",
-			"question",
-			"chapter",
-			"school",
-			"unfollow",
-			"exo_info",
-			"question_html",
-			"db.model",
-			"+ ="
+			"base"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -521,173 +470,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/views.py",
-					"settings":
-					{
-						"buffer_size": 19902,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1929,
-								1929
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1007.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "run.py",
-					"settings":
-					{
-						"buffer_size": 177,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								102,
-								102
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/utility.py",
-					"settings":
-					{
-						"buffer_size": 7614,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								3829,
-								3829
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1887.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/models.py",
-					"settings":
-					{
-						"buffer_size": 1718,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								20,
-								20
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/__init__.py",
-					"settings":
-					{
-						"buffer_size": 1683,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1294,
-								1294
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "config.py",
-					"settings":
-					{
-						"buffer_size": 2318,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1728,
-								1728
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 8,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 826.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -779,6 +563,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 227.0,
+	"side_bar_width": 209.0,
 	"status_bar_visible": true
 }

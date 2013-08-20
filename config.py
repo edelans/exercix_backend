@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
@@ -21,6 +24,7 @@ DEBUG_TB_PANELS = [
         # Add the MongoDB panel
         'flask.ext.mongoengine.panels.MongoDebugPanel']
 DEBUG_TB_PROFILER_ENABLED = True
+DEBUG_TB_INTERCEPT_REDIRECTS = False
 
 MONGODB_SETTINGS = {
         "db":"exercix",
@@ -39,7 +43,7 @@ MONGODB_SETTINGS = {
 # flask-mail settings
 MAIL_SERVER     = 'smtp.exercix.net'
 MAIL_PORT       = 587
-MAIL_USE_SSL    = True
+MAIL_USE_SSL    = False
 MAIL_USERNAME   = 'postmaster@exercix.net'
 MAIL_PASSWORD   = 'N0morebooks'
 
@@ -55,13 +59,19 @@ MAIL_PASSWORD   = 'N0morebooks'
 # Core
 #SECURITY_PASSWORD_HASH = sha512_crypt # a activer une fois que la page de login sera ok
 #SECURITY_PASSWORD_SALT = ???? needed with SECURITY_PASSWORD_HASH other than plaintext
-SECURITY_EMAIL_SENDER = postmaster@exercix.net
+SECURITY_EMAIL_SENDER = 'postmaster@exercix.net'
+SECURITY_FLASH_MESSAGES = False
+
+#URL and Views
+SECURITY_POST_LOGIN_VIEW    ='/'
+SECURITY_POST_REGISTER_VIEW ='/post_register'
+SECURITY_POST_CONFIRM_VIEW  ='/profile_confirmed'
 
 #Feature Flags
 SECURITY_CONFIRMABLE  = True 
 SECURITY_REGISTERABLE = True 
 SECURITY_RECOVERABLE  = True 
-SECURITY_TRACKABLE    = True
+SECURITY_TRACKABLE    = False
 SECURITY_CHANGEABLE   = True 
 
 # Email 
@@ -70,3 +80,15 @@ SECURITY_EMAIL_SUBJECT_PASSWORD_NOTICE        = 'Votre mot de passe a été modi
 SECURITY_EMAIL_SUBJECT_PASSWORD_RESET         = 'Demande de changement de mot de passe'
 SECURITY_EMAIL_SUBJECT_PASSWORD_CHANGE_NOTICE = 'Votre mot de passe a été modifié'
 SECURITY_EMAIL_SUBJECT_CONFIRM                = 'Merci de confirmer votre adresse mail'
+
+###############################################################################
+#
+# flask-social settings 
+#
+###############################################################################
+
+
+SOCIAL_FACEBOOK = {
+    'consumer_key': '508113522605459',
+    'consumer_secret': 'a10f2475a7cd11626f9dacc797b899ec'
+}
