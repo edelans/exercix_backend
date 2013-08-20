@@ -1,0 +1,7 @@
+Bonjour {{ user.email }}!
+
+{% if security.confirmable %}
+Tu peux activer ton compte avec le lien ci-dessous:
+
+{{ confirmation_link }}
+{% endif %}

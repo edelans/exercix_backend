@@ -1,0 +1,35 @@
+{% extends "security/base_security.html" %}
+{% block content %}
+{% from "macros.html" import form_field_with_placeholder %}
+
+
+<div class="apollo-login">
+
+  <form action="{{ url_for('social.login', provider_id='facebook') }}" method="POST">
+    <button type="submit" class="btn btn-block btn-facebook btn-large">Se connecter avec <strong>Facebook</strong></button>
+  </form>
+
+
+  <p class="apollo-seperator"> ou </p>
+
+  <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form" class="form-signin" id="apollo-login-form">
+    {{ login_user_form.hidden_tag() }}
+    {{ form_field_with_placeholder(login_user_form.email, "Email") }}
+    {{ form_field_with_placeholder(login_user_form.password, "Mot de passe") }}
+
+    {{ form_field_with_placeholder(login_user_form.next) }}
+
+    <button class="btn btn-large btn-block" type="submit">Se connecter</button>
+  </form>
+
+  <p class="apollo-register-account"> 
+    <a href="{{ url_for_security('register')}}" class="register-link">Pas encore de compte ?<strong> Je m'inscris !</strong><i class="icon-arrow-right"></i></a>
+    <br/>
+    <a href="{{ url_for_security('forgot_password') }}" class="password-link"><small>Mot de passe oublié?</small></a> 
+    <br/>
+    <a href="{{ url_for_security('send_confirmation') }}" class="password-link"><small>Lien d'activation perdu ?</small></a> 
+  </p>
+</div>
+
+
+{% endblock %}

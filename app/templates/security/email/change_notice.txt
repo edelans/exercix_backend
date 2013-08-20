@@ -1,0 +1,5 @@
+Ton mot de passe a été modifié
+{% if security.recoverable %}
+Si tu n'as pas changé ton mot de passe, clique ici pour le réinitialiser:
+{{ url_for_security('forgot_password', _external=True) }}
+{% endif %}

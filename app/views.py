@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory, jsonify
-from app import app, User, Role
+from app import app, User, Role, social
 from forms import *
 from models import *
 from utility import *
@@ -19,7 +19,13 @@ user_id = 'edelansgmail.com' #attention, present ds multiples endroits du fichie
 
 
 
-
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template(
+        'social/profile.html',
+        content='Profile Page',
+        facebook_conn=social.facebook.get_connection())
 
 
 @app.route('/favicon.ico')

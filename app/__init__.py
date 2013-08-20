@@ -8,8 +8,8 @@ from flask.ext.security import Security, MongoEngineUserDatastore, \
 import datetime
 from flask_security.forms import *
 from flask.ext.wtf import TextField, IntegerField, SelectField
-from flask.ext.social import Social
-from flask.ext.social.datastore import SQLAlchemyConnectionDatastore
+from flask.ext.social import Social, MongoEngineConnectionDatastore
+
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -33,18 +33,23 @@ class User(db.Document, UserMixin):
 	prepa_track		 = db.StringField()
 	signin_at        = db.DateTimeField(default=datetime.datetime.now)
 #flask-security:
-	email            = db.EmailField(max_length=255)
-	password         = db.StringField(max_length=255)
+	email            = db.StringField(unique=True, max_length=255)
+	password         = db.StringField(required=True, max_length=120)
 	active           = db.BooleanField(default=True)
 	roles            = db.ListField(db.ReferenceField(Role), default=[])
 #flask-security options
-	confirmed_at      = db.DateTimeField()
-	last_login_at     = db.DateTimeField()
-	current_login_at  = db.DateTimeField()
-	last_login_ip     = db.StringField()
-	current_login_ip  = db.StringField()
-	login_count       = db.IntField()
+	remember_token       = db.StringField(max_length=255)
+	authentication_token = db.StringField(max_length=255)
+	confirmed_at         = db.DateTimeField()
+	last_login_at        = db.DateTimeField()
+	current_login_at     = db.DateTimeField()
+	last_login_ip        = db.StringField()
+	current_login_ip     = db.StringField()
+	login_count          = db.IntField()
 
+	@property
+	def connections(self):
+		return Connection.objects(user_id=str(self.id))
 
 class ExtendedConfirmRegisterForm(ConfirmRegisterForm):
 	first_name       = TextField('First Name', validators =[Required()])
@@ -54,10 +59,25 @@ class ExtendedConfirmRegisterForm(ConfirmRegisterForm):
 	prepa_track      = SelectField(id='prepa_track', validators =[Required()], choices=[('MP', 'MP'), ('PC', 'PC'), ('PSI', 'PSI'), ('BCPST', 'BCPST'), ('TSI', 'TSI'), ('autre', 'autre')])
 
 
+class Connection(db.Document):
+	user_id          = db.ObjectIdField()
+	provider_id      = db.StringField(max_length=255)
+	provider_user_id = db.StringField(max_length=255)
+	access_token     = db.StringField(max_length=255)
+	secret           = db.StringField(max_length=255)
+	display_name     = db.StringField(max_length=255)
+	profile_url      = db.StringField(max_length=512)
+	image_url        = db.StringField(max_length=512)
+	rank             = db.IntField(default=1)
 
-# Setup Flask-Security
+	@property
+	def user(self):
+		return User.objects(id=self.user_id).first()
+
+# Setup Flask-Security and flask-social
 user_datastore = MongoEngineUserDatastore(db, User, Role)
-security = Security(app, user_datastore, confirm_register_form=ExtendedConfirmRegisterForm)
+security       = Security(app, user_datastore, confirm_register_form=ExtendedConfirmRegisterForm)
+social         = Social(app, MongoEngineConnectionDatastore(db, Connection))
 
 """
 # Create a user to test with

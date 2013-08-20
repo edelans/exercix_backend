@@ -1,0 +1,5 @@
+Bonjour {{ user.email }}!
+
+Tu peux te connecter dès maintenant avec le lien suivant:
+
+{{ login_link }}
