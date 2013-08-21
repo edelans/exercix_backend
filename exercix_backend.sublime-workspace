@@ -59,7 +59,7 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 180.0,
+		"height": 159.0,
 		"selected_items":
 		[
 			[
@@ -123,7 +123,7 @@
 				"Snippet: Lorem ipsum"
 			]
 		],
-		"width": 593.0
+		"width": 566.0
 	},
 	"console":
 	{
@@ -140,16 +140,19 @@
 	},
 	"file_history":
 	[
+		"/home/edelans/github/exercix_backend/run.py",
+		"/home/edelans/requirements.txt",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/templates/security/login_user.html",
+		"/home/edelans/github/exercix_backend/app/templates/social/profile.html",
+		"/home/edelans/github/exercix_backend/app/views.py",
 		"/home/edelans/.bashrc",
 		"/usr/lib/jvm/file.",
 		"/etc/bash.bashrc",
 		"/home/edelans/github/exercix_backend/app/templates/security/base_security.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/login_user.html",
 		"/home/edelans/github/exercix_backend/app/templates/security/register_user.html",
 		"/home/edelans/github/exercix_backend/config.py",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
 		"/home/edelans/github/exercix_backend/app/templates/legal/CGU.html",
-		"/home/edelans/github/exercix_backend/app/views.py",
 		"/home/edelans/src/tables/README.txt",
 		"/home/edelans/src/pip-delete-this-directory.txt",
 		"/home/edelans/libpeerconnection.log",
@@ -188,7 +191,6 @@
 		"/home/edelans/.cache/.fr-ZLJqDs/config.rb",
 		"/home/edelans/github/exercix_backend/app/templates/security/send_login.html",
 		"/home/edelans/github/exercix_backend/app/utility.py",
-		"/home/edelans/github/exercix_backend/run.py",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/media/Media/Linux/Mongodb/mongodb.log",
 		"/var/log/mongodb/mongodb.log",
@@ -265,9 +267,7 @@
 		"/media/Media/Dropbox/Centrale2012-2013/FCE/Twitter bootstrap/bootstrap/js/bootstrap.js",
 		"/home/edelans/flaskapp/app/static/css/main.css",
 		"/home/edelans/flaskapp/app/templates/layout.html",
-		"/media/MYLINUXLIVE/README.diskdefines",
-		"/media/edelans/Elements/20121027 Bureau et divers/Nouveau document texte.txt",
-		"/media/Media/Ebooks/metadata_db_prefs_backup.json"
+		"/media/MYLINUXLIVE/README.diskdefines"
 	],
 	"find":
 	{
@@ -285,6 +285,7 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"db.Column(db.String(255))",
 			"StringField",
 			"integer",
 			"DEBUG_TB_INTERCEPT_REDIRECTS",
@@ -411,8 +412,7 @@
 			"category",
 			"part",
 			"taglist",
-			"new_id",
-			"base"
+			"new_id"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -420,6 +420,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"db.StringField()",
 			"",
 			"get_user",
 			"IntField",
