@@ -20,7 +20,7 @@ user_id = 'edelansgmail.com' #attention, present ds multiples endroits du fichie
 
 
 @app.route('/profile')
-@login_required
+ 
 def profile():
     return render_template(
         'social/profile.html',
@@ -135,7 +135,7 @@ def CGU():
 
 @app.route('/')
 @app.route('/index')
-@login_required
+ 
 def index():
     stat_exo_viewcount=view_stats(10)
     stat_exo_flagcount=flag_stats(5)
@@ -508,7 +508,7 @@ def API_list_of_chapters(part):
 
 
 @app.route('/api/v1.0/exoslist/<part>/<chapter>/', methods = ['GET'])
-@login_required
+ 
 def API_list_of_exos(part,chapter):
     output = []
     exos = Exo.objects(Q(part=part) & Q(chapter=chapter)).only('id', 'part', 'chapter', 'number', 'difficulty', 'tags', 'tracks', 'school', 'question_html', 'hint', 'solution_html')
