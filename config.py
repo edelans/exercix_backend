@@ -28,8 +28,10 @@ DEBUG_TB_INTERCEPT_REDIRECTS = False
 
 MONGODB_SETTINGS = {
         "db":"exercix",
-        "host":"localhost",
-        "port":27017
+        "host":"paulo.mongohq.com",
+        "port":10068,
+        "username":"edelans",       # if auth needed by db
+        "password":"nobooks",   # if auth needed by db
         }
 
 """

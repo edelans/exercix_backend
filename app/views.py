@@ -84,10 +84,13 @@ def how_many_viewing_users(for_n_days=7, until_timestamp=datetime.datetime.now()
     from_timestamp = str((datetime.datetime.now() - datetime.timedelta(days=for_n_days)))
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
     # filter View to fit timeframe, and then build a dictionary of the frequencies of items {"user_id":frequence}
+    view_freqs = 0
     if len(View.objects)>0:
         view_freqs = View.objects(Q(timestamp__gte=from_timestamp ) & Q(timestamp__lte=until_timestamp)).item_frequencies('user_id')
     # return length of the dico
-    return len(view_freqs)
+        return len(view_freqs)
+    else:
+        return 0
 
 
 def how_many_views_per_user(for_n_days=7, until_timestamp=datetime.datetime.now()):
@@ -101,7 +104,6 @@ def how_many_views_per_user(for_n_days=7, until_timestamp=datetime.datetime.now(
     output=0
     if len(view_freqs)>0:
         output = float(sum(view_freqs.values()))/len(view_freqs)
-
     return output
 
 
@@ -142,8 +144,30 @@ def index():
     'sales':5000,
     'subscription_count':1000
     }
-                                                   
-    operations_data =[]
+    
+    # querying an empty database triggers a bug, so before doing it, we check:
+    if len(Exo.objects)>0:                                 
+        operations_data =[{
+                "content":"Nombre total d'exercices dans la base".decode('utf8'),
+                "number": how_many_exos()
+            },{
+                "content":"Nombre d'utilisateurs enregistrés cette année".decode('utf8'),
+                "number": how_many_users()
+            },{
+                "content":"Nombre d'utilisateurs actifs sur les 7 derniers jours".decode('utf8'),
+                "number": how_many_viewing_users()
+            },{ 
+                "content":"Nombre d'exercices vus / utilisateur / semaine".decode('utf8'),   
+                "number": how_many_views_per_user()
+            },{
+                "content":"Nombre de nouveaux utilisateurs sur la dernière semaine".decode('utf8'),
+                "number": how_many_new_users()
+            },{
+                "content":"Nombre de vues sur la dernière semaine".decode('utf8'),
+                "number": how_many_views()
+            }]
+    else:
+        operations_data = []
     
     return render_template("index.html",
         title              = 'Dashboard',
@@ -151,27 +175,7 @@ def index():
         stat_exo_flagcount = stat_exo_flagcount,
         sales_data         = sales_data,
         operations_data    =operations_data)
-"""
-{
-            "content":"Nombre total d'exercices dans la base".decode('utf8'),
-            "number": how_many_exos()
-        },{
-            "content":"Nombre d'utilisateurs enregistrés cette année".decode('utf8'),
-            "number": how_many_users()
-        },{
-            "content":"Nombre d'utilisateurs actifs sur les 7 derniers jours".decode('utf8'),
-            "number": how_many_viewing_users()
-        },{ 
-            "content":"Nombre d'exercices vus / utilisateur / semaine".decode('utf8'),   
-            "number": how_many_views_per_user()
-        },{
-            "content":"Nombre de nouveaux utilisateurs sur la dernière semaine".decode('utf8'),
-            "number": how_many_new_users()
-        },{
-            "content":"Nombre de vues sur la dernière semaine".decode('utf8'),
-            "number": how_many_views()
-        }
-"""
+
 
 
 def view_count(exo_id):
@@ -191,12 +195,19 @@ def request_count(exo_id):
 
 
 def give_list_of_parts():
-    partdic = Exo.objects.only('part').item_frequencies('part')
-    return partdic.items()
+    res=[]
+    if len(Exo.objects)>0:
+        partdic = Exo.objects.only('part').item_frequencies('part')
+        res = partdic.items()
+    return res
+
 
 def give_list_of_chapters(part):
-    chapdic = Exo.objects(part=part).only('chapter').item_frequencies('chapter')
-    return chapdic.items()
+    res=[]
+    if len(Exo.objects)>0:
+        chapdic = Exo.objects(part=part).only('chapter').item_frequencies('chapter')
+        res = chapdic.items()
+    return res
 
 
 
@@ -216,11 +227,6 @@ def exo_stats(part, chapter):
         }
         res.append(dic)
     return res
-
-
-
-
-
 
 
 @app.route('/exercices')
