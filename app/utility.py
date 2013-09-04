@@ -119,7 +119,7 @@ def hc_readify_py(list_of_timestamps, n):
 
 def replfunc1(matchobj):
     if len(matchobj.group(0)) < 3 :
-        return "<br>"
+        return "<br>"       
     else:
         return matchobj.group(0)
 

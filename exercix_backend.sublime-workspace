@@ -55,23 +55,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "sudo apt-get install build-essential python-dev python-pip nginx uwsgi uwsgi-plugin-python mongodb ",
-			"settings":
-			{
-				"buffer_size": 99,
-				"line_ending": "Unix",
-				"name": "sudo apt-get install build-essential python-dev py"
-			}
-		},
-		{
-			"contents": "   \n# content of run.py\nfrom app import app\n\nif __name__ == \"__main__\":\n 	app.run(debug=True)\n\n\nfrom flask import Flask\napp = Flask(__name__)\n\n@app.route('/')\ndef hello_world():\n    return 'Hello World!'\n\nif __name__ == '__main__':\n    app.run()\n\n\n\n   \nserver {\n	listen       80;\n	server_name  37.187.60.100;\n	location / { try_files $uri @app; }\n	location @app {\n		include uwsgi_params;\n		uwsgi_pass unix:/tmp/uwsgi.sock;\n	}\n}\n\n\n[uwsgi]\nchdir = /home/edelans/helloworld\nuid = www-data\ngid = www-data\nchmod-socket = 666\nsocket = /tmp/uwsgi.sock\nmodule = run\ncallable = app\nvirtualenv = /home/edelans/helloworld",
-			"settings":
-			{
-				"buffer_size": 609,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -157,19 +140,31 @@
 	},
 	"file_history":
 	[
-		"/home/edelans/github/exercix_backend/requirements.txt",
+		"/home/edelans/Desktop/index.css",
+		"/home/edelans/Desktop/index.less",
+		"/home/edelans/github/exercix_vitrine/index.less",
+		"/home/edelans/github/exercix_vitrine/index.css",
+		"/home/edelans/Desktop/index.html",
+		"/home/edelans/github/exercix_vitrine/index.html",
+		"/home/edelans/github/exercix_vitrine/.gitignore",
+		"/home/edelans/github/exercix_vitrine/about.html",
 		"/home/edelans/github/exercix_backend/run.py",
-		"/home/edelans/requirements.txt",
+		"/var/log/mongodb/mongodb.log",
 		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/.android/adb_usb.ini",
+		"/home/edelans/github/exercix_backend/app/forms.py",
+		"/home/edelans/github/exercix_backend/requirements.txt",
+		"/home/edelans/requirements.txt",
 		"/home/edelans/github/exercix_backend/app/templates/security/login_user.html",
 		"/home/edelans/github/exercix_backend/app/templates/social/profile.html",
-		"/home/edelans/github/exercix_backend/app/views.py",
 		"/home/edelans/.bashrc",
 		"/usr/lib/jvm/file.",
 		"/etc/bash.bashrc",
 		"/home/edelans/github/exercix_backend/app/templates/security/base_security.html",
 		"/home/edelans/github/exercix_backend/app/templates/security/register_user.html",
-		"/home/edelans/github/exercix_backend/config.py",
 		"/home/edelans/github/exercix_backend/app/templates/legal/CGU.html",
 		"/home/edelans/src/tables/README.txt",
 		"/home/edelans/src/pip-delete-this-directory.txt",
@@ -208,10 +203,8 @@
 		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/.cache/.fr-ZLJqDs/config.rb",
 		"/home/edelans/github/exercix_backend/app/templates/security/send_login.html",
-		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/media/Media/Linux/Mongodb/mongodb.log",
-		"/var/log/mongodb/mongodb.log",
 		"/home/edelans/flaskapp/app/routes.py",
 		"/etc/mongodb.conf",
 		"/etc/logrotate.d/mongod",
@@ -229,7 +222,6 @@
 		"/home/edelans/github/flask-security/flask_security/core.py",
 		"/home/edelans/github/flask-security/flask_security/decorators.py",
 		"/home/edelans/github/flask-security/flask_security/forms.py",
-		"/home/edelans/github/exercix_backend/app/forms.py",
 		"/etc/init.d/mongodb",
 		"/home/edelans/github/exercix_backend/app/ToDo.md",
 		"/home/edelans/mahout/README.txt",
@@ -275,16 +267,7 @@
 		"/home/edelans/exercix/app/templates/auteurs.html",
 		"/home/edelans/exercix/test.py",
 		"/home/edelans/exercix/app/views.py",
-		"/home/edelans/github/exercix_vitrine/index.css",
-		"/home/edelans/github/exercix_vitrine/index.html",
-		"/home/edelans/github/exercix_vitrine/index.less",
-		"/media/Media/Dropbox/Exercix/exercix.yaml",
-		"/media/Media/Dropbox/Exercix/exercix2.json",
-		"/media/Media/Dropbox/Exercix/exercix3.json",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Twitter bootstrap/bootstrap/css/bootstrap-responsive.css",
-		"/media/Media/Dropbox/Centrale2012-2013/FCE/Twitter bootstrap/bootstrap/js/bootstrap.js",
-		"/home/edelans/flaskapp/app/static/css/main.css",
-		"/home/edelans/flaskapp/app/templates/layout.html"
+		"/media/Media/Dropbox/Exercix/exercix.yaml"
 	],
 	"find":
 	{
@@ -302,6 +285,11 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"tap",
+			"dl-android",
+			"how_many_viewing_users",
+			"view_freqs",
+			"@login_required",
 			"sudo apt-get install",
 			"db.Column(db.String(255))",
 			"StringField",
@@ -424,12 +412,7 @@
 			"formQuestion",
 			"name",
 			"question",
-			"type=\"button\"",
-			"track",
-			"taglist",
-			"category",
-			"part",
-			"taglist"
+			"type=\"button\""
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -437,6 +420,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			" ",
 			"db.StringField()",
 			"",
 			"get_user",
@@ -490,58 +474,6 @@
 		{
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"settings":
-					{
-						"buffer_size": 99,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"auto_name": "sudo apt-get install build-essential python-dev py",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"settings":
-					{
-						"buffer_size": 609,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								429,
-								429
-							]
-						],
-						"settings":
-						{
-							"auto_name": "",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -595,6 +527,10 @@
 		"selected_items":
 		[
 			[
+				"forms",
+				"app/forms.py"
+			],
+			[
 				"todo",
 				"app/ToDo.md"
 			],
@@ -632,7 +568,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
-	"side_bar_width": 143.0,
+	"side_bar_visible": false,
+	"side_bar_width": 189.0,
 	"status_bar_visible": true
 }

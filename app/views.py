@@ -20,7 +20,6 @@ user_id = 'edelansgmail.com' #attention, present ds multiples endroits du fichie
 
 
 @app.route('/profile')
- 
 def profile():
     return render_template(
         'social/profile.html',
@@ -135,7 +134,6 @@ def CGU():
 
 @app.route('/')
 @app.route('/index')
- 
 def index():
     stat_exo_viewcount=view_stats(10)
     stat_exo_flagcount=flag_stats(5)
@@ -145,7 +143,16 @@ def index():
     'subscription_count':1000
     }
                                                    
-    operations_data =[{
+    operations_data =[]
+    
+    return render_template("index.html",
+        title              = 'Dashboard',
+        stat_exo_viewcount = stat_exo_viewcount,
+        stat_exo_flagcount = stat_exo_flagcount,
+        sales_data         = sales_data,
+        operations_data    =operations_data)
+"""
+{
             "content":"Nombre total d'exercices dans la base".decode('utf8'),
             "number": how_many_exos()
         },{
@@ -163,14 +170,9 @@ def index():
         },{
             "content":"Nombre de vues sur la dernière semaine".decode('utf8'),
             "number": how_many_views()
-        }]
+        }
+"""
 
-    return render_template("index.html",
-        title = 'Dashboard',
-        stat_exo_viewcount= stat_exo_viewcount,
-        stat_exo_flagcount = stat_exo_flagcount,
-        sales_data= sales_data,
-        operations_data=operations_data)
 
 def view_count(exo_id):
     return len(View.objects(exo_id=str(exo_id)))
@@ -508,7 +510,6 @@ def API_list_of_chapters(part):
 
 
 @app.route('/api/v1.0/exoslist/<part>/<chapter>/', methods = ['GET'])
- 
 def API_list_of_exos(part,chapter):
     output = []
     exos = Exo.objects(Q(part=part) & Q(chapter=chapter)).only('id', 'part', 'chapter', 'number', 'difficulty', 'tags', 'tracks', 'school', 'question_html', 'hint', 'solution_html')
