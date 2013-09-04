@@ -535,6 +535,8 @@ def API_list_of_exos(part,chapter):
     return jsonify({"exos":output})
 
 #function appelée par le bouton de génération du json
+#attention, ne pas supprimer le decorateur pour que cela fonctionne
+@app.route('/generatejson/', methods = ['GET'])
 def generate_json():
     output = []
     exos = Exo.objects()
