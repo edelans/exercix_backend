@@ -13,7 +13,6 @@ from operator import itemgetter
 from mongoengine.queryset import Q
 from flask.ext.security import Security, login_required
 
-
 user_id = 'edelansgmail.com' #attention, present ds multiples endroits du fichier, placeholder à traiter... g.user ?
 
 
@@ -148,7 +147,7 @@ def index():
     # querying an empty database triggers a bug, so before doing it, we check:
     if len(Exo.objects)>0:                                 
         operations_data =[{
-                "content":"Nombre total d'exercices dans la base".decode('utf8'),
+                "content":"Nombre d'exercices dans la base".decode('utf8'),
                 "number": how_many_exos()
             },{
                 "content":"Nombre d'utilisateurs enregistrés cette année".decode('utf8'),
@@ -174,7 +173,7 @@ def index():
         stat_exo_viewcount = stat_exo_viewcount,
         stat_exo_flagcount = stat_exo_flagcount,
         sales_data         = sales_data,
-        operations_data    =operations_data)
+        operations_data    = operations_data)
 
 
 
@@ -371,7 +370,7 @@ def exo_edit_content(exo_id):
             )
 
     else: # en cas de presence vestiges de la phase d'initialisation de la bdd 
-        abort(404)
+        return render_template("errors/404.html")
 
 
 def give_new_number(chapter):

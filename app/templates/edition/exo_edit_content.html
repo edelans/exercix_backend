@@ -68,15 +68,15 @@
       <dt>Filière</dt>
       <dd>
         {% for tag in exo_data.tracks %}
-          <span class="label">{{tag.decode('utf8')}}</span>
+          <span class="label">{{tag}}</span>
         {% endfor %}
       </dd>
 
       <dt>Categorie</dt>
-      <dd>{{exo_data.part.decode('utf8')}}</dd>
+      <dd>{{exo_data.part}}</dd>
 
       <dt>Chapitre</dt>
-      <dd>{{exo_data.chapter.decode('utf8')}}</dd>
+      <dd>{{exo_data.chapter}}</dd>
 
       <dt>Numéro</dt>
       <dd>{{exo_data.number}}</dd>
@@ -87,7 +87,7 @@
       <dt>Tags</dt>
       <dd>
           {% for tag in exo_data.tags %}
-            <span class="label label-info">{{tag.decode('utf8')}}</span>
+            <span class="label label-info">{{tag}}</span>
           {% endfor %}
       </dd>
     </dl>
@@ -97,8 +97,8 @@
       
         <div style="display:none;">
           {{form.tracks.process_data(exo_data.tracks)}}
-          {{form.part.process_data(exo_data.part.decode('utf8'))}}
-          {{form.chapter.process_data(exo_data.chapter.decode('utf8'))}}
+          {{form.part.process_data(exo_data.part)}}
+          {{form.chapter.process_data(exo_data.chapter)}}
           {{form.difficulty.process_data(exo_data.difficulty)}}
           {{form.tags.process_data(exo_data.tags)}}
         </div>
@@ -133,7 +133,7 @@
       <dd>{{exo_data.author}}</dd>
 
       <dt>Concours</dt>
-      <dd>{{exo_data.school.decode('utf8')}}</dd>
+      <dd>{{exo_data.school}}</dd>
     </dl>
 
     <div id="edit_id" class="collapse"> 
@@ -141,9 +141,9 @@
       
           
           <div style="display:none;">
-            {{form.source.process_data(exo_data.source.decode('utf8'))}}
-            {{form.author.process_data(exo_data.author.decode('utf8'))}}
-            {{form.school.process_data(exo_data.school.decode('utf8'))}}
+            {{form.source.process_data(exo_data.source)}}
+            {{form.author.process_data(exo_data.author)}}
+            {{form.school.process_data(exo_data.school)}}
           </div>
           {{form.hidden_tag()}}
           <div class="control-group ">
@@ -171,12 +171,12 @@
 
   	<div class="hero-unit" id="question">
       <h2>Enoncé <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_enonce"><i class="icon-pencil"></i></a></h2>
-  		<div class="math">{{exo_data.question_html.decode('utf8') |safe}}</div> 
+  		<div class="math">{{exo_data.question_html |safe}}</div> 
       <div id="edit_enonce" class="collapse"> 
         <hr>
         
 	        {{form.hidden_tag()}}
-	        <div style="display:none;">{{form.question.process_data(exo_data.question.decode('utf8'))}}</div>
+	        <div style="display:none;">{{form.question.process_data(exo_data.question)}}</div>
 	        
 	        {{form_field(form.question, class="input-block-level", rows="10")}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
@@ -185,13 +185,13 @@
 
   	<div class="hero-unit" id="hint">
       <h2>Indice <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_hint"><i class="icon-pencil"></i></a></h2>
-      <div class="math">{{exo_data.hint.decode('utf8') |safe}}</div> 
+      <div class="math">{{exo_data.hint |safe}}</div> 
       <div id="edit_hint" class="collapse"> 
         <hr>
 
 	        {{form.hidden_tag()}}
 	        <!-- prefill textarea: -->
-	        <div style="display:none;">{{form.hint.process_data(exo_data.hint.decode('utf8'))}}</div>
+	        <div style="display:none;">{{form.hint.process_data(exo_data.hint)}}</div>
 	        {{form_field(form.hint, class="input-block-level", rows="3")}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
@@ -199,14 +199,14 @@
 
   	<div class="hero-unit" id="solution">
       <h2>Correction  <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_solution"><i class="icon-pencil"></i></a></h2>
-      <div class="math">{{exo_data.solution_html.decode('utf8') |safe}}</div>
+      <div class="math">{{exo_data.solution_html |safe}}</div>
       <div id="edit_solution" class="collapse"> 
         <hr>
 
 	        {{form.hidden_tag()}}
 
 	        <!-- prefill textarea: -->
-	        <div style="display:none;">{{form.solution.process_data(exo_data.solution.decode('utf8')) }}</div>
+	        <div style="display:none;">{{form.solution.process_data(exo_data.solution) }}</div>
 
 	        {{form_field(form.solution, class="input-block-level", rows="20")}}
 	         <input class="btn btn-danger" type="submit" value="Enregistrer">

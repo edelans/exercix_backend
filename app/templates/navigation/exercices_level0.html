@@ -10,7 +10,7 @@
 
 <ul class="nav nav-tabs nav-stacked">
     {% for part in parts %}
-    	<li><a href={{ url_for('exercices_l1', part=part[0])}}>{{part[0].decode('utf8')}}</a></li>
+    	<li><a href={{ url_for('exercices_l1', part=part[0])}}>{{part[0]}}</a></li>
     {% endfor %}
 </ul>
 
