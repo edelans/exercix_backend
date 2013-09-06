@@ -21,11 +21,11 @@ class Exo(db.Document):
     tags        = db.ListField(db.StringField(max_length=50))
     tracks      = db.ListField(db.StringField(max_length=50))
 # content    
-    question        = db.StringField()
-    question_html   = db.StringField()
-    hint            = db.StringField()
-    solution        = db.StringField()
-    solution_html   = db.StringField()
+    question        = db.StringField(max_length=2500)
+    question_html   = db.StringField(max_length=2500)
+    hint            = db.StringField(max_length=500)
+    solution        = db.StringField(max_length=5000)
+    solution_html   = db.StringField(max_length=5000)
 
 class Flag(db.Document):
     doc_type    = 'flag'

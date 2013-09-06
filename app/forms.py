@@ -37,6 +37,6 @@ class ExoEditForm(Form):
     difficulty = SelectField(id='difficulty', label='Difficulté'.decode('utf8'), choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3')], coerce=int)
     tags = TagListField(id='tags', label='Tags', validators = [Required()])
 
-    question = TextAreaField(id='question', label='Enoncé'.decode('utf8'), validators = [Length(min = 0, max = 700)])
-    hint = TextAreaField(id='hint', label='Indice', validators = [Length(min = 0, max = 280)])
-    solution = TextAreaField(id='solution', label='Correction', validators = [Length(min = 0, max = 2800)])
+    question = TextAreaField(id='question', label='Enoncé'.decode('utf8'), validators = [Length(min = 0, max = 2500)])
+    hint = TextAreaField(id='hint', label='Indice', validators = [Length(min = 0, max = 500)])
+    solution = TextAreaField(id='solution', label='Correction', validators = [Length(min = 0, max = 5000)])
