@@ -138,7 +138,7 @@ cleaning = [
     (r'\\item\s*\[([^\]]*)\]'   , r'<br>$1&nbsp;'),
     (r'\\item'                  , r'\r\n<li>'),
     (r'(\\begin{array}(?:[^\\]+|\\(?!end{array}))*\\end{array})|(\\begin{cases}(?:[^\\]+|\\(?!end{cases}))*\\end{cases})|\\\\', replfunc1),  #pour remplacer les "//" (sauts de ligne) mais seulement lorsqu'ils ne sont pas à l'interieur des environnements array et cases pour lesquels ils ont une signification.
-    (r'\\paragraph\{(.*?)\}', r'<br><br><span class = "badge badge-inverse">\1</span>')
+    (r'\\paragraph\{(.*?)\}', r'<br><br><div class=\"paragraph-number\">\1</div>')
     ]
 
 
