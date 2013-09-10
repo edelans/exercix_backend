@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="span12">
+  	<br>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="span10 offset1">
+      <h4>L'évolution du nombre d'utilisateurs:</h4>
+    <div id="piechart" style="width:100%; margin: 0 auto"></div>
+  </div>
+</div>
+
+
+
+
+<script >
+$(function () {
+    // Build the chart
+        $('#piechart').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(1) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Pourcentage d\'utilisateur',
+                data: {{rep_fil |safe}}
+            }]
+        });
+    });
+</script>
+
+
+{% endblock %}
