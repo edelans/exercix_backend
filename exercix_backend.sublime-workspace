@@ -56,61 +56,10 @@
 	"buffers":
 	[
 		{
-			"file": "/home/edelans/Desktop/20130906mpddl.json",
+			"file": "/etc/default/locale",
 			"settings":
 			{
-				"buffer_size": 11047,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/home/edelans/Downloads/commande (1).txt",
-			"settings":
-			{
-				"buffer_size": 10454,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "[\n{\n\"question\": \"Trouver les matrices $M \\\\in {\\\\mathcal{M}}_n (\\\\mathbb{C})$ vérifiant $M^5  = M^2 $ et $\\\\textrm{tr} (M) = n$.\",\n\"solution\": \"Soit $M$ solution.\\\\\\\\\nPuisque le corps de base est $\\\\mathbb{C}$, la matrice $M$ est semblable à une matrice triangulaire supérieure où figure sur la diagonale les valeurs propres de $M$ comptées avec multiplicité.\\\\\\\\\nPuisque $\\\\textrm{tr} (M) = n$, la somme des valeurs propres de $M$ comptées avec multiplicité vaut $n$.\\\\\\\\\nOr les valeurs propres de $M$ sont racines du polynôme $X^5  - X^2  = X^2 (X^3  - 1)$, elle ne peuvent donc qu'être $0,1,j$ ou $j^2 $. Notons $p,q,r$ et $s$ les multiplicités de chacune~; on a $\\\\textrm{tr} M = q + rj + sj^2  = n$. Puisque les parties réelles de $j$ et $j^2 $ valent $ - 1 / 2$, la seule possibilité est que $q = n,r = s = 0$ et alors $p = 0$.\\\\\\\\\nEn particulier 0 n'est pas valeur propre de $M$ et donc $M$ est inversible.\\\\\\\\\nLa relation $M^5  = M^2 $ donne alors $M^3  = I_n $ et donc $M$ est diagonalisable puisque $M$ annule un polynôme scindé simple. Finalement $M$ est semblable à $I_n $ donc égale $I_n $ car sa seule valeur propre est 1.\\\\\\\\\nInversement, la matrice $I_n $ est solution.\",\n\"chapter\": \"Réduction\",\n\"difficulty\": \"2\",\n\"school\": \"X\",\n\"hint\": \"Déterminer les valeurs propres de M à l'aide d'une trigonalisation puis établir que la matrice est en fait diagonalisable.\",\n\"idExoMPDDL\": \"3027\",\n\"category\": \"Algèbre\",\n}\n,{\n\"question\": \"Soit $A \\\\in {\\\\mathcal{M}}_n (\\\\mathbb{C})$ vérifiant pour tout $X \\\\in {\\\\mathcal{M}}_n (\\\\mathbb{C})$,\n$$\\\\det (A + X) = \\\\det A + \\\\det X$$\nMontrer que $\\\\det A = 0$ puis $A = 0$.\",\n\"solution\": \"Notons que pour $n = 1$~: la relation $\\\\det (A + X) = \\\\det A + \\\\det X$ est vraie pour tout $A$ et tout $X$.\\\\\\\\\nOn suppose dans la suite $n \\\\geqslant 2$.\\\\\\\\\nPour $X = A$, la relation $\\\\det (A + X) = \\\\det A + \\\\det X$ donne $2^n \\\\det A = 2\\\\det A$ et donc $\\\\det A = 0$.\\\\\\\\\nLa matrice $A$ n'est donc par inversible et en posant $r < n$ égal à son rang, on peut écrire $A = QJ_r P$ avec $P,Q$ inversibles et\n$$J_r  = \\\\left( {\n\\\\begin{array}{cc}\n {I_r } & {(0)}  \\\\\\\\\n {(0)} & {O_{n - r} }  \\\\\\\\\n\\\\end{array}\n} \\\\right)$$\nPosons alors $X = QJ'_r P$ avec\n$$J'_r  = \\\\left( {\n\\\\begin{array}{cc}\n {O_r } & {(0)}  \\\\\\\\\n {(0)} & {I_{n - r} }  \\\\\\\\\n\\\\end{array}\n} \\\\right)$$\nPuisque $A + X = QI_n P = QP$, la matrice $A + X$ est inversible et donc $\\\\det X = \\\\det (A + X) \\\\ne 0$.\\\\\\\\\nOn en déduit que la matrice $J'_r $ est l'identité et donc $r = 0$ puis $A = O_n $.\",\n\"chapter\": \"Espaces vectoriels, matrices, déterminants\",\n\"difficulty\": \"2\",\n\"school\": \"MINES\",\n\"hint\": \"\",\n\"idExoMPDDL\": \"2695\",\n\"category\": \"Algèbre\",\n}\n,{\n\"question\": \"a) Etudier $\\\\sum {u_n } $ où $u_n  = \\\\int_0^1 {\\\\frac{{{\\\\mathrm{d}}x}}{{1 + x +  \\\\cdots  + x^n }}} $.\\\\\\\\\nb) Etudier $\\\\sum {v_n } $ où $v_n  = \\\\int_0^1 {\\\\frac{{x^n {\\\\mathrm{d}}x}}{{1 + x +  \\\\cdots  + x^n }}} $.\n	.\",\n\"solution\": \"a) L'intégrale définissant $u_n $ est bien définie car elle porte sur une fonction sur le segment $\\\\left[ {0,1} \\\\right]$. On peut aussi la comprendre comme une intégrale impropre convergente sur $\\\\left[ {0,1} \\\\right[$\n$$u_n  = \\\\int_0^1 {\\\\frac{{{\\\\mathrm{d}}x}}{{1 + x +  \\\\cdots  + x^n }}}  = \\\\int_{\\\\left[ {0,1} \\\\right[} {\\\\frac{{{\\\\mathrm{d}}x}}{{1 + x +  \\\\cdots  + x^n }}} $$\net par sommation géométrique\n$$\\\\int_{\\\\left[ {0,1} \\\\right[} {\\\\frac{{{\\\\mathrm{d}}x}}{{1 + x +  \\\\cdots  + x^n }}}  = \\\\int_{\\\\left[ {0,1} \\\\right[} {\\\\frac{{1 - x}}{{1 - x^{n + 1} }}\\\\,{\\\\mathrm{d}}x} $$\nPosons\n$$f_n (x) = \\\\frac{{1 - x}}{{1 - x^{n + 1} }}$$\nSur $\\\\left[ {0,1} \\\\right[$, la suite de fonctions $(f_n )$ converge simplement vers la fonction $f:x \\\\mapsto 1 - x$.\\\\\\\\\nLes fonctions $f_n $ et $f$ sont continues par morceaux et\n$$\\\\left| {\\\\frac{{1 - x}}{{1 - x^{n + 1} }}} \\\\right| \\\\leqslant \\\\frac{{1 - x}}{{1 - x}} = 1 = \\\\varphi (x)$$\navec $\\\\varphi $ intégrable. Par convergence dominée\n$$u_n  \\\\to \\\\int_0^1 {(1 - x){\\\\mathrm{d}}x}  = \\\\frac{1}{2}$$\net donc la série $\\\\sum {u_n } $ diverge grossièrement.\\\\\\\\\nb) On amorce les calculs comme au dessus pour écrire\n$$v_n  = \\\\int_0^1 {\\\\frac{{x^n {\\\\mathrm{d}}x}}{{1 + x +  \\\\cdots  + x^n }}}  = \\\\int_0^1 {\\\\frac{{x^n }}{{1 - x^{n + 1} }}(1 - x){\\\\mathrm{d}}x} $$\nPar intégration par parties impropre justifié par deux convergences\n$$\\\\int_0^1 {\\\\frac{{x^n }}{{1 - x^{n + 1} }}(1 - x){\\\\mathrm{d}}x}  = \\\\left[ { - \\\\frac{1}{{n + 1}}\\\\ln (1 - x^{n + 1} )(1 - x)} \\\\right]_0^1  - \\\\frac{1}{{n + 1}}\\\\int_0^1 {\\\\ln (1 - x^{n + 1} ){\\\\mathrm{d}}x} $$\nLe terme entre crochet est nul (il suffit d'écrire $x = 1 - h$ avec $h \\\\to 0$, pour étudier la limite en 1)\\\\\\\\\nIl reste\n$$v_n  =  - \\\\frac{1}{{n + 1}}\\\\int_0^1 {\\\\ln (1 - x^{n + 1} ){\\\\mathrm{d}}x} $$\nPar développement en série entière de la fonction $u \\\\mapsto  - \\\\ln (1 - u)$\n$$v_n  = \\\\int_0^1 {\\\\sum\\\\limits_{k = 1}^{ + \\\\infty } {\\\\frac{1}{k}x^{(n + 1)k} {\\\\mathrm{d}}x} } $$\nPosons\n$$g_k (x) = \\\\frac{1}{k}x^{(n + 1)k} $$\nLa série de fonctions $\\\\sum {g_k } $ converge simplement sur $\\\\left[ {0,1} \\\\right[$ en vertu de la décomposition en série entière précédente.\\\\\\\\\nLes fonctions $g_k $ et la fonction somme $\\\\sum\\\\limits_{k = 0}^{ + \\\\infty } {g_k } :x \\\\mapsto  - \\\\ln (1 - x^{n + 1} )$ sont continue par morceaux.\\\\\\\\\nEnfin, les fonctions $g_k $ sont intégrables sur $\\\\left[ {0,1} \\\\right[$ et\n$$\\\\sum\\\\limits_{k = 1}^{ + \\\\infty } {\\\\int_0^1 {\\\\left| {\\\\frac{1}{k}x^{(n + 1)k} } \\\\right|{\\\\mathrm{d}}x} }  = \\\\sum\\\\limits_{k = 1}^{ + \\\\infty } {\\\\frac{1}{{k((n + 1)k + 1)}}}  <  + \\\\infty $$\nOn peut donc intégrer terme à terme pour écrire\\\\\\\\\ndonc\n$$v_n  = \\\\frac{1}{{n + 1}}\\\\sum\\\\limits_{k = 1}^{ + \\\\infty } {\\\\frac{1}{k}\\\\int_0^1 {x^{(n + 1)k} {\\\\mathrm{d}}x} }  = \\\\frac{1}{{n + 1}}\\\\sum\\\\limits_{k = 1}^{ + \\\\infty } {\\\\frac{1}{{k((n + 1)k + 1)}}} $$\nOr\n$$\\\\sum\\\\limits_{k = 1}^{ + \\\\infty } {\\\\frac{1}{{k((n + 1)k + 1)}}}  \\\\leqslant \\\\frac{1}{{(n + 1)}}\\\\sum\\\\limits_{k = 1}^{ + \\\\infty } {\\\\frac{1}{{k^2 }}} $$\npuis finalement\n$$v_n  \\\\leqslant \\\\frac{1}{{(n + 1)^2 }}$$\nLa série à terme positif $\\\\sum {v_n } $ est donc convergente.\n	.\",\n\"chapter\": \"Intégrales à paramètre\",\n\"difficulty\": \"2\",\n\"school\": \"CENTRALE\",\n\"hint\": \"a) Réexprimer l'intégrale à l'aide d'une sommation géométrique et appliquer le théorème de convergence dominée.\nb) Réexprimer l'intégrale en faisant de plus une intégration par parties.\",\n\"idExoMPDDL\": \"2432\",\n\"category\": \"Analyse\",\n}\n,{\n\"question\": \"Soit $P$ un polynôme de degré $n + 1 \\\\in \\\\mathbb{N}^\\\\star  $ à coefficients réels possédant $n + 1$ racines réelles distinctes.\\\\\\\\\na) Montrer que son polynôme dérivé $P'$ possède exactement $n$ racines réelles distinctes.\\\\\\\\\nb) En déduire que les racines du polynôme $P^2  + 1$ sont toutes simples dans $\\\\mathbb{C}$.\",\n\"solution\": \"a) Notons $a_0  < a_1  <  \\\\ldots  < a_n $ les racines de $P$.\\\\\\\\\nEn appliquant le théorème de Rolle à la fonction $x \\\\mapsto P(x)$ sur l’intervalle $\\\\left[ {a_{i - 1} ,a_i } \\\\right]$, on justifie l’existence d’un réel $b_i  \\\\in \\\\left] {a_{i - 1} ,a_i } \\\\right[$ tels que $P'(b_i ) = 0$. Puisque\n$$a_0  < b_1  < a_1  < b_2  <  \\\\ldots  < b_n  < a_n $$\nles réels $b_1 , \\\\ldots ,b_n $ sont deux à deux distincts ce qui fournit $n$ racines réelles au polynôme $P'$.\\\\\\\\\nPuisque $\\\\deg P' = \\\\deg P - 1 = n$, il ne peut y en avoir d’autres.\\\\\\\\\nb) Une racine multiple de $P^2  + 1$ est aussi racine du polynôme dérivé\n$$(P^2  + 1)' = 2PP'$$\nOr les racines complexes de $P$ ne sont pas racines de $P^2  + 1$ et les racines de $P'$ sont réelles et ne peuvent donc être racines de $P^2  + 1$. Par suite $P^2  + 1$ et $(P^2  + 1)'$ n’ont aucunes racines communes~: les racines de $P^2  + 1$ sont simples.\",\n\"chapter\": \"Polynômes\",\n\"difficulty\": \"1\",\n\"school\": \"MINES\",\n\"hint\": \"a) Exploiter le théorème de Rolle.\nb) Les racines multiple d'un polynôme sont racines communes avec le polynôme dérivé.\",\n\"idExoMPDDL\": \"2160\",\n\"category\": \"Algèbre\",\n}\n,{\n\"question\": \"Soit $P \\\\in \\\\mathbb{R}\\\\left[ X \\\\right]$ scindé sur $\\\\mathbb{R}$. Montrer que pour tout réel $\\\\alpha $, le polynôme $P' + \\\\alpha P$ est lui aussi scindé sur $\\\\mathbb{R}$.\",\n\"solution\": \"Rappelons qu’un polynôme est scindé sur un corps si, et seulement si, la sommes des multiplicités des racines de ce polynôme sur ce corps égale son degré.\\\\\\\\\nNotons $a_0  < a_1  <  \\\\ldots  < a_m $ les racines réelles de $P$ et $\\\\alpha _0 ,\\\\alpha _1 , \\\\ldots ,\\\\alpha _m $ leurs multiplicités respectives. Le polynôme $P$ étant scindé, on peut écrire\n$$\\\\deg P = \\\\sum\\\\limits_{k = 0}^m {\\\\alpha _k } $$\nOn convient de dire qu’une racine de multiplicité 0 n’est en fait pas racine d’un polynôme. Avec ses termes, si $a_k $ est racine de multiplicité $\\\\alpha _k  \\\\geqslant 1$ de $P$ alors $a_k $ est racine de multiplicité $\\\\alpha _k  - 1$ du polynôme $P'$ et donc racine de multiplicité au moins (et même exactement) $\\\\alpha _k  - 1$ du polynôme $P' + \\\\alpha P$. Ainsi les $a_k $ fournissent\n$$\\\\sum\\\\limits_{k = 0}^m {(\\\\alpha _k  - 1)}  = \\\\deg P - (m + 1)$$\nracines comptées avec multiplicité au polynôme $P' + \\\\alpha P$.\\\\\\\\\nConsidérons ensuite la fonction réelle $f:x \\\\mapsto P(x){\\\\mathrm{e}}^{\\\\alpha x} $.\\\\\\\\\nCette fonction est indéfiniment dérivable et prend la valeur 0 en chaque $a_k $.\\\\\\\\\nEn appliquant le théorème de Rolle à celle-ci sur chaque intervalle $\\\\left[ {a_{k - 1} ,a_k } \\\\right]$, on produit des réels $b_k  \\\\in \\\\left] {a_{k - 1} ,a_k } \\\\right[$ vérifiant $f'(b_k ) = 0$. Or\n$$f'(x) = \\\\left( {P'(x) + \\\\alpha P(x)} \\\\right){\\\\mathrm{e}}^{\\\\alpha x} $$\net donc $b_k $ est racine du polynôme $P' + \\\\alpha P$.\\\\\\\\\nAjoutons à cela que les $b_k $ sont deux à deux distincts et différents des précédents $a_k $ car par construction\n$$a_0  < b_1  < a_1  < b_2  <  \\\\ldots  < b_m  < a_m $$\nOn vient donc de déterminer $m$ nouvelles racines au polynôme $P' + \\\\alpha P$ et ce dernier possède donc au moins\n$$\\\\deg P - 1$$\nracines comptées avec multiplicité.\\\\\\\\\nDans le cas $\\\\alpha  = 0$, cela suffit pour conclure car $\\\\deg P' = \\\\deg P - 1$.\\\\\\\\\nDans le cas $\\\\alpha  \\\\ne 0$, il nous faut encore une racine.\\\\\\\\\nSi $\\\\alpha  > 0$, la fonction $f$ tend vers 0 en $ - \\\\infty $ par argument de croissance comparée.\\\\\\\\\nOn peut alors appliquer un théorème de Rolle généralisé à la fonction $f$ sur l’intervalle $\\\\left] { - \\\\infty ,a_0 } \\\\right]$ et cela fournit la racine manquante.\\\\\\\\\nSi $\\\\alpha  < 0$, on exploite comme au dessus la nullité de la limite de $f$ en $ + \\\\infty $ cette fois pour trouver une racine dans l’intervalle $\\\\left] {a_m , + \\\\infty } \\\\right[$.\",\n\"chapter\": \"Polynômes\",\n\"difficulty\": \"3\",\n\"school\": \"X\",\n\"hint\": \"Appliquer le théorème de Rolle au produit du polynôme par une exponentielle bien choisie.\",\n\"idExoMPDDL\": \"3696\",\n\"category\": \"Algèbre\",\n}\n]\n",
-			"file": "/home/edelans/Desktop/20130906mpddl2.json",
-			"file_size": 10771,
-			"file_write_time": 1378474255000000,
-			"settings":
-			{
-				"buffer_size": 10758,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "app/views.py",
-			"settings":
-			{
-				"buffer_size": 21655,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/navigation/exercices_level0.html",
-			"settings":
-			{
-				"buffer_size": 593,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/navigation/exercices_level1.html",
-			"settings":
-			{
-				"buffer_size": 450,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "remplacer les sauts de ligne\n.\\n*\",  par  .\",\n\nremplacer la virgule après le dernier attribut\n\",\\n\\} par \"\\n}\n\ndoubler le caractere d'echappement\n\\\\ par \\\\\\\\\n\nenlever les sauts de lignes dans les strings\n(?<!(\\[\\n\\{))(?<!(,\\{))(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n par \\\\r\\\\n\n\nenlever les tabulations\n\\t par [VIDE]",
-			"settings":
-			{
-				"buffer_size": 338,
+				"buffer_size": 93,
 				"line_ending": "Unix"
 			}
 		}
@@ -121,6 +70,14 @@
 		"height": 159.0,
 		"selected_items":
 		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: if __name__ == '__main__'"
+			],
 			[
 				"insta",
 				"Package Control: Install Package"
@@ -139,10 +96,6 @@
 			],
 			[
 				"Package Control: inst",
-				"Package Control: Install Package"
-			],
-			[
-				"instal",
 				"Package Control: Install Package"
 			],
 			[
@@ -176,13 +129,9 @@
 			[
 				"Package Control",
 				"Package Control: Upgrade Package"
-			],
-			[
-				"Snippet: ",
-				"Snippet: Lorem ipsum"
 			]
 		],
-		"width": 566.0
+		"width": 571.0
 	},
 	"console":
 	{
@@ -199,7 +148,35 @@
 	},
 	"file_history":
 	[
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/import db/mpddl-import-script.py",
+		"/home/edelans/github/exercix_backend/import db/utility.py",
+		"/home/edelans/Downloads/base64.bin",
+		"/home/edelans/github/exercix_backend/import db/data.bk.json",
+		"/home/edelans/github/exercix_backend/import db/extended_json-20130909:134012.json",
+		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend/import db/extended_jsonmpddl50.json",
+		"/home/edelans/github/exercix_backend/import db/test.json",
+		"/home/edelans/github/exercix_backend/import db/export/remotempddl.json",
+		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/edelans/Downloads/data-20130909-161854.json",
+		"/home/edelans/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
+		"/home/edelans/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
+		"/home/edelans/Downloads/ExerciX.txt",
+		"/home/edelans/github/exercix_backend/import db/extended_json-20130909:133509.json",
 		"/home/edelans/Desktop/data.json",
+		"/home/edelans/Desktop/test.json",
+		"/home/edelans/Desktop/20130906mpddl.json",
+		"/home/edelans/Desktop/data.bk.json",
+		"/home/edelans/Desktop/mpddl-import-script.py",
+		"/home/edelans/Desktop/extended_json-20130909:130954.json",
+		"/home/edelans/Desktop/extended_json-20130909:130507.json",
+		"/home/edelans/Downloads/commande (1).txt",
+		"/home/edelans/Desktop/20130906mpddl2.json",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level0.html",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level1.html",
 		"/home/edelans/Downloads/data-20130904-201615.json",
 		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
 		"/home/edelans/github/exercix_stats/app/views.py",
@@ -207,18 +184,13 @@
 		"/home/edelans/github/exercix_vitrine/index.html",
 		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/forms.py",
-		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/Downloads/commande.txt",
 		"/home/edelans/Downloads/data-20130904-202313.json",
 		"/home/edelans/Downloads/data-20130904-202221.json",
 		"/home/edelans/Downloads/data-20130904-202144.json",
 		"/home/edelans/Downloads/data-20130904-132559.json",
 		"/home/edelans/Downloads/data-20130904-132927.json",
-		"/home/edelans/github/exercix_backend/app/views.py",
-		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level0.html",
-		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level1.html",
 		"/home/edelans/github/exercix_backend/app/templates/index.html",
-		"/home/edelans/github/exercix_backend/config.py",
 		"/home/edelans/github/exercix_backend/.gitignore",
 		"/home/edelans/Desktop/index.css",
 		"/home/edelans/Desktop/index.less",
@@ -229,7 +201,6 @@
 		"/home/edelans/github/exercix_backend/run.py",
 		"/var/log/mongodb/mongodb.log",
 		"/home/edelans/github/exercix_backend/app/__init__.py",
-		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/.android/adb_usb.ini",
 		"/home/edelans/github/exercix_backend/requirements.txt",
 		"/home/edelans/requirements.txt",
@@ -304,29 +275,7 @@
 		"/tmp/garminplugin.log",
 		"/home/edelans/.config/garminplugin/garminplugin.xml",
 		"/media/edelans/GARMIN/FIT/ERR_RPT_Log.txt",
-		"/media/edelans/GARMIN/testdisk.log",
-		"/home/edelans/Desktop/garminplugin.log",
-		"/home/edelans/.config/sublime-text-2/Packages/Alignment/Default (Linux).sublime-keymap",
-		"/home/edelans/.config/sublime-text-2/Packages/User/Base File.sublime-settings",
-		"/home/edelans/github/exercix_backend/todo",
-		"/home/edelans/github/exercix_backend/app/templates/404.html",
-		"/home/edelans/github/exercix_backend/app/db/ViewDef.py",
-		"/home/edelans/github/exercix_backend/app/ViewDef.py",
-		"/home/edelans/github/exercix_backend/ViewDef.py",
-		"/home/edelans/github/exercix_backend/app/db/viewdefinition.py",
-		"/home/edelans/github/exercix_backend/app/templates/exo_edit_new.html",
-		"/home/edelans/github/exercix_backend/app/static/css/math.css",
-		"/home/edelans/github/exercix_backend/.gitconfig",
-		"/home/edelans/github/exercix_backend/app/modelisation_db.xml",
-		"/home/edelans/github/exercix_backend/exercix_backend.sublime-project",
-		"/home/edelans/github/exercix_backend/db_migrate.py",
-		"/home/edelans/github/exercix_backend/app/config.py",
-		"/home/edelans/github/exercix_backend/tmp/db_create.py",
-		"/home/edelans/github/exercix_backend/db_downgrade.py",
-		"/home/edelans/github/exercix_backend/db_upgrade.py",
-		"/home/edelans/github/exercix_backend/app/structure.json",
-		"/home/edelans/github/exercix_backend/untitled.sublime-project",
-		"/home/edelans/github/exercix_backend/exercix_backend.sublime-workspace"
+		"/media/edelans/GARMIN/testdisk.log"
 	],
 	"find":
 	{
@@ -341,9 +290,29 @@
 	},
 	"find_state":
 	{
-		"case_sensitive": true,
+		"case_sensitive": false,
 		"find_history":
 		[
+			"\\n",
+			"$$.\",",
+			"?.\",",
+			"..\",",
+			"?.\"",
+			"..\"",
+			"Shift+Alt+",
+			"\\\\begin\\{center\\}\\\\\\\\includegraphics\\{",
+			"\\\\includegraphics\\{*\\}",
+			"\"author\": \"dD\"",
+			"\\t",
+			"(?<!(\\[\\n\\{))(?<!(,\\{))(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(,))(?<!(\",))\\n",
+			"(?<!(\\[\\n\\{))(?<!(,\\{))(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
+			"\\n\\t+\\n\\s\",",
+			"\\n\\s\",",
+			"\\.\\n*\",",
+			"\\.\\t*\\n*\",",
+			"(\\.|\\t)*\\n*\",",
+			"\\.*\\n*\",",
+			"\\.\\n*\",",
 			"\\t",
 			"(?<!(\\[\\n\\{))(?<!(,\\{))(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
 			"\\n",
@@ -451,27 +420,7 @@
 			"Exo.objects(Q",
 			"exos",
 			".objects(",
-			"Q('p",
-			"flags",
-			"find_user",
-			"flag",
-			"Flag",
-			"flag",
-			"parser",
-			"mktime",
-			"store",
-			"IntegerField",
-			"TextField",
-			"store",
-			"save",
-			"store",
-			"mktime",
-			"parser",
-			"groupby",
-			"= ",
-			"list_of_exos",
-			"give_list_of_chapters",
-			"flag"
+			"Q('p"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -479,6 +428,14 @@
 		"regex": true,
 		"replace_history":
 		[
+			"",
+			"$$\",",
+			".\",",
+			".\"",
+			"\"author\": \"david.delaunay@laposte.net\"",
+			"",
+			"\\\\r\\\\n",
+			".\",",
 			"",
 			"\\\\r\\\\n",
 			" \\\\n",
@@ -554,180 +511,23 @@
 			[
 				{
 					"buffer": 0,
-					"file": "/home/edelans/Desktop/20130906mpddl.json",
+					"file": "/etc/default/locale",
 					"settings":
 					{
-						"buffer_size": 11047,
+						"buffer_size": 93,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1263,
-								1263
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/home/edelans/Downloads/commande (1).txt",
-					"settings":
-					{
-						"buffer_size": 10454,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2547,
-								2547
+								93,
+								93
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "/home/edelans/Desktop/20130906mpddl2.json",
-					"settings":
-					{
-						"buffer_size": 10758,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								10758,
-								10758
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/views.py",
-					"settings":
-					{
-						"buffer_size": 21655,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7781,
-								7781
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 3757.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/templates/navigation/exercices_level0.html",
-					"settings":
-					{
-						"buffer_size": 593,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								269,
-								269
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/templates/navigation/exercices_level1.html",
-					"settings":
-					{
-						"buffer_size": 450,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								237,
-								237
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"settings":
-					{
-						"buffer_size": 338,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Regular Expressions/RegExp.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -771,7 +571,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 204.0
+		"height": 157.0
 	},
 	"output.git":
 	{
@@ -779,7 +579,7 @@
 	},
 	"replace":
 	{
-		"height": 65.0
+		"height": 66.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -830,6 +630,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 54.0,
+	"side_bar_width": 203.0,
 	"status_bar_visible": true
 }

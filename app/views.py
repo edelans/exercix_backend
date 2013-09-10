@@ -552,8 +552,7 @@ def generate_json():
             "question":exo.question_html,
             "hint":exo.hint,
             "solution":exo.solution_html,
-            "school":exo.school,
-            "number": exo.number,})
+            "school":exo.school})
 
     #create a new file and write the list in it
     timestamp = datetime.datetime.now().strftime('%Y%m%d:%H%M%S')
