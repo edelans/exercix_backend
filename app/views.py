@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from flask import g, render_template, url_for, flash, redirect, send_from_directory, jsonify
+from flask import g, render_template, url_for, flash, redirect, send_from_directory, jsonify, request, Response
 from app import app, User, db
 from forms import *
 from models import *
@@ -11,8 +11,29 @@ from dateutil import parser
 from operator import itemgetter
 from mongoengine.queryset import Q
 import simplejson
+from functools import wraps
 
+def check_auth(username, password):
+    """This function is called to check if a username /
+    password combination is valid.
+    """
+    return username == 'admin' and password == 'adminbook'
 
+def authenticate():
+    """Sends a 401 response that enables basic auth"""
+    return Response(
+    'Could not verify your access level for that URL.\n'
+    'You have to login with proper credentials', 401,
+    {'WWW-Authenticate': 'Basic realm="Login Required"'})
+
+def requires_auth(f):
+    @wraps(f)
+    def decorated(*args, **kwargs):
+        auth = request.authorization
+        if not auth or not check_auth(auth.username, auth.password):
+            return authenticate()
+        return f(*args, **kwargs)
+    return decorated
 
 
 @app.route('/favicon.ico')
@@ -38,6 +59,7 @@ def test():
 
 @app.route('/')
 @app.route('/index')
+@requires_auth
 def index():
     stats = fetch_last_stats()
     rep_fil = stats["repartition_filiere"]
