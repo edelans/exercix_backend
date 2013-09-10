@@ -40,7 +40,7 @@ def view_stats(n):
     # get a dictionary of the frequencies of items {"exo_id":frequence}
     stats = []
     if len(View.objects)>0:
-        view_freqs = View.objects.item_frequencies('exo_id') 
+        view_freqs = View.objects.item_frequencies('exo_id')
         top_viewed = sorted(view_freqs.items(), key=itemgetter(1), reverse=True)[:n]
         for pair in top_viewed:
             stats.append({'exo_id':pair[0], 'viewcount':pair[1]})
@@ -51,7 +51,7 @@ def flag_stats(n):
     stats = []
     if len(Flag.objects)>0:
         # get a dictionary of the frequencies of items {"exo_id":frequence}
-        flag_freqs = Flag.objects.item_frequencies('exo_id') 
+        flag_freqs = Flag.objects.item_frequencies('exo_id')
         top_viewed = sorted(flag_freqs.items(), key=itemgetter(1), reverse=True)[:n]
         for pair in top_viewed:
             stats.append({'exo_id':pair[0], 'flagcount':pair[1]})
@@ -62,7 +62,7 @@ def request_stats(n):
     stats = []
     if len(Request.objects)>0:
         # get a dictionary of the frequencies of items {"exo_id":frequence}
-        request_freqs = Request.objects.item_frequencies('exo_id') 
+        request_freqs = Request.objects.item_frequencies('exo_id')
         top_viewed = sorted(request_freqs.items(), key=itemgetter(1), reverse=True)[:n]
         for pair in top_viewed:
             stats.append({'exo_id':pair[0], 'requestcount':pair[1]})
@@ -99,7 +99,7 @@ def how_many_views_per_user(for_n_days=7, until_timestamp=datetime.datetime.now(
     until_timestamp = str(until_timestamp + datetime.timedelta(days=1))
     # filter View to fit timeframe, and then build a dictionary of the frequencies of items {"user_id":frequence}
     view_freqs = View.objects(Q(timestamp__gte=from_timestamp ) & Q(timestamp__lte=until_timestamp)).item_frequencies('user_id')
-    
+
     # compute average of frequencies
     output=0
     if len(view_freqs)>0:
@@ -144,9 +144,9 @@ def index():
     'sales':5000,
     'subscription_count':1000
     }
-    
+
     # querying an empty database triggers a bug, so before doing it, we check:
-    if len(Exo.objects)>0:                                 
+    if len(Exo.objects)>0:
         operations_data =[{
                 "content":"Nombre d'exercices dans la base".decode('utf8'),
                 "number": how_many_exos()
@@ -156,8 +156,8 @@ def index():
             },{
                 "content":"Nombre d'utilisateurs actifs sur les 7 derniers jours".decode('utf8'),
                 "number": how_many_viewing_users()
-            },{ 
-                "content":"Nombre d'exercices vus / utilisateur / semaine".decode('utf8'),   
+            },{
+                "content":"Nombre d'exercices vus / utilisateur / semaine".decode('utf8'),
                 "number": how_many_views_per_user()
             },{
                 "content":"Nombre de nouveaux utilisateurs sur la dernière semaine".decode('utf8'),
@@ -168,7 +168,7 @@ def index():
             }]
     else:
         operations_data = []
-    
+
     return render_template("index.html",
         title              = 'Dashboard',
         stat_exo_viewcount = stat_exo_viewcount,
@@ -248,7 +248,7 @@ def exercices_l1(part):
 def exercices_l2(part, chapter):
     return render_template("navigation/exercices_level2.html",
         title = 'Exercices',
-        part = part,  
+        part = part,
         chapter = chapter,
         exos = exo_stats(part, chapter)
         )
@@ -282,7 +282,7 @@ def fetch_request_timestamps(exo_id, for_n_days=15, until_timestamp=datetime.dat
         data.append(request.timestamp)
     return data
 
-def chart_view(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):        
+def chart_view(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
     #recoit la liste des timestamps tronqués (des str du type "2013-08-07") des visites de exo_id sur les for_n_days derniers jours
     datadic = {}
     data_input = fetch_view_timestamps(exo_id, for_n_days, until_timestamp)
@@ -300,11 +300,11 @@ def chart_view(exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
     # on transforme le dico en liste, et on transforme les timestamps "2013-08-07" en millisec pour le javascript de highcharts
     output = [[1000.0*int(parser.parse(key).strftime('%s')) ,value] for key, value in datadic.iteritems()]
 
-    # on trie par timestamp car le dico n'est pas ordonné 
+    # on trie par timestamp car le dico n'est pas ordonné
     return sorted(output, key=lambda couple: couple[0])
 
 
-def chart_data(fetch_timestamps_func, exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):        
+def chart_data(fetch_timestamps_func, exo_id, for_n_days=15, until_timestamp=datetime.datetime.now()):
     #recoit la liste des timestamps tronqués (des str du type "2013-08-07") des visites de exo_id sur les for_n_days derniers jours
     datadic = {}
     data_input = fetch_timestamps_func(exo_id, for_n_days, until_timestamp)
@@ -323,16 +323,16 @@ def chart_data(fetch_timestamps_func, exo_id, for_n_days=15, until_timestamp=dat
     # on transforme le dico en liste, et on transforme les timestamps "2013-08-07" en millisec pour le javascript de highcharts
     output = [[1000.0*int(parser.parse(key).strftime('%s')) ,value] for key, value in datadic.iteritems()]
 
-    # on trie par timestamp car le dico n'est pas ordonné 
+    # on trie par timestamp car le dico n'est pas ordonné
     return sorted(output, key=lambda couple: couple[0])
 
 
 
-    
+
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 def exo_edit_content(exo_id):
-    document = Exo.objects(id=exo_id).first() #returns None if no result  
+    document = Exo.objects(id=exo_id).first() #returns None if no result
 
     # en cas de mise a jour de l'exo:
     form = ExoEditForm()
@@ -370,7 +370,7 @@ def exo_edit_content(exo_id):
             form =form
             )
 
-    else: # en cas de presence vestiges de la phase d'initialisation de la bdd 
+    else: # en cas de presence vestiges de la phase d'initialisation de la bdd
         return render_template("errors/404.html")
 
 
@@ -410,7 +410,7 @@ def new_exo():
             hint= form.hint.data,
             solution= form.solution.data,
             solution_html= latex_to_html(form.solution.data))
-        
+
         # Insert into database
         try:
             exo.save()
@@ -419,12 +419,12 @@ def new_exo():
                 return redirect(url_for('exo_edit_content', exo_id=exo.id))
             except:
                 flash("ATTENTION! Le nouvel exercice a bien été entré dans la base mais il n'a pas été possible d'y acceder".decode('utf8'),'error')
-                return render_template('edition/exo_edit_new.html', 
+                return render_template('edition/exo_edit_new.html',
                     title = 'Nouvel exo',
                     form = form)
         except Exception as e:
             flash('ATTENTION! Le nouvel exercice n\'a PAS été entré dans la base'.decode('utf8'),'error')
-    return render_template('edition/exo_edit_new.html', 
+    return render_template('edition/exo_edit_new.html',
         title = 'Nouvel exo',
         form = form)
 
@@ -441,7 +441,7 @@ def chart(exo_id):
 
 @app.route('/logstats')
 def logstats():
-    stats = Stat(exos               = how_many_exos(), 
+    stats = Stat(exos               = how_many_exos(),
             users                   = how_many_users(),
             active_users_L7D        = how_many_viewing_users(),
             views_per_user_per_week = how_many_views_per_user(),
@@ -453,7 +453,7 @@ def logstats():
         state = True
     except Exception, e:
         state = False
-    
+
     return json.dumps({'ok': state})
 
 """
@@ -466,7 +466,7 @@ Configuration de l'API
 def API_get_exo(exo_id):
     document = Exo.objects(id=exo_id).first() # returns None if it doesn't exist
     output = {'error':'Not found'}
-    if document is not None:          
+    if document is not None:
         #log stats:
         view(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
         output = {"tracks"  : document.tracks,
@@ -475,7 +475,7 @@ def API_get_exo(exo_id):
             "number"        : document.number,
             "difficulty"    : document.difficulty,
             "tags"          : document.tags,
-            "school"        : document.school, 
+            "school"        : document.school,
             "question_html" : document.question_html,
             "hint"          : document.hint,
             "solution_html" : document.solution_html}
@@ -486,7 +486,7 @@ def API_get_exo(exo_id):
 def API_flag_exo(exo_id):
     document = Exo.objects(id=exo_id).first()# returns None if it doesn't exist
     output = {'error':'Not found'}
-    if document is not None:          
+    if document is not None:
         #log stats:
         flag(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
         output = {"state"  : "flaged"}
@@ -496,7 +496,7 @@ def API_flag_exo(exo_id):
 def API_request_exo(exo_id):
     document = Exo.objects(id=exo_id).first()# returns None if it doesn't exist
     output = {'error':'Not found'}
-    if document is not None:          
+    if document is not None:
         #log stats:
         request(exo_id, user_id) # must be done after checking that doc exists, if not it will pollute the timestamps tables with exo_id that leads to nothing !
         output = {"state"  : "requested"}
