@@ -7,92 +7,90 @@
   </div>
 </div>
 
-<div class="row-fluid">
-  <div class="span3 smallstat box mobileHalf" ontablet="span6" ondesktop="span3">
-    <span class="title">Nb exos</span>
-    <span class="value">{{operations_data[0].number}}</span>
-  </div>
-
-  <div class="span3 smallstat box mobileHalf" ontablet="span6" ondesktop="span3">
-    <span class="title">Nb vues /sem</span>
-    <span class="value">{{operations_data[5].number}}</span>
-  </div>
-
-  <div class="span3 smallstat box mobileHalf noMargin" ontablet="span6" ondesktop="span3">
-    <span class="title">Income</span>
-    <span class="value">-</span>
-  </div>
-
-  <div class="span3 smallstat mobileHalf box" ontablet="span6" ondesktop="span3">
-    <span class="title">Account</span>
-    <span class="value">-</span>
-  </div>
-</div>
-
 <div class="row">
-  <div class="span6">
-  		<h3>Operations</h3>
-        {% for figure in operations_data %}
-		      <p>{{figure.content}}: {{figure.number}}</p>
-        {% endfor %}
-  </div>
-
-  <div class="span6">
-  	<h3>Indicateurs financiers</h3>
-		<p> CA du mois:{{sales_data.sales}}<p\>
-		<p> Nombre d'abonnés: {{sales_data.subscription_count}}</p>
+  <div class="span8 offset2">
+  		<h3>Statistiques d'utilisation de l'appli Exercix-Lite</h3>
+		    <p>Statistiques du: {{date}}</p>
+        <p><a href={{ url_for('users_evolution')}}>Nombre d'utilisateurs (adresses mail uniques)</a>: {{nbusers}}</p>
   </div>
 </div>
 
 
 <div class="row">
-  <div class="span12">
-  	<br>
+  <div class="span8 offset2">
+      <h4>Les filières d'origines:</h4>
+    <div id="piechart" style="width:100%; margin: 0 auto"></div>
   </div>
 </div>
 
+
+
+
 <div class="row">
-  <div class="span6">
-  	<h3>Les exercices les plus consultés:</h3>
-		<table class="table table-condensed table-hover">
-		<tr>
-	<th>Exo id</th>
-	<th>Viewcount</th>
+  <div class="span8 offset2">
+    <h4>Les prepas d'origines:</h4>
+<script >
+  $(function() {
+    $("table").tablesorter();
+  });
+</script>
+    <table class="table table-condensed table-hover tablesorter" >
+      <thead>
+    <tr>
+  <th>Etablissement</th>
+  <th>Nombre d'utilisateurs</th>
 </tr>
-
-{% for stat in stat_exo_viewcount %}
+</thead>
+<tbody>
+{% for prepa in prepas %}
 <tr>
-	<td><a href={{ url_for('exo_edit_content', exo_id=stat.exo_id)}}><i class="icon-search"></i></a></td>
-	<td>{{stat.viewcount}}</td>
+  <td>{{prepa}}</td>
+  <td>{{prepas[prepa]}}</td>
 </tr>
 {% endfor %}
+</tbody>
 </table>
   </div>
-
-
-
-  <div class="span6">
-	  <h3>Les corrections les moins claires:</h3>
-		<table class="table table-condensed table-hover">
-		<tr>
-			<th>Exo id</th>
-			<th>Flagcount</th>
-		</tr>
-
-		{% for stat in stat_exo_flagcount %}
-		<tr>
-			<td><a href={{ url_for('exo_edit_content', exo_id=stat.exo_id)}}><i class="icon-search"></i></a></td>
-			<td>{{stat.flagcount}}</td>
-		</tr>
-		{% endfor %}
-		</table>
-  </div>
 </div>
 
-<div class="row">
-  <div class="span12">
-  	<br>
-  </div>
-</div>
+
+<script >
+$(function () {
+    // Build the chart
+        $('#piechart').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(1) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Pourcentage d\'utilisateur',
+                data: {{rep_fil |safe}}
+            }]
+        });
+    });
+</script>
+
 
 {% endblock %}

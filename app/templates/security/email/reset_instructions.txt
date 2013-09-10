@@ -1,3 +1,0 @@
-Cliques ici pour réinitialiser ton mot de passe:
-
-{{ reset_link }}

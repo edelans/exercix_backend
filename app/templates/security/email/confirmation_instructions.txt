@@ -1,3 +1,0 @@
-Tu peux activer ton compte avec le lien ci-dessous:
-
-{{ confirmation_link }}

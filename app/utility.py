@@ -190,26 +190,3 @@ solution = """
 
 solution2 = "a) $r:\\theta  \\mapsto r(\\theta ) = \\sqrt {\\cos 2\\theta } $ est définie et continue sur les intervalles $\\left[ { - \\pi  / 4,\\pi  / 4} \\right] + k\\pi $ avec $k \\in \\mathbb{Z}$.\\\\\r\nLa fonction $r$ est de classe ${\\mathcal{C}}^\\infty  $ sur les intervalles $\\left] { - \\pi  / 4,\\pi  / 4} \\right[ + k\\pi $ avec $k \\in \\mathbb{Z}$.\\\\\r\n$r(\\theta  + \\pi ) = r(\\theta )$ donc $M(\\theta  + \\pi )$ est l'image du point $M(\\theta )$ par la symétrie de centre $O$.\\\\\r\n$r( - \\theta ) = r(\\theta )$ donc $M( - \\theta )$ est l'image du point $M(\\theta )$ par la symétrie d'axe $(Ox)$\\\\\r\nOn peut limiter l'étude à l'intervalle $\\left[ {0,\\pi  / 4} \\right]$. La courbe obtenue sera complétée par les symétries de centre $O$ et d'axe $(Ox)$.\\\\\r\nOn a le tableau de variation\r\n$$\r\n\\begin{array}{c|ccc|}\r\n \\theta  & 0 & {} & {\\pi  / 4}  \\\\\r\n\\hline\r\n {r(\\theta )} & 1 &  \\searrow  & 0  \\\\\r\n\\hline\r\n\\end{array}\r\n$$\r\nEtude en $\\theta  = 0$.\\\\\r\n$r(0) = 1$ et $r'(0) = 0$.\\\\\r\nIl y a une tangente orthoradiale.\\\\\r\nEtude en $\\theta  = \\pi  / 4$.\\\\\r\n$r(\\pi  / 4) = 0$, il s'agit d'un passage par l'origine.\r\n$$\r\n\\begin{array}{c|ccc|}\r\n \\theta  & {} & {\\pi  / 4} & {}  \\\\\r\n\\hline\r\n {r(\\theta )} &  +  & 0 & {\\mid \\mid }  \\\\\r\n\\hline\r\n\\end{array}\r\n$$\r\nIl y a une demi-tangente en $M(\\pi  / 4) = O$ qui est la droite d'équation polaire $\\theta  = \\pi  / 4$.\\\\\r\n\\texttt{\\textbf{plot([sqrt(cos(2*t)), t, t=0..2*Pi], coords=polar, numpoints=200, xtickmarks=3, ytickmarks=3);}}\r\n\\begin{center}\\includegraphics{Cor0292100001}\\end{center}\r\nLemniscate de Bernoulli\r\nb) On a\r\n$$\\frac{{{\\text{d}}s}}{{{\\text{d}}\\theta }} = \\frac{1}{{\\sqrt {\\cos 2\\theta } }}$$\r\nUne détermination angulaire $\\alpha $ s'obtient par $\\alpha  = \\theta  + V$ avec \r\n$$\\left\\{ \r\n\\begin{gathered}\r\n  \\cos V =  - \\sin 2\\theta  \\hfill \\\\\r\n  \\sin V = \\cos 2\\theta  \\hfill \\\\ \r\n\\end{gathered}\r\n \\right.$$\r\n$V = \\frac{\\pi }{2} + 2\\theta $ convient puis $\\alpha  = \\frac{\\pi }{2} + 3\\theta $. \\\\\r\nOn en déduit\r\n$$\\gamma  = \\frac{{{\\mathrm{d}}\\alpha }}{{{\\mathrm{d}}s}} = \\frac{{{\\mathrm{d}}\\alpha }}{{{\\mathrm{d}}\\theta }}\\frac{{{\\mathrm{d}}\\theta }}{{{\\mathrm{d}}s}} = 3\\sqrt {\\cos 2\\theta } $$\r\nc) L'aire délimitée par ${\\mathcal{C}}$ peut-être calculée par une intégrale curviligne en prenant soin de considérer un parcours en sens direct de la courbe.\\\\\r\nPour $\\theta $ allant de $ - \\pi  / 4$ à $\\pi  / 4$, la boucle de droite est parcourue en sens direct et par considération de symétrie\r\n$${\\mathcal{A}} = \\oint_\\Gamma  {\\frac{1}{2}r^2 \\,{\\mathrm{d}}\\theta }  = 2\\int_{ - \\pi  / 4}^{\\pi  / 4} {\\cos 2\\theta \\,{\\mathrm{d}}\\theta }  = 1$$\r\n"
 
-
-###############################################################################
-#
-# Log stats
-#
-###############################################################################
-
-def view(exo_id, user_id):
-    view = View(exo_id=exo_id, user_id=user_id)
-    view.save()
-
-def flag(exo_id, user_id):
-    flag = Flag(exo_id=exo_id, user_id=user_id)
-    flag.save()
-
-def request(exo_id, user_id):
-    request = Request(exo_id=exo_id, user_id=user_id)
-    request.save()
-
-
-if __name__ == "__main__":
-    newstr = latex_to_html(solution2)
-    print newstr

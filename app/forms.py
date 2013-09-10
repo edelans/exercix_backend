@@ -19,10 +19,6 @@ class TagListField(Field):
             self.data = []
 
 
-class LoginForm(Form):
-    openid = TextField('openid', validators = [Required()])
-    remember_me = BooleanField('remember_me', default = False)
-
 
 class ExoEditForm(Form):
     # id -> attribué par le serveur
