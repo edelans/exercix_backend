@@ -4,6 +4,18 @@
 		"selected_items":
 		[
 			[
+				"rep",
+				"rep_fil"
+			],
+			[
+				"da",
+				"datetime"
+			],
+			[
+				"date",
+				"datetime"
+			],
+			[
 				"obje",
 				"objects"
 			],
@@ -56,7 +68,90 @@
 	"buffers":
 	[
 		{
-			"file": "/etc/default/locale",
+			"file": "app/views.py",
+			"settings":
+			{
+				"buffer_size": 10789,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/index.html",
+			"settings":
+			{
+				"buffer_size": 2187,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{% extends \"base.html\" %}\n{% block content %}\n\n<div class=\"row\">\n  <div class=\"span12\">\n  	<br>\n  </div>\n</div>\n\n\n\n<div class=\"row\">\n  <div class=\"span10 offset1\">\n      <h4>L'évolution du nombre d'utilisateurs:</h4>\n    <div id=\"chart1\" style=\"width:100%; margin: 0 auto\"></div>\n  </div>\n</div>\n\n\n\n\n<script>\n$(function () {\n        $('#chart1').highcharts({\n            chart: {\n                type: 'spline'\n            },\n            title: {\n                text: ''\n            },\n            xAxis: {\n                type: 'datetime',\n            },\n            yAxis: {\n                title: {\n                    text: 'Count'\n                },\n                min: -0.5,\n                minRange: 4\n            },\n            tooltip: {\n                formatter: function() {\n                        return '<b>'+ this.series.name +'</b><br/>'+\n                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y;\n                }\n            },\n            series: [{\n                name: 'Viewcount',\n                data: {{chart_data.viewcount}},\n                color: 'green'\n            }]\n        });\n    });\n\n</script>\n\n\n{% endblock %}\n",
+			"file": "app/templates/navigation/users_evolution.html",
+			"file_size": 1453,
+			"file_write_time": 1378833878000000,
+			"settings":
+			{
+				"buffer_size": 1170,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "config.py",
+			"settings":
+			{
+				"buffer_size": 1331,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models.py",
+			"settings":
+			{
+				"buffer_size": 1426,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/__init__.py",
+			"settings":
+			{
+				"buffer_size": 808,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stats/statanalyse2.py",
+			"settings":
+			{
+				"buffer_size": 1258,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/base.html",
+			"settings":
+			{
+				"buffer_size": 2227,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Procfile",
+			"settings":
+			{
+				"buffer_size": 26,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "run.py",
+			"settings":
+			{
+				"buffer_size": 0,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "run_prod.py",
 			"settings":
 			{
 				"buffer_size": 93,
@@ -67,16 +162,16 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 159.0,
+		"height": 348.0,
 		"selected_items":
 		[
 			[
-				"instal",
-				"Package Control: Install Package"
-			],
-			[
 				"Snippet: ",
 				"Snippet: if __name__ == '__main__'"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
 			],
 			[
 				"insta",
@@ -148,18 +243,35 @@
 	},
 	"file_history":
 	[
+		"/home/edelans/github/exercix_backend/stats/statanalyse.py",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level2.html",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/templates/index.html",
+		"/home/edelans/github/exercix_backend/app/templates/base.html",
+		"/home/edelans/github/exercix_backend/app/templates/errors/404.html",
+		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
+		"/home/edelans/github/exercix_backend_light/app/views.py",
+		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_backend/app/forms.py",
+		"/home/edelans/github/exercix_backend/run.py",
+		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend_light/app/forms.py",
+		"/home/edelans/github/exercix_backend_light/app/utility.py",
+		"/home/edelans/github/exercix_backend_light/app/models.py",
+		"/home/edelans/github/exercix_backend/stats/statanalyse2.py",
 		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/.gitignore",
+		"/etc/default/locale",
 		"/home/edelans/github/exercix_backend/import db/mpddl-import-script.py",
 		"/home/edelans/github/exercix_backend/import db/utility.py",
 		"/home/edelans/Downloads/base64.bin",
 		"/home/edelans/github/exercix_backend/import db/data.bk.json",
 		"/home/edelans/github/exercix_backend/import db/extended_json-20130909:134012.json",
-		"/home/edelans/github/exercix_backend/config.py",
 		"/home/edelans/github/exercix_backend/import db/extended_jsonmpddl50.json",
 		"/home/edelans/github/exercix_backend/import db/test.json",
 		"/home/edelans/github/exercix_backend/import db/export/remotempddl.json",
-		"/home/edelans/github/exercix_backend/app/models.py",
-		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/edelans/Downloads/data-20130909-161854.json",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
@@ -178,29 +290,22 @@
 		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level0.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level1.html",
 		"/home/edelans/Downloads/data-20130904-201615.json",
-		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
 		"/home/edelans/github/exercix_stats/app/views.py",
 		"/home/edelans/github/exercix_vitrine/about.html",
 		"/home/edelans/github/exercix_vitrine/index.html",
-		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
-		"/home/edelans/github/exercix_backend/app/forms.py",
 		"/home/edelans/Downloads/commande.txt",
 		"/home/edelans/Downloads/data-20130904-202313.json",
 		"/home/edelans/Downloads/data-20130904-202221.json",
 		"/home/edelans/Downloads/data-20130904-202144.json",
 		"/home/edelans/Downloads/data-20130904-132559.json",
 		"/home/edelans/Downloads/data-20130904-132927.json",
-		"/home/edelans/github/exercix_backend/app/templates/index.html",
-		"/home/edelans/github/exercix_backend/.gitignore",
 		"/home/edelans/Desktop/index.css",
 		"/home/edelans/Desktop/index.less",
 		"/home/edelans/github/exercix_vitrine/index.less",
 		"/home/edelans/github/exercix_vitrine/index.css",
 		"/home/edelans/Desktop/index.html",
 		"/home/edelans/github/exercix_vitrine/.gitignore",
-		"/home/edelans/github/exercix_backend/run.py",
 		"/var/log/mongodb/mongodb.log",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
 		"/home/edelans/.android/adb_usb.ini",
 		"/home/edelans/github/exercix_backend/requirements.txt",
 		"/home/edelans/requirements.txt",
@@ -236,7 +341,6 @@
 		"/home/edelans/github/exercix_backend/app/templates/security/email/confirmation_instructions.html",
 		"/home/edelans/github/exercix_backend/app/templates/security/email/confirmation_instructions.txt",
 		"/home/edelans/github/futon4mongo/README.rdoc",
-		"/home/edelans/github/exercix_backend/app/templates/base.html",
 		"/home/edelans/github/exercix_backend/app/templates/macro.html",
 		"/home/edelans/github/exercix_backend/app/static/js/apollo.js",
 		"/home/edelans/.cache/.fr-Efho7a/index.php",
@@ -266,16 +370,7 @@
 		"/home/edelans/github/flask-security/flask_security/core.py",
 		"/home/edelans/github/flask-security/flask_security/decorators.py",
 		"/home/edelans/github/flask-security/flask_security/forms.py",
-		"/etc/init.d/mongodb",
-		"/home/edelans/github/exercix_backend/app/ToDo.md",
-		"/home/edelans/mahout/README.txt",
-		"/home/edelans/mahout/NOTICE.txt",
-		"/home/edelans/mahout/LICENSE.txt",
-		"/media/edelans/GARMIN/GarminDevice.xml",
-		"/tmp/garminplugin.log",
-		"/home/edelans/.config/garminplugin/garminplugin.xml",
-		"/media/edelans/GARMIN/FIT/ERR_RPT_Log.txt",
-		"/media/edelans/GARMIN/testdisk.log"
+		"/etc/init.d/mongodb"
 	],
 	"find":
 	{
@@ -293,6 +388,19 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"slice",
+			"container",
+			"objects",
+			"dico",
+			"champ",
+			"user_id",
+			"uuid",
+			"sales_data",
+			"os",
+			"user_id",
+			"flag",
+			"prepas",
+			"nomprepa",
 			"\\n",
 			"$$.\",",
 			"?.\",",
@@ -407,20 +515,7 @@
 			"view_count",
 			"exo_stats",
 			"give_list_of_chapters",
-			"give_list_of_parts",
-			"give_list_of_chapters",
-			"new_id",
-			"fetch_",
-			"fetch_timestamps_func",
-			"db.",
-			"'_id",
-			" _id",
-			",_id",
-			"_id",
-			"Exo.objects(Q",
-			"exos",
-			".objects(",
-			"Q('p"
+			"give_list_of_parts"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -506,12 +601,286 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 8,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/etc/default/locale",
+					"file": "app/views.py",
+					"settings":
+					{
+						"buffer_size": 10789,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1801,
+								1801
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 714.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/templates/index.html",
+					"settings":
+					{
+						"buffer_size": 2187,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								310,
+								310
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/templates/navigation/users_evolution.html",
+					"settings":
+					{
+						"buffer_size": 1170,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1120,
+								1120
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 255.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "config.py",
+					"settings":
+					{
+						"buffer_size": 1331,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1331,
+								1331
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 8,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/models.py",
+					"settings":
+					{
+						"buffer_size": 1426,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1185,
+								1185
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 306.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/__init__.py",
+					"settings":
+					{
+						"buffer_size": 808,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "stats/statanalyse2.py",
+					"settings":
+					{
+						"buffer_size": 1258,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1154,
+								1154
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/templates/base.html",
+					"settings":
+					{
+						"buffer_size": 2227,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								927,
+								927
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "Procfile",
+					"settings":
+					{
+						"buffer_size": 26,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "run.py",
+					"settings":
+					{
+						"buffer_size": 0,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "run_prod.py",
 					"settings":
 					{
 						"buffer_size": 93,
@@ -521,13 +890,13 @@
 						"selection":
 						[
 							[
-								93,
-								93
+								92,
+								92
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Python/Python.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -571,7 +940,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 157.0
+		"height": 112.0
 	},
 	"output.git":
 	{
@@ -630,6 +999,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 203.0,
+	"side_bar_width": 198.0,
 	"status_bar_visible": true
 }
