@@ -1,4 +1,4 @@
-from app import db 
+from app import db
 import datetime
 from flask.ext.security import UserMixin, RoleMixin
 
@@ -20,7 +20,7 @@ class Exo(db.Document):
     difficulty  = db.IntField()
     tags        = db.ListField(db.StringField(max_length=50))
     tracks      = db.ListField(db.StringField(max_length=50))
-# content    
+# content
     question        = db.StringField(max_length=2500)
     question_html   = db.StringField(max_length=2500)
     hint            = db.StringField(max_length=500)
