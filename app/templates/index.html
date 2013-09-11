@@ -44,7 +44,7 @@
 <tbody>
 {% for prepa in prepas %}
 <tr>
-  <td>{{prepa}}</td>
+  <td><a href={{ url_for('prepa_users_evolution', prep=prepa)}}>{{prepa}}</a> </td>
   <td>{{prepas[prepa]}}</td>
 </tr>
 {% endfor %}

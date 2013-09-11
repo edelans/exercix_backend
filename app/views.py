@@ -88,8 +88,32 @@ def index():
 
 
 @app.route('/users_evolution')
+@requires_auth
 def users_evolution():
-    return render_template("navigation/users_evolution.html")
+    chartdata=[]
+    stats = Stat.objects().order_by('-date')
+    for stat in stats:
+        chartdata.append([js_timestamp_from_datetime(stat["date"]), stat["nbusers"]])
+    print chartdata
+    return render_template("navigation/users_evolution.html",
+        chartdata = chartdata)
+
+
+@app.route('/prepa_users_evolution/<prep>')
+def prepa_users_evolution(prep):
+    print 'affichage de prep:'
+    print prep
+    chartdata=[]
+    stats = Stat.objects().order_by('-date')
+    for stat in stats:
+        try:
+            chartdata.append([js_timestamp_from_datetime(stat["date"]), stat["prepas_users"][prep]])
+        except:
+            pass
+    return render_template("navigation/prepa_users_evolution.html",
+        chartdata = chartdata,
+        prepa=prep)
+
 
 
 def give_list_of_parts():
@@ -123,6 +147,7 @@ def exo_stats(part, chapter):
 
 
 @app.route('/exercices')
+@requires_auth
 def exercices_l0():
     return render_template("navigation/exercices_level0.html",
         title = 'Exercices',
@@ -130,14 +155,16 @@ def exercices_l0():
         )
 
 @app.route('/exercices/<part>')
+@requires_auth
 def exercices_l1(part):
     return render_template("navigation/exercices_level1.html",
         title = 'Exercices',
         part = part,
-        chapters = give_list_of_chapters(part),
+        chapters = give_list_of_chapters(part)
         )
 
 @app.route('/exercices/<part>/<chapter>')
+@requires_auth
 def exercices_l2(part, chapter):
     return render_template("navigation/exercices_level2.html",
         title = 'Exercices',
@@ -150,6 +177,7 @@ def exercices_l2(part, chapter):
 
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
+@requires_auth
 def exo_edit_content(exo_id):
     document = Exo.objects(id=exo_id).first() #returns None if no result
 
@@ -204,6 +232,7 @@ def give_new_number(chapter):
 
 
 @app.route('/new_exo', methods = ['GET', 'POST'])
+@requires_auth
 def new_exo():
     form = ExoEditForm()
     if form.validate_on_submit():

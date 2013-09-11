@@ -3,7 +3,7 @@
 
 <div class="row">
   <div class="span12">
-  	<br>
+    <br>
   </div>
 </div>
 
@@ -12,49 +12,46 @@
 <div class="row">
   <div class="span10 offset1">
       <h4>L'évolution du nombre d'utilisateurs:</h4>
-    <div id="piechart" style="width:100%; margin: 0 auto"></div>
+    <div id="chart1" style="width:100%; margin: 0 auto"></div>
   </div>
 </div>
 
 
 
 
-<script >
+<script>
 $(function () {
-    // Build the chart
-        $('#piechart').highcharts({
+        $('#chart1').highcharts({
             chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false
+                type: 'spline'
             },
             title: {
                 text: ''
             },
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            xAxis: {
+                type: 'datetime',
             },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        color: '#000000',
-                        connectorColor: '#000000',
-                        formatter: function() {
-                            return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(1) +' %';
-                        }
-                    }
+            yAxis: {
+                title: {
+                    text: 'Count'
+                },
+                min: -0.5,
+                minRange: 4
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y;
                 }
             },
             series: [{
-                type: 'pie',
-                name: 'Pourcentage d\'utilisateur',
-                data: {{rep_fil |safe}}
+                name: 'nombre d\'utilisateurs',
+                data: {{chartdata}},
+                color: 'green'
             }]
         });
     });
+
 </script>
 
 
