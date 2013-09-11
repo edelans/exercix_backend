@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="span12">
+    <br>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="span10 offset1">
+      <h4>L'évolution du nombre d'utilisateurs de la prépa {{prepa}}:</h4>
+    <div id="chart1" style="width:100%; margin: 0 auto"></div>
+  </div>
+</div>
+
+
+
+
+<script>
+$(function () {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'datetime',
+            },
+            yAxis: {
+                title: {
+                    text: 'Count'
+                },
+                min: -0.5,
+                minRange: 4
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y;
+                }
+            },
+            series: [{
+                name: 'nombre d\'utilisateurs',
+                data: {{chartdata}},
+                color: 'green'
+            }]
+        });
+    });
+
+</script>
+
+
+{% endblock %}
