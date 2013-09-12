@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"stats",
+				"stats"
+			],
+			[
 				"rep",
 				"rep_fil"
 			],
@@ -71,114 +75,23 @@
 			"file": "app/views.py",
 			"settings":
 			{
-				"buffer_size": 10789,
+				"buffer_size": 12370,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "app/templates/index.html",
+			"file": "app/templates/navigation/exercices_level0.html",
 			"settings":
 			{
-				"buffer_size": 2187,
+				"buffer_size": 593,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "{% extends \"base.html\" %}\n{% block content %}\n\n<div class=\"row\">\n  <div class=\"span12\">\n  	<br>\n  </div>\n</div>\n\n\n\n<div class=\"row\">\n  <div class=\"span10 offset1\">\n      <h4>L'évolution du nombre d'utilisateurs:</h4>\n    <div id=\"chart1\" style=\"width:100%; margin: 0 auto\"></div>\n  </div>\n</div>\n\n\n\n\n<script>\n$(function () {\n        $('#chart1').highcharts({\n            chart: {\n                type: 'spline'\n            },\n            title: {\n                text: ''\n            },\n            xAxis: {\n                type: 'datetime',\n            },\n            yAxis: {\n                title: {\n                    text: 'Count'\n                },\n                min: -0.5,\n                minRange: 4\n            },\n            tooltip: {\n                formatter: function() {\n                        return '<b>'+ this.series.name +'</b><br/>'+\n                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y;\n                }\n            },\n            series: [{\n                name: 'Viewcount',\n                data: {{chart_data.viewcount}},\n                color: 'green'\n            }]\n        });\n    });\n\n</script>\n\n\n{% endblock %}\n",
-			"file": "app/templates/navigation/users_evolution.html",
-			"file_size": 1453,
-			"file_write_time": 1378833878000000,
+			"file": "app/templates/navigation/exercices_level1.html",
 			"settings":
 			{
-				"buffer_size": 1170,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "config.py",
-			"settings":
-			{
-				"buffer_size": 1331,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models.py",
-			"settings":
-			{
-				"buffer_size": 1426,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/__init__.py",
-			"settings":
-			{
-				"buffer_size": 808,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stats/statanalyse2.py",
-			"settings":
-			{
-				"buffer_size": 1258,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/base.html",
-			"settings":
-			{
-				"buffer_size": 2227,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "Procfile",
-			"settings":
-			{
-				"buffer_size": 26,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "run.py",
-			"settings":
-			{
-				"buffer_size": 0,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "run_prod.py",
-			"settings":
-			{
-				"buffer_size": 93,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 41,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/login.html",
-			"settings":
-			{
-				"buffer_size": 1750,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stats/statanalyse.py",
-			"settings":
-			{
-				"buffer_size": 2126,
+				"buffer_size": 450,
 				"line_ending": "Unix"
 			}
 		}
@@ -267,26 +180,31 @@
 	},
 	"file_history":
 	[
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/prepa_users_evolution.html",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/users_evolution.html",
+		"/home/edelans/github/exercix_backend/app/templates/index.html",
+		"/home/edelans/github/exercix_backend/config.py",
+		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/github/exercix_backend/stats/statanalyse.py",
+		"/home/edelans/github/exercix_backend/app/templates/login.html",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/.gitignore",
+		"/home/edelans/github/exercix_backend/run_prod.py",
+		"/home/edelans/github/exercix_backend/stats/statanalyse2.py",
+		"/home/edelans/github/exercix_backend/run.py",
+		"/home/edelans/github/exercix_backend/Procfile",
+		"/home/edelans/github/exercix_backend/app/templates/base.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level2.html",
 		"/home/edelans/github/exercix_backend/app/utility.py",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
-		"/home/edelans/github/exercix_backend/app/templates/index.html",
-		"/home/edelans/github/exercix_backend/app/templates/base.html",
 		"/home/edelans/github/exercix_backend/app/templates/errors/404.html",
 		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
 		"/home/edelans/github/exercix_backend_light/app/views.py",
-		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/github/exercix_backend/app/forms.py",
-		"/home/edelans/github/exercix_backend/run.py",
-		"/home/edelans/github/exercix_backend/config.py",
 		"/home/edelans/github/exercix_backend_light/app/forms.py",
 		"/home/edelans/github/exercix_backend_light/app/utility.py",
 		"/home/edelans/github/exercix_backend_light/app/models.py",
-		"/home/edelans/github/exercix_backend/stats/statanalyse2.py",
-		"/home/edelans/github/exercix_backend/app/views.py",
-		"/home/edelans/github/exercix_backend/.gitignore",
 		"/etc/default/locale",
 		"/home/edelans/github/exercix_backend/import db/mpddl-import-script.py",
 		"/home/edelans/github/exercix_backend/import db/utility.py",
@@ -389,12 +307,7 @@
 		"/home/edelans/.cache/.fr-JnmpNv/rockmongo/INSTALL.txt",
 		"/home/edelans/github/flask-security/flask_security/datastore.py",
 		"/home/edelans/github/flask-security/setup.py",
-		"/home/edelans/github/flask-security/requirements.txt",
-		"/home/edelans/github/flask-security/flask_security/utils.py",
-		"/home/edelans/github/flask-security/flask_security/core.py",
-		"/home/edelans/github/flask-security/flask_security/decorators.py",
-		"/home/edelans/github/flask-security/flask_security/forms.py",
-		"/etc/init.d/mongodb"
+		"/home/edelans/github/flask-security/requirements.txt"
 	],
 	"find":
 	{
@@ -412,6 +325,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"prepa",
+			"(?!=@.*\\)\\n)def",
+			"(?!=)\\n)def",
 			"slice",
 			"container",
 			"objects",
@@ -536,10 +452,7 @@
 			"view_stats",
 			"stat_exo_viewcount",
 			"len(View.objects(",
-			"view_count",
-			"exo_stats",
-			"give_list_of_chapters",
-			"give_list_of_parts"
+			"view_count"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -625,7 +538,7 @@
 	"groups":
 	[
 		{
-			"selected": 6,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -633,15 +546,15 @@
 					"file": "app/views.py",
 					"settings":
 					{
-						"buffer_size": 10789,
+						"buffer_size": 12370,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1801,
-								1801
+								11662,
+								11662
 							]
 						],
 						"settings":
@@ -650,33 +563,36 @@
 							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 714.0,
+						"translation.x": 243.0,
+						"translation.y": 5518.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
-				},
+				}
+			]
+		},
+		{
+			"sheets":
+			[
 				{
 					"buffer": 1,
-					"file": "app/templates/index.html",
+					"file": "app/templates/navigation/exercices_level0.html",
 					"settings":
 					{
-						"buffer_size": 2187,
+						"buffer_size": 593,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								310,
-								310
+								0,
+								0
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -686,94 +602,10 @@
 				},
 				{
 					"buffer": 2,
-					"file": "app/templates/navigation/users_evolution.html",
+					"file": "app/templates/navigation/exercices_level1.html",
 					"settings":
 					{
-						"buffer_size": 1170,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1120,
-								1120
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 255.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "config.py",
-					"settings":
-					{
-						"buffer_size": 1331,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1331,
-								1331
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 8,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/models.py",
-					"settings":
-					{
-						"buffer_size": 1426,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1185,
-								1185
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 306.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "app/__init__.py",
-					"settings":
-					{
-						"buffer_size": 808,
+						"buffer_size": 450,
 						"regions":
 						{
 						},
@@ -786,226 +618,10 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/Python/Python.tmLanguage"
+							"syntax": "Packages/HTML/HTML.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "stats/statanalyse2.py",
-					"settings":
-					{
-						"buffer_size": 1258,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1154,
-								1154
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "app/templates/base.html",
-					"settings":
-					{
-						"buffer_size": 2227,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								927,
-								927
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "Procfile",
-					"settings":
-					{
-						"buffer_size": 26,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "run.py",
-					"settings":
-					{
-						"buffer_size": 0,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "run_prod.py",
-					"settings":
-					{
-						"buffer_size": 93,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								92,
-								92
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 11,
-					"file": ".gitignore",
-					"settings":
-					{
-						"buffer_size": 41,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								41,
-								41
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 12,
-					"file": "app/templates/login.html",
-					"settings":
-					{
-						"buffer_size": 1750,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								426,
-								426
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 765.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 13,
-					"file": "stats/statanalyse.py",
-					"settings":
-					{
-						"buffer_size": 2126,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 867.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -1030,11 +646,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.638480392157,
 			1.0
 		],
 		"rows":
@@ -1105,6 +728,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 198.0,
+	"side_bar_width": 223.0,
 	"status_bar_visible": true
 }

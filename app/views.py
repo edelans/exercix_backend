@@ -154,6 +154,39 @@ def exercices_l0():
         parts = give_list_of_parts()
         )
 
+#function appelée par le bouton de génération du json
+#attention, ne pas supprimer le decorateur pour que cela fonctionne
+@app.route('/generatejson/', methods = ['GET'])
+def generate_json():
+    output = []
+    exos = Exo.objects()
+    for exo in exos:
+        output.append({
+            "_id":str(exo.id),
+            "chapter":exo.chapter,
+            "category":exo.part,
+            "difficulty":exo.difficulty,
+            "number":exo.number,
+            "difficulty":exo.difficulty,
+            "author":exo.author,
+            "question":exo.question_html,
+            "hint":exo.hint,
+            "solution":exo.solution_html,
+            "school":exo.school})
+
+    #create a new file and write the list in it
+    timestamp = datetime.datetime.now().strftime('%Y%m%d:%H%M%S')
+    filename = 'data-' + str(timestamp) + '.json'
+    #with open('tmp/'+ filename, 'w') as outfile:
+    outfile=open('tmp/'+ filename, 'w')
+    simplejson.dump(output, outfile)
+    outfile.close()
+    #return jsonify({"res":output})
+    import os.path
+    return send_from_directory(os.path.dirname(__file__) + '/../tmp/', filename, as_attachment=True)
+
+
+
 @app.route('/exercices/<part>')
 @requires_auth
 def exercices_l1(part):
@@ -341,33 +374,3 @@ def API_list_of_exos(part,chapter):
             })
     return jsonify({"exos":output})
 
-#function appelée par le bouton de génération du json
-#attention, ne pas supprimer le decorateur pour que cela fonctionne
-@app.route('/generatejson/', methods = ['GET'])
-def generate_json():
-    output = []
-    exos = Exo.objects()
-    for exo in exos:
-        output.append({
-            "_id":str(exo.id),
-            "chapter":exo.chapter,
-            "category":exo.part,
-            "difficulty":exo.difficulty,
-            "number":exo.number,
-            "difficulty":exo.difficulty,
-            "author":exo.author,
-            "question":exo.question_html,
-            "hint":exo.hint,
-            "solution":exo.solution_html,
-            "school":exo.school})
-
-    #create a new file and write the list in it
-    timestamp = datetime.datetime.now().strftime('%Y%m%d:%H%M%S')
-    filename = 'data-' + str(timestamp) + '.json'
-    #with open('tmp/'+ filename, 'w') as outfile:
-    outfile=open('tmp/'+ filename, 'w')
-    simplejson.dump(output, outfile)
-    outfile.close()
-    #return jsonify({"res":output})
-    import os.path
-    return send_from_directory(os.path.dirname(__file__) + '/../tmp/', filename, as_attachment=True)

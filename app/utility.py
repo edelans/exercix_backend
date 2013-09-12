@@ -7,9 +7,79 @@ import re
 from dateutil import parser
 
 
+
 ###############################################################################
 #
-# chart data formatting js
+#       parcourir les stats
+#
+###############################################################################
+
+
+def fetch_last_stats():
+    stat = Stat.objects().order_by('-date').first()  #(to indicate a descending sort, i.e. highest first).
+    return stat
+
+
+
+###############################################################################
+#
+#       parcourir les exos
+#
+###############################################################################
+
+def give_list_of_parts():
+    res=[]
+    if len(Exo.objects)>0:
+        partdic = Exo.objects.only('part').item_frequencies('part')
+        res = partdic.items()
+    return res
+
+
+def give_list_of_chapters(part):
+    res=[]
+    if len(Exo.objects)>0:
+        chapdic = Exo.objects(part=part).only('chapter').item_frequencies('chapter')
+        res = chapdic.items()
+    return res
+
+
+def exo_stats(part, chapter):
+    res = []
+    exos = Exo.objects(Q(part=part) & Q(chapter=chapter)).only('id', 'part', 'chapter', 'number')
+    for exo in exos:
+        print exo.id
+        exo_id=str(exo.id)
+        dic={
+            "exo_id":exo_id,
+            "exo_nb": exo.number,
+        }
+        res.append(dic)
+    return res
+
+
+###############################################################################
+#
+#       edition nouvel exo
+#
+###############################################################################
+
+
+def give_new_number(chapter):
+    """
+    todo:   - rendre plus robuste aux typos de chapitres -> doit etre fait en amont (le form ne doit accepter que les "bons" chapters)
+            - rendre plus robuste aux "trous" dans les noms: ici on ne fait qu'incrémenter
+                la valeur la plus elevée, mais on ne remplira pas les trous !
+    """
+    numbers = [0]
+    exos = Exo.objects(chapter=chapter).only('number')
+    for exo in exos:
+        numbers.append(exo.number)
+    return sorted(numbers)[-1]+1
+
+
+###############################################################################
+#
+#       chart data formatting js
 #
 ###############################################################################
 
@@ -76,7 +146,7 @@ def hc_readify(list_of_timestamps, n):
 
 ###############################################################################
 #
-# chart data formatting python timestamps
+#       chart data formatting python timestamps
 #
 ###############################################################################
 
@@ -110,7 +180,7 @@ def hc_readify_py(list_of_timestamps, n):
 
 ###############################################################################
 #
-# Latex to HTML
+#       Latex to HTML
 #
 ###############################################################################
 
