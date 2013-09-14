@@ -7,11 +7,16 @@ from utility import *
 import json
 import os
 import datetime
-from dateutil import parser
-from operator import itemgetter
 from mongoengine.queryset import Q
 import simplejson
 from functools import wraps
+
+
+#############################################################
+#
+#       Basic authentication to protect backend
+#
+#############################################################
 
 def check_auth(username, password):
     """This function is called to check if a username /
@@ -36,6 +41,13 @@ def requires_auth(f):
     return decorated
 
 
+
+#############################################################
+#
+#       misc
+#
+#############################################################
+
 @app.route('/favicon.ico')
 def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'), 'img/favicon.ico')
@@ -46,16 +58,12 @@ def page_not_found(e):
     return render_template('errors/404.html'), 404
 
 
-def fetch_last_stats():
-    stat = Stat.objects().order_by('-date').first()  #(to indicate a descending sort, i.e. highest first).
-    return stat
 
-@app.route('/test')
-def test():
-    docs = fetch_last_stats()
-    rep_fil = docs["repartition_filiere"]
-    l=[[str(x),rep_fil[x]] for x in rep_fil]
-    return json.dumps(l) #
+#############################################################
+#
+#       Navigation
+#
+#############################################################
 
 @app.route('/')
 @app.route('/index')
@@ -86,7 +94,6 @@ def index():
 
 
 
-
 @app.route('/users_evolution')
 @requires_auth
 def users_evolution():
@@ -100,6 +107,7 @@ def users_evolution():
 
 
 @app.route('/prepa_users_evolution/<prep>')
+@requires_auth
 def prepa_users_evolution(prep):
     print 'affichage de prep:'
     print prep
@@ -116,35 +124,6 @@ def prepa_users_evolution(prep):
 
 
 
-def give_list_of_parts():
-    res=[]
-    if len(Exo.objects)>0:
-        partdic = Exo.objects.only('part').item_frequencies('part')
-        res = partdic.items()
-    return res
-
-
-def give_list_of_chapters(part):
-    res=[]
-    if len(Exo.objects)>0:
-        chapdic = Exo.objects(part=part).only('chapter').item_frequencies('chapter')
-        res = chapdic.items()
-    return res
-
-
-def exo_stats(part, chapter):
-    res = []
-    exos = Exo.objects(Q(part=part) & Q(chapter=chapter)).only('id', 'part', 'chapter', 'number')
-    for exo in exos:
-        print exo.id
-        exo_id=str(exo.id)
-        dic={
-            "exo_id":exo_id,
-            "exo_nb": exo.number,
-        }
-        res.append(dic)
-    return res
-
 
 @app.route('/exercices')
 @requires_auth
@@ -154,9 +133,11 @@ def exercices_l0():
         parts = give_list_of_parts()
         )
 
+
 #function appelée par le bouton de génération du json
 #attention, ne pas supprimer le decorateur pour que cela fonctionne
 @app.route('/generatejson/', methods = ['GET'])
+@requires_auth
 def generate_json():
     output = []
     exos = Exo.objects()
@@ -196,6 +177,7 @@ def exercices_l1(part):
         chapters = give_list_of_chapters(part)
         )
 
+
 @app.route('/exercices/<part>/<chapter>')
 @requires_auth
 def exercices_l2(part, chapter):
@@ -205,8 +187,6 @@ def exercices_l2(part, chapter):
         chapter = chapter,
         exos = exo_stats(part, chapter)
         )
-
-
 
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
@@ -249,19 +229,6 @@ def exo_edit_content(exo_id):
 
     else: # en cas de presence vestiges de la phase d'initialisation de la bdd
         return render_template("errors/404.html")
-
-
-def give_new_number(chapter):
-    """
-    todo:   - rendre plus robuste aux typos de chapitres -> doit etre fait en amont (le form ne doit accepter que les "bons" chapters)
-            - rendre plus robuste aux "trous" dans les noms: ici on ne fait qu'incrémenter
-                la valeur la plus elevée, mais on ne remplira pas les trous !
-    """
-    numbers = [0]
-    exos = Exo.objects(chapter=chapter).only('number')
-    for exo in exos:
-        numbers.append(exo.number)
-    return sorted(numbers)[-1]+1
 
 
 @app.route('/new_exo', methods = ['GET', 'POST'])
@@ -309,11 +276,11 @@ def new_exo():
 
 
 
-"""
-----------------------------------------------------------
-Configuration de l'API
-----------------------------------------------------------
-"""
+#############################################################
+#
+#       Configuration de l'API
+#
+#############################################################
 
 @app.route('/api/v1.0/view/<exo_id>', methods = ['GET'])
 def API_get_exo(exo_id):
@@ -374,3 +341,16 @@ def API_list_of_exos(part,chapter):
             })
     return jsonify({"exos":output})
 
+
+#############################################################
+#
+#       test
+#
+#############################################################
+
+@app.route('/test')
+def test():
+    docs = fetch_last_stats()
+    rep_fil = docs["repartition_filiere"]
+    l=[[str(x),rep_fil[x]] for x in rep_fil]
+    return json.dumps(l) #
