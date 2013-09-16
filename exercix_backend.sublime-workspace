@@ -71,30 +71,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/views.py",
-			"settings":
-			{
-				"buffer_size": 12370,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/navigation/exercices_level0.html",
-			"settings":
-			{
-				"buffer_size": 593,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/navigation/exercices_level1.html",
-			"settings":
-			{
-				"buffer_size": 450,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -181,6 +157,25 @@
 	"file_history":
 	[
 		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/Downloads/lemniscate0.tex",
+		"/home/edelans/Desktop/grapher-lemniscate.svg",
+		"/home/edelans/Downloads/save (1).svg",
+		"/home/edelans/Desktop/data.json",
+		"/home/edelans/Desktop/data (copy).json",
+		"/home/edelans/Downloads/save.svg",
+		"/home/edelans/github/exercix_backend/import db/images/Cor0292100001.base64.bin",
+		"/home/edelans/github/exercix_backend/import db/data.bak.090913.json",
+		"/home/edelans/github/exercix_backend/import db/extended_json-20130909:134012.json",
+		"/home/edelans/github/exercix_backend/import db/data-20130909-161854.json",
+		"/home/edelans/github/exercix_backend/import db/data.bk.json",
+		"/home/edelans/github/exercix_backend/Procfile",
+		"/home/edelans/github/exercix_vitrine/about.html",
+		"/home/edelans/github/exercix_vitrine/index.html",
+		"/home/edelans/Desktop/dataaa.json",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level1.html",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level0.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/prepa_users_evolution.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/users_evolution.html",
 		"/home/edelans/github/exercix_backend/app/templates/index.html",
@@ -188,15 +183,12 @@
 		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/github/exercix_backend/stats/statanalyse.py",
 		"/home/edelans/github/exercix_backend/app/templates/login.html",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
 		"/home/edelans/github/exercix_backend/.gitignore",
 		"/home/edelans/github/exercix_backend/run_prod.py",
 		"/home/edelans/github/exercix_backend/stats/statanalyse2.py",
 		"/home/edelans/github/exercix_backend/run.py",
-		"/home/edelans/github/exercix_backend/Procfile",
 		"/home/edelans/github/exercix_backend/app/templates/base.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level2.html",
-		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/github/exercix_backend/app/templates/errors/404.html",
 		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
@@ -209,8 +201,6 @@
 		"/home/edelans/github/exercix_backend/import db/mpddl-import-script.py",
 		"/home/edelans/github/exercix_backend/import db/utility.py",
 		"/home/edelans/Downloads/base64.bin",
-		"/home/edelans/github/exercix_backend/import db/data.bk.json",
-		"/home/edelans/github/exercix_backend/import db/extended_json-20130909:134012.json",
 		"/home/edelans/github/exercix_backend/import db/extended_jsonmpddl50.json",
 		"/home/edelans/github/exercix_backend/import db/test.json",
 		"/home/edelans/github/exercix_backend/import db/export/remotempddl.json",
@@ -220,7 +210,6 @@
 		"/home/edelans/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
 		"/home/edelans/Downloads/ExerciX.txt",
 		"/home/edelans/github/exercix_backend/import db/extended_json-20130909:133509.json",
-		"/home/edelans/Desktop/data.json",
 		"/home/edelans/Desktop/test.json",
 		"/home/edelans/Desktop/20130906mpddl.json",
 		"/home/edelans/Desktop/data.bk.json",
@@ -229,12 +218,8 @@
 		"/home/edelans/Desktop/extended_json-20130909:130507.json",
 		"/home/edelans/Downloads/commande (1).txt",
 		"/home/edelans/Desktop/20130906mpddl2.json",
-		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level0.html",
-		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level1.html",
 		"/home/edelans/Downloads/data-20130904-201615.json",
 		"/home/edelans/github/exercix_stats/app/views.py",
-		"/home/edelans/github/exercix_vitrine/about.html",
-		"/home/edelans/github/exercix_vitrine/index.html",
 		"/home/edelans/Downloads/commande.txt",
 		"/home/edelans/Downloads/data-20130904-202313.json",
 		"/home/edelans/Downloads/data-20130904-202221.json",
@@ -298,16 +283,7 @@
 		"/home/edelans/flaskapp/app/routes.py",
 		"/etc/mongodb.conf",
 		"/etc/logrotate.d/mongod",
-		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html",
-		"/home/edelans/github/exercix_backend/app/templates/exercices_level2.html",
-		"/home/edelans/github/exercix_backend/app/templates/exercices_level0.html",
-		"/home/edelans/github/exercix_backend/app/templates/exercices_level1.html",
-		"/home/edelans/github/exercix_backend/test.py",
-		"/home/edelans/github/exercix_backend/tmp/test.py",
-		"/home/edelans/.cache/.fr-JnmpNv/rockmongo/INSTALL.txt",
-		"/home/edelans/github/flask-security/flask_security/datastore.py",
-		"/home/edelans/github/flask-security/setup.py",
-		"/home/edelans/github/flask-security/requirements.txt"
+		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html"
 	],
 	"find":
 	{
@@ -325,6 +301,49 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"img",
+			"\"",
+			"\\\\right)$$",
+			"base64",
+			"include",
+			"Cor0292100001",
+			"\\\\right)$",
+			"Series numériques",
+			"series numériques",
+			"{Cor029210",
+			"Cor",
+			"prep",
+			"Géométrie du plan et de l'espace",
+			"Courbes et surfaces",
+			"Fonctions de plusieurs variables réelles",
+			"Géométrie du plan et de l'espace",
+			"Equations différentielles",
+			"Séries de fourier",
+			"Séries entières",
+			"Séries de fonctions",
+			"Intégrales à paramètre\"",
+			"Séries numériques",
+			"Suites réelles ou complexes",
+			"Intégration sur un intervalle quelconque",
+			"Fonctions d'une variable réelle",
+			"Espaces normés et topologie",
+			"Espaces préhilbertiens, espaces euclidiens",
+			"Structure, arithmétique, complexes",
+			"Polynômes",
+			"Séries de fonctions",
+			"Intégrales à paramètre",
+			"Séries numériques",
+			"Intégrales à paramètre",
+			"Espaces vectoriels, matrices, déterminants",
+			"réduction",
+			"\\n",
+			"\\t",
+			"simplejson",
+			"itemgetter",
+			"parser",
+			"itemgetter",
+			"parser",
+			"give_list_of_parts",
 			"prepa",
 			"(?!=@.*\\)\\n)def",
 			"(?!=)\\n)def",
@@ -409,57 +428,22 @@
 			"Séries de Fonctions",
 			"Polynomes",
 			"Algebre",
-			"new_exo",
-			"new-exo",
-			"decode",
-			"abort",
-			".decode('utf8')",
-			"how_many_views_per_user",
-			"tap",
-			"dl-android",
-			"how_many_viewing_users",
-			"view_freqs",
-			"@login_required",
-			"sudo apt-get install",
-			"db.Column(db.String(255))",
-			"StringField",
-			"integer",
-			"DEBUG_TB_INTERCEPT_REDIRECTS",
-			"tidy",
-			"url",
-			"display: none",
-			"apollo-register",
-			"hidden",
-			"login_user",
-			"img",
-			"pattern",
-			"pattern.png",
-			"optionsRadios",
-			"Users",
-			"Users.objects",
-			"logn.html",
-			"404.html",
-			"template('exo_edit_new",
-			"exo_edit_content",
-			"exercices.html",
-			"view_count",
-			"exo_stats",
-			"give_list_of_parts",
-			"give_list_of_exos",
-			"view_count",
-			"exo_stats",
-			"view_count",
-			"view_stats",
-			"stat_exo_viewcount",
-			"len(View.objects(",
-			"view_count"
+			"new_exo"
 		],
 		"highlight": true,
 		"in_selection": false,
 		"preserve_case": false,
-		"regex": true,
+		"regex": false,
 		"replace_history":
 		[
+			"\\\"",
+			"\\\\right) $$",
+			",\\n",
+			"\", \"",
+			"\\n\"",
+			"\"\\n",
+			"\"",
+			"\": \"",
 			"",
 			"$$\",",
 			".\",",
@@ -538,94 +522,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/views.py",
-					"settings":
-					{
-						"buffer_size": 12370,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								11662,
-								11662
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 243.0,
-						"translation.y": 5518.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
-			]
-		},
-		{
-			"sheets":
-			[
-				{
-					"buffer": 1,
-					"file": "app/templates/navigation/exercices_level0.html",
-					"settings":
-					{
-						"buffer_size": 593,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/templates/navigation/exercices_level1.html",
-					"settings":
-					{
-						"buffer_size": 450,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -646,18 +544,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.638480392157,
 			1.0
 		],
 		"rows":
@@ -728,6 +619,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 223.0,
+	"side_bar_width": 121.0,
 	"status_bar_visible": true
 }
