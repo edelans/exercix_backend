@@ -31,7 +31,7 @@ def authenticate():
     'You have to login with proper credentials', 401,
     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
-def requires_auth(f):
+def admin_only(f):
     @wraps(f)
     def decorated(*args, **kwargs):
         auth = request.authorization
@@ -67,7 +67,7 @@ def page_not_found(e):
 
 @app.route('/')
 @app.route('/index')
-@requires_auth
+@admin_only
 def index():
     stats = fetch_last_stats()
     rep_fil = stats["repartition_filiere"]
@@ -113,7 +113,7 @@ def index():
 
 
 @app.route('/users_evolution')
-@requires_auth
+@admin_only
 def users_evolution():
     chartdata=[]
     stats = Stat.objects().order_by('-date')
@@ -126,7 +126,7 @@ def users_evolution():
 
 
 @app.route('/viewsL7D_evolution')
-@requires_auth
+@admin_only
 def viewsL7D_evolution():
     chartdata=[]
     stats = Stat.objects().order_by('-date')
@@ -139,7 +139,7 @@ def viewsL7D_evolution():
 
 
 @app.route('/activeUsersL7D')
-@requires_auth
+@admin_only
 def activeUsersL7D():
     chartdata=[]
     stats = Stat.objects().order_by('-date')
@@ -152,7 +152,7 @@ def activeUsersL7D():
 
 
 @app.route('/flags_to_process')
-@requires_auth
+@admin_only
 def flags_to_process():
     improvements = Improver.objects(processed=False).order_by('-date')
     return render_template("navigation/flags_to_process.html",
@@ -161,7 +161,7 @@ def flags_to_process():
 
 
 @app.route('/process_improvement/<improvement>')
-@requires_auth
+@admin_only
 def process_improvement(improvement):
     document = Improver.objects(id=improvement).first()
     document['processed'] = True
@@ -171,7 +171,7 @@ def process_improvement(improvement):
 
 
 @app.route('/prepa_users_evolution/<prep>')
-@requires_auth
+@admin_only
 def prepa_users_evolution(prep):
     chartdata=[]
     stats = Stat.objects().order_by('-date')
@@ -188,7 +188,7 @@ def prepa_users_evolution(prep):
 
 
 @app.route('/exercices')
-@requires_auth
+@admin_only
 def exercices_l0():
     return render_template("navigation/exercices_level0.html",
         title = 'Exercices',
@@ -199,7 +199,7 @@ def exercices_l0():
 #function appelée par le bouton de génération du json
 #attention, ne pas supprimer le decorateur pour que cela fonctionne
 @app.route('/generatejson/', methods = ['GET'])
-@requires_auth
+@admin_only
 def generate_json():
     output = []
     exos = Exo.objects()
@@ -231,7 +231,7 @@ def generate_json():
 
 
 @app.route('/exercices/<part>')
-@requires_auth
+@admin_only
 def exercices_l1(part):
     return render_template("navigation/exercices_level1.html",
         title = 'Exercices',
@@ -241,7 +241,7 @@ def exercices_l1(part):
 
 
 @app.route('/exercices/<part>/<chapter>')
-@requires_auth
+@admin_only
 def exercices_l2(part, chapter):
     return render_template("navigation/exercices_level2.html",
         title = 'Exercices',
@@ -252,7 +252,7 @@ def exercices_l2(part, chapter):
 
 
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
-@requires_auth
+@admin_only
 def exo_edit_content(exo_id):
     document = Exo.objects(id=exo_id).first() #returns None if no result
 
@@ -305,7 +305,7 @@ def exo_edit_content(exo_id):
 
 
 @app.route('/new_exo', methods = ['GET', 'POST'])
-@requires_auth
+@admin_only
 def new_exo():
     form = ExoEditForm()
     if form.validate_on_submit():
@@ -425,3 +425,13 @@ def API_list_of_exos(part,chapter):
 def test():
     docs = fetch_last_stats()
     return json.dumps(docs["platform"])
+
+
+
+###############################################################################
+#
+#       interface profs
+#
+###############################################################################
+
+
