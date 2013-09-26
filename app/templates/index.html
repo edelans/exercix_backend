@@ -81,6 +81,10 @@
 
 <script >
 $(function () {
+    Highcharts.setOptions({
+     colors: ['#FF8F00', '#FF7518', '#B7410E', '#FF6700', '#FF8C69', '#CBA135', '#FAD6A5',      '#F94D00', '#F28500', '#F88379']
+    });
+
     // Build the chart of filieres
         $('#piechart').highcharts({
             chart: {
