@@ -43,6 +43,12 @@
 {% extends "base.html" %}
 {% block content %}
 
+<div class="row">
+  <div class="span10 offset1">
+    <div id="chart1" style="width:100%; margin: 0 auto"></div>
+  </div>
+</div>
+
 
 <div class="row">
   <div class="span12"><br><br><br></div>
@@ -80,7 +86,7 @@
       </dd>
     </dl>
 
-    <div id="edit_theme" class="collapse"> 
+    <div id="edit_theme" class="collapse">
       <hr>
 
         <div style="display:none;">
@@ -124,7 +130,7 @@
       <dd>{{exo_data.school}}</dd>
     </dl>
 
-    <div id="edit_id" class="collapse"> 
+    <div id="edit_id" class="collapse">
       <hr>
 
 
@@ -151,6 +157,39 @@
   <div class="span12"><br><br><br></div>
 </div>
 
+<div class="row">
+  <div class="span12">
+    <h2>Flags à traiter pour cette exo:</h2>
+
+<script >
+  $(function() {
+    $("table").tablesorter();
+  });
+</script>
+
+    <table class="table table-condensed table-hover tablesorter" >
+      <thead>
+        <tr>
+          <th>date</th>
+          <th>message</th>
+          <th>process</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if improvements.count() > 0 %}
+          {% for improvement in improvements %}
+          <tr>
+            <td class=timestamp>{{improvement.date}}</a> </td>
+            <td>{{improvement.msg}}</td>
+            <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="icon-remove-circle"></i></a></td>
+          </tr>
+          {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
 
 
 <div class="row">
@@ -159,8 +198,8 @@
 
   	<div class="hero-unit" id="question">
       <h2>Enoncé <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_enonce"><i class="icon-pencil"></i></a></h2>
-  		<div class="math">{{exo_data.question_html |safe}}</div> 
-      <div id="edit_enonce" class="collapse"> 
+  		<div class="math">{{exo_data.question_html |safe}}</div>
+      <div id="edit_enonce" class="collapse">
         <hr>
 
 	        {{form.hidden_tag()}}
@@ -173,8 +212,8 @@
 
   	<div class="hero-unit" id="hint">
       <h2>Indice <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_hint"><i class="icon-pencil"></i></a></h2>
-      <div class="math">{{exo_data.hint |safe}}</div> 
-      <div id="edit_hint" class="collapse"> 
+      <div class="math">{{exo_data.hint |safe}}</div>
+      <div id="edit_hint" class="collapse">
         <hr>
 
 	        {{form.hidden_tag()}}
@@ -188,7 +227,7 @@
   	<div class="hero-unit" id="solution">
       <h2>Correction  <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_solution"><i class="icon-pencil"></i></a></h2>
       <div class="math">{{exo_data.solution_html |safe}}</div>
-      <div id="edit_solution" class="collapse"> 
+      <div id="edit_solution" class="collapse">
         <hr>
 
 	        {{form.hidden_tag()}}
@@ -214,6 +253,53 @@ MathJax.Hub.Config({
 });
 </script>
 <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+<script>
+$(function () {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'datetime',
+            },
+            yAxis: {
+                title: {
+                    text: 'Count'
+                },
+                min: -0.5,
+                minRange: 4
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y;
+                }
+            },
+            series: [{
+                name: 'nombre de vues',
+                data: {{chartdata}},
+                color: 'green'
+            }]
+        });
+    });
+
+</script>
+
+<script>
+$(document).ready(function(){
+    $('.timestamp').each(function(){
+        var unix_timestamp = $(this).html()
+        var date = new Date(unix_timestamp*1);
+        var converted = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
+        $(this).html(converted)
+    });
+});
+</script>
 
 {% endblock %}
 

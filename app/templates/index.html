@@ -12,6 +12,9 @@
   		<h3>Statistiques d'utilisation de l'appli Exercix-Lite</h3>
 		    <p>Statistiques du: {{date}}</p>
         <p><a href={{ url_for('users_evolution')}}>Nombre d'utilisateurs (adresses mail uniques)</a>: {{nbusers}}</p>
+        <p><a href={{ url_for('viewsL7D_evolution')}}>Nombre d'exos vus sur les 7 derniers jours</a>: {{nbviewsL7D}}</p>
+        <p><a href={{ url_for('flags_to_process')}}>Nombre de flags à traiter</a>: {{nbFlagsToProcess}} / {{nbFlagsTotal}} ({{proportionFlagsToProcess}}%) </p>
+        <p><a href={{ url_for('activeUsersL7D')}}>Nombre d'utilisateurs actifs sur les 7 derniers jours</a>: {{activeUsersL7D}} </p>
   </div>
 </div>
 
@@ -36,27 +39,49 @@
 </script>
     <table class="table table-condensed table-hover tablesorter" >
       <thead>
-    <tr>
-  <th>Etablissement</th>
-  <th>Nombre d'utilisateurs</th>
-</tr>
-</thead>
-<tbody>
-{% for prepa in prepas %}
-<tr>
-  <td><a href={{ url_for('prepa_users_evolution', prep=prepa)}}>{{prepa}}</a> </td>
-  <td>{{prepas[prepa]}}</td>
-</tr>
-{% endfor %}
-</tbody>
-</table>
+        <tr>
+          <th>Etablissement</th>
+          <th>Nombre d'utilisateurs</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for prepa in prepas %}
+        <tr>
+          <td><a href={{ url_for('prepa_users_evolution', prep=prepa)}}>{{prepa}}</a> </td>
+          <td>{{prepas[prepa]}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
+
+<div class="row">
+  <div class="span4">
+      <h4>Les plateformes d'origines:</h4>
+    <div id="piechart_platforms" style="width:100%; margin: 0 auto"></div>
+  </div>
+
+  <div class="span4">
+      <h4>Les versions d'android:</h4>
+    <div id="piechart_android" style="width:100%; margin: 0 auto"></div>
+  </div>
+
+  <div class="span4">
+      <h4>Les versions d'iOS:</h4>
+    <div id="piechart_ios" style="width:100%; margin: 0 auto"></div>
+  </div>
+</div>
+
+<div class="row">
+
+</div>
+
 
 
 <script >
 $(function () {
-    // Build the chart
+    // Build the chart of filieres
         $('#piechart').highcharts({
             chart: {
                 plotBackgroundColor: null,
@@ -89,6 +114,110 @@ $(function () {
                 data: {{rep_fil |safe}}
             }]
         });
+
+// Build the chart of platforms
+        $('#piechart_platforms').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(1) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Pourcentage d\'utilisateur',
+                data: {{rep_platforms |safe}}
+            }]
+        });
+
+
+// Build the chart of android versions
+        $('#piechart_android').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(1) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Pourcentage d\'utilisateur',
+                data: {{rep_android |safe}}
+            }]
+        });
+
+// Build the chart of ios versions
+        $('#piechart_ios').highcharts({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        color: '#000000',
+                        connectorColor: '#000000',
+                        formatter: function() {
+                            return '<b>'+ this.point.name +'</b>: '+ this.percentage.toFixed(1) +' %';
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Pourcentage d\'utilisateur',
+                data: {{rep_ios |safe}}
+            }]
+        });
+
     });
 </script>
 

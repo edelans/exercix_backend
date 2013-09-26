@@ -24,3 +24,14 @@
   font-family: 'LM';
   font-weight: normal
 }
+
+.paragraph-number {
+  display: inline-block;
+  padding: 2px;
+  border: 1px solid;
+  border-radius: 100px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 24px;
+}

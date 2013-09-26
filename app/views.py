@@ -61,7 +61,7 @@ def page_not_found(e):
 
 #############################################################
 #
-#       Navigation
+#       routing
 #
 #############################################################
 
@@ -71,7 +71,17 @@ def page_not_found(e):
 def index():
     stats = fetch_last_stats()
     rep_fil = stats["repartition_filiere"]
-    l=[[str(x),rep_fil[x]] for x in rep_fil]
+    rep_os = stats["platform"]
+    nbFlagsToProcess = Improver.objects(processed=False).count()
+    nbFlagsTotal     = Improver.objects().count()
+    proportionFlagsToProcess = int(100*nbFlagsToProcess/nbFlagsTotal)
+    activeUsersL7D = stats["activeUsersL7D"]
+
+
+    list_fil         =[[str(x),rep_fil[x]] for x in rep_fil]
+    list_platform    = [['Android',sum(rep_os['android'].values())], ['iOS',sum(rep_os['ios'].values())]]
+    list_ver_android = [[str(x).replace('p','.'),rep_os['android'][x]] for x in rep_os['android']]
+    list_ver_ios     = [[str(x).replace('p','.'),rep_os['ios'][x]] for x in rep_os['ios']]
     # querying an empty database triggers a bug, so before doing it, we check:
     if len(Exo.objects)>0:
         operations_data =[{
@@ -89,8 +99,16 @@ def index():
         title           = 'Dashboard',
         date            = stats["date"].strftime('%d/%m/%Y'),
         nbusers         = stats["nbusers"],
-        rep_fil         = l,
-        prepas          = stats["prepas_users"])
+        nbviewsL7D      = stats["nbviewsL7D"],
+        rep_fil         = list_fil,
+        prepas          = stats["prepas_users"],
+        rep_platforms   = list_platform,
+        rep_android     = list_ver_android,
+        rep_ios         = list_ver_ios,
+        nbFlagsToProcess= nbFlagsToProcess,
+        nbFlagsTotal    = nbFlagsTotal,
+        proportionFlagsToProcess= proportionFlagsToProcess,
+        activeUsersL7D  = activeUsersL7D)
 
 
 
@@ -104,6 +122,52 @@ def users_evolution():
     print chartdata
     return render_template("navigation/users_evolution.html",
         chartdata = chartdata)
+
+
+
+@app.route('/viewsL7D_evolution')
+@requires_auth
+def viewsL7D_evolution():
+    chartdata=[]
+    stats = Stat.objects().order_by('-date')
+    for stat in stats:
+        if "nbviewsL7D" in stat:
+            chartdata.append([js_timestamp_from_datetime(stat["date"]), stat["nbviewsL7D"]])
+    return render_template("navigation/viewsL7D_evolution.html",
+        chartdata = chartdata)
+
+
+
+@app.route('/activeUsersL7D')
+@requires_auth
+def activeUsersL7D():
+    chartdata=[]
+    stats = Stat.objects().order_by('-date')
+    for stat in stats:
+        if "activeUsersL7D" in stat:
+            chartdata.append([js_timestamp_from_datetime(stat["date"]), stat["activeUsersL7D"]])
+    return render_template("navigation/activeUsersL7D.html",
+        chartdata = chartdata)
+
+
+
+@app.route('/flags_to_process')
+@requires_auth
+def flags_to_process():
+    improvements = Improver.objects(processed=False).order_by('-date')
+    return render_template("navigation/flags_to_process.html",
+        improvements= improvements)
+
+
+
+@app.route('/process_improvement/<improvement>')
+@requires_auth
+def process_improvement(improvement):
+    document = Improver.objects(id=improvement).first()
+    document['processed'] = True
+    document.save()
+    return flags_to_process()
+
 
 
 @app.route('/prepa_users_evolution/<prep>')
@@ -194,6 +258,15 @@ def exercices_l2(part, chapter):
 def exo_edit_content(exo_id):
     document = Exo.objects(id=exo_id).first() #returns None if no result
 
+    stats = fetch_last_stats()
+    chartdata=[]
+    try:
+        chartdata=hc_readify(stats["views"][exo_id],100)
+    except:
+        pass
+
+    improvements = Improver.objects(Q(processed=False) & Q(exoid=exo_id)).order_by('-date')
+
     # en cas de mise a jour de l'exo:
     form = ExoEditForm()
     if form.is_submitted():
@@ -213,7 +286,7 @@ def exo_edit_content(exo_id):
             document['solution_html'] = latex_to_html(form.solution.data)
             document.save()
             flash('Succes! L\'exercice a été mis à jour'.decode('utf8'),'success')
-            return redirect(url_for('exo_edit_content', exo_id=exo_id))
+            return redirect(url_for('exo_edit_content', exo_id=exo_id, chartdata = chartdata, improvements=improvements))
         else:
             flash('ATTENTION! La mise à jour ne peut être effectuée car des données fournies sont invalides'.decode('utf8'),'error')
 
@@ -224,7 +297,9 @@ def exo_edit_content(exo_id):
             title = 'Informations sur l\'exercice',
             exo_id = exo_id,
             exo_data = document,
-            form =form
+            form =form,
+            chartdata = chartdata,
+            improvements=improvements
             )
 
     else: # en cas de presence vestiges de la phase d'initialisation de la bdd
@@ -351,6 +426,4 @@ def API_list_of_exos(part,chapter):
 @app.route('/test')
 def test():
     docs = fetch_last_stats()
-    rep_fil = docs["repartition_filiere"]
-    l=[[str(x),rep_fil[x]] for x in rep_fil]
-    return json.dumps(l) #
+    return json.dumps(docs["platform"])

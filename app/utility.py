@@ -17,7 +17,7 @@ from mongoengine.queryset import Q
 
 
 def fetch_last_stats():
-    stat = Stat.objects().order_by('-date').first()  #(to indicate a descending sort, i.e. highest first).
+    stat = Stat.objects().order_by('-date').first()  #('-'' is used to indicate a descending sort, i.e. highest first).
     return stat
 
 
@@ -141,7 +141,8 @@ def hc_readify(list_of_timestamps, n):
     LnD = list_days_LnD(n)
     output = []
     for i in range(1, n+1):
-        output.append([js_timestamp_from_datetime(LnD[-i]), occurences[-i]])
+        if occurences[-i] !=0:
+            output.append([js_timestamp_from_datetime(LnD[-i]), occurences[-i]])
     return output
 
 
@@ -202,11 +203,12 @@ def replfunc1(matchobj):
 """
 
 cleaning = [
-    (r'^([abcdef]?)\)'                                     , r'<br><br><div class=\"paragraph-number\">\1</div>'),
+    (r'^([abcdef]?)\)'                                     , r'<br><br><div class="paragraph-number">\1</div>'),
     (r'\\begin\{enumerate\}((.|\n|\r)*?)\\end\{enumerate\}'     , r'<ol>\1</ol>'),
     (r'\\begin\{itemize\}((.|\n|\r)*?)\\end\{itemize\}'         , r'<ul>\1</ul>'),
     (r'\\item\s*\[([^\]]*)\]'                                   , r'<br>$1&nbsp;'),
     (r'\\item'                                                  , r'\r\n<li>'),
+    (r'~'                                                       , r'&nbsp;'),   #remplace les tildes (espace insécable en Latex) ar un espace insécable en html
     (r'(\\begin{array}(?:[^\\]+|\\(?!end{array}))*\\end{array})|(\\begin{cases}(?:[^\\]+|\\(?!end{cases}))*\\end{cases})|\\\\', replfunc1)  #pour remplacer les "//" (sauts de ligne) mais seulement lorsqu'ils ne sont pas à l'interieur des environnements array et cases pour lesquels ils ont une signification.
     ]
 

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"con",
+				"connection"
+			],
+			[
 				"stats",
 				"stats"
 			],
@@ -71,13 +75,121 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/views.py",
+			"settings":
+			{
+				"buffer_size": 14054,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "stats/statanalyse2.py",
+			"settings":
+			{
+				"buffer_size": 3226,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/index.html",
+			"settings":
+			{
+				"buffer_size": 6598,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/navigation/activeUsersL7D.html",
+			"settings":
+			{
+				"buffer_size": 1225,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/edition/exo_edit_content.html",
+			"settings":
+			{
+				"buffer_size": 9186,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/navigation/exercices_level2.html",
+			"settings":
+			{
+				"buffer_size": 796,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/navigation/flags_to_process.html",
+			"settings":
+			{
+				"buffer_size": 1341,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models.py",
+			"settings":
+			{
+				"buffer_size": 1855,
+				"line_ending": "Unix"
+			}
+		}
 	],
-	"build_system": "",
+	"build_system": "Packages/Python/Python.sublime-build",
 	"command_palette":
 	{
-		"height": 348.0,
+		"height": 392.0,
 		"selected_items":
 		[
+			[
+				"lint",
+				"JSLint"
+			],
+			[
+				"Package Control: ",
+				"Package Control: List Packages"
+			],
+			[
+				"package contr",
+				"Package Control: List Packages"
+			],
+			[
+				"Package Control:",
+				"Package Control: List Packages"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"tidy",
+				"Tidy HTML"
+			],
+			[
+				"jsli",
+				"JSLint"
+			],
+			[
+				"jslint",
+				"JSLint"
+			],
+			[
+				"tidt",
+				"Tidy HTML"
+			],
+			[
+				"html",
+				"TidyHTML"
+			],
+			[
+				"Package Control: instal",
+				"Package Control: Install Package"
+			],
 			[
 				"Snippet: ",
 				"Snippet: if __name__ == '__main__'"
@@ -97,10 +209,6 @@
 			[
 				"snipp",
 				"Snippet: Try/Except/Finally"
-			],
-			[
-				"Package Control: ",
-				"Package Control: Install Package"
 			],
 			[
 				"Package Control: inst",
@@ -139,7 +247,7 @@
 				"Package Control: Upgrade Package"
 			]
 		],
-		"width": 571.0
+		"width": 593.0
 	},
 	"console":
 	{
@@ -156,12 +264,74 @@
 	},
 	"file_history":
 	[
-		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/users_evolution.html",
+		"/home/edelans/github/exercix_backend/app/models.py",
 		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/flags_to_process.html",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/viewsL7D_evolution.html",
+		"/home/edelans/.config/sublime-text-2/Packages/JSLint/JSLint.sublime-build",
+		"/home/edelans/github/exercix_backend/stats/statanalyse.py",
+		"/home/edelans/phonegap/exercix/www/launch.html",
+		"/home/edelans/phonegap/exercix/www/reload.html",
+		"/home/edelans/phonegap/exercix/www/index.html",
+		"/home/edelans/.config/sublime-text-2/Packages/JsFormat/README.md",
+		"/home/edelans/phonegap/exercix/www/chapter.html",
+		"/home/edelans/phonegap/exercix/www/exo.html",
+		"/home/edelans/github/exercix_phonegap/www/launch.html",
+		"/home/edelans/github/exercix_phonegap/www/index.html",
+		"/home/edelans/github/exercix_phonegap/www/reload.html",
+		"/home/edelans/github/exercix_phonegap/www/chapter.html",
+		"/home/edelans/phonegap/exercix/www/data.json",
+		"/home/edelans/.config/sublime-text-2/Packages/Javascript Beautify/README.md",
+		"/home/edelans/.config/sublime-text-2/Packages/JavaScript Refactor/README.md",
+		"/home/edelans/github/exercix_phonegap/www/about.html",
+		"/home/edelans/phonegap/exercix/www/spec.html",
+		"/home/edelans/phonegap/exercix/platforms/android/src/net/exercix/HelloCordova.java",
+		"/home/edelans/phonegap/exercix/platforms/android/build.xml",
+		"/home/edelans/phonegap/exercix/platforms/android/res/xml/config.xml",
+		"/home/edelans/phonegap/exercix/platforms/android/assets/www/litegap-example.html",
+		"/home/edelans/github/exercix_phonegap/www/spec.html",
+		"/home/edelans/phonegap/exercix/www/config.xml",
+		"/home/edelans/phonegap/exercix/www/cordova_plugins.js",
+		"/home/edelans/phonegap/exercix/www/js/index.js",
+		"/home/edelans/github/exercix_phonegap/www/js/index.js",
+		"/home/edelans/github/exercix_phonegap/www/config.xml",
+		"/home/edelans/phonegap/Helloworld/www/css/index.css",
+		"/home/edelans/phonegap/Helloworld/platforms/android/AndroidManifest.xml",
+		"/home/edelans/phonegap/Helloworld/platforms/android/res/xml/config.xml",
+		"/home/edelans/phonegap/Helloworld/www/js/index.js",
+		"/home/edelans/phonegap/Helloworld/www/index.html",
+		"/home/edelans/my-app/plugins/android.json",
+		"/home/edelans/github/PhoneGapBasicTemplate/src/index.html",
+		"/home/edelans/my-test-app/platforms/android/AndroidManifest.xml",
+		"/home/edelans/my-test-app/www/css/index.css",
+		"/home/edelans/my-test-app/www/index.html",
+		"/home/edelans/my-test-app/platforms/android/res/xml/config.xml",
+		"/home/edelans/my-test-app/www/js/index.js",
+		"/home/edelans/my-test-app/www/spec/index.js",
+		"/home/edelans/my-test-app/www/config.xml",
+		"/home/edelans/my-test-app/www/spec.html",
+		"/home/edelans/my-app/platforms/android/AndroidManifest.xml",
+		"/home/edelans/my-app/platforms/android/res/xml/config.xml",
+		"/home/edelans/my-app/platforms/android/cordova/version",
+		"/home/edelans/my-app/www/spec.html",
+		"/home/edelans/my-app/platforms/android/src/com/phonegap/hello_world/HelloWorld.java",
+		"/home/edelans/github/PhoneGapBasicTemplate/android-project/src/com/example/PhoneGapTemplateAndroid/PhoneGapTemplateAndroidActivity.java",
+		"/home/edelans/workspace-eclipse/applitest/src/com/example/applitest/MainActivity.java",
+		"/home/edelans/github/PhoneGapBasicTemplate/android-project/AndroidManifest.xml",
+		"/home/edelans/github/PhoneGapBasicTemplate/android-project/proguard-project.txt",
+		"/home/edelans/Desktop/data.json",
+		"/home/edelans/github/exercix_backend/app/static/css/math.css",
+		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/templates/base.html",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/import db/mpddl-import-script.py",
+		"/home/edelans/github/exercix_backend/import db/test2",
+		"/home/edelans/github/exercix_backend/import db/extended_jsonmpddl50.json",
 		"/home/edelans/Downloads/lemniscate0.tex",
 		"/home/edelans/Desktop/grapher-lemniscate.svg",
 		"/home/edelans/Downloads/save (1).svg",
-		"/home/edelans/Desktop/data.json",
 		"/home/edelans/Desktop/data (copy).json",
 		"/home/edelans/Downloads/save.svg",
 		"/home/edelans/github/exercix_backend/import db/images/Cor0292100001.base64.bin",
@@ -173,24 +343,18 @@
 		"/home/edelans/github/exercix_vitrine/about.html",
 		"/home/edelans/github/exercix_vitrine/index.html",
 		"/home/edelans/Desktop/dataaa.json",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level1.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level0.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/prepa_users_evolution.html",
-		"/home/edelans/github/exercix_backend/app/templates/navigation/users_evolution.html",
 		"/home/edelans/github/exercix_backend/app/templates/index.html",
 		"/home/edelans/github/exercix_backend/config.py",
-		"/home/edelans/github/exercix_backend/app/models.py",
-		"/home/edelans/github/exercix_backend/stats/statanalyse.py",
 		"/home/edelans/github/exercix_backend/app/templates/login.html",
 		"/home/edelans/github/exercix_backend/.gitignore",
 		"/home/edelans/github/exercix_backend/run_prod.py",
 		"/home/edelans/github/exercix_backend/stats/statanalyse2.py",
 		"/home/edelans/github/exercix_backend/run.py",
-		"/home/edelans/github/exercix_backend/app/templates/base.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level2.html",
 		"/home/edelans/github/exercix_backend/app/templates/errors/404.html",
-		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
 		"/home/edelans/github/exercix_backend_light/app/views.py",
 		"/home/edelans/github/exercix_backend/app/forms.py",
@@ -198,10 +362,8 @@
 		"/home/edelans/github/exercix_backend_light/app/utility.py",
 		"/home/edelans/github/exercix_backend_light/app/models.py",
 		"/etc/default/locale",
-		"/home/edelans/github/exercix_backend/import db/mpddl-import-script.py",
 		"/home/edelans/github/exercix_backend/import db/utility.py",
 		"/home/edelans/Downloads/base64.bin",
-		"/home/edelans/github/exercix_backend/import db/extended_jsonmpddl50.json",
 		"/home/edelans/github/exercix_backend/import db/test.json",
 		"/home/edelans/github/exercix_backend/import db/export/remotempddl.json",
 		"/home/edelans/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
@@ -229,61 +391,7 @@
 		"/home/edelans/Desktop/index.css",
 		"/home/edelans/Desktop/index.less",
 		"/home/edelans/github/exercix_vitrine/index.less",
-		"/home/edelans/github/exercix_vitrine/index.css",
-		"/home/edelans/Desktop/index.html",
-		"/home/edelans/github/exercix_vitrine/.gitignore",
-		"/var/log/mongodb/mongodb.log",
-		"/home/edelans/.android/adb_usb.ini",
-		"/home/edelans/github/exercix_backend/requirements.txt",
-		"/home/edelans/requirements.txt",
-		"/home/edelans/github/exercix_backend/app/templates/security/login_user.html",
-		"/home/edelans/github/exercix_backend/app/templates/social/profile.html",
-		"/home/edelans/.bashrc",
-		"/usr/lib/jvm/file.",
-		"/etc/bash.bashrc",
-		"/home/edelans/github/exercix_backend/app/templates/security/base_security.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/register_user.html",
-		"/home/edelans/github/exercix_backend/app/templates/legal/CGU.html",
-		"/home/edelans/src/tables/README.txt",
-		"/home/edelans/src/pip-delete-this-directory.txt",
-		"/home/edelans/libpeerconnection.log",
-		"/home/edelans/github/exercix_backend/app/templates/security/change_password.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/forgot_password.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/post_register.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/profile_confirmed.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/reset_password.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/send_confirmation.html",
-		"/home/edelans/github/products-WB0D8SH9P/index.php",
-		"/home/edelans/github/exercix_backend/app/templates/macros.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/login_instructions.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/login_instructions.txt",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/welcome.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/welcome.txt",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/reset_notice.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/reset_notice.txt",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/reset_instructions.txt",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/reset_instructions.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/change_notice.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/change_notice.txt",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/confirmation_instructions.html",
-		"/home/edelans/github/exercix_backend/app/templates/security/email/confirmation_instructions.txt",
-		"/home/edelans/github/futon4mongo/README.rdoc",
-		"/home/edelans/github/exercix_backend/app/templates/macro.html",
-		"/home/edelans/github/exercix_backend/app/static/js/apollo.js",
-		"/home/edelans/.cache/.fr-Efho7a/index.php",
-		"/home/edelans/github/exercix_backend/app/static/css/apollo.css",
-		"/home/edelans/github/products-WB0D8SH9P/js/main.js",
-		"/home/edelans/github/products-WB0D8SH9P/sass/main.scss",
-		"/home/edelans/applications/plugins/org.jruby_1.6.4.1331328108/lib/ruby/1.8/wsdl/xmlSchema/pattern.rb",
-		"/home/edelans/github/products-WB0D8SH9P/config.rb",
-		"/home/edelans/.cache/.fr-ZLJqDs/config.rb",
-		"/home/edelans/github/exercix_backend/app/templates/security/send_login.html",
-		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
-		"/media/Media/Linux/Mongodb/mongodb.log",
-		"/home/edelans/flaskapp/app/routes.py",
-		"/etc/mongodb.conf",
-		"/etc/logrotate.d/mongod",
-		"/home/edelans/github/exercix_backend/app/templates/exo_edit_content.html"
+		"/home/edelans/github/exercix_vitrine/index.css"
 	],
 	"find":
 	{
@@ -291,16 +399,64 @@
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
 		]
 	},
 	"find_state":
 	{
-		"case_sensitive": false,
+		"case_sensitive": true,
 		"find_history":
 		[
+			"improvements",
+			" Q",
+			"Q",
+			"Q ",
+			"improvements",
+			"process_improvement",
+			"process_improvementprocess_improvementprocess_improvement",
+			"new",
+			"impro",
+			"chart1",
+			"edit",
+			"dt",
+			"now",
+			"data",
+			"Handlebars",
+			"template-body",
+			"function(",
+			"if(",
+			"){",
+			"cordova_plugins",
+			"loading-screen",
+			"applaunchCount",
+			"getJSON",
+			"getJSONRemoteFile",
+			"Une détermination angulaire",
+			"147f8",
+			"Il y a une demi-tangente en",
+			"~",
+			"&nbsp; ",
+			" &nbsp; ",
+			"&nbsp;",
+			"~",
+			"\\\\r\\\\nc\\)",
+			"\\\\r\\\\n([abcdef]?)\\)",
+			"\\\"a\\)",
+			"\\\\r\\\\n([abcdef]?)\\)",
+			"\\\"a\\)",
+			"import app",
+			"app ",
+			"\\\"a\\)",
+			"\\\"a)",
+			"\"a)",
+			"(?<=(\\\\r\\\\n))[abcdef]\\)",
+			"(?<=(\\\\r\\\\n))(?<=(\\\"))[abcdef]\\)",
+			"(?<=(\\\\r\\\\n))(?<=(\"))[abcdef]\\)",
+			"(?<=(\\\\r\\\\n))(?<=\")[abcdef]\\)",
+			"(?<(\\\\r\\\\n))[abcdef]\\)",
+			"\\\\r\\\\n[abcdef]\\)",
 			"img",
 			"\"",
 			"\\\\right)$$",
@@ -380,55 +536,7 @@
 			"(\\.|\\t)*\\n*\",",
 			"\\.*\\n*\",",
 			"\\.\\n*\",",
-			"\\t",
-			"(?<!(\\[\\n\\{))(?<!(,\\{))(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
-			"\\n",
-			"(?<!(\"))(?<!(\",))\\n",
-			"(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
-			"(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
-			"(?<!(\\{))(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
-			"(?<!(\\n,\\{)(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
-			"(?<!(\\[))(?<!(\\]))(?<!(\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
-			"(?<!(\\[))(?<!(\\]))(?<!(\"\\n\\{))(?<!(\"\\n\\}))(?<!(\"))(?<!(\",))\\n",
-			"(?<!(\\[))(?<!(\\]))(?<!(\\{))(?<!(\\}))(?<!(\"))(?<!(\",))\\n",
-			"(?<!(\\{))(?<!(\\}))(?<!(\"))(?<!(\",))\\n",
-			"(?<!\",)\\n",
-			"(?<!\",?)\\n",
-			"\\n?(?<=\",)",
-			"\\n",
-			"[^,\\}]\\n[^(\"|\\})]",
-			".\\n\",",
-			"\\\\",
-			"\",\\n\\}",
-			".\\n+\",",
-			"\",\\n\\}",
-			",\\n",
-			".\\n+\",",
-			"\\",
-			":",
-			"@app.route('/exercices')",
-			"/exercices",
-			"_l1",
-			"/exercices",
-			"l1 ",
-			"level1",
-			"},",
-			",}",
-			"}",
-			"},",
-			"}",
-			"\"question",
-			"\\n",
-			"school",
-			"prehilbertiens",
-			"Séries de fonctions",
-			"Séries",
-			"Series",
-			"Series de Fonctions",
-			"Séries de Fonctions",
-			"Polynomes",
-			"Algebre",
-			"new_exo"
+			"\\t"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -436,6 +544,13 @@
 		"regex": false,
 		"replace_history":
 		[
+			"datetime",
+			"function (",
+			"if (",
+			") {",
+			"&nbsp;",
+			"&nbsp; ",
+			" &nbsp; ",
 			"\\\"",
 			"\\\\right) $$",
 			",\\n",
@@ -522,8 +637,231 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/views.py",
+					"settings":
+					{
+						"buffer_size": 14054,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4699,
+								4699
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2040.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "stats/statanalyse2.py",
+					"settings":
+					{
+						"buffer_size": 3226,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2532,
+								2532
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1428.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/templates/index.html",
+					"settings":
+					{
+						"buffer_size": 6598,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								788,
+								788
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/templates/navigation/activeUsersL7D.html",
+					"settings":
+					{
+						"buffer_size": 1225,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								744,
+								744
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/templates/edition/exo_edit_content.html",
+					"settings":
+					{
+						"buffer_size": 9186,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4887,
+								4887
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 2565.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/templates/navigation/exercices_level2.html",
+					"settings":
+					{
+						"buffer_size": 796,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								706,
+								706
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/templates/navigation/flags_to_process.html",
+					"settings":
+					{
+						"buffer_size": 1341,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1008,
+								1008
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 153.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/models.py",
+					"settings":
+					{
+						"buffer_size": 1855,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1539,
+								1539
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 357.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -560,7 +898,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 112.0
+		"height": 123.0
 	},
 	"output.git":
 	{
@@ -619,6 +957,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 121.0,
+	"side_bar_width": 179.0,
 	"status_bar_visible": true
 }

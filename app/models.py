@@ -44,6 +44,19 @@ class Stat(db.Document):
     nbusers             = db.IntField()
     repartition_filiere = db.DictField()
     prepas_users        = db.DictField()
+    platform            = db.DictField()
+    views               = db.DictField()
+    nbviewsL7D          = db.IntField()
+    activeUsersL7D      = db.IntField()
     meta = {
         'collection': 'stats'
+    }
+
+class Improver(db.Document):
+    date                = db.IntField()
+    msg                 = db.StringField(max_length=2500)
+    exoid               = db.StringField()
+    processed           = db.BooleanField()
+    meta = {
+        'collection': 'improver'
     }
