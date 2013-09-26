@@ -173,8 +173,6 @@ def process_improvement(improvement):
 @app.route('/prepa_users_evolution/<prep>')
 @requires_auth
 def prepa_users_evolution(prep):
-    print 'affichage de prep:'
-    print prep
     chartdata=[]
     stats = Stat.objects().order_by('-date')
     for stat in stats:
