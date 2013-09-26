@@ -2,13 +2,13 @@
 {% block content %}
 
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
   	<br>
   </div>
 </div>
 
 <div class="row">
-  <div class="span8 offset2">
+  <div class="col-md-8 col-md-offset-2">
   		<h3>Statistiques d'utilisation de l'appli Exercix-Lite</h3>
 		    <p>Statistiques du: {{date}}</p>
         <p><a href={{ url_for('users_evolution')}}>Nombre d'utilisateurs (adresses mail uniques)</a>: {{nbusers}}</p>
@@ -20,7 +20,7 @@
 
 
 <div class="row">
-  <div class="span8 offset2">
+  <div class="col-md-8 col-md-offset-2">
       <h4>Les filières d'origines:</h4>
     <div id="piechart" style="width:100%; margin: 0 auto"></div>
   </div>
@@ -30,7 +30,7 @@
 
 
 <div class="row">
-  <div class="span8 offset2">
+  <div class="col-md-8 col-md-offset-2">
     <h4>Les prepas d'origines:</h4>
 <script >
   $(function() {
@@ -57,17 +57,17 @@
 </div>
 
 <div class="row">
-  <div class="span4">
+  <div class="col-md-4">
       <h4>Les plateformes d'origines:</h4>
     <div id="piechart_platforms" style="width:100%; margin: 0 auto"></div>
   </div>
 
-  <div class="span4">
+  <div class="col-md-4">
       <h4>Les versions d'android:</h4>
     <div id="piechart_android" style="width:100%; margin: 0 auto"></div>
   </div>
 
-  <div class="span4">
+  <div class="col-md-4">
       <h4>Les versions d'iOS:</h4>
     <div id="piechart_ios" style="width:100%; margin: 0 auto"></div>
   </div>

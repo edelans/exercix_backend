@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
     <br>
   </div>
 </div>
@@ -10,7 +10,7 @@
 
 
 <div class="row">
-  <div class="span10 offset1">
+  <div class="col-md-10 col-md-offset-1">
     <h4>Voici les flags à traiter:</h4>
 
 <script >
@@ -32,9 +32,9 @@
         {% for improvement in improvements %}
         <tr>
           <td class=timestamp>{{improvement.date}}</a> </td>
-          <td><a href={{ url_for('exo_edit_content', exo_id=improvement.exoid)}}><i class="icon-search"></i></a></td>
+          <td><a href={{ url_for('exo_edit_content', exo_id=improvement.exoid)}}><i class="glyphicon glyphicon-search"></i></a></td>
           <td>{{improvement.msg}}</td>
-          <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="icon-remove-circle"></i></a></td>
+          <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
         </tr>
         {% endfor %}
       </tbody>

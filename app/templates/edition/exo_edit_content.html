@@ -44,25 +44,25 @@
 {% block content %}
 
 <div class="row">
-  <div class="span10 offset1">
+  <div class="col-md-10 col-md-offset-1">
     <div id="chart1" style="width:100%; margin: 0 auto"></div>
   </div>
 </div>
 
 
 <div class="row">
-  <div class="span12"><br><br><br></div>
+  <div class="col-md-12"><br><br><br></div>
 </div>
 
 <div class="row">
 <form action="" method="post" name="form">
-  <div class="span6">
-  	<h2>Thème <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_theme"><i class="icon-pencil"></i></a></h2>
+  <div class="col-md-6">
+  	<h2>Thème <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_theme"><i class="glyphicon glyphicon-pencil"></i></a></h2>
   	<dl class="dl-horizontal">
       <dt>Filière</dt>
       <dd>
         {% for tag in exo_data.tracks %}
-          <span class="label">{{tag}}</span>
+          <span class="label label-default">{{tag}}</span>
         {% endfor %}
       </dd>
 
@@ -114,8 +114,8 @@
   </div>
 
 
-  <div class="span6">
-  <h2>Identification <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_id"><i class="icon-pencil"></i></a></h2>
+  <div class="col-md-6">
+  <h2>Identification <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_id"><i class="glyphicon glyphicon-pencil"></i></a></h2>
     <dl class="dl-horizontal">
       <dt>Id</dt>
       <dd>{{exo_data.id}}</dd>
@@ -154,11 +154,11 @@
 </div>
 
 <div class="row">
-  <div class="span12"><br><br><br></div>
+  <div class="col-md-12"><br><br><br></div>
 </div>
 
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
     <h2>Flags à traiter pour cette exo:</h2>
 
 <script >
@@ -181,7 +181,7 @@
           <tr>
             <td class=timestamp>{{improvement.date}}</a> </td>
             <td>{{improvement.msg}}</td>
-            <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="icon-remove-circle"></i></a></td>
+            <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
           </tr>
           {% endfor %}
         {% endif %}
@@ -193,11 +193,11 @@
 
 
 <div class="row">
-  <div class="span12">
+  <div class="col-md-12">
   	<h2>Contenu </h2>
 
-  	<div class="hero-unit" id="question">
-      <h2>Enoncé <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_enonce"><i class="icon-pencil"></i></a></h2>
+  	<div class="jumbotron" id="question">
+      <h2>Enoncé <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_enonce"><i class="glyphicon glyphicon-pencil"></i></a></h2>
   		<div class="math">{{exo_data.question_html |safe}}</div>
       <div id="edit_enonce" class="collapse">
         <hr>
@@ -205,13 +205,13 @@
 	        {{form.hidden_tag()}}
 	        <div style="display:none;">{{form.question.process_data(exo_data.question)}}</div>
 
-	        {{form_field(form.question, class="input-block-level", rows="10")}}
+	        {{form_field(form.question, class="form-control", rows="10")}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
   	</div>
 
-  	<div class="hero-unit" id="hint">
-      <h2>Indice <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_hint"><i class="icon-pencil"></i></a></h2>
+  	<div class="jumbotron" id="hint">
+      <h2>Indice <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_hint"><i class="glyphicon glyphicon-pencil"></i></a></h2>
       <div class="math">{{exo_data.hint |safe}}</div>
       <div id="edit_hint" class="collapse">
         <hr>
@@ -219,13 +219,13 @@
 	        {{form.hidden_tag()}}
 	        <!-- prefill textarea: -->
 	        <div style="display:none;">{{form.hint.process_data(exo_data.hint)}}</div>
-	        {{form_field(form.hint, class="input-block-level", rows="3")}}
+	        {{form_field(form.hint, class="form-control", rows="3")}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
   	</div>
 
-  	<div class="hero-unit" id="solution">
-      <h2>Correction  <a type="button" class="btn btn-mini btn-danger" data-toggle="collapse" data-target="#edit_solution"><i class="icon-pencil"></i></a></h2>
+  	<div class="jumbotron" id="solution">
+      <h2>Correction  <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_solution"><i class="glyphicon glyphicon-pencil"></i></a></h2>
       <div class="math">{{exo_data.solution_html |safe}}</div>
       <div id="edit_solution" class="collapse">
         <hr>
@@ -235,7 +235,7 @@
 	        <!-- prefill textarea: -->
 	        <div style="display:none;">{{form.solution.process_data(exo_data.solution) }}</div>
 
-	        {{form_field(form.solution, class="input-block-level", rows="20")}}
+	        {{form_field(form.solution, class="form-control", rows="20")}}
 	         <input class="btn btn-danger" type="submit" value="Enregistrer">
 
         </div>

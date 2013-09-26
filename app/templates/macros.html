@@ -19,7 +19,7 @@
                 </label>
             {% else %}
                 {% if field.type in ('TextField', 'TextAreaField', 'PasswordField', 'IntegerField', 'SelectField') %}
-                    {% set class_ = class_ + ' input-block-level' %}
+                    {% set class_ = class_ + ' form-control' %}
                 {% elif field.type == 'FileField' %}
                     {% set class_ = class_ + ' input-file' %}
                 {% endif %}
