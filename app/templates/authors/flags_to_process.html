@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-12">
+    <br>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <h4>Voici les flags à traiter:</h4>
+
+<script >
+  $(function() {
+    $("table").tablesorter();
+  });
+</script>
+
+    <table class="table table-condensed table-hover tablesorter" >
+      <thead>
+        <tr>
+          <th>date</th>
+          <th>exo id</th>
+          <th>message</th>
+          <th>process</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for improvement in improvements %}
+        <tr>
+          <td class=timestamp>{{improvement.date}}</a> </td>
+          <td><a href={{ url_for('exo_edit_content', exo_id=improvement.exoid)}}><i class="glyphicon glyphicon-search"></i></a></td>
+          <td>{{improvement.msg}}</td>
+          <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<script>
+$(document).ready(function(){
+    $('.timestamp').each(function(){
+        var unix_timestamp = $(this).html()
+        var date = new Date(unix_timestamp*1);
+        var converted = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
+        $(this).html(converted)
+    });
+});
+</script>
+
+
+{% endblock %}

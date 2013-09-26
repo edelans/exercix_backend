@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory, jsonify, request, Response
-from app import app, User, db
+from app import app, User, db, LoginForm, RegistrationForm
 from forms import *
 from models import *
 from utility import *
@@ -11,6 +11,7 @@ from mongoengine.queryset import Q
 import simplejson
 from functools import wraps
 
+from flask.ext import login
 
 #############################################################
 #
@@ -434,4 +435,45 @@ def test():
 #
 ###############################################################################
 
+@app.before_request
+def before_request():
+    g.user = login.current_user
 
+
+@app.route('/auteur')
+def auteur():
+    if not (g.user and g.user.is_authenticated()):
+        return redirect(url_for('login_view'))
+    return render_template('authors/index.html', user=login.current_user)
+
+
+@app.route('/login/', methods=('GET', 'POST'))
+def login_view():
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = form.get_user()
+        login.login_user(user)
+        return redirect(url_for('auteur'))
+
+    return render_template('authors/form.html', form=form)
+
+
+@app.route('/register/', methods=('GET', 'POST'))
+def register_view():
+    form = RegistrationForm(request.form)
+    if request.method == 'POST' and form.validate():
+        user = User()
+
+        form.populate_obj(user)
+        user.save()
+
+        login.login_user(user)
+        return redirect(url_for('auteur'))
+
+    return render_template('authors/form.html', form=form)
+
+
+@app.route('/logout/')
+def logout_view():
+    login.logout_user()
+    return redirect(url_for('auteur'))

@@ -1,0 +1,305 @@
+{% macro form_field(field) -%}
+    {% set with_label = kwargs.pop('with_label', False) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="control-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="control-label">
+                {{ field.label.text }}:
+            </label>
+        {% endif %}
+        <div class="controls">
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_, **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+                {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                    {% set class_ = class_ + ' input-xlarge' %}
+                {% elif field.type == 'FileField' %}
+                    {% set class_ = class_ + ' input-file' %}
+                {% endif %}
+                {{ field(class_=class_, placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+
+
+{% extends "base.html" %}
+{% block content %}
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+    <div id="chart1" style="width:100%; margin: 0 auto"></div>
+  </div>
+</div>
+
+
+<div class="row">
+  <div class="col-md-12"><br><br><br></div>
+</div>
+
+<div class="row">
+<form action="" method="post" name="form">
+  <div class="col-md-6">
+  	<h2>Thème <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_theme"><i class="glyphicon glyphicon-pencil"></i></a></h2>
+  	<dl class="dl-horizontal">
+      <dt>Filière</dt>
+      <dd>
+        {% for tag in exo_data.tracks %}
+          <span class="label label-default">{{tag}}</span>
+        {% endfor %}
+      </dd>
+
+      <dt>Categorie</dt>
+      <dd>{{exo_data.part}}</dd>
+
+      <dt>Chapitre</dt>
+      <dd>{{exo_data.chapter}}</dd>
+
+      <dt>Numéro</dt>
+      <dd>{{exo_data.number}}</dd>
+
+      <dt>Difficulté</dt>
+      <dd>{{exo_data.difficulty}}</dd>
+
+      <dt>Tags</dt>
+      <dd>
+          {% for tag in exo_data.tags %}
+            <span class="label label-info">{{tag}}</span>
+          {% endfor %}
+      </dd>
+    </dl>
+
+    <div id="edit_theme" class="collapse">
+      <hr>
+
+        <div style="display:none;">
+          {{form.tracks.process_data(exo_data.tracks)}}
+          {{form.part.process_data(exo_data.part)}}
+          {{form.chapter.process_data(exo_data.chapter)}}
+          {{form.difficulty.process_data(exo_data.difficulty)}}
+          {{form.tags.process_data(exo_data.tags)}}
+        </div>
+        {{form.hidden_tag()}}
+
+        {{form_field(form.tracks)}}
+        {{form_field(form.part)}}
+        {{form_field(form.chapter)}}
+        <div class="control-group ">
+          <div class="controls">
+            <input  id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
+          </div>
+        </div>
+        {{form_field(form.difficulty)}}
+        {{form_field(form.tags)}}
+        <input class="btn btn-danger" type="submit" value="Enregistrer">
+    </div>
+
+  </div>
+
+
+  <div class="col-md-6">
+  <h2>Identification <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_id"><i class="glyphicon glyphicon-pencil"></i></a></h2>
+    <dl class="dl-horizontal">
+      <dt>Id</dt>
+      <dd>{{exo_data.id}}</dd>
+
+      <dt>Source</dt>
+      <dd>{{exo_data.source}}</dd>
+
+      <dt>Auteur</dt>
+      <dd>{{exo_data.author}}</dd>
+
+      <dt>Concours</dt>
+      <dd>{{exo_data.school}}</dd>
+    </dl>
+
+    <div id="edit_id" class="collapse">
+      <hr>
+
+
+          <div style="display:none;">
+            {{form.source.process_data(exo_data.source)}}
+            {{form.author.process_data(exo_data.author)}}
+            {{form.school.process_data(exo_data.school)}}
+          </div>
+          {{form.hidden_tag()}}
+          <div class="control-group ">
+            <div class="controls">
+              <input id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
+            </div>
+          </div>
+          {{form_field(form.source)}}
+          {{form_field(form.author)}}
+          {{form_field(form.school)}}
+          <input class="btn btn-danger" type="submit" value="Enregistrer">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12"><br><br><br></div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <h2>Flags à traiter pour cette exo:</h2>
+
+<script >
+  $(function() {
+    $("table").tablesorter();
+  });
+</script>
+
+    <table class="table table-condensed table-hover tablesorter" >
+      <thead>
+        <tr>
+          <th>date</th>
+          <th>message</th>
+          <th>process</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if improvements.count() > 0 %}
+          {% for improvement in improvements %}
+          <tr>
+            <td class=timestamp>{{improvement.date}}</a> </td>
+            <td>{{improvement.msg}}</td>
+            <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
+          </tr>
+          {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+<div class="row">
+  <div class="col-md-12">
+  	<h2>Contenu </h2>
+
+  	<div class="jumbotron" id="question">
+      <h2>Enoncé <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_enonce"><i class="glyphicon glyphicon-pencil"></i></a></h2>
+  		<div class="math">{{exo_data.question_html |safe}}</div>
+      <div id="edit_enonce" class="collapse">
+        <hr>
+
+	        {{form.hidden_tag()}}
+	        <div style="display:none;">{{form.question.process_data(exo_data.question)}}</div>
+
+	        {{form_field(form.question, class="form-control", rows="10")}}
+          <input class="btn btn-danger" type="submit" value="Enregistrer">
+      </div>
+  	</div>
+
+  	<div class="jumbotron" id="hint">
+      <h2>Indice <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_hint"><i class="glyphicon glyphicon-pencil"></i></a></h2>
+      <div class="math">{{exo_data.hint |safe}}</div>
+      <div id="edit_hint" class="collapse">
+        <hr>
+
+	        {{form.hidden_tag()}}
+	        <!-- prefill textarea: -->
+	        <div style="display:none;">{{form.hint.process_data(exo_data.hint)}}</div>
+	        {{form_field(form.hint, class="form-control", rows="3")}}
+          <input class="btn btn-danger" type="submit" value="Enregistrer">
+      </div>
+  	</div>
+
+  	<div class="jumbotron" id="solution">
+      <h2>Correction  <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_solution"><i class="glyphicon glyphicon-pencil"></i></a></h2>
+      <div class="math">{{exo_data.solution_html |safe}}</div>
+      <div id="edit_solution" class="collapse">
+        <hr>
+
+	        {{form.hidden_tag()}}
+
+	        <!-- prefill textarea: -->
+	        <div style="display:none;">{{form.solution.process_data(exo_data.solution) }}</div>
+
+	        {{form_field(form.solution, class="form-control", rows="20")}}
+	         <input class="btn btn-danger" type="submit" value="Enregistrer">
+
+        </div>
+  	</div>
+  </div>
+</form>
+</div>
+<!-- http://stackoverflow.com/questions/5117479/wtforms-how-to-prepopulate-a-textarea-field -->
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS_HTML"></script>
+
+
+<script>
+$(function () {
+        $('#chart1').highcharts({
+            chart: {
+                type: 'spline'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                type: 'datetime',
+            },
+            yAxis: {
+                title: {
+                    text: 'Count'
+                },
+                min: -0.5,
+                minRange: 4
+            },
+            tooltip: {
+                formatter: function() {
+                        return '<b>'+ this.series.name +'</b><br/>'+
+                        Highcharts.dateFormat('%e. %b', this.x) +': '+ this.y;
+                }
+            },
+            series: [{
+                name: 'nombre de vues',
+                data: {{chartdata}},
+                color: 'green'
+            }]
+        });
+    });
+
+</script>
+
+<script>
+$(document).ready(function(){
+    $('.timestamp').each(function(){
+        var unix_timestamp = $(this).html()
+        var date = new Date(unix_timestamp*1);
+        var converted = date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear();
+        $(this).html(converted)
+    });
+});
+</script>
+
+{% endblock %}
+

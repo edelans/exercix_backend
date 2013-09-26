@@ -34,16 +34,29 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="/index">Exercix-DB</a>
+    <a class="navbar-brand">Exercix-DB</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
     <ul class="nav navbar-nav">
-      <li><a href="/index">Dashboard</a>
-      <li><a href="/exercices">Exercices</a></li>
+      <li><a href="/index">Mes exercices</a>
+      <li><a href="/exercices">Mes flags à traiter</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      {% if user and user.is_authenticated() %}
+      <li><a href="{{ url_for('logout_view') }}" class="navbar-link">Enregistré comme {{user.login}}</a></li>
+      <li><a class="navbar-link"> | </a></li>
+      <li><a href="{{ url_for('logout_view') }}" class="navbar-link">Logout</a></li>
+      {% else %}
+      <li><a href="{{ url_for('login_view') }}"> Login</a></li>
+      {% endif %}
     </ul>
   </div><!-- /.navbar-collapse -->
+
+
+
 </div>
 </nav>
 
@@ -67,6 +80,7 @@
       {% endwith %}
 
       {% block content %}{% endblock %}
+
     </div><!-- end container -->
     <div id="push"></div>
   </div> <!-- end wrap -->

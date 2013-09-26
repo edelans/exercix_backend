@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+
+{% macro form_field_with_placeholder(field,ph='') -%}
+  <div class="control-group  {% if field.errors %}error{% endif %}">
+    {% set class_ = kwargs.pop('class_', '') + ' required'+ ' input-block-level' %}
+    {{ field(class_=class_ , placeholder=ph, **kwargs)|safe }}
+    {% if field.errors %}
+        <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+    {% endif %}
+  </div>
+{%- endmacro %}
+
+
+<html>
+
+  <head>
+    {% if title %}
+    <title>{{title}} - ExerciX.db</title>
+    {% else %}
+    <title>ExerciX.db</title>
+    {% endif %}
+
+    <link href="/static/css/loginform.css" rel="stylesheet" media="all">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  </head>
+
+  <body>
+<div class="apollo">
+  <div class="apollo-container clearfix">
+    <div class="apollo-login">
+      <form method="POST" class="form-signin" id="apollo-login-form">
+        {{ form.hidden_tag() if form.hidden_tag }}
+        {{form_field_with_placeholder(form.login, ph="Nom d'utilisateur", class_='email' )}}
+        {{form_field_with_placeholder(form.password, ph='Mot de passe', type="password" )}}
+        <button class="btn btn-large btn-block" type="submit">Entrer</button>
+      </form>
+    </div>
+  </div>
+</div>
+  </body>
+</html>

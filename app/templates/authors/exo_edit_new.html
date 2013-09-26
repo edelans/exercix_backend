@@ -1,0 +1,131 @@
+{% macro form_field(field) -%}
+    {% set with_label = kwargs.pop('with_label', True) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="form-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="col-lg-2 control-label">
+                {{ field.label.text }}:
+            </label>
+        {% endif %}
+        <div class="col-lg-3">
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_ + ' form-control', **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+                {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% elif field.type == 'FileField' %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% endif %}
+                {{ field(class_=class_ + ' form-control', placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+
+{% macro form_field2(field) -%}
+    {% set with_label = kwargs.pop('with_label', True) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="form-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="col-lg-2 control-label">
+                {{ field.label.text }}:
+            </label>
+        {% endif %}
+        <div class="col-lg-8">
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_ + ' form-control', **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+                {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% elif field.type == 'FileField' %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% endif %}
+                {{ field(class_=class_ + ' form-control', placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+{% extends "base.html" %}
+{% block content %}
+
+
+<h1>Enregistrement d'un nouvel exercice</h1>
+<form class="form-horizontal" action="" method="post" name="edit" role="form">
+  <h2>Admin</h2>
+    {{form.hidden_tag()}}
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Id:</label>
+      <div class="col-lg-3">
+        <input class="form-control" id="disabledInput" type="text" placeholder='automatique' disabled>
+      </div>
+    </div>
+
+    {{form_field(form.source )}}
+    {{form_field(form.author, value="edelans@gmail.com")}}
+    {{form_field(form.school)}}
+
+
+<h2>Thème</h2>
+    {{form_field(form.tracks, value="MP, PC, PSI")}}
+    {{form_field(form.part)}}
+    {{form_field(form.chapter)}}
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Numéro:</label>
+      <div class="col-lg-3">
+        <input class="form-control" id="disabledInput" type="text" placeholder="automatique" disabled>
+      </div>
+    </div>
+
+    {{form_field(form.difficulty)}}
+    {{form_field(form.tags)}}
+
+<h2>Contenu</h2>
+    {{form_field2(form.question, class="form-control", rows="10")}}
+    {{form_field2(form.hint, class="form-control", rows="5")}}
+    {{form_field2(form.solution, class="form-control", rows="20")}}
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center">
+        <button class="btn btn-lg btn-primary" type="submit" style="text-align:center">Enregistrer</button>
+      </div>
+    </div>
+
+
+</form>
+
+{% endblock %}
