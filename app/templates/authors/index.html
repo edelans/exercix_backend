@@ -1,15 +1,15 @@
 {% extends "authors/base2.html" %}
 {% block content %}
 
-        <div>
-            {% if user and user.is_authenticated() %}
-                Hello {{ user.login }}! <a href="{{ url_for('logout_view') }}">Logout</a>
-            {% else %}
-                Welcome anonymous user!
-                <a href="{{ url_for('login_view') }}">Login</a>&nbsp;<a href="{{ url_for('register_view') }}">Register</a>
-            {% endif %}
-        </div>
-        <div>
-        </div>
+
+<div class="row">
+  <div class="col-md-10 col-md-offset-1">
+
+    <p>Bonjour {{ user.login }} !</p>
+    <h3>Mes statistiques :</h3>
+    <p>Nombre d'exercices entrés: {{nbexos}}</p>
+    <p><a href={{ url_for('authors_flags_to_process')}}>Nombre de flags traités</a>: {{nbFlagsToProcess}} / {{nbFlagsTotal}} ({{proportionFlagsToProcess}}%) </p>
+  </div>
+</div>
 
 {% endblock %}

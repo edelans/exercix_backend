@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "authors/base2.html" %}
 {% block content %}
 	<h1>Administration des exercices</h1>
 
@@ -10,16 +10,9 @@
 
 <ul class="nav nav-tabs nav-stacked">
     {% for part in parts %}
-    	<li><a href={{ url_for('exercices_l1', part=part[0])}}>{{part[0]}}</a></li>
+    	<li><a href={{ url_for('authors_exercices_l1', part=part[0])}}>{{part[0]}}</a></li>
     {% endfor %}
 </ul>
-
-
-<a class="btn btn-lg btn-block btn-primary" href={{url_for('new_exo', exo_id=new_id)}}>Saisir un nouvel exercice</a>
-
-<br>
-
-<a class="btn btn-lg btn-block btn-success" href={{url_for('generate_json')}}>Télécharger un json de la DB pour l'appli</a>
 
 {% endblock %}
 

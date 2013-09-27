@@ -22,9 +22,11 @@ class TagListField(Field):
 
 class ExoEditForm(Form):
     # id -> attribué par le serveur
+    appli = SelectField(id='appli', label='Appli', choices=[('prepasc1', 'Sup'), ('prepasc2', 'Spé'.decode('utf8')), ('prepacom1', 'Prepa Eco 1ere année'.decode('utf8')), ('prepacom2', 'Prepa Eco 2ème année'.decode('utf8'))])
     source = TextField(id='source', label='Source', validators = [Required()])
     author = TextField(id='author', label='Auteur', validators = [Email(), Required()])
     school = TextField(id='school', label='Concours', validators = [Required()])
+    package = SelectField(id='package', label='Package', choices=[('lite', 'lite'), ('full', 'full'), ('bonus', 'bonus')])
 
     tracks = TagListField(id='tracks', label='Filière'.decode('utf8'), validators = [Required()])
     part = TextField(id='part', label='Catégorie'.decode('utf8'), validators = [Required()])

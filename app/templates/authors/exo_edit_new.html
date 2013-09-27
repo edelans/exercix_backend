@@ -79,7 +79,7 @@
     </div>
 {%- endmacro %}
 
-{% extends "base.html" %}
+{% extends "authors/base2.html" %}
 {% block content %}
 
 
@@ -96,7 +96,14 @@
     </div>
 
     {{form_field(form.source )}}
-    {{form_field(form.author, value="edelans@gmail.com")}}
+    {{form_field(form.appli )}}
+    {{form_field(form.package )}}
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Auteur:</label>
+      <div class="col-lg-3">
+        <input class="form-control" id="disabledInput" type="text" placeholder={{g.user.login}} disabled>
+      </div>
+    </div>
     {{form_field(form.school)}}
 
 

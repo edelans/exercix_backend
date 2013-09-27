@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import g, render_template, url_for, flash, redirect, send_from_directory, jsonify, request, Response
-from app import app, User, db, LoginForm, RegistrationForm
+from app import app, User, db, LoginForm, RegistrationForm, login_manager
 from forms import *
 from models import *
 from utility import *
@@ -12,6 +12,8 @@ import simplejson
 from functools import wraps
 
 from flask.ext import login
+
+
 
 #############################################################
 #
@@ -162,7 +164,7 @@ def flags_to_process():
 
 
 @app.route('/process_improvement/<improvement>')
-@admin_only
+#@admin_only pas de flag admin_only car aussi utilisé par authors !
 def process_improvement(improvement):
     document = Improver.objects(id=improvement).first()
     document['processed'] = True
@@ -264,7 +266,7 @@ def exo_edit_content(exo_id):
     except:
         pass
 
-    improvements = Improver.objects(Q(processed=False) & Q(exoid=exo_id)).order_by('-date')
+    improvements = Improver.objects(Q(processed=False) & Q(exo=document)).order_by('-date')
 
     # en cas de mise a jour de l'exo:
     form = ExoEditForm()
@@ -276,6 +278,8 @@ def exo_edit_content(exo_id):
             document['difficulty']    = form.difficulty.data
             document['tags']          = form.tags.data
             document['source']        = form.source.data
+            document['appli']         = form.appli.data
+            document['package']       = form.package.data
             document['author']        = form.author.data
             document['school']        = form.school.data
             document['question']      = form.question.data
@@ -314,6 +318,8 @@ def new_exo():
         #build object with posted values
         exo = Exo(
             source = form.source.data,
+            appli = form.appli.data,
+            package = form.package.data,
             author = form.author.data,
             school = form.school.data,
             # theme
@@ -435,6 +441,12 @@ def test():
 #
 ###############################################################################
 
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.objects(id=user_id).first()
+
+
 @app.before_request
 def before_request():
     g.user = login.current_user
@@ -444,7 +456,26 @@ def before_request():
 def auteur():
     if not (g.user and g.user.is_authenticated()):
         return redirect(url_for('login_view'))
-    return render_template('authors/index.html', user=login.current_user)
+    nbexos=Exo.objects(author=g.user.email).count()
+
+    nbFlagsToProcess=0
+    nbFlagsTotal=0
+    improvers = Improver.objects()
+    for imp in improvers:
+        if imp.exo.author==g.user.email:
+            nbFlagsTotal+=1
+            if imp.processed==False:
+                nbFlagsToProcess+=1
+
+    proportionFlagsToProcess=int(100*nbFlagsToProcess/nbFlagsTotal)
+
+    return render_template('authors/index.html', 
+        user=login.current_user,
+        nbexos=nbexos,
+        nbFlagsToProcess=nbFlagsToProcess,
+        nbFlagsTotal=nbFlagsTotal,
+        proportionFlagsToProcess=proportionFlagsToProcess
+        )
 
 
 @app.route('/login/', methods=('GET', 'POST'))
@@ -455,7 +486,7 @@ def login_view():
         login.login_user(user)
         return redirect(url_for('auteur'))
 
-    return render_template('authors/form.html', form=form)
+    return render_template('authors/login_form.html', form=form)
 
 
 @app.route('/register/', methods=('GET', 'POST'))
@@ -470,10 +501,169 @@ def register_view():
         login.login_user(user)
         return redirect(url_for('auteur'))
 
-    return render_template('authors/form.html', form=form)
+    return render_template('authors/register_form.html', form=form)
+
 
 
 @app.route('/logout/')
 def logout_view():
     login.logout_user()
     return redirect(url_for('auteur'))
+
+
+@app.route('/authors/new_exo', methods = ['GET', 'POST'])
+@login.login_required
+def authors_new_exo():
+    form = ExoEditForm()
+    if form.validate_on_submit():
+        new_number = give_new_number(form.chapter.data)
+        #build object with posted values
+        exo = Exo(
+            source        = form.source.data,
+            appli        = form.appli.data,
+            package        = form.package.data,
+            author        = g.user.email,
+            school        = form.school.data,
+            # theme
+            chapter       = form.chapter.data.capitalize(),
+            part          = form.part.data.capitalize(),
+            number        = new_number,
+            difficulty    = form.difficulty.data,
+            tags          = form.tags.data,
+            tracks        = form.tracks.data,
+            # content
+            question      = form.question.data,
+            question_html = latex_to_html(form.question.data),
+            hint          = form.hint.data,
+            solution      = form.solution.data,
+            solution_html = latex_to_html(form.solution.data))
+
+        # Insert into database
+        try:
+            exo.save()
+            flash('Succes ! Le nouvel exercice a été entré dans la base'.decode('utf8'),'success')
+            try:
+                return redirect(url_for('authors_exo_edit_content', exo_id=exo.id))
+            except:
+                flash("ATTENTION! Le nouvel exercice a bien été entré dans la base mais il n'a pas été possible d'y acceder".decode('utf8'),'error')
+                return render_template('authors/exo_edit_new.html',
+                    title = 'Nouvel exo',
+                    form = form)
+        except Exception as e:
+            flash('ATTENTION! Le nouvel exercice n\'a PAS été entré dans la base'.decode('utf8'),'error')
+    return render_template('authors/exo_edit_new.html',
+        title = 'Nouvel exo',
+        form = form)
+
+
+
+@app.route('/authors/flags_to_process')
+@login.login_required
+def authors_flags_to_process():
+    improvements= []
+
+    imp        = Improver.objects(processed=False)
+    for i in imp:
+        if i.exo.author == g.user.email:
+            improvements.append(i)
+
+    return render_template("authors/flags_to_process.html",
+        improvements= improvements)
+
+
+@app.route('/authors/process_improvement/<improvement>')
+@login.login_required
+def authors_process_improvement(improvement):
+    document = Improver.objects(id=improvement).first()
+    document['processed'] = True
+    document.save()
+    return authors_flags_to_process()
+
+
+@app.route('/authors/exercices')
+@login.login_required
+def authors_exercices_l0():
+    return render_template("authors/exercices_level0.html",
+        title = 'Exercices',
+        parts = authors_give_list_of_parts(g.user.email)
+        )
+
+
+@app.route('/authors/exercices/<part>')
+@login.login_required
+def authors_exercices_l1(part):
+    return render_template("authors/exercices_level1.html",
+        title = 'Exercices',
+        part = part,
+        chapters = authors_give_list_of_chapters(g.user.email, part)
+        )
+
+
+@app.route('/authors/exercices/<part>/<chapter>')
+@login.login_required
+def authors_exercices_l2(part, chapter):
+    return render_template("authors/exercices_level2.html",
+        title = 'Exercices',
+        part = part,
+        chapter = chapter,
+        exos = authors_exo_stats(g.user.email, part, chapter)
+        )
+
+
+@app.route('/authors/exo_id/<exo_id>', methods = ['GET', 'POST'])
+@login.login_required
+def authors_exo_edit_content(exo_id):
+    document = Exo.objects(id=exo_id).first() #returns None if no result
+
+    stats = fetch_last_stats()
+    chartdata=[]
+    try:
+        chartdata=hc_readify(stats["views"][exo_id],100)
+    except:
+        pass
+
+    improvements = Improver.objects(Q(processed=False) & Q(exo=document)).order_by('-date')
+    print 'improvements:'
+    print str(improvements)
+    print 'document: '
+    print str(document)
+    print '-'*80
+    # en cas de mise a jour de l'exo:
+    form = ExoEditForm()
+    if form.is_submitted():
+        if form.validate():
+            document['tracks']        = form.tracks.data
+            document['part']          = form.part.data.capitalize()
+            document['chapter']       = form.chapter.data.capitalize()
+            document['difficulty']    = form.difficulty.data
+            document['tags']          = form.tags.data
+            document['source']        = form.source.data
+            document['appli']        = form.appli.data
+            document['package']        = form.package.data
+            document['author']        = g.user.email
+            document['school']        = form.school.data
+            document['question']      = form.question.data
+            document['question_html'] = latex_to_html(form.question.data)
+            document['hint']          = form.hint.data
+            document['solution']      = form.solution.data
+            document['solution_html'] = latex_to_html(form.solution.data)
+            document.save()
+            flash('Succes! L\'exercice a été mis à jour'.decode('utf8'),'success')
+            return redirect(url_for('authors_exo_edit_content', exo_id=exo_id, chartdata = chartdata, improvements=improvements))
+        else:
+            flash('ATTENTION! La mise à jour ne peut être effectuée car des données fournies sont invalides'.decode('utf8'),'error')
+
+
+    # try retrieving the exo in the couchdb
+    if document is not None:
+        return render_template("authors/exo_edit_content.html",
+            title = 'Informations sur l\'exercice',
+            exo_id = exo_id,
+            exo_data = document,
+            form =form,
+            chartdata = chartdata,
+            improvements=improvements
+            )
+
+    else: # en cas de presence vestiges de la phase d'initialisation de la bdd
+        return render_template("errors/404.html")

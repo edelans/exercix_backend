@@ -1,10 +1,10 @@
-{% extends "base.html" %}
+{% extends "authors/base2.html" %}
 {% block content %}
 	<h1>Administration des exercices</h1>
 
 <ul class="breadcrumb">
-  <li><a href={{ url_for('exercices_l0')}}>Home</a></li>
-  <li><a href={{ url_for('exercices_l1', part=part)}}>{{part}}</a></li>
+  <li><a href={{ url_for('authors_exercices_l0')}}>Home</a></li>
+  <li><a href={{ url_for('authors_exercices_l1', part=part)}}>{{part}}</a></li>
   <li class="active">{{chapter}}</li>
 </ul>
 
@@ -27,7 +27,7 @@
 {% for exo in exos %}
 
 	<tr>
-		<td><a href={{ url_for('exo_edit_content', exo_id=exo.exo_id)}}><i class="glyphicon glyphicon-search"></i></a></td>
+		<td><a href={{ url_for('authors_exo_edit_content', exo_id=exo.exo_id)}}><i class="glyphicon glyphicon-search"></i></a></td>
 		<td>{{exo.exo_nb}}</td>
 	</tr>
 

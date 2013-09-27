@@ -1,15 +1,17 @@
 from app import db
 import datetime
-
+from mongoengine import CASCADE
 
 
 class Exo(db.Document):
     doc_type = 'exo'
 # id
+    appli       = db.StringField() #prepasc1, prepasc2, prepacom1, prepacom2
     source      = db.StringField()
     author      = db.StringField()
     school      = db.StringField()
     created_at  = db.DateTimeField(default=datetime.datetime.now)
+    package     = db.StringField() #lite, full or bonus
 #theme
     chapter     = db.StringField()
     part        = db.StringField()
@@ -55,7 +57,7 @@ class Stat(db.Document):
 class Improver(db.Document):
     date                = db.IntField()
     msg                 = db.StringField(max_length=2500)
-    exoid               = db.StringField()
+    exo                 = db.ReferenceField(Exo, dbref=True) #, reverse_delete_rule=CASCADE
     processed           = db.BooleanField()
     meta = {
         'collection': 'improver'

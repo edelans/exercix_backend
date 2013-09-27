@@ -34,19 +34,20 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand">Exercix-DB</a>
+    <a class="navbar-brand" href="{{ url_for('auteur')}}">Exercix-DB</a>
   </div>
 
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse" role="navigation">
     <ul class="nav navbar-nav">
-      <li><a href="/index">Mes exercices</a>
-      <li><a href="/exercices">Mes flags à traiter</a></li>
+      <li><a href="{{ url_for('authors_exercices_l0') }}">Mes exercices</a>
+      <li><a href="{{ url_for('authors_flags_to_process') }}">Mes flags à traiter</a></li>
+      <li><a href="{{ url_for('authors_new_exo') }}">Nouvel exo</a></li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
-      {% if user and user.is_authenticated() %}
-      <li><a href="{{ url_for('logout_view') }}" class="navbar-link">Enregistré comme {{user.login}}</a></li>
+      {% if g.user and g.user.is_authenticated() %}
+      <li><a href="{{ url_for('auteur') }}" class="navbar-link">{{g.user.login}}</a></li>
       <li><a class="navbar-link"> | </a></li>
       <li><a href="{{ url_for('logout_view') }}" class="navbar-link">Logout</a></li>
       {% else %}
@@ -64,7 +65,8 @@
     <br>
     <br>
     <br>
-
+    <br>
+    <br>
     <div class="container">
 
       {% with messages = get_flashed_messages(with_categories=true) %}

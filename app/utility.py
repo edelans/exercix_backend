@@ -60,6 +60,42 @@ def exo_stats(part, chapter):
 
 ###############################################################################
 #
+#       parcourir les exos specifiques à un auteur
+#
+###############################################################################
+
+def authors_give_list_of_parts(author):
+    res=[]
+    if len(Exo.objects)>0:
+        partdic = Exo.objects(author=author).only('part').item_frequencies('part')
+        res = partdic.items()
+    return res
+
+
+def authors_give_list_of_chapters(author, part):
+    res=[]
+    if len(Exo.objects)>0:
+        chapdic = Exo.objects(Q(part=part) & Q(author=author)).only('chapter').item_frequencies('chapter')
+        res = chapdic.items()
+    return res
+
+
+def authors_exo_stats(author, part, chapter):
+    res = []
+    exos = Exo.objects(Q(part=part) & Q(chapter=chapter) & Q(author=author)).only('id', 'part', 'chapter', 'number')
+    for exo in exos:
+        print exo.id
+        exo_id=str(exo.id)
+        dic={
+            "exo_id":exo_id,
+            "exo_nb": exo.number,
+        }
+        res.append(dic)
+    return res
+
+
+###############################################################################
+#
 #       edition nouvel exo
 #
 ###############################################################################

@@ -2,6 +2,8 @@
 import datetime
 from pprint import pprint
 from pymongo import MongoClient
+from bson.objectid import ObjectId
+from bson.dbref import DBRef
 
 ### Standard URI format: mongodb://[dbuser:dbpassword@]host:port/dbname
 MONGODB_URI = 'mongodb://edelans:nomorebooks@ds063307.mongolab.com:63307/exercix'
@@ -86,9 +88,9 @@ for record in raw_data:
     #traitement des flags
     try:
         for flag in record["data"]["flags"]:
-            if improver.find({"$and":[ {"exoid":flag['id']}, {"date":flag['date']}, {"msg":flag['msg']}]}).count()==0:
+            if improver.find({"$and":[ {"date":flag['date']}, {"msg":flag['msg']}]}).count()==0:
                 improvement = {
-                    "exoid":flag['id'],
+                    "exo":DBRef('exo', ObjectId(flag['id']), database='exercix'),
                     "date":flag['date'],
                     "msg":flag['msg'],
                     "processed":False
@@ -117,6 +119,7 @@ stats.insert(output)
 if __name__ == '__main__':
     print "#"*80
     pprint(output)
+    print "-"*80
     pprint(improvements)
     print "#"*80
 

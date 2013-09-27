@@ -31,7 +31,7 @@
     <div class="apollo-login">
       <form method="POST" class="form-signin" id="apollo-login-form">
         {{ form.hidden_tag() if form.hidden_tag }}
-        {{form_field_with_placeholder(form.login, ph="Nom d'utilisateur", class_='email' )}}
+        {{form_field_with_placeholder(form.login, ph="Nom d'utilisateur" )}}
         {{form_field_with_placeholder(form.password, ph='Mot de passe', type="password" )}}
         <button class="btn btn-large btn-block" type="submit">Entrer</button>
       </form>

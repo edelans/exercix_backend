@@ -32,7 +32,7 @@
         {% for improvement in improvements %}
         <tr>
           <td class=timestamp>{{improvement.date}}</a> </td>
-          <td><a href={{ url_for('exo_edit_content', exo_id=improvement.exoid)}}><i class="glyphicon glyphicon-search"></i></a></td>
+          <td><a href={{ url_for('exo_edit_content', exo_id=improvement.exo.id)}}><i class="glyphicon glyphicon-search"></i></a></td>
           <td>{{improvement.msg}}</td>
           <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
         </tr>

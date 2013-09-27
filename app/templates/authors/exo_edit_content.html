@@ -40,7 +40,7 @@
 
 
 
-{% extends "base.html" %}
+{% extends "authors/base2.html" %}
 {% block content %}
 
 <div class="row">
@@ -123,6 +123,12 @@
       <dt>Source</dt>
       <dd>{{exo_data.source}}</dd>
 
+      <dt>Appli</dt>
+      <dd>{{exo_data.appli}}</dd>
+
+      <dt>Package</dt>
+      <dd>{{exo_data.package}}</dd>
+
       <dt>Auteur</dt>
       <dd>{{exo_data.author}}</dd>
 
@@ -136,6 +142,8 @@
 
           <div style="display:none;">
             {{form.source.process_data(exo_data.source)}}
+            {{form.appli.process_data(exo_data.appli)}}
+            {{form.package.process_data(exo_data.package)}}
             {{form.author.process_data(exo_data.author)}}
             {{form.school.process_data(exo_data.school)}}
           </div>
@@ -146,7 +154,8 @@
             </div>
           </div>
           {{form_field(form.source)}}
-          {{form_field(form.author)}}
+          {{form_field(form.appli)}}
+          {{form_field(form.package)}}
           {{form_field(form.school)}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
     </div>
@@ -181,7 +190,7 @@
           <tr>
             <td class=timestamp>{{improvement.date}}</a> </td>
             <td>{{improvement.msg}}</td>
-            <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
+            <td><a href={{ url_for('authors_process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
           </tr>
           {% endfor %}
         {% endif %}
