@@ -1,32 +1,32 @@
 {% macro form_field(field) -%}
-    {% set with_label = kwargs.pop('with_label', False) %}
+    {% set with_label = kwargs.pop('with_label', True) %}
     {% set placeholder = '' %}
     {% if not with_label %}
         {% set placeholder = field.label.text %}
     {% endif %}
-    <div class="control-group {% if field.errors %}error{% endif %}">
+    <div class="form-group {% if field.errors %}error{% endif %}">
         {% if with_label %}
-            <label for="{{ field.id }}" class="control-label">
+            <label for="{{ field.id }}" class="col-lg-2 control-label">
                 {{ field.label.text }}:
             </label>
         {% endif %}
-        <div class="controls">
+        <div class="col-lg-3">
             {% set class_ = kwargs.pop('class_', '') %}
             {% if field.flags.required %}
                 {% set class_ = class_ + ' required' %}
             {% endif %}
             {% if field.type == 'BooleanField' %}
                 <label class="checkbox">
-                    {{ field(class_=class_, **kwargs) }}
+                    {{ field(class_=class_ + ' form-control', **kwargs) }}
                     {{ field.label.text|safe }}
                 </label>
             {% else %}
                 {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
-                    {% set class_ = class_ + ' input-xlarge' %}
+                    {% set class_ = class_ + ' form-control' %}
                 {% elif field.type == 'FileField' %}
-                    {% set class_ = class_ + ' input-file' %}
+                    {% set class_ = class_ + ' form-control' %}
                 {% endif %}
-                {{ field(class_=class_, placeholder=placeholder, **kwargs) }}
+                {{ field(class_=class_ + ' form-control', placeholder=placeholder, **kwargs) }}
             {% endif %}
             {% if field.errors %}
                 <span class="error help-inline">{{ field.errors|join(', ') }}</span>
@@ -38,6 +38,46 @@
     </div>
 {%- endmacro %}
 
+
+{% macro form_field2(field) -%}
+    {% set with_label = kwargs.pop('with_label', True) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="form-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="col-lg-2 control-label">
+                {{ field.label.text }}:
+            </label>
+        {% endif %}
+        <div class="col-lg-8">
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_ + ' form-control', **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+                {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% elif field.type == 'FileField' %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% endif %}
+                {{ field(class_=class_ + ' form-control', placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
 
 
 {% extends "authors/base2.html" %}
@@ -55,7 +95,7 @@
 </div>
 
 <div class="row">
-<form action="" method="post" name="form">
+<form class="form-horizontal" action="" method="post" name="form" role="form">
   <div class="col-md-6">
   	<h2>Thème <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_theme"><i class="glyphicon glyphicon-pencil"></i></a></h2>
   	<dl class="dl-horizontal">
@@ -101,9 +141,10 @@
         {{form_field(form.tracks)}}
         {{form_field(form.part)}}
         {{form_field(form.chapter)}}
-        <div class="control-group ">
-          <div class="controls">
-            <input  id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Numéro:</label>
+          <div class="col-lg-3">
+            <input class="form-control" id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
           </div>
         </div>
         {{form_field(form.difficulty)}}
@@ -148,9 +189,10 @@
             {{form.school.process_data(exo_data.school)}}
           </div>
           {{form.hidden_tag()}}
-          <div class="control-group ">
-            <div class="controls">
-              <input id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">id:</label>
+          <div class="col-lg-3">
+              <input class="form-control" id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
             </div>
           </div>
           {{form_field(form.source)}}
@@ -203,52 +245,52 @@
 
 <div class="row">
   <div class="col-md-12">
-  	<h2>Contenu </h2>
+    <h2>Contenu </h2>
 
-  	<div class="jumbotron" id="question">
+    <div class="jumbotron" id="question">
       <h2>Enoncé <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_enonce"><i class="glyphicon glyphicon-pencil"></i></a></h2>
-  		<div class="math">{{exo_data.question_html |safe}}</div>
+      <div class="math">{{exo_data.question_html |safe}}</div>
       <div id="edit_enonce" class="collapse">
         <hr>
 
-	        {{form.hidden_tag()}}
-	        <div style="display:none;">{{form.question.process_data(exo_data.question)}}</div>
+          {{form.hidden_tag()}}
+          <div style="display:none;">{{form.question.process_data(exo_data.question)}}</div>
 
-	        {{form_field(form.question, class="form-control", rows="10")}}
+          {{form_field(form.question, class="form-control", rows="10")}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
-  	</div>
+    </div>
 
-  	<div class="jumbotron" id="hint">
+    <div class="jumbotron" id="hint">
       <h2>Indice <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_hint"><i class="glyphicon glyphicon-pencil"></i></a></h2>
       <div class="math">{{exo_data.hint |safe}}</div>
       <div id="edit_hint" class="collapse">
         <hr>
 
-	        {{form.hidden_tag()}}
-	        <!-- prefill textarea: -->
-	        <div style="display:none;">{{form.hint.process_data(exo_data.hint)}}</div>
-	        {{form_field(form.hint, class="form-control", rows="3")}}
+          {{form.hidden_tag()}}
+          <!-- prefill textarea: -->
+          <div style="display:none;">{{form.hint.process_data(exo_data.hint)}}</div>
+          {{form_field(form.hint, class="form-control", rows="3")}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
-  	</div>
+    </div>
 
-  	<div class="jumbotron" id="solution">
+    <div class="jumbotron" id="solution">
       <h2>Correction  <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_solution"><i class="glyphicon glyphicon-pencil"></i></a></h2>
       <div class="math">{{exo_data.solution_html |safe}}</div>
       <div id="edit_solution" class="collapse">
         <hr>
 
-	        {{form.hidden_tag()}}
+          {{form.hidden_tag()}}
 
-	        <!-- prefill textarea: -->
-	        <div style="display:none;">{{form.solution.process_data(exo_data.solution) }}</div>
+          <!-- prefill textarea: -->
+          <div style="display:none;">{{form.solution.process_data(exo_data.solution) }}</div>
 
-	        {{form_field(form.solution, class="form-control", rows="20")}}
-	         <input class="btn btn-danger" type="submit" value="Enregistrer">
+          {{form_field(form.solution, class="form-control", rows="20")}}
+           <input class="btn btn-danger" type="submit" value="Enregistrer">
 
         </div>
-  	</div>
+    </div>
   </div>
 </form>
 </div>
