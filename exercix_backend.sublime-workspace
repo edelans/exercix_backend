@@ -75,46 +75,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/__init__.py",
-			"settings":
-			{
-				"buffer_size": 2254,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views.py",
-			"settings":
-			{
-				"buffer_size": 21960,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/authors/exo_edit_new.html",
-			"settings":
-			{
-				"buffer_size": 5016,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/authors/flags_to_process.html",
-			"settings":
-			{
-				"buffer_size": 1405,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "stats/statanalyse2.py",
-			"settings":
-			{
-				"buffer_size": 3334,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -241,25 +201,32 @@
 	"file_history":
 	[
 		"/home/edelans/github/exercix_backend/app/models.py",
-		"/home/edelans/github/exercix_backend/app/templates/navigation/flags_to_process.html",
-		"/home/edelans/github/exercix_backend/app/utility.py",
+		"/home/edelans/github/exercix_backend/app/templates/authors/exo_edit_new.html",
+		"/home/edelans/github/exercix_backend/app/forms.py",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
+		"/home/edelans/github/exercix_backend/stats/update_exos.py",
 		"/home/edelans/github/exercix_backend/stats/statanalyse2.py",
+		"/home/edelans/github/exercix_backend/app/__init__.py",
+		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/templates/authors/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/templates/authors/flags_to_process.html",
+		"/home/edelans/github/exercix_backend/app/templates/index.html",
+		"/home/edelans/github/exercix_backend/app/templates/authors/index.html",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/flags_to_process.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/base2.html",
+		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/github/exercix_backend/app/templates/authors/login_form.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/register_form.html",
-		"/home/edelans/github/exercix_backend/app/templates/authors/index.html",
-		"/home/edelans/github/exercix_backend/app/templates/authors/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/exercices_level2.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/exercices_level1.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/exercices_level0.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/form.html",
 		"/home/edelans/github/exercix_backend/app/static/css/loginform.css",
 		"/home/edelans/github/exercix_backend/app/templates/macros.html",
-		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
 		"/home/edelans/Downloads/products-WB0D8SH9P (1)/index.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/login.html",
 		"/home/edelans/Downloads/products-WB0D8SH9P (1)/index.php",
-		"/home/edelans/github/exercix_backend/app/templates/index.html",
 		"/home/edelans/Downloads/products-WB0D8SH9P (1)/css/lib/bootstrap.min.css",
 		"/home/edelans/github/exercix_backend/app/static/css/apollo.css",
 		"/home/edelans/github/exercix_backend/app/static/js/apollo.js",
@@ -271,11 +238,9 @@
 		"/home/edelans/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/edelans/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/edelans/github/exercix_backend/app/static/css/bootstrap.css",
-		"/home/edelans/github/exercix_backend/app/__init__.py",
 		"/home/edelans/github/exercix_backend/config.py",
 		"/home/edelans/github/exercix_backend/run_test.py",
 		"/home/edelans/github/exercix_backend/stats/statanalyse.py",
-		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/static/css/math.css",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/viewsL7D_evolution.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/users_evolution.html",
@@ -286,7 +251,6 @@
 		"/home/edelans/github/exercix_backend/app/static/js/bootstrap.js",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/activeUsersL7D.html",
 		"/home/edelans/github/exercix_backend/app/templates/navigation/exercices_level2.html",
-		"/home/edelans/github/exercix_backend/app/views.py",
 		"/home/edelans/.config/sublime-text-2/Packages/JSLint/JSLint.sublime-build",
 		"/home/edelans/phonegap/exercix/www/launch.html",
 		"/home/edelans/phonegap/exercix/www/reload.html",
@@ -359,15 +323,11 @@
 		"/home/edelans/github/exercix_backend/run_prod.py",
 		"/home/edelans/github/exercix_backend/run.py",
 		"/home/edelans/github/exercix_backend_light/app/views.py",
-		"/home/edelans/github/exercix_backend/app/forms.py",
 		"/home/edelans/github/exercix_backend_light/app/forms.py",
 		"/home/edelans/github/exercix_backend_light/app/utility.py",
 		"/home/edelans/github/exercix_backend_light/app/models.py",
 		"/etc/default/locale",
-		"/home/edelans/github/exercix_backend/import db/utility.py",
-		"/home/edelans/Downloads/base64.bin",
-		"/home/edelans/github/exercix_backend/import db/test.json",
-		"/home/edelans/github/exercix_backend/import db/export/remotempddl.json"
+		"/home/edelans/github/exercix_backend/import db/utility.py"
 	],
 	"find":
 	{
@@ -386,6 +346,17 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"disabled",
+			"form.question",
+			"source",
+			"proportionFlagsToProcess",
+			"index",
+			"href",
+			"url_for",
+			"exoid",
+			"Exo",
+			"first",
+			"improvements",
 			"__",
 			"Improver",
 			"login.html",
@@ -502,18 +473,7 @@
 			"(?<=(\\\\r\\\\n))[abcdef]\\)",
 			"(?<=(\\\\r\\\\n))(?<=(\\\"))[abcdef]\\)",
 			"(?<=(\\\\r\\\\n))(?<=(\"))[abcdef]\\)",
-			"(?<=(\\\\r\\\\n))(?<=\")[abcdef]\\)",
-			"(?<(\\\\r\\\\n))[abcdef]\\)",
-			"\\\\r\\\\n[abcdef]\\)",
-			"img",
-			"\"",
-			"\\\\right)$$",
-			"base64",
-			"include",
-			"Cor0292100001",
-			"\\\\right)$",
-			"Series numériques",
-			"series numériques"
+			"(?<=(\\\\r\\\\n))(?<=\")[abcdef]\\)"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -631,149 +591,13 @@
 	"groups":
 	[
 		{
-			"selected": 4,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/__init__.py",
-					"settings":
-					{
-						"buffer_size": 2254,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								180,
-								180
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/views.py",
-					"settings":
-					{
-						"buffer_size": 21960,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								17632,
-								17632
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8942.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/templates/authors/exo_edit_new.html",
-					"settings":
-					{
-						"buffer_size": 5016,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4061,
-								4061
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1309.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/templates/authors/flags_to_process.html",
-					"settings":
-					{
-						"buffer_size": 1405,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								732,
-								732
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "stats/statanalyse2.py",
-					"settings":
-					{
-						"buffer_size": 3334,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								65,
-								65
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
+			]
+		},
+		{
+			"sheets":
+			[
 			]
 		}
 	],
@@ -794,11 +618,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -810,7 +641,7 @@
 	"menu_visible": true,
 	"output.exec":
 	{
-		"height": 123.0
+		"height": 171.0
 	},
 	"output.git":
 	{
@@ -869,6 +700,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 130.0,
+	"side_bar_width": 222.0,
 	"status_bar_visible": true
 }

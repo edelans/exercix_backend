@@ -39,6 +39,23 @@
 {%- endmacro %}
 
 
+{% macro form_field2(field) -%}
+    {% set with_label = kwargs.pop('with_label', True) %}
+    <div class="form-group {% if field.errors %}error{% endif %}">
+        <div class="col-md-12">
+            {% set class_ = kwargs.pop('class_', '') + ' form-control'%}
+
+            {{ field(class_=class_, **kwargs) }}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
 
 {% extends "base.html" %}
 {% block content %}
@@ -55,7 +72,7 @@
 </div>
 
 <div class="row">
-<form action="" method="post" name="form">
+<form class="form-horizontal" action="" method="post" name="form" role="form">
   <div class="col-md-6">
   	<h2>Thème <a type="button" class="btn btn-xs btn-danger" data-toggle="collapse" data-target="#edit_theme"><i class="glyphicon glyphicon-pencil"></i></a></h2>
   	<dl class="dl-horizontal">
@@ -101,9 +118,10 @@
         {{form_field(form.tracks)}}
         {{form_field(form.part)}}
         {{form_field(form.chapter)}}
-        <div class="control-group ">
-          <div class="controls">
-            <input  id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">Numéro:</label>
+          <div class="col-lg-3">
+            <input class="form-control" id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
           </div>
         </div>
         {{form_field(form.difficulty)}}
@@ -148,9 +166,10 @@
             {{form.school.process_data(exo_data.school)}}
           </div>
           {{form.hidden_tag()}}
-          <div class="control-group ">
-            <div class="controls">
-              <input id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
+        <div class="form-group">
+          <label class="col-lg-2 control-label">id:</label>
+          <div class="col-lg-3">
+              <input class="form-control" id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
             </div>
           </div>
           {{form_field(form.source)}}
@@ -215,7 +234,7 @@
 	        {{form.hidden_tag()}}
 	        <div style="display:none;">{{form.question.process_data(exo_data.question)}}</div>
 
-	        {{form_field(form.question, class="form-control", rows="10")}}
+	        {{form_field2(form.question, rows="10")}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
   	</div>
@@ -229,7 +248,7 @@
 	        {{form.hidden_tag()}}
 	        <!-- prefill textarea: -->
 	        <div style="display:none;">{{form.hint.process_data(exo_data.hint)}}</div>
-	        {{form_field(form.hint, class="form-control", rows="3")}}
+	        {{form_field2(form.hint, rows="3")}}
           <input class="btn btn-danger" type="submit" value="Enregistrer">
       </div>
   	</div>
@@ -245,7 +264,7 @@
 	        <!-- prefill textarea: -->
 	        <div style="display:none;">{{form.solution.process_data(exo_data.solution) }}</div>
 
-	        {{form_field(form.solution, class="form-control", rows="20")}}
+	        {{form_field2(form.solution, rows="20")}}
 	         <input class="btn btn-danger" type="submit" value="Enregistrer">
 
         </div>

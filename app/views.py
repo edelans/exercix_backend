@@ -461,15 +461,19 @@ def auteur():
     nbFlagsToProcess=0
     nbFlagsTotal=0
     improvers = Improver.objects()
-    for imp in improvers:
-        if imp.exo.author==g.user.email:
-            nbFlagsTotal+=1
-            if imp.processed==False:
-                nbFlagsToProcess+=1
+    if len(improvers)>0:
+        for imp in improvers:
+            if imp.exo.author==g.user.email:
+                nbFlagsTotal+=1
+                if imp.processed==False:
+                    nbFlagsToProcess+=1
 
-    proportionFlagsToProcess=int(100*nbFlagsToProcess/nbFlagsTotal)
+    if nbFlagsTotal != 0:
+        proportionFlagsToProcess=int(100*nbFlagsToProcess/nbFlagsTotal)
+    else:
+        proportionFlagsToProcess=0
 
-    return render_template('authors/index.html', 
+    return render_template('authors/index.html',
         user=login.current_user,
         nbexos=nbexos,
         nbFlagsToProcess=nbFlagsToProcess,
