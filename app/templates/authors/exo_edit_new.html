@@ -96,7 +96,7 @@
     </div>
 
     {{form_field(form.source )}}
-    {{form_field(form.appli )}}
+    {{form_field(form.appli)}}
     {{form_field(form.package )}}
     <div class="form-group">
       <label class="col-lg-2 control-label">Auteur:</label>
@@ -134,5 +134,135 @@
 
 
 </form>
+
+<script>
+    var appliValue
+    var partValue
+    var chapters
+    var structure = {/*attention, doit etre les meme que dans le fichier form !! (pour la validation du formulaire)*/
+        "prepasc2": {
+            "Algèbre": [
+                "Structure, arithmétique, complexes",
+                "Polynômes",
+                "Espaces vectoriels, matrices, déterminants",
+                "Réduction",
+                "Espace préhilbertiens, espaces euclidiens"
+            ],
+            "Analyse": [
+                "Espaces normés et Topologie",
+                "Fonctions d'une variable réelle",
+                "Suites réelles ou complexes",
+                "Intégration sur un intervalle quelconque",
+                "Intégrales à paramètre",
+                "Séries numériques",
+                "Séries defonctions",
+                "Séries entières",
+                "Séries de Fourier",
+                "Equations différentielles",
+                "Fonctions de plusieurs variables réelles"
+            ],
+            "Géométrie": [
+                "Géométrie du plan et de l'espace",
+                "Courbes et surfaces"
+            ]
+        },
+        "prepasc1": {
+            "Algèbre": [
+                "Raisonnement et vocabulaire ensembliste",
+                "Calculs algébriques",
+                "Applications, relations",
+                "Entiers naturels, récurrence",
+                "Arithmétique dans l'ensemble des entiers relatifs",
+                "Structures algébriques usuelles",
+                "Polynômes et fractions rationnelles"
+            ],
+            "Analyse": [
+                "Nombres complexes et trigonométrie",
+                "Techniques fondamentales de calcul en analyse",
+                "Nombres réels et suites numériques",
+                "Fonctions usuelles",
+                "Limites, continuité, dérivabilité",
+                "Analyse asymptotique",
+                "Intégration",
+                "Séries numériques",
+                "Généralités, séries à termes positifs",
+                "Convergence absolue (MPSI)"
+            ],
+            "Algèbre linéaire": [
+                "Espaces vectoriels et applications linéaires",
+                "Matrices",
+                "Groupe symétrique et déterminants",
+                "Espaces préhilbertiens réels"
+            ],
+            "Probabilités": [
+                "Probabilités sur un univers fini",
+                "Variables aléatoires sur un espace probabilisé fini"
+            ]
+        },
+        "prepacom1": {},
+        "prepacom2": {}
+    };
+
+
+    var cleanURL = function(str){
+        str = str.replace(/^\s+|\s+$/g, '');
+        str = str.toLowerCase();
+        var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+        var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+        for (var i=0, l=from.length ; i<l ; i++){
+            str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+        }
+        str = str.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+        return str;
+    };
+
+    var goChapters = function(){
+        $("#part").click(function() {
+            console.log('part clicked')
+            if($.inArray($("#part").val(), Object.keys(structure[appliValue]))>-1){
+                console.log("found chapters")
+                partValue = $(this).val()
+                chapters = structure[appliValue][partValue]
+                $("#chapter").empty();
+                $("#chapter").removeProp('disabled');
+                for (var i=0; i<chapters.length;i++){
+                    $("#chapter").append('<option value="' + chapters[i] + '">' + chapters[i] + '</option>')
+                }
+            }
+        });
+    }
+
+/*
+    $(document).ready(function(){
+        $( "#part" ).replaceWith( "<select class='required form-control' disabled id='part'><option> Nom de la Partie </option></select>" );
+
+        $( "#chapter" ).replaceWith( "<select class='required form-control' disabled id='chapter'><option> Nom du chapitre </option></select>" );
+    });
+*/
+
+    $(document).ready(function(){
+        console.log("disabling #part and #chapter")
+        $( "#part" ).prop('disabled', 'true');
+        $( "#chapter" ).prop('disabled', 'true');
+    });
+
+    $("#appli").click(function() {
+        console.log('appli clicked')
+        if($.inArray($("#appli").val(), Object.keys(structure))>-1){
+            console.log("found parts")
+            appliValue = $(this).val()
+            var parts = Object.keys(structure[appliValue])
+            $("#part").empty();
+            $("#part").removeProp('disabled');
+            for (var i=0; i<parts.length;i++){
+                $("#part").append('<option value="' + parts[i] + '">' + parts[i] + '</option>')
+            }
+            console.log("appliValue= "+appliValue)
+            goChapters();
+        }
+    });
+
+
+</script>
 
 {% endblock %}

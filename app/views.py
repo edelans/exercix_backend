@@ -13,6 +13,7 @@ from functools import wraps
 
 from flask.ext import login
 
+from bson.objectid import ObjectId
 
 
 #############################################################
@@ -161,10 +162,11 @@ def flags_to_process():
     return render_template("navigation/flags_to_process.html",
         improvements= improvements)
 
-
+"""    for imp in improvements:
+        print imp.exoid"""
 
 @app.route('/process_improvement/<improvement>')
-#@admin_only pas de flag admin_only car aussi utilisé par authors !
+#@admin_only: pas de flag admin_only car aussi utilisé par authors !
 def process_improvement(improvement):
     document = Improver.objects(id=improvement).first()
     document['processed'] = True
@@ -257,16 +259,27 @@ def exercices_l2(part, chapter):
 @app.route('/exo_id/<exo_id>', methods = ['GET', 'POST'])
 @admin_only
 def exo_edit_content(exo_id):
-    document = Exo.objects(id=exo_id).first() #returns None if no result
+    document  = Exo.objects(id=exo_id).first() #returns None if no result
+    stats     = fetch_last_stats()
+    chartdata =[]
 
-    stats = fetch_last_stats()
-    chartdata=[]
     try:
         chartdata=hc_readify(stats["views"][exo_id],100)
     except:
         pass
 
-    improvements = Improver.objects(Q(processed=False) & Q(exo=document)).order_by('-date')
+    print 80*'*'
+    print document.id
+    for imp in Improver.objects(processed=False).order_by('-date'):
+        print imp.exo.id
+    print 80*'*'
+
+    query = {'$and': [
+        {'exo.$id':ObjectId(exo_id)},
+        {'processed':False}
+    ]}
+    improvements = Improver.objects(__raw__=query)
+
 
     # en cas de mise a jour de l'exo:
     form = ExoEditForm()
@@ -519,7 +532,10 @@ def logout_view():
 @login.login_required
 def authors_new_exo():
     form = ExoEditForm()
+    print "authors new exo"
     if form.validate_on_submit():
+        print "validation"
+        print '*'*50
         new_number = give_new_number(form.chapter.data)
         #build object with posted values
         exo = Exo(
@@ -555,6 +571,10 @@ def authors_new_exo():
                     form = form)
         except Exception as e:
             flash('ATTENTION! Le nouvel exercice n\'a PAS été entré dans la base'.decode('utf8'),'error')
+    else:
+        print "not validated"
+        print form.errors
+        print g.user.email
     return render_template('authors/exo_edit_new.html',
         title = 'Nouvel exo',
         form = form)
@@ -626,7 +646,12 @@ def authors_exo_edit_content(exo_id):
     except:
         pass
 
-    improvements = Improver.objects(Q(processed=False) & Q(exo=document)).order_by('-date')
+    query = {'$and': [
+        {'exo.$id':ObjectId(exo_id)},
+        {'processed':False}
+    ]}
+    improvements = Improver.objects(__raw__=query)
+
     print 'improvements:'
     print str(improvements)
     print 'document: '

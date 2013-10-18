@@ -188,8 +188,9 @@
 
 <div class="row">
   <div class="col-md-12">
-    <h2>Flags à traiter pour cette exo:</h2>
+    <h2>Flags pour cette exo:</h2>
 
+{% if improvements.count() > 0 %}
 <script >
   $(function() {
     $("table").tablesorter();
@@ -205,17 +206,18 @@
         </tr>
       </thead>
       <tbody>
-        {% if improvements.count() > 0 %}
-          {% for improvement in improvements %}
+        {% for improvement in improvements %}
           <tr>
             <td class=timestamp>{{improvement.date}}</a> </td>
             <td>{{improvement.msg}}</td>
             <td><a href={{ url_for('process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
           </tr>
           {% endfor %}
-        {% endif %}
       </tbody>
     </table>
+    {% else %}
+    <p> Il n'y a aucun flag à traiter pour le moment sur cet exo </p>
+    {% endif %}
   </div>
 </div>
 
