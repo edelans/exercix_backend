@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"form",
+				"formdata"
+			],
+			[
 				"imp",
 				"improvers"
 			],
@@ -79,62 +83,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "app/templates/authors/exo_edit_new.html",
-			"settings":
-			{
-				"buffer_size": 8595,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/views.py",
-			"settings":
-			{
-				"buffer_size": 22405,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/forms.py",
-			"settings":
-			{
-				"buffer_size": 3012,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/templates/authors/exo_edit_content.html",
-			"settings":
-			{
-				"buffer_size": 10401,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "app/models.py",
-			"settings":
-			{
-				"buffer_size": 2068,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/home/edelans/github/exercix_vitrine/index.html",
-			"settings":
-			{
-				"buffer_size": 8764,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/media/Media/Dropbox/exercix_shared/exercix_android4/www/launch.html",
-			"settings":
-			{
-				"buffer_size": 17530,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -260,22 +208,44 @@
 	},
 	"file_history":
 	[
+		"/home/edelans/github/exercix_backend/app/templates/authors/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/forms.py",
+		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
+		"/home/edelans/github/exercix_backend/app/templates/authors/exo_edit_new2.html",
+		"/home/edelans/github/exercix_backend/app/views.py",
+		"/home/edelans/github/exercix_backend/app/templates/authors/exo_edit_new.html",
+		"/home/edelans/github/exercix_backend/app/templates/authors/index.html",
+		"/home/edelans/github/exercix_backend/stats/statanalyse2.py",
+		"/home/edelans/github/exercix_backend/app/models.py",
+		"/home/edelans/github/exercix_phonegap/www/index.html",
+		"/home/edelans/github/exercix_backend/app/templates/navigation/flags_to_process.html",
+		"/media/Media/Dropbox/exercix_shared/exercix_phonegap/www_Android/index.html",
+		"/home/edelans/github/exercix_phonegap/www/launch.html",
+		"/home/edelans/Downloads/latexifier-0.1/README",
+		"/home/edelans/Downloads/test pdf2latex/test.pdf_frompdf_fixedup.log",
+		"/home/edelans/Downloads/test pdf2latex/tex_to_pdf_errors_and_warnings.txt",
+		"/home/edelans/Downloads/test pdf2latex/test.sh",
+		"/home/edelans/Downloads/test pdf2latex/test.pdf_frompdf.tex",
+		"/home/edelans/Downloads/test pdf2latex/header.inc",
+		"/home/edelans/.cache/.fr-GYtgcN/src/parser/parser.cpp",
+		"/home/edelans/.cache/.fr-6pgyvi/README",
+		"/home/edelans/.cache/.fr-MnYPSH/benchtest",
+		"/home/edelans/.cache/.fr-ugJPwq/LICENSE",
+		"/home/edelans/.cache/.fr-sJRFrp/benchtest",
+		"/home/edelans/.cache/.fr-slqQmp/README",
+		"/home/edelans/Downloads/WTForms-ParsleyJS-0.1.2/setup.py",
+		"/home/edelans/Downloads/WTForms-ParsleyJS-0.1.2/wtformsparsleyjs/sample/sample.py",
+		"/home/edelans/Downloads/WTForms-ParsleyJS-0.1.2/wtformsparsleyjs/sample/__init__.py",
+		"/home/edelans/Downloads/WTForms-ParsleyJS-0.1.2/wtformsparsleyjs/core.py",
+		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
+		"/media/Media/Dropbox/exercix_shared/exercix_android4/www/launch.html",
+		"/home/edelans/github/exercix_vitrine/index.html",
 		"/media/Media/Dropbox/exercix_shared/exercix_android4/www/index.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/base2.html",
-		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_content.html",
-		"/home/edelans/github/exercix_backend/app/templates/authors/index.html",
-		"/home/edelans/github/exercix_backend/app/models.py",
-		"/home/edelans/github/exercix_backend/app/templates/authors/exo_edit_new.html",
-		"/home/edelans/github/exercix_backend/app/forms.py",
-		"/home/edelans/github/exercix_backend/app/views.py",
-		"/home/edelans/github/exercix_backend/app/templates/edition/exo_edit_new.html",
 		"/home/edelans/github/exercix_backend/stats/update_exos.py",
-		"/home/edelans/github/exercix_backend/stats/statanalyse2.py",
 		"/home/edelans/github/exercix_backend/app/__init__.py",
-		"/home/edelans/github/exercix_backend/app/templates/authors/exo_edit_content.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/flags_to_process.html",
 		"/home/edelans/github/exercix_backend/app/templates/index.html",
-		"/home/edelans/github/exercix_backend/app/templates/navigation/flags_to_process.html",
 		"/home/edelans/github/exercix_backend/app/utility.py",
 		"/home/edelans/github/exercix_backend/app/templates/authors/login_form.html",
 		"/home/edelans/github/exercix_backend/app/templates/authors/register_form.html",
@@ -319,8 +289,6 @@
 		"/home/edelans/.config/sublime-text-2/Packages/JsFormat/README.md",
 		"/home/edelans/phonegap/exercix/www/chapter.html",
 		"/home/edelans/phonegap/exercix/www/exo.html",
-		"/home/edelans/github/exercix_phonegap/www/launch.html",
-		"/home/edelans/github/exercix_phonegap/www/index.html",
 		"/home/edelans/github/exercix_phonegap/www/reload.html",
 		"/home/edelans/github/exercix_phonegap/www/chapter.html",
 		"/home/edelans/phonegap/exercix/www/data.json",
@@ -367,27 +335,7 @@
 		"/home/edelans/github/exercix_backend/import db/test2",
 		"/home/edelans/github/exercix_backend/import db/extended_jsonmpddl50.json",
 		"/home/edelans/Downloads/lemniscate0.tex",
-		"/home/edelans/Desktop/grapher-lemniscate.svg",
-		"/home/edelans/Downloads/save (1).svg",
-		"/home/edelans/Desktop/data (copy).json",
-		"/home/edelans/Downloads/save.svg",
-		"/home/edelans/github/exercix_backend/import db/images/Cor0292100001.base64.bin",
-		"/home/edelans/github/exercix_backend/import db/data.bak.090913.json",
-		"/home/edelans/github/exercix_backend/import db/extended_json-20130909:134012.json",
-		"/home/edelans/github/exercix_backend/import db/data-20130909-161854.json",
-		"/home/edelans/github/exercix_backend/import db/data.bk.json",
-		"/home/edelans/github/exercix_backend/Procfile",
-		"/home/edelans/github/exercix_vitrine/about.html",
-		"/home/edelans/github/exercix_vitrine/index.html",
-		"/home/edelans/Desktop/dataaa.json",
-		"/home/edelans/github/exercix_backend/.gitignore",
-		"/home/edelans/github/exercix_backend/run_prod.py",
-		"/home/edelans/github/exercix_backend/run.py",
-		"/home/edelans/github/exercix_backend_light/app/views.py",
-		"/home/edelans/github/exercix_backend_light/app/forms.py",
-		"/home/edelans/github/exercix_backend_light/app/utility.py",
-		"/home/edelans/github/exercix_backend_light/app/models.py",
-		"/etc/default/locale"
+		"/home/edelans/Desktop/grapher-lemniscate.svg"
 	],
 	"find":
 	{
@@ -406,6 +354,35 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"col-lg-3",
+			"p>",
+			"<p",
+			"p",
+			"        <p",
+			"<p",
+			"p>",
+			"\n        ",
+			"p>\n",
+			"p>",
+			"checkboxes",
+			"p>\n",
+			">\n",
+			"<p",
+			"p",
+			"\\n",
+			"edit_new",
+			"<br>",
+			"part",
+			"parts",
+			"tracks",
+			"chapter",
+			"\\n",
+			"exo_edit_content",
+			"improvements",
+			"improver",
+			"flags_to_process",
+			"process_improvement",
+			"authors_flags_to_process",
 			"dl-iOS",
 			"required",
 			"validate_on_submit",
@@ -504,36 +481,7 @@
 			" Q",
 			"Q",
 			"Q ",
-			"improvements",
-			"process_improvement",
-			"process_improvementprocess_improvementprocess_improvement",
-			"new",
-			"impro",
-			"chart1",
-			"edit",
-			"dt",
-			"now",
-			"data",
-			"Handlebars",
-			"template-body",
-			"function(",
-			"if(",
-			"){",
-			"cordova_plugins",
-			"loading-screen",
-			"applaunchCount",
-			"getJSON",
-			"getJSONRemoteFile",
-			"Une détermination angulaire",
-			"147f8",
-			"Il y a une demi-tangente en",
-			"~",
-			"&nbsp; ",
-			" &nbsp; ",
-			"&nbsp;",
-			"~",
-			"\\\\r\\\\nc\\)",
-			"\\\\r\\\\n([abcdef]?)\\)"
+			"improvements"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -541,6 +489,7 @@
 		"regex": false,
 		"replace_history":
 		[
+			"col-lg-6",
 			"\"",
 			"admin_only",
 			"form-control",
@@ -652,204 +601,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "app/templates/authors/exo_edit_new.html",
-					"settings":
-					{
-						"buffer_size": 8595,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								6081,
-								6081
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 2986.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "app/views.py",
-					"settings":
-					{
-						"buffer_size": 22405,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								18333,
-								18333
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 8850.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "app/forms.py",
-					"settings":
-					{
-						"buffer_size": 3012,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1868,
-								1868
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "app/templates/authors/exo_edit_content.html",
-					"settings":
-					{
-						"buffer_size": 10401,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								9403,
-								9403
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 171.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "app/models.py",
-					"settings":
-					{
-						"buffer_size": 2068,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								155,
-								155
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Python/Python.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "/home/edelans/github/exercix_vitrine/index.html",
-					"settings":
-					{
-						"buffer_size": 8764,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								7930,
-								7930
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 2025.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "/media/Media/Dropbox/exercix_shared/exercix_android4/www/launch.html",
-					"settings":
-					{
-						"buffer_size": 17530,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								14541,
-								14541
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 1192.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -945,6 +698,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 222.0,
+	"side_bar_width": 210.0,
 	"status_bar_visible": true
 }

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from flask.ext.wtf import Form, Field, TextInput, TextField, BooleanField, IntegerField, TextAreaField, SelectField, FieldList
-from flask.ext.wtf import Required, Length, Email
+from flask.ext.wtf import Form, Field, TextInput, TextField, BooleanField, IntegerField, TextAreaField, SelectField, FieldList, SelectMultipleField
+from flask.ext.wtf import Required, Length, Email, widgets
 
 #Definition d'un field perso pour pouvoir traiter les listes de tags et de filières
 class TagListField(Field):
@@ -18,9 +18,23 @@ class TagListField(Field):
         else:
             self.data = []
 
-parts=["Algèbre", "Analyse", "Géométrie"]
-chapters=["Structure, arithmétique, complexes","Polynômes","Espaces vectoriels, matrices, déterminants","Réduction","Espace préhilbertiens, espaces euclidiens""Espaces normés et Topologie","Fonctions d'une variable réelle","Suites réelles ou complexes","Intégration sur un intervalle quelconque","Intégrales à paramètre","Séries numériques","Séries defonctions","Séries entières","Séries de Fourier","Equations différentielles","Fonctions de plusieurs variables réelles","Géométrie du plan et de l'espace","Courbes et surfaces"]
 
+class MultiCheckboxField(SelectMultipleField):
+    """
+    A multiple-select, except displays a list of checkboxes.
+
+    Iterating the field will produce subfields, allowing custom rendering of
+    the enclosed checkbox fields.
+    """
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
+
+
+
+
+parts=["Algèbre", "Analyse", "Géométrie"]
+chapters=["Structure, arithmétique, complexes","Polynômes","Espaces vectoriels, matrices, déterminants","Réduction","Espace préhilbertiens, espaces euclidiens","Espaces normés et Topologie","Fonctions d'une variable réelle","Suites réelles ou complexes","Intégration sur un intervalle quelconque","Intégrales à paramètre","Séries numériques","Séries defonctions","Séries entières","Séries de Fourier","Equations différentielles","Fonctions de plusieurs variables réelles","Géométrie du plan et de l'espace","Courbes et surfaces"]
+tracks = ["MPSI", "PCSI", "PTSI","TSI", "MP", "PC", "PSI", "PT", "ECE", "ECS", "ECT"]
 
 class ExoEditForm(Form):
     # id -> attribué par le serveur
@@ -30,12 +44,12 @@ class ExoEditForm(Form):
     school     = TextField(id='school', label='Concours', validators = [Required()])
     package    = SelectField(id='package', label='Package', choices=[('lite', 'lite'), ('full', 'full'), ('bonus', 'bonus')])
 
-    tracks     = TagListField(id='tracks', label='Filière'.decode('utf8'), validators = [Required()])
-    part       = SelectField(id='part', label='Catégorie'.decode('utf8'), validators = [Required()], choices=[(x.decode('utf8'),x.decode('utf8')) for x in parts])
-    chapter    = SelectField(id='chapter', label='Chapitre', validators = [Required()], choices=[(x.decode('utf8'),x.decode('utf8')) for x in chapters])
+    tracks     = MultiCheckboxField(id='tracks', label='Filière'.decode('utf8'), validators = [Required()], choices=[(x.decode('utf8'),x.decode('utf8')) for x in tracks])
+    part       = TextField(id='part', label='Catégorie'.decode('utf8'), validators = [Required()]) #, choices=[(x.decode('utf8'),x.decode('utf8')) for x in parts]
+    chapter    = TextField(id='chapter', label='Chapitre', validators = [Required()]) #, choices=[(x.decode('utf8'),x.decode('utf8')) for x in chapters]
     # number -> attribué par le serveur
     difficulty = SelectField(id='difficulty', label='Difficulté'.decode('utf8'), choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3')], coerce=int)
-    tags       = TagListField(id='tags', label='Tags', validators = [Required()])
+    tags       = TagListField(id='tags', label='Tags')
 
     question   = TextAreaField(id='question', label='Enoncé'.decode('utf8'), validators = [Length(min = 0, max = 2500)])
     hint       = TextAreaField(id='hint', label='Indice', validators = [Length(min = 0, max = 500)])

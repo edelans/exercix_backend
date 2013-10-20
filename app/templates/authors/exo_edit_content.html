@@ -10,15 +10,14 @@
                 {{ field.label.text }}:
             </label>
         {% endif %}
-        <div class="col-lg-3">
+        <div class="col-lg-6">
             {% set class_ = kwargs.pop('class_', '') %}
             {% if field.flags.required %}
                 {% set class_ = class_ + ' required' %}
             {% endif %}
-            {% if field.type == 'BooleanField' %}
+            {% if field.type in ('BooleanField','SelectMultipleField', 'MultiCheckboxField') %}
                 <label class="checkbox">
-                    {{ field(class_=class_ + ' form-control', **kwargs) }}
-                    {{ field.label.text|safe }}
+                    {{ field(class_=class_ , style="list-style-type:none;", **kwargs) }}
                 </label>
             {% else %}
                 {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
@@ -120,7 +119,7 @@
         {{form_field(form.chapter)}}
         <div class="form-group">
           <label class="col-lg-2 control-label">Numéro:</label>
-          <div class="col-lg-3">
+          <div class="col-lg-6">
             <input class="form-control" id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
           </div>
         </div>
@@ -168,7 +167,7 @@
           {{form.hidden_tag()}}
         <div class="form-group">
           <label class="col-lg-2 control-label">id:</label>
-          <div class="col-lg-3">
+          <div class="col-lg-6">
               <input class="form-control" id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
             </div>
           </div>
@@ -188,7 +187,7 @@
 <div class="row">
   <div class="col-md-12">
     <h2>Flags à traiter pour cette exo:</h2>
-
+{% if improvements.count() > 0 %}
 <script >
   $(function() {
     $("table").tablesorter();
@@ -204,17 +203,18 @@
         </tr>
       </thead>
       <tbody>
-        {% if improvements.count() > 0 %}
-          {% for improvement in improvements %}
-          <tr>
-            <td class=timestamp>{{improvement.date}}</a> </td>
-            <td>{{improvement.msg}}</td>
-            <td><a href={{ url_for('authors_process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
-          </tr>
-          {% endfor %}
-        {% endif %}
+        {% for improvement in improvements %}
+        <tr>
+          <td class=timestamp>{{improvement.date}}</a> </td>
+          <td>{{improvement.msg}}</td>
+          <td><a href={{ url_for('authors_process_improvement', improvement=improvement.id)}}><i class="glyphicon glyphicon-remove-circle"></i></a></td>
+        </tr>
+        {% endfor %}
       </tbody>
     </table>
+    {% else %}
+    <p> Il n'y a aucun flag à traiter pour le moment sur cet exo </p>
+    {% endif %}
   </div>
 </div>
 

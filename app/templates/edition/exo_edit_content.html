@@ -10,7 +10,7 @@
                 {{ field.label.text }}:
             </label>
         {% endif %}
-        <div class="col-lg-3">
+        <div class="col-lg-6">
             {% set class_ = kwargs.pop('class_', '') %}
             {% if field.flags.required %}
                 {% set class_ = class_ + ' required' %}
@@ -120,7 +120,7 @@
         {{form_field(form.chapter)}}
         <div class="form-group">
           <label class="col-lg-2 control-label">Numéro:</label>
-          <div class="col-lg-3">
+          <div class="col-lg-6">
             <input class="form-control" id="disabledInput" type="text" placeholder={{exo_data.number}} disabled>
           </div>
         </div>
@@ -168,7 +168,7 @@
           {{form.hidden_tag()}}
         <div class="form-group">
           <label class="col-lg-2 control-label">id:</label>
-          <div class="col-lg-3">
+          <div class="col-lg-6">
               <input class="form-control" id="disabledInput" type="text" placeholder={{exo_data.id}} disabled>
             </div>
           </div>

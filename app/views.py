@@ -327,7 +327,7 @@ def exo_edit_content(exo_id):
 def new_exo():
     form = ExoEditForm()
     if form.validate_on_submit():
-        new_number = give_new_number(form.chapter.data)
+        new_number = give_new_number2(form.appli.data, form.chapter.data)
         #build object with posted values
         exo = Exo(
             source = form.source.data,
@@ -536,12 +536,12 @@ def authors_new_exo():
     if form.validate_on_submit():
         print "validation"
         print '*'*50
-        new_number = give_new_number(form.chapter.data)
+        new_number = give_new_number2(form.appli.data, form.chapter.data)
         #build object with posted values
         exo = Exo(
             source        = form.source.data,
-            appli        = form.appli.data,
-            package        = form.package.data,
+            appli         = form.appli.data,
+            package       = form.package.data,
             author        = g.user.email,
             school        = form.school.data,
             # theme
@@ -566,7 +566,7 @@ def authors_new_exo():
                 return redirect(url_for('authors_exo_edit_content', exo_id=exo.id))
             except:
                 flash("ATTENTION! Le nouvel exercice a bien été entré dans la base mais il n'a pas été possible d'y acceder".decode('utf8'),'error')
-                return render_template('authors/exo_edit_new.html',
+                return render_template('authors/exo_edit_new2.html',
                     title = 'Nouvel exo',
                     form = form)
         except Exception as e:
@@ -575,9 +575,20 @@ def authors_new_exo():
         print "not validated"
         print form.errors
         print g.user.email
-    return render_template('authors/exo_edit_new.html',
+    return render_template('authors/exo_edit_new2.html',
         title = 'Nouvel exo',
         form = form)
+
+
+"""
+@app.route('/add/new/exo', methods=['POST'])
+@login.login_required
+def addExo():
+    form = request.form
+    formdata = form['data']
+    result = runTheLongCalculation()
+    return render_template('result.html',r=result)
+"""
 
 
 

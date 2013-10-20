@@ -114,6 +114,19 @@ def give_new_number(chapter):
     return sorted(numbers)[-1]+1
 
 
+def give_new_number2(appli, chapter):
+    """
+    todo:   - rendre plus robuste aux typos de chapitres -> doit etre fait en amont (le form ne doit accepter que les "bons" chapters)
+            - rendre plus robuste aux "trous" dans les noms: ici on ne fait qu'incrémenter
+                la valeur la plus elevée, mais on ne remplira pas les trous !
+    """
+    numbers = [0]
+    exos = Exo.objects(Q(appli=appli) & Q(chapter=chapter)).only('number')
+    for exo in exos:
+        numbers.append(exo.number)
+    return sorted(numbers)[-1]+1
+
+
 ###############################################################################
 #
 #       chart data formatting js
