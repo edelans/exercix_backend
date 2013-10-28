@@ -505,7 +505,7 @@ def login_view():
 
     return render_template('authors/login_form.html', form=form)
 
-
+"""
 @app.route('/register/', methods=('GET', 'POST'))
 def register_view():
     form = RegistrationForm(request.form)
@@ -519,7 +519,7 @@ def register_view():
         return redirect(url_for('auteur'))
 
     return render_template('authors/register_form.html', form=form)
-
+"""
 
 
 @app.route('/logout/')

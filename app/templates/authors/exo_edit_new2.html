@@ -1,0 +1,503 @@
+{% macro form_field(field) -%}
+    {% set with_label = kwargs.pop('with_label', True) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="form-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="col-lg-2 control-label">
+                {{ field.label.text }}:
+            </label>
+        {% endif %}
+        <div class="col-lg-3">
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_ + ' form-control', **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+                {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% elif field.type == 'FileField' %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% endif %}
+                {{ field(class_=class_ + ' form-control', placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+
+{% macro form_field2(field) -%}
+    {% set with_label = kwargs.pop('with_label', True) %}
+    {% set placeholder = '' %}
+    {% if not with_label %}
+        {% set placeholder = field.label.text %}
+    {% endif %}
+    <div class="form-group {% if field.errors %}error{% endif %}">
+        {% if with_label %}
+            <label for="{{ field.id }}" class="col-lg-2 control-label">
+                {{ field.label.text }}:
+            </label>
+        {% endif %}
+        <div class="col-lg-8">
+            {% set class_ = kwargs.pop('class_', '') %}
+            {% if field.flags.required %}
+                {% set class_ = class_ + ' required' %}
+            {% endif %}
+            {% if field.type == 'BooleanField' %}
+                <label class="checkbox">
+                    {{ field(class_=class_ + ' form-control', **kwargs) }}
+                    {{ field.label.text|safe }}
+                </label>
+            {% else %}
+                {% if field.type in ('TextField', 'TextAreaField', 'PasswordField') %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% elif field.type == 'FileField' %}
+                    {% set class_ = class_ + ' form-control' %}
+                {% endif %}
+                {{ field(class_=class_ + ' form-control', placeholder=placeholder, **kwargs) }}
+            {% endif %}
+            {% if field.errors %}
+                <span class="error help-inline">{{ field.errors|join(', ') }}</span>
+            {% endif %}
+            {% if field.description %}
+                <p class="help-block">{{ field.description|safe }}</p>
+            {% endif %}
+        </div>
+    </div>
+{%- endmacro %}
+
+{% extends "authors/base2.html" %}
+{% block content %}
+
+
+<h1>Enregistrement d'un nouvel exercice</h1>
+<form class="form-horizontal" action="" method="post" name="edit" role="form">
+  <h2>Admin</h2>
+    {{form.hidden_tag()}}
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Id:</label>
+      <div class="col-lg-3">
+        <input class="form-control" id="disabledInput" type="text" placeholder='automatique' disabled>
+      </div>
+    </div>
+
+    <div class="form-group ">
+        <label for="source" class="col-lg-2 control-label">Source:</label>
+        <div class="col-lg-3">
+            <input class="required form-control form-control" id="source" name="source" type="text" value="">
+            {% if form.source.errors %}
+                <span class="error help-inline">{{ form.source.errors|join(', ') }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="form-group ">
+        <label for="appli" class="col-lg-2 control-label">Appli:</label>
+        <div class="col-lg-3">
+            <select class=" form-control" id="appli" name="appli" placeholder="">
+                <option value="prepasc1">Sup</option>
+                <option value="prepasc2">Spé</option>
+                <option value="prepacom1">Prepa Eco 1ere année</option>
+                <option value="prepacom2">Prepa Eco 2ème année</option>
+            </select>
+            {% if form.appli.errors %}
+                <span class="error help-inline">{{ form.appli.errors|join(', ') }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <div class="form-group ">
+        <label for="package" class="col-lg-2 control-label">Package:</label>
+        <div class="col-lg-3">
+            <select class=" form-control" id="package" name="package" placeholder="">
+                <option value="lite">lite</option>
+                <option value="full">full</option>
+                <option value="bonus">bonus</option>
+            </select>
+            {% if form.package.errors %}
+                <span class="error help-inline">{{ form.package.errors|join(', ') }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Auteur:</label>
+      <div class="col-lg-3">
+        <input class="form-control" id="disabledInput" type="text" name="author" placeholder={{g.user.login}} disabled>
+      </div>
+    </div>
+
+    <div class="form-group ">
+        <label for="school" class="col-lg-2 control-label">Concours:</label>
+        <div class="col-lg-3">
+            <input class=" required form-control form-control" id="school" name="school" placeholder="" type="text" value="">
+            {% if form.school.errors %}
+                <span class="error help-inline">{{ form.school.errors|join(', ') }}</span>
+            {% endif %}
+        </div>
+    </div>
+
+
+<h2>Thème</h2>
+    <div class="form-group ">
+      <label for="tracks" class="col-lg-2 control-label">Filière:</label>
+      <div class="col-lg-3" id="tracks-checkboxes">
+        <span class="trackbox inge2"> <input class="trackbox inge2" type="checkbox" id="tracks" name="tracks" value="MP">MP &nbsp; &nbsp; </span>
+        <span class="trackbox inge2"><input class="trackbox inge2" type="checkbox" id="tracks" name="tracks" value="PC">PC &nbsp; &nbsp;</span>
+        <span class="trackbox inge2"><input class="trackbox inge2" type="checkbox" id="tracks" name="tracks" value="PSI">PSI &nbsp; &nbsp;</span>
+        <span class="trackbox inge2"><input class="trackbox inge2" type="checkbox" id="tracks" name="tracks" value="TSI">TSI &nbsp; &nbsp;</span>
+        <span class="trackbox inge2"><input class="trackbox inge2" type="checkbox" id="tracks" name="tracks" value="PT">PT &nbsp; &nbsp;</span>
+        <span class="trackbox inge1"><input class="trackbox inge1" type="checkbox" id="tracks" name="tracks" value="MPSI">MPSI &nbsp; &nbsp;</span>
+        <span class="trackbox inge1"><input class="trackbox inge1" type="checkbox" id="tracks" name="tracks" value="PCSI">PCSI &nbsp; &nbsp;</span>
+        <span class="trackbox inge1"><input class="trackbox inge1" type="checkbox" id="tracks" name="tracks" value="PTSI">PTSI &nbsp; &nbsp;</span>
+        <span class="trackbox inge1"><input class="trackbox inge1" type="checkbox" id="tracks" name="tracks" value="TSI">TSI &nbsp; &nbsp;</span>
+        <span class="trackbox eco"><input class="trackbox eco" type="checkbox" id="tracks" name="tracks" value="ECE">ECE &nbsp; &nbsp;</span>
+        <span class="trackbox eco"><input class="trackbox eco" type="checkbox" id="tracks" name="tracks" value="ECS">ECS &nbsp; &nbsp;</span>
+        <span class="trackbox eco"><input class="trackbox eco" type="checkbox" id="tracks" name="tracks" value="ECT">ECT &nbsp; &nbsp;</span>
+        {% if form.tracks.errors %}
+            <span class="error help-inline">{{ form.tracks.errors|join(', ') }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label for="part" class="col-lg-2 control-label">Catégorie:</label>
+      <div class="col-lg-3">
+        <select class="required form-control" id="part" name="part"  disabled="">
+        </select>
+        {% if form.part.errors %}
+            <span class="error help-inline">{{ form.part.errors|join(', ') }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label for="chapter" class="col-lg-2 control-label">Chapitre:</label>
+      <div class="col-lg-3">
+        <select class=" required form-control" id="chapter" name="chapter" disabled="">
+        </select>
+        {% if form.chapter.errors %}
+            <span class="error help-inline">{{ form.chapter.errors|join(', ') }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Numéro:</label>
+      <div class="col-lg-3">
+        <input class="form-control" id="disabledInput" type="text" placeholder="automatique" disabled>
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label for="difficulty" class="col-lg-2 control-label">Difficulté:</label>
+      <div class="col-lg-3">
+        <select class=" form-control" id="difficulty" name="difficulty" placeholder="">
+          <option value="0">0</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+        </select>
+        {% if form.difficulty.errors %}
+            <span class="error help-inline">{{ form.difficulty.errors|join(', ') }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label for="tags" class="col-lg-2 control-label">Tags:</label>
+      <div class="col-lg-3">
+        <input class=" required form-control" id="tags" name="tags" placeholder="" type="text" value="">
+        {% if form.tags.errors %}
+            <span class="error help-inline">{{ form.tags.errors|join(', ') }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+<h2>Contenu</h2>
+    <div class="form-group ">
+      <label for="question" class="col-lg-2 control-label">Enoncé:</label>
+      <div class="col-lg-8">
+        <textarea class="form-control" id="question" name="question" placeholder="" rows="10"></textarea>
+        {% if form.question.errors %}
+            <span class="error help-inline">{{ form.question.errors|join(', ') }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label for="hint" class="col-lg-2 control-label">Indice:</label>
+      <div class="col-lg-8">
+        <textarea class="form-control" id="hint" name="hint" placeholder="" rows="5"></textarea>
+        {% if form.hint.errors %}
+            <span class="error help-inline">{{ form.hint.errors|join(', ') }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="form-group ">
+      <label for="solution" class="col-lg-2 control-label">Correction:</label>
+      <div class="col-lg-8">
+        <textarea class="form-control" id="solution" name="solution" placeholder="" rows="20" value=""></textarea>
+        {% if form.solution.errors %}
+            <span class="error help-inline">{{ form.solution.errors|join(', ') }}</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12" style="text-align:center">
+        <button class="btn btn-lg btn-primary" id="submit" type="submit" style="text-align:center">Enregistrer</button>
+      </div>
+    </div>
+
+</form>
+
+<script>
+  var appliValue
+  var partValue
+  var chapters
+  var filieres = {
+    "prepasc1" :["MPSI", "PCSI", "TSI", "PTSI"],
+    "prepasc2" :["MP", "PC", "PSI", "PT", "TSI"],
+    "prepacom1":["ECE", "ECS, ECT"],
+    "prepacom2":["ECE", "ECS, ECT"]
+  }
+  var structure = {
+      "prepasc2": {
+          "Algèbre": [
+              "Structure, arithmétique, complexes",
+              "Polynômes",
+              "Espaces vectoriels, matrices, déterminants",
+              "Réduction",
+              "Espace préhilbertiens, espaces euclidiens"
+          ],
+          "Analyse": [
+              "Espaces normés et Topologie",
+              "Fonctions d'une variable réelle",
+              "Suites réelles ou complexes",
+              "Intégration sur un intervalle quelconque",
+              "Intégrales à paramètre",
+              "Séries numériques",
+              "Séries defonctions",
+              "Séries entières",
+              "Séries de Fourier",
+              "Equations différentielles",
+              "Fonctions de plusieurs variables réelles"
+          ],
+          "Géométrie": [
+              "Géométrie du plan et de l'espace",
+              "Courbes et surfaces"
+          ]
+      },
+      "prepasc1": {
+          "Algèbre": [
+              "Raisonnement et vocabulaire ensembliste",
+              "Calculs algébriques",
+              "Applications, relations",
+              "Entiers naturels, récurrence",
+              "Arithmétique dans l'ensemble des entiers relatifs",
+              "Structures algébriques usuelles",
+              "Polynômes et fractions rationnelles"
+          ],
+          "Analyse": [
+              "Nombres complexes et trigonométrie",
+              "Techniques fondamentales de calcul en analyse",
+              "Nombres réels et suites numériques",
+              "Fonctions usuelles",
+              "Limites, continuité, dérivabilité",
+              "Analyse asymptotique",
+              "Intégration",
+              "Séries numériques",
+              "Généralités sur les séries à termes positifs",
+              "Convergence absolue (MPSI)"
+          ],
+          "Algèbre linéaire": [
+              "Espaces vectoriels et applications linéaires",
+              "Matrices",
+              "Groupe symétrique et déterminants",
+              "Espaces préhilbertiens réels"
+          ],
+          "Probabilités": [
+              "Probabilités sur un univers fini",
+              "Variables aléatoires sur un espace probabilisé fini"
+          ]
+      },
+      "prepacom1": {
+          "Algèbre": [
+              "Raisonnement et vocabulaire ensembliste",
+              "Polynômes",
+              "Matrices",
+              "Espaces vectoriels",
+              "Applications linéaires"
+          ],
+          "Analyse": [
+              "Nombres complexes",
+              "Techniques fondamentales de calcul en analyse",
+              "Suites de nombres réels",
+              "Fonctions réelles d'une variable réelle",
+              "Analyse asymptotique",
+              "Intégration",
+              "Séries numériques",
+              "Fonctions convexes"
+          ],
+          "Géométrie": [
+              "Probabilités sur un univers fini",
+              "Probabilités sur un univers quelconque"
+          ]
+      },
+      "prepacom2": {
+          "Algèbre": [
+            "Sommes directes – Sous-espaces stables",
+            "Réduction des endomorphismes",
+            "Réduction des matrices carrées",
+            "Produit scalaire",
+            "Espace euclidien",
+            "Endomorphismes symétriques d’un espace euclidien – Matrices symétriques"
+          ],
+          "Analyse": [
+            "Intégrales sur un intervalle quelconque",
+            "Fonctions numériques de plusieurs variables",
+            "Droites affines de Rn – Eléments de topologie",
+            "Fonctions définies sur Rn",
+            "Calcul différentiel",
+            "Extremums"
+          ],
+          "Probabilités": [
+            "Statistique descriptive bivariée",
+            "Variable aléatoires discrètes",
+            "Vecteurs aléatoires discrets",
+            "Généralités sur les variables aléatoires réelles",
+            "Variables aléatoires à densité",
+            "Convergences et approximations",
+            "Estimation"
+          ]
+      }
+  };
+
+
+  var cleanURL = function(str){
+      str = str.replace(/^\s+|\s+$/g, '');
+      str = str.toLowerCase();
+      var from = "ãàáäâẽèéëêìíïîõòóöôùúüûñç·/_,:;";
+      var to   = "aaaaaeeeeeiiiiooooouuuunc------";
+      for (var i=0, l=from.length ; i<l ; i++){
+          str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+      }
+      str = str.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+      return str;
+  };
+
+  var goChapters = function(){
+      $("#part").click(function() {
+          console.log('part clicked')
+          if($.inArray($("#part").val(), Object.keys(structure[appliValue]))>-1){
+              console.log("found chapters")
+              partValue = $(this).val()
+              chapters = structure[appliValue][partValue]
+              $("#chapter").empty();
+              $("#chapter").removeProp('disabled');
+              for (var i=0; i<chapters.length;i++){
+                  $("#chapter").append('<option value="' + chapters[i] + '">' + chapters[i] + '</option>')
+              }
+          }
+      });
+  }
+
+/*
+  $(document).ready(function(){
+      $( "#part" ).replaceWith( "<select class='required form-control' disabled id='part'><option> Nom de la Partie </option></select>" );
+
+      $( "#chapter" ).replaceWith( "<select class='required form-control' disabled id='chapter'><option> Nom du chapitre </option></select>" );
+  });
+*/
+
+  $(document).ready(function(){
+      console.log("disabling #part and #chapter and hiding .trackbox")
+      $( "#part" ).prop('disabled', 'true');
+      $( "#chapter" ).prop('disabled', 'true');
+      $( ".trackbox" ).hide();
+  });
+
+  $("#appli").click(function() {
+      console.log('appli clicked')
+      if($.inArray($("#appli").val(), Object.keys(structure))>-1){
+          console.log("found parts")
+          appliValue = $(this).val()
+          var parts = Object.keys(structure[appliValue])
+          $("#part").empty();
+          $("#part").removeProp('disabled');
+          for (var i=0; i<parts.length;i++){
+              $("#part").append('<option value="' + parts[i] + '">' + parts[i] + '</option>')
+          }
+          console.log("appliValue= "+appliValue);
+          goChapters();
+      }
+      if($.inArray($("#appli").val(), Object.keys(filieres))>-1){
+          console.log("found tracks")
+          appliValue = $(this).val()
+          console.log("appliValue= "+appliValue);
+          if(appliValue=="prepasc1"){
+            $( ".trackbox" ).hide();
+            $(".inge1").show();
+          }
+          if(appliValue=="prepasc2"){
+            $( ".trackbox" ).hide();
+            $(".inge2").show();
+          }
+          if(appliValue=="prepacom1"){
+            $( ".trackbox" ).hide();
+            $(".eco").show();
+          }
+      }
+  });
+
+  $("#submit").click(function() {
+    var formTracks = [];
+    $('input[name="tracks"]:checked').each(function(){
+      formTracks.push($(this).val());
+    });
+    formdata = JSON.stringify({
+      "source"      : $('input[name="source"]').val(),
+      "appli"       : $('select[name="appli"]').val(),
+      "package"     : $('select[name="package"]').val(),
+      "concours"    : $('input[name="school"]').val(),
+      "filiere"     :  formTracks,
+      "category"    : $('select[name="part"]').val(),
+      "chapter"     : $('select[name="chapter"]').val(),
+      "difficulty"  : $('select[name="difficulty"]').val(),
+      "tags"        : $('input[name="tags"]').val(),
+      "question"    : $('textarea[name="question"]').val(),
+      "hint"        : $('textarea[name="hint"]').val(),
+      "solution"    : $('textarea[name="solution"]').val()});
+    console.log(formdata);
+  });
+
+
+
+</script>
+
+{% endblock %}
+<!--
+      $.post("/add/new/exo", {'data': $formdata}, function(response) {
+            can I render a new template here with data from flask function?
+          });
+      });
+  -->
+<!-- http://stackoverflow.com/questions/17171459/flask-render-a-page-after-jquery-ajax-post-call -->
+<!-- http://flask.pocoo.org/docs/patterns/jquery/ -->
