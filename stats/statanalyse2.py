@@ -50,9 +50,12 @@ now = int((datetime.datetime.now()-datetime.datetime(1970,1,1)).total_seconds())
 
 
 for record in raw_data:
+    print record
     #enregistrement des mails
-    users.append(record["mail"])
-
+    try:
+        users.append(record["mail"])
+    except KeyError:
+        pass
 
     #enregistrement des filières: parfois le champ n'est pas renseigné alors on prend des précautions
     try:
@@ -61,7 +64,10 @@ for record in raw_data:
         pass
 
     # enregistrement des prepas
-    dictadd("nomprepa",prepas)
+    try:
+        dictadd("nomprepa",prepas)
+    except KeyError:
+        pass
 
 
     #enregistrement de l'OS et de la version

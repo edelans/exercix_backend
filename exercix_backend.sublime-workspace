@@ -83,6 +83,70 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/utility.py",
+			"settings":
+			{
+				"buffer_size": 14177,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views.py",
+			"settings":
+			{
+				"buffer_size": 23042,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/edition/exo_edit_new.html",
+			"settings":
+			{
+				"buffer_size": 4884,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/edition/exo_edit_content.html",
+			"settings":
+			{
+				"buffer_size": 10464,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/forms.py",
+			"settings":
+			{
+				"buffer_size": 3507,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/models.py",
+			"settings":
+			{
+				"buffer_size": 2068,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/authors/exo_edit_new2.html",
+			"settings":
+			{
+				"buffer_size": 20097,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/templates/authors/exo_edit_content.html",
+			"settings":
+			{
+				"buffer_size": 10471,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -354,6 +418,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"            </label>\n        {% endif %}",
+			"</label>",
+			"give_new_number",
 			"col-lg-3",
 			"p>",
 			"<p",
@@ -478,10 +545,7 @@
 			"span",
 			".span",
 			"improvements",
-			" Q",
-			"Q",
-			"Q ",
-			"improvements"
+			" Q"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -601,8 +665,239 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/utility.py",
+					"settings":
+					{
+						"buffer_size": 14177,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2702,
+								2702
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1285.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views.py",
+					"settings":
+					{
+						"buffer_size": 23042,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								16370,
+								16370
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 8215.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/templates/edition/exo_edit_new.html",
+					"settings":
+					{
+						"buffer_size": 4884,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								4031,
+								4031
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1207.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/templates/edition/exo_edit_content.html",
+					"settings":
+					{
+						"buffer_size": 10464,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3857,
+								3857
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1496.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/forms.py",
+					"settings":
+					{
+						"buffer_size": 3507,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2721,
+								2721
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 204.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "app/models.py",
+					"settings":
+					{
+						"buffer_size": 2068,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1663,
+								1663
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 357.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		},
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 6,
+					"file": "app/templates/authors/exo_edit_new2.html",
+					"settings":
+					{
+						"buffer_size": 20097,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								12057,
+								12057
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7826.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/templates/authors/exo_edit_content.html",
+					"settings":
+					{
+						"buffer_size": 10471,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3451.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -623,11 +918,18 @@
 				0,
 				1,
 				1
+			],
+			[
+				1,
+				0,
+				2,
+				1
 			]
 		],
 		"cols":
 		[
 			0.0,
+			0.5,
 			1.0
 		],
 		"rows":
@@ -698,6 +1000,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 210.0,
+	"side_bar_width": 219.0,
 	"status_bar_visible": true
 }
